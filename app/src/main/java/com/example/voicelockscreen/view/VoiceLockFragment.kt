@@ -8,16 +8,25 @@ import android.speech.RecognizerIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.service.VoiceLockService
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.customPreference
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
+import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_voice_lock.*
 import java.util.*
 
 
 class VoiceLockFragment : Fragment() {
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +45,7 @@ class VoiceLockFragment : Fragment() {
         btnSpeak.setOnClickListener {
             promptSpeechInput()
         }
-        test_thu_service.setOnClickListener {
+        btnStartService.setOnClickListener {
             val intent = Intent(context, VoiceLockService::class.java)
             context?.startService(intent)
         }
@@ -64,6 +73,7 @@ class VoiceLockFragment : Fragment() {
         }
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -71,9 +81,9 @@ class VoiceLockFragment : Fragment() {
                 if (resultCode == RESULT_OK && data != null) {
                     val result: ArrayList<String> =
                         data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
-                    val intent = Intent(context, VoiceLockService::class.java)
-                    intent.putExtra("input", result[0])
-                   context?.startService(intent)
+                    val prefs = context?.let { customPreference(it, Util.CUSTOM_PREF_NAME) }
+                    prefs?.input = result[0]
+
                 }
             }
             else -> {}
