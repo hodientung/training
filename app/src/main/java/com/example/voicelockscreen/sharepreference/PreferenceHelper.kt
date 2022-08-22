@@ -2,15 +2,11 @@ package com.example.voicelockscreen.sharepreference
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
 
 object PreferenceHelper {
 
     val USER_ID = "USER_ID"
     val INPUT = "input"
-
-    fun defaultPreference(context: Context): SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(context)
 
     fun customPreference(context: Context, name: String): SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)
@@ -24,8 +20,7 @@ object PreferenceHelper {
     // custom put du lieu vao share preference
     inline fun SharedPreferences.Editor.put(pair: Pair<String, Any>) {
         val key = pair.first
-        val value = pair.second
-        when (value) {
+        when (val value = pair.second) {
             is String -> putString(key, value)
             is Int -> putInt(key, value)
             is Boolean -> putBoolean(key, value)
@@ -35,13 +30,13 @@ object PreferenceHelper {
         }
     }
 
-    var SharedPreferences.userId
-        get() = getInt(USER_ID, 0)
-        set(value) {
-            editMe {
-                it.putInt(USER_ID, value)
-            }
-        }
+//    var SharedPreferences.userId
+//        get() = getInt(USER_ID, 0)
+//        set(value) {
+//            editMe {
+//                it.putInt(USER_ID, value)
+//            }
+//        }
 
     var SharedPreferences.input
         get() = getString(INPUT, "")
@@ -51,12 +46,12 @@ object PreferenceHelper {
             }
         }
 
-    var SharedPreferences.clearValues
-        get() = { }
-        set(value) {
-            editMe {
-                it.clear()
-            }
-        }
+//    var SharedPreferences.clearValues
+//        get() = { }
+//        set(value) {
+//            editMe {
+//                it.clear()
+//            }
+//        }
 
 }
