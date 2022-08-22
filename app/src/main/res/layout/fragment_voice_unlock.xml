@@ -16,6 +16,7 @@
         android:contentDescription="@string/hello_world"
         android:src="@drawable/icon_voice_mix" />
     <TextView
+        android:id="@+id/test_thu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/speak_password_to_unlock"

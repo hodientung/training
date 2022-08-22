@@ -3,6 +3,7 @@ package com.example.voicelockscreen.view
 import android.app.Activity.RESULT_OK
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -11,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.PermissionChecker.checkCallingOrSelfPermission
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.service.VoiceLockService
@@ -54,10 +57,25 @@ class VoiceLockFragment : Fragment() {
     }
 
     private fun checkOverlayPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(context)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val requiredPermission: String = android.Manifest.permission.RECORD_AUDIO
+
+            // If the user previously denied this permission then show a message explaining why
+            // this permission is needed
+            if (activity?.let { checkCallingOrSelfPermission(it, requiredPermission) } == PackageManager.PERMISSION_DENIED) {
+                activity?.let {
+                    ActivityCompat.requestPermissions(
+                        it,
+                        arrayOf(requiredPermission),
+                        101
+                    )
+                }
+            }
+        }
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(context)) {
             val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
             startActivity(intent)
-        }
+        //}
     }
 
     private fun promptSpeechInput() {
