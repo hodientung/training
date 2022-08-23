@@ -6,10 +6,6 @@ import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
 import android.view.*
-
-import android.widget.Button
-import android.widget.ImageButton
-import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 
 
@@ -37,7 +33,6 @@ class Window(context: Context) {
     }
 
     fun getView() = mView
-    fun getContext() = context
 
     fun open() {
         try {
@@ -47,6 +42,12 @@ class Window(context: Context) {
         } catch (e: Exception) {
             Log.e("Error1", e.toString())
         }
+
+        //bat su kien
+//        mView?.findViewById<ImageButton>(R.id.btnSpeakUnlock)?.setOnClickListener {
+//
+//        }
+
     }
 
     fun close() {

@@ -26,6 +26,11 @@ import java.util.*
 
 class VoiceLockFragment : Fragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        checkOverlayPermission()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,8 +49,10 @@ class VoiceLockFragment : Fragment() {
             promptSpeechInput()
         }
         btnStartService.setOnClickListener {
-            checkOverlayPermission()
             startService()
+        }
+        btnStopService.setOnClickListener {
+            stopService()
         }
     }
 
@@ -56,13 +63,25 @@ class VoiceLockFragment : Fragment() {
         }
     }
 
+    private fun stopService() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(context)) {
+            val intent = Intent(context, VoiceLockService::class.java)
+            context?.stopService(intent)
+        }
+    }
+
     private fun checkOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val requiredPermission: String = android.Manifest.permission.RECORD_AUDIO
 
             // If the user previously denied this permission then show a message explaining why
             // this permission is needed
-            if (activity?.let { checkCallingOrSelfPermission(it, requiredPermission) } == PackageManager.PERMISSION_DENIED) {
+            if (activity?.let {
+                    checkCallingOrSelfPermission(
+                        it,
+                        requiredPermission
+                    )
+                } == PackageManager.PERMISSION_DENIED) {
                 activity?.let {
                     ActivityCompat.requestPermissions(
                         it,
@@ -72,10 +91,11 @@ class VoiceLockFragment : Fragment() {
                 }
             }
         }
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(context)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(context)) {
             val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
-            startActivity(intent)
-        //}
+            startActivityForResult(intent, Util.PERM_REQUEST_CODE_DRAW_OVERLAYS)
+            //}
+        }
     }
 
     private fun promptSpeechInput() {
@@ -90,7 +110,7 @@ class VoiceLockFragment : Fragment() {
             getString(R.string.speech_prompt)
         )
         try {
-            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT)
+            startActivityForResult(intent, Util.REQ_CODE_SPEECH_INPUT)
         } catch (a: ActivityNotFoundException) {
             Toast.makeText(
                 context,
@@ -104,7 +124,7 @@ class VoiceLockFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            REQ_CODE_SPEECH_INPUT -> {
+            Util.REQ_CODE_SPEECH_INPUT -> {
                 if (resultCode == RESULT_OK && data != null) {
                     val result: ArrayList<String> =
                         data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
@@ -118,6 +138,6 @@ class VoiceLockFragment : Fragment() {
     }
 
     companion object {
-        const val REQ_CODE_SPEECH_INPUT = 100
+        //
     }
 }

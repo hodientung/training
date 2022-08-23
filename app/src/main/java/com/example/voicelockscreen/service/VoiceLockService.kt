@@ -1,6 +1,5 @@
 package com.example.voicelockscreen.service
 
-import android.app.Dialog
 import android.app.Notification
 import android.app.Service
 import android.content.BroadcastReceiver
@@ -19,6 +18,9 @@ import android.widget.TextView
 import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
+import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.view.Window
 
 
@@ -35,7 +37,7 @@ class VoiceLockService : Service() {
                     window.open()
                     window.getView()?.findViewById<ImageButton>(R.id.btnSpeakUnlock)
                         ?.setOnClickListener {
-                           //
+                            startListeningRecognitionService()
                         }
                 }
                 ACTION_SCREEN_OFF -> {
@@ -90,6 +92,12 @@ class VoiceLockService : Service() {
 
             override fun onResults(p0: Bundle?) {
                 Log.e("tung", "onResult")
+                val prefs =
+                    PreferenceHelper.customPreference(
+                        applicationContext,
+                        Util.CUSTOM_PREF_NAME
+                    )
+                val firstInput = prefs.input
                 val voiceResults = p0?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                 if (voiceResults == null) {
                     println("No voice results")
@@ -98,6 +106,9 @@ class VoiceLockService : Service() {
                         formattedSpeech.append(String.format("\n- %s", match.toString()))
                         window.getView()?.findViewById<TextView>(R.id.test_thu)?.text =
                             formattedSpeech.toString()
+                        if (formattedSpeech.toString() == firstInput) {
+                            window.close()
+                        }
                     }
                 }
             }

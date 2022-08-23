@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_502A5E"
+    android:padding="16dp"
     android:orientation="vertical"
-    android:background="#502A5E"
     tools:context=".view.VoiceLockFragment">
 
     <TextView
@@ -14,48 +15,64 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:text="@string/xin_chao"
+        android:text="@string/input"
         android:textColor="@color/white"
-        android:textSize="26dp"
+        android:textSize="@dimen/size_24"
         android:textStyle="normal" />
 
-    <Button
-        android:id="@+id/btnStartService"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Turn on service"
-        android:layout_below="@id/txtSpeechInput"
-        android:layout_marginTop="20dp"
-        />
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btnStartService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            style="?android:attr/selectableItemBackgroundBorderless"
+            android:text="@string/turn_on_service" />
+
+        <Button
+            android:id="@+id/btnStopService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.5"
+            style="?android:attr/selectableItemBackgroundBorderless"
+            android:text="@string/turn_off_service" />
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="@dimen/size_60"
         android:gravity="center"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/btnSpeak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="fitXY"
             android:background="@null"
-            android:src="@drawable/icon_voice_mix" />
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_voice_mix"
+            android:contentDescription="@string/hello_world" />
 
         <TextView
             android:id="@+id/test_thu_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/size_10"
             android:text="@string/tap_on_mic"
             android:textColor="@color/white"
-            android:textSize="15dp"
+            android:textSize="@dimen/size_15"
             android:textStyle="normal" />
     </LinearLayout>
-
 
 
 </RelativeLayout>
