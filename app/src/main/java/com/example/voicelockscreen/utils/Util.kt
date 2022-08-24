@@ -7,5 +7,6 @@ class Util {
         const val timeout = 20001
         const val PERM_REQUEST_CODE_DRAW_OVERLAYS = 1234
         const val REQ_CODE_SPEECH_INPUT = 100
+        const val REQ_CODE_PIN_LOCK = 101
     }
 }

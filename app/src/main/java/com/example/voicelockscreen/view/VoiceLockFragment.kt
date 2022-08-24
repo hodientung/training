@@ -54,6 +54,10 @@ class VoiceLockFragment : Fragment() {
         btnStopService.setOnClickListener {
             stopService()
         }
+        btnPinLock.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                ?.replace(R.id.content_frame, PinCodeFragment())?.commit()
+        }
     }
 
     private fun startService() {
