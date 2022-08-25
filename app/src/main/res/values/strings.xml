@@ -22,4 +22,5 @@
     <string name="voice_lock">Voice Lock</string>
     <string name="pattern_lock">Pattern Lock</string>
     <string name="_1">1</string>
+    <string name="change_pin_lock">Change pin Lock</string>
 </resources>

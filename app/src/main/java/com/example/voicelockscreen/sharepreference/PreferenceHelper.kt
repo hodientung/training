@@ -5,8 +5,8 @@ import android.content.SharedPreferences
 
 object PreferenceHelper {
 
-    val USER_ID = "USER_ID"
-    val INPUT = "input"
+    private const val INPUT = "input"
+    private const val INPUT_PIN_LOCK = "input_pin_lock"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)
@@ -43,6 +43,14 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putString(INPUT, value)
+            }
+        }
+
+    var SharedPreferences.inputPinLock
+        get() = getString(INPUT_PIN_LOCK, "")
+        set(value) {
+            editMe {
+                it.putString(INPUT_PIN_LOCK, value)
             }
         }
 

@@ -1,51 +1,132 @@
 package com.example.voicelockscreen.view
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
+import com.example.voicelockscreen.utils.Util
+import kotlinx.android.synthetic.main.item_delete.view.*
+import kotlinx.android.synthetic.main.item_empty.view.*
 import kotlinx.android.synthetic.main.item_number.view.*
 
 class RecyclerViewPinLock(
-    private val onItemClicked: (DataModel) -> Unit
+    val context: Context?
 ) :
-    RecyclerView.Adapter<RecyclerViewPinLock.ViewHolderPinLock>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    var onItemClicked: ((position: Int) -> Unit)? = null
     var dataModel: ArrayList<DataModel> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolderPinLock {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_number, parent, false)
-        return ViewHolderPinLock(view) {
-            onItemClicked(dataModel[it])
-        }
-    }
 
-    override fun onBindViewHolder(holder: ViewHolderPinLock, position: Int) {
-        holder.bind(dataModel[position])
-    }
-
-    override fun getItemCount(): Int = dataModel.size
-
-    class ViewHolderPinLock(itemView: View, onItemClicked: (Int) -> Unit) :
+    inner class CircleViewViewHolder(itemView: View, onItemClicked: ((Int) -> Unit)?) :
         RecyclerView.ViewHolder(itemView) {
         init {
             itemView.btnNumber.setOnClickListener {
-                onItemClicked(adapterPosition)
+                onItemClicked?.invoke(adapterPosition)
             }
         }
 
         fun bind(dataModel: DataModel) {
+            // show data
             itemView.btnNumber.text = dataModel.number
         }
     }
+
+    private inner class CircleEmptyViewViewHolder(itemView: View, onItemClicked: ((Int) -> Unit)?) :
+        RecyclerView.ViewHolder(itemView) {
+        init {
+            itemView.btnNumberEmpty.setOnClickListener {
+                onItemClicked?.invoke(adapterPosition)
+            }
+        }
+
+        fun bind(dataModel: DataModel) {
+            // show data
+            itemView.btnNumberEmpty.text = "empty"
+        }
+
+    }
+
+    private inner class CircleDeleteViewViewHolder(
+        itemView: View,
+        onItemClicked: ((Int) -> Unit)?
+    ) :
+        RecyclerView.ViewHolder(itemView) {
+        init {
+            itemView.btnNumberDelete.setOnClickListener {
+                onItemClicked?.invoke(adapterPosition)
+            }
+        }
+
+        fun bind(dataModel: DataModel) {
+            // show data
+        }
+    }
+
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder = when (viewType) {
+        Util.THE_FIRST_VIEW ->
+            CircleViewViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_number, parent, false),
+                onItemClicked
+            )
+
+        Util.THE_SECOND_VIEW ->
+            CircleEmptyViewViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_empty, parent, false),
+                onItemClicked
+            )
+
+        else ->
+            CircleDeleteViewViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_delete, parent, false),
+                onItemClicked
+            )
+//        val view =
+//            LayoutInflater.from(parent.context).inflate(R.layout.item_number, parent, false)
+//        return ViewHolderPinLock(view) {
+//            onItemClicked(dataModel[it])
+//        }
+
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when {
+            position in 0..8 || position == 10 && dataModel[position].viewType == 1
+            ->
+                (holder as CircleViewViewHolder).bind(dataModel[position])
+
+            position == 9 && dataModel[position].viewType == 2 ->
+                (holder as CircleEmptyViewViewHolder).bind(dataModel[position])
+            else ->
+                (holder as CircleDeleteViewViewHolder).bind(dataModel[position])
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int = dataModel[position].viewType
+    override fun getItemCount(): Int = dataModel.size
+
+//    class ViewHolderPinLock(itemView: View, onItemClicked: (Int) -> Unit) :
+//        RecyclerView.ViewHolder(itemView) {
+//        init {
+//            itemView.btnNumber.setOnClickListener {
+//                onItemClicked(adapterPosition)
+//            }
+//        }
+//
+//        fun bind(dataModel: DataModel) {
+//            itemView.btnNumber.text = dataModel.number
+//        }
+//    }
 
 }

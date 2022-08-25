@@ -1,3 +1,3 @@
 package com.example.voicelockscreen.model
 
-data class DataModel (var number : String)
+data class DataModel (val viewType: Int, val number : String)

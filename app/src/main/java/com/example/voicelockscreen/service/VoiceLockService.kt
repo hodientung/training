@@ -15,6 +15,7 @@ import android.speech.SpeechRecognizer
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
@@ -103,10 +104,9 @@ class VoiceLockService : Service() {
                     println("No voice results")
                 } else {
                     for (match in voiceResults) {
-                        formattedSpeech.append(String.format("\n- %s", match.toString()))
                         window.getView()?.findViewById<TextView>(R.id.test_thu)?.text =
-                            formattedSpeech.toString()
-                        if (formattedSpeech.toString() == firstInput) {
+                            match.toString()
+                        if (match.toString() == firstInput) {
                             window.close()
                         }
                     }

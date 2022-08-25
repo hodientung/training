@@ -12,30 +12,20 @@ import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.utils.Util
-import kotlinx.android.synthetic.main.fragment_pin_code.*
+import kotlinx.android.synthetic.main.fragment_validate_pin_lock_change.*
 
-
-class PinCodeFragment : Fragment() {
+class ValidatePinLockChangeFragment : Fragment() {
 
     private lateinit var mAdapter: RecyclerViewPinLock
-
-    private var isSetupPassword = false
-
     private var passwordSetup = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pin_code, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        initAction()
-
+        return inflater.inflate(R.layout.fragment_validate_pin_lock_change, container, false)
     }
 
     private fun initAction() {
@@ -43,6 +33,13 @@ class PinCodeFragment : Fragment() {
 //            Toast.makeText(context, "vi tri $it", Toast.LENGTH_SHORT).show()
 //        }
         setUpPassword()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        initAction()
+
     }
 
     private fun setUpPassword() {
@@ -53,7 +50,7 @@ class PinCodeFragment : Fragment() {
                 else ->
                     passwordSetup = removeLastChar(passwordSetup).toString()
             }
-            txtPass.text = passwordSetup
+            txtPassValidate.text = passwordSetup
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
@@ -61,27 +58,18 @@ class PinCodeFragment : Fragment() {
                         Util.PIN_LOCK_CUSTOM_PREF_NAME
                     )
                 }
-            if (passwordSetup.length == 4 && !isSetupPassword) {
-                Toast.makeText(
-                    context, "Enter Pin Lock again",
-                    Toast.LENGTH_LONG
-                ).show()
-                prefs?.inputPinLock = passwordSetup
-                txtPass.text = ""
-                isSetupPassword = true
-                passwordSetup = ""
-
-            }
-            if (isSetupPassword && passwordSetup.length == 4) {
-                val againInput = prefs?.inputPinLock
-                if (againInput == passwordSetup) {
+            if (passwordSetup.length == 4) {
+                if (passwordSetup == prefs?.inputPinLock) {
                     Toast.makeText(
-                        context, "Successfully Set Pin Lock",
+                        context, "Exchange Screen",
                         Toast.LENGTH_LONG
                     ).show()
                     activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                        ?.replace(R.id.content_frame, SetupVoiceLockFragment())?.commit()
-
+                        ?.replace(R.id.content_frame, PinCodeFragment())?.commit()
+                } else {
+                    txtPassValidate.text = ""
+                    passwordSetup = ""
+                    Toast.makeText(context, "Wrong Pin Code", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -94,10 +82,10 @@ class PinCodeFragment : Fragment() {
 
 
     private fun initView() {
-        rvPinCode.layoutManager = GridLayoutManager(context, 3)
+        rvPinCodeValidate.layoutManager = GridLayoutManager(context, 3)
         mAdapter = RecyclerViewPinLock(context)
         mAdapter.dataModel = getListNumber()
-        rvPinCode.adapter = mAdapter
+        rvPinCodeValidate.adapter = mAdapter
     }
 
     private fun getListNumber(): ArrayList<DataModel> {
@@ -117,6 +105,4 @@ class PinCodeFragment : Fragment() {
         return item
     }
 
-    companion object {
-    }
 }
