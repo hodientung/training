@@ -15,28 +15,17 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoiceLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
-import kotlinx.android.synthetic.main.fragment_pin_code.*
 import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 import java.util.*
 
+class ValidateVoiceLockChangeFragment : Fragment() {
 
-class SetupVoiceLockFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
         setTheme()
-    }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setup_voice_lock, container, false)
     }
 
     //show theme for layout
@@ -50,8 +39,16 @@ class SetupVoiceLockFragment : Fragment() {
             }
 
         prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { contentSetupVoiceLock.setBackgroundResource(it) }
+            ?.let { contentValidateVoiceLock.setBackgroundResource(it) }
 
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_validate_voice_lock_change, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +57,7 @@ class SetupVoiceLockFragment : Fragment() {
     }
 
     private fun initAction() {
-        btnSpeak.setOnClickListener {
+        btnSpeakValidate.setOnClickListener {
             promptSpeechInput()
         }
     }
@@ -102,9 +99,11 @@ class SetupVoiceLockFragment : Fragment() {
                             Util.CUSTOM_PREF_NAME
                         )
                     }
-
-                    prefs?.input = result[0]
-                    prefs?.isSetupVoiceLock = true
+                    if (prefs?.input == result[0])
+                        activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                            ?.replace(R.id.content_frame, SetupVoiceLockFragment())?.commit()
+                    else
+                        Toast.makeText(context, "Invalid voice", Toast.LENGTH_LONG).show()
 
                 }
             }

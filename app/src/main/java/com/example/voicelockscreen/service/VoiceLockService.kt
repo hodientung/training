@@ -14,6 +14,7 @@ import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
@@ -43,6 +44,15 @@ class VoiceLockService : Service() {
                 }
                 ACTION_SCREEN_OFF -> {
                     Log.e("tung", "screen off")
+                }
+                Util.ACTION_THEME -> {
+                    window.getView()?.findViewById<LinearLayout>(R.id.content_add_view)
+                        ?.setBackgroundResource(
+                            p1.getIntExtra(
+                                "background_theme",
+                                R.color.teal_200
+                            )
+                        )
                 }
             }
         }
@@ -138,6 +148,7 @@ class VoiceLockService : Service() {
         filter.addAction(ACTION_SCREEN_ON)
         filter.addAction(ACTION_SCREEN_OFF)
         filter.addAction(ACTION_USER_PRESENT)
+        filter.addAction(Util.ACTION_THEME)
         registerReceiver(stateOfPhone, filter)
     }
 

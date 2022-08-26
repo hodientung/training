@@ -1,11 +1,11 @@
 package com.example.voicelockscreen.view
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
@@ -14,22 +14,22 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
-import kotlinx.android.synthetic.main.fragment_pin_code.*
+import kotlinx.android.synthetic.main.fragment_pincode_establish.*
 
 
-class PinCodeFragment : Fragment() {
 
+class PinCodeEstablishFragment : Fragment() {
     private lateinit var mAdapter: RecyclerViewPinLock
 
     private var isSetupPassword = false
 
     private var passwordSetup = ""
 
+
     override fun onResume() {
         super.onResume()
         setTheme()
     }
-
 
     //show theme for layout
     private fun setTheme() {
@@ -42,7 +42,7 @@ class PinCodeFragment : Fragment() {
             }
 
         prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { contentPinCode.setBackgroundResource(it) }
+            ?.let { contentEstablishSetup.setBackgroundResource(it) }
         for (i in 0 until getListNumber().size) {
             mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
                 Util.getThemeToScreen(
@@ -57,7 +57,7 @@ class PinCodeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pin_code, container, false)
+        return inflater.inflate(R.layout.fragment_pincode_establish, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -82,7 +82,7 @@ class PinCodeFragment : Fragment() {
                 else ->
                     passwordSetup = removeLastChar(passwordSetup).toString()
             }
-            txtPass.text = passwordSetup
+            txtPassEstablish.text = passwordSetup
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
@@ -96,7 +96,7 @@ class PinCodeFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
                 prefs?.inputPinLock = passwordSetup
-                txtPass.text = ""
+                txtPassEstablish.text = ""
                 isSetupPassword = true
                 passwordSetup = ""
 
@@ -108,8 +108,7 @@ class PinCodeFragment : Fragment() {
                         context, "Successfully Set Pin Lock",
                         Toast.LENGTH_LONG
                     ).show()
-                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                        ?.replace(R.id.content_frame, SetupVoiceLockFragment())?.commit()
+                    activity?.supportFragmentManager?.popBackStack()
 
                 }
             }
@@ -123,10 +122,10 @@ class PinCodeFragment : Fragment() {
 
 
     private fun initView() {
-        rvPinCode.layoutManager = GridLayoutManager(context, 3)
+        rvPinCodeEstablish.layoutManager = GridLayoutManager(context, 3)
         mAdapter = RecyclerViewPinLock(context)
         mAdapter.dataModel = getListNumber()
-        rvPinCode.adapter = mAdapter
+        rvPinCodeEstablish.adapter = mAdapter
     }
 
     private fun getListNumber(): ArrayList<DataModel> {
@@ -145,4 +144,6 @@ class PinCodeFragment : Fragment() {
         item.add(DataModel(3, "xoa"))
         return item
     }
+
+
 }

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/contentSetupVoiceLock"
+    android:id="@+id/contentValidateVoiceLock"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_502A5E"
-    tools:context=".view.SetupVoiceLockFragment">
+    tools:context=".view.ValidateVoiceLockChangeFragment">
 
     <TextView
-        android:id="@+id/txtSpeechInput"
+        android:id="@+id/txtSpeechInputValidate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -29,7 +28,7 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/btnSpeak"
+            android:id="@+id/btnSpeakValidate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -38,7 +37,7 @@
             android:src="@drawable/icon_voice_mix" />
 
         <TextView
-            android:id="@+id/test_thu_service"
+            android:id="@+id/test_thu_service_Validate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
@@ -47,6 +46,4 @@
             android:textSize="@dimen/size_15"
             android:textStyle="normal" />
     </LinearLayout>
-
-
 </RelativeLayout>

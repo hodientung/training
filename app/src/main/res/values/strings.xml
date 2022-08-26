@@ -21,6 +21,7 @@
     <string name="pin_lock">Pin Lock</string>
     <string name="voice_lock">Voice Lock</string>
     <string name="pattern_lock">Pattern Lock</string>
+    <string name="theme">Theme</string>
     <string name="_1">1</string>
     <string name="change_pin_lock">Change pin Lock</string>
 </resources>

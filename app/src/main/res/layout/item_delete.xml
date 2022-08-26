@@ -4,14 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
+    <View
+        android:id="@+id/base_view"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"/>
+
     <ImageView
         android:id="@+id/btnNumberDelete"
         style="?android:attr/selectableItemBackgroundBorderless"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_delete_number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/clear_18_tone"
+        app:layout_constraintEnd_toEndOf="@id/base_view"
+        app:layout_constraintStart_toStartOf="@id/base_view"
+        app:layout_constraintBottom_toBottomOf="@id/base_view"
+        app:layout_constraintTop_toTopOf="@id/base_view"
+        android:contentDescription="@string/hello_world" />
 </androidx.constraintlayout.widget.ConstraintLayout>

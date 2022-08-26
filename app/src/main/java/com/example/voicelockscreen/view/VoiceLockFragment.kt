@@ -9,17 +9,22 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.PermissionChecker.checkCallingOrSelfPermission
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.service.VoiceLockService
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.customPreference
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoiceLock
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.onService
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_voice_lock.*
 
 
-
 class VoiceLockFragment : Fragment() {
+
+    var isEnableService = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,19 +49,40 @@ class VoiceLockFragment : Fragment() {
     }
 
     private fun initAction() {
+        val prefs = context?.let { customPreference(it, Util.CUSTOM_PREF_NAME) }
+
         btnStartService.setOnClickListener {
+            isEnableService = true
+            prefs?.onService = isEnableService
             startService()
         }
         btnStopService.setOnClickListener {
+            isEnableService = false
+            prefs?.onService = isEnableService
             stopService()
         }
         btnVoiceLock.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, AlternativeLockFragment())?.commit()
+            if (prefs?.isSetupVoiceLock == true)
+            // open fragment enter old password to open voice lock screen setup new password
+                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                    ?.replace(R.id.content_frame, ValidateVoiceLockChangeFragment())?.commit()
+            else
+            //exchange to setup new password
+                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                    ?.replace(R.id.content_frame, AlternativeLockFragment())?.commit()
         }
+
         btnPinLock.setOnClickListener {
+            if (prefs?.isSetupVoiceLock == true)
+                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                    ?.replace(R.id.content_frame, ValidatePinLockChangeFragment())?.commit()
+            else Toast.makeText(context, "First Set The Voice Password", Toast.LENGTH_LONG).show()
+        }
+
+        btnTheme.setOnClickListener {
+            // refer fragment list theme
             activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, ValidatePinLockChangeFragment())?.commit()
+                ?.replace(R.id.content_frame, ThemeFragment())?.commit()
         }
     }
 

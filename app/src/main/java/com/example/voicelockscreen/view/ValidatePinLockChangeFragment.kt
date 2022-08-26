@@ -1,23 +1,58 @@
 package com.example.voicelockscreen.view
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
+import kotlinx.android.synthetic.main.fragment_pin_code.*
+import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 import kotlinx.android.synthetic.main.fragment_validate_pin_lock_change.*
 
 class ValidatePinLockChangeFragment : Fragment() {
 
     private lateinit var mAdapter: RecyclerViewPinLock
     private var passwordSetup = ""
+
+    override fun onResume() {
+        super.onResume()
+        setTheme()
+    }
+
+    //show theme for layout
+    private fun setTheme() {
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+
+        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
+            ?.let { contentValidatePinLock.setBackgroundResource(it) }
+        for (i in 0 until getListNumber().size) {
+            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
+                Util.getThemeToScreen(
+                    it
+                ).colorPinButton
+            }
+        }
+    }
 
 
     override fun onCreateView(
@@ -64,8 +99,10 @@ class ValidatePinLockChangeFragment : Fragment() {
                         context, "Exchange Screen",
                         Toast.LENGTH_LONG
                     ).show()
+
+                    //sua lai fragment
                     activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                        ?.replace(R.id.content_frame, PinCodeFragment())?.commit()
+                        ?.replace(R.id.content_frame, PinCodeEstablishFragment())?.commit()
                 } else {
                     txtPassValidate.text = ""
                     passwordSetup = ""

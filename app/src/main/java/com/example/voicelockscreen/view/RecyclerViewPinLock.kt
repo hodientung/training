@@ -36,6 +36,7 @@ class RecyclerViewPinLock(
         fun bind(dataModel: DataModel) {
             // show data
             itemView.btnNumber.text = dataModel.number
+            dataModel.backgroundPinButton?.let { itemView.btnNumber.setBackgroundResource(it) }
         }
     }
 
@@ -50,6 +51,7 @@ class RecyclerViewPinLock(
         fun bind(dataModel: DataModel) {
             // show data
             itemView.btnNumberEmpty.text = "empty"
+            dataModel.backgroundPinButton?.let { itemView.btnNumberEmpty.setBackgroundResource(it) }
         }
 
     }
@@ -67,6 +69,7 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
+            dataModel.backgroundPinButton?.let { itemView.btnNumberDelete.setBackgroundResource(it) }
         }
     }
 

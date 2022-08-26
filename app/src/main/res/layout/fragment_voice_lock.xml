@@ -30,6 +30,13 @@
         android:layout_below="@id/btnPinLock"
         android:layout_centerInParent="true"
         android:text="@string/pattern_lock" />
+    <Button
+        android:id="@+id/btnTheme"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnPatternLock"
+        android:layout_centerInParent="true"
+        android:text="@string/theme" />
 
     <LinearLayout
         android:layout_width="match_parent"
