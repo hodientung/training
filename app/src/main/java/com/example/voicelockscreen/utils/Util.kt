@@ -97,5 +97,16 @@ class Util {
             return DataModelTheme(backgroundScreen, backgroundPinButton)
         }
 
+        fun timeConversion(value: Long): String {
+            var videoTime = ""
+            val duration = value.toInt()
+            val hours = duration / 3600000
+            val minute = (duration / 60000) % 60000
+            val seconds = duration % 60000 / 1000
+            if (hours > 0)
+                videoTime = String.format("%02d:%02d:%02d", hours, minute, seconds)
+            return videoTime
+        }
+
     }
 }

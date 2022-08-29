@@ -26,12 +26,16 @@
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_theme.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_validate_pin_lock_change.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_validate_voice_lock_change.xml" value="0.22" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_video_files.xml" value="0.28125" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_video_folder.xml" value="0.3546875" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_voice_lock.xml" value="0.2" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_voice_unlock.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_delete.xml" value="0.33" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_empty.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_number.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_theme.xml" value="0.25" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_video_file.xml" value="0.3546875" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_video_folder.xml" value="0.3536458333333333" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/popup_window.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/unlock_screen.xml" value="0.33" />
       </map>

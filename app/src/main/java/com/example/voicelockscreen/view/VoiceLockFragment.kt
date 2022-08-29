@@ -1,8 +1,12 @@
 package com.example.voicelockscreen.view
 
 
+import android.Manifest
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -11,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker.checkCallingOrSelfPermission
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.R
@@ -29,6 +34,60 @@ class VoiceLockFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkOverlayPermission()
+        if (context?.let {
+                ContextCompat.checkSelfPermission(
+                    it,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+            } == PackageManager.PERMISSION_GRANTED)
+            Toast.makeText(context, "Write external storage is granted", Toast.LENGTH_LONG).show()
+        else
+            activity?.let {
+                ActivityCompat.requestPermissions(
+                    it,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    1
+                )
+            }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1) {
+            for (i in permissions.indices) {
+                val permission = permissions[i]
+                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                    val showRotation = shouldShowRequestPermissionRationale(permission)
+                    if (!showRotation) {
+                        val builder = AlertDialog.Builder(context)
+                        builder.setTitle("App Permission")
+                            .setMessage(
+                                "You must allow this app to access video files on your device" + "\n\n" + "Now follow the below steps" +
+                                        "\n\n" + "Open settings from below button" + "\n" + "Clock on Permissions" + "\n" + "Allow access for storage"
+                            ).setPositiveButton(
+                                "Open settings"
+                            ) { _, _ ->
+                                val intent =
+                                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                val uri = Uri.fromParts("package", context?.packageName, null)
+                                intent.data = uri
+                                startActivityForResult(intent, 12)
+                            }.create().show()
+                    } else {
+                        activity?.let {
+                            ActivityCompat.requestPermissions(
+                                it,
+                                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1
+                            )
+                        }
+                    }
+                }
+            }
+        }
     }
 
     override fun onCreateView(
@@ -83,6 +142,12 @@ class VoiceLockFragment : Fragment() {
             // refer fragment list theme
             activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
                 ?.replace(R.id.content_frame, ThemeFragment())?.commit()
+        }
+
+        btnVideoGallery.setOnClickListener {
+            //Show list folder contain video in storage
+            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                ?.replace(R.id.content_frame, VideoFolderFragment())?.commit()
         }
     }
 
