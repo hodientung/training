@@ -103,8 +103,9 @@ class Util {
             val hours = duration / 3600000
             val minute = (duration / 60000) % 60000
             val seconds = duration % 60000 / 1000
-            if (hours > 0)
-                videoTime = String.format("%02d:%02d:%02d", hours, minute, seconds)
+            videoTime = if (hours > 0)
+                String.format("%02d:%02d:%02d", hours, minute, seconds)
+            else String.format("%02d:%02d", minute, seconds)
             return videoTime
         }
 

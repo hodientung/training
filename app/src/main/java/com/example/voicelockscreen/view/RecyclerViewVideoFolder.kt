@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelMediaFile
 import kotlinx.android.synthetic.main.item_video_folder.view.*
+import java.io.File
 
 class RecyclerViewVideoFolder(val context: Context?) :
     RecyclerView.Adapter<RecyclerViewVideoFolder.VideoFolderViewHolder>() {
@@ -41,7 +43,7 @@ class RecyclerViewVideoFolder(val context: Context?) :
         RecyclerView.ViewHolder(itemView) {
         init {
             itemView.ctItemVideoFolder.setOnClickListener {
-                onItemClicked?.invoke(adapterPosition)
+                onItemClicked?.invoke(absoluteAdapterPosition)
             }
         }
 

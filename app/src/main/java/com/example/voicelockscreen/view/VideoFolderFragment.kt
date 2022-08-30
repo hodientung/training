@@ -42,10 +42,10 @@ class VideoFolderFragment : Fragment() {
                     adapterVideoFolder.folderPath[it].lastIndexOf("/")
                 )
             )
-            parentFragmentManager.setFragmentResult("dataPath", bundle)
+            val videoFilesFragment = VideoFilesFragment()
+            videoFilesFragment.arguments = bundle
             activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, VideoFilesFragment())?.commit()
-
+                ?.replace(R.id.content_frame, videoFilesFragment)?.commit()
         }
     }
 

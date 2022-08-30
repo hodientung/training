@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelMediaFile
+import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.item_video_file.view.*
 import kotlinx.android.synthetic.main.item_video_folder.view.*
+import java.io.File
 
 class RecyclerViewVideoFile(val context: Context?) :
     RecyclerView.Adapter<RecyclerViewVideoFile.VideoFileViewHolder>() {
@@ -44,7 +47,7 @@ class RecyclerViewVideoFile(val context: Context?) :
         RecyclerView.ViewHolder(itemView) {
         init {
             itemView.rvContent.setOnClickListener {
-                onItemClicked?.invoke(adapterPosition)
+                onItemClicked?.invoke(absoluteAdapterPosition)
             }
         }
 
@@ -52,9 +55,10 @@ class RecyclerViewVideoFile(val context: Context?) :
             itemView.tvVideoName.text = dataModelMediaFile.name
             val size = dataModelMediaFile.size
             itemView.tvVideoSize.text =
-                android.text.format.Formatter.formatFileSize(context, size.toLong())
-            val milliSeconds = dataModelMediaFile.duration.toDouble()
-            itemView.videoDuration.text = "05:30"
+                android.text.format.Formatter.formatFileSize(context, size?.toLong() ?: 0L)
+            val milliSeconds = dataModelMediaFile.duration?.toDouble()
+            itemView.videoDuration.text = Util.timeConversion(milliSeconds?.toLong() ?:0L )
+            context?.let { Glide.with(it).load(File(dataModelMediaFile.path)).into(itemView.imThumbnail) }
 
         }
 
