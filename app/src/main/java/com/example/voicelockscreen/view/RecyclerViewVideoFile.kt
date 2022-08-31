@@ -47,7 +47,7 @@ class RecyclerViewVideoFile(val context: Context?) :
         RecyclerView.ViewHolder(itemView) {
         init {
             itemView.rvContent.setOnClickListener {
-                onItemClicked?.invoke(absoluteAdapterPosition)
+                onItemClicked?.invoke(adapterPosition)
             }
         }
 

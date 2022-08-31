@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelMediaFile
 import kotlinx.android.synthetic.main.item_video_folder.view.*
-import java.io.File
 
 class RecyclerViewVideoFolder(val context: Context?) :
     RecyclerView.Adapter<RecyclerViewVideoFolder.VideoFolderViewHolder>() {
@@ -43,7 +41,7 @@ class RecyclerViewVideoFolder(val context: Context?) :
         RecyclerView.ViewHolder(itemView) {
         init {
             itemView.ctItemVideoFolder.setOnClickListener {
-                onItemClicked?.invoke(absoluteAdapterPosition)
+                onItemClicked?.invoke(adapterPosition)
             }
         }
 
@@ -52,7 +50,17 @@ class RecyclerViewVideoFolder(val context: Context?) :
             val nameOfFolder = folderPath.substring(indexPath + 1)
             itemView.tvFolderName.text = nameOfFolder
             itemView.tvFolderPath.text = folderPath
-            itemView.tvVideoNumber.text = "5 Videos"
+            itemView.tvVideoNumber.text =
+                getNumberOfVideos(folderPath).toString() + " Videos"
+        }
+
+        private fun getNumberOfVideos(folderName: String): Int {
+            var numberOfVideo = 0
+            dataModelMediaFile.forEach {
+                if (it.path?.substring(0, it.path.lastIndexOf("/"))?.endsWith(folderName) == true)
+                    numberOfVideo++
+            }
+            return numberOfVideo
         }
 
     }
