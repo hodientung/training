@@ -11,9 +11,11 @@ class DataModelMediaFile(
     val size: String?,
     val duration: String?,
     val path: String?,
-    val dateAdded: String?
-): Parcelable {
+    val dateAdded: String?,
+    val imageFolder: String? = null
+) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),

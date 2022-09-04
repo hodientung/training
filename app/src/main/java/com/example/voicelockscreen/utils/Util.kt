@@ -18,6 +18,8 @@ class Util {
         const val THE_SECOND_VIEW = 2
         const val THE_THIRD_VIEW = 3
         const val ACTION_THEME = "data_theme"
+        const val KEY_PLAYER_POSITION = "key_player_position"
+        const val KEY_PLAYER_PLAY_WHEN_READY = "key_player_play_when_ready"
 
         private fun getColorListScreen(): ArrayList<Int> {
             var colorList = arrayListOf<Int>()

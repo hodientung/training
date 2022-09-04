@@ -1,6 +1,6 @@
 package com.example.voicelockscreen.view
 
-import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
@@ -61,39 +61,45 @@ class VideoFilesFragment : Fragment() {
     }
 
     private fun getVideoList(folderName: String): ArrayList<DataModelMediaFile> {
+        var cursor: Cursor? = null
         val videoFiles = arrayListOf<DataModelMediaFile>()
         val uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
         val selection = MediaStore.Video.Media.DATA + " like?"
         val selectionArg: Array<String> = arrayOf("%$folderName%")
-        val cursor = context?.contentResolver?.query(uri, null, selection, selectionArg, null)
-        if (cursor != null && cursor.moveToNext()) {
-            do {
-                val id: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID))
-                val title: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE))
-                val displayName: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME))
-                val size: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE))
-                val duration: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION))
-                val path: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
-                val dateAdded: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED))
-                val dataModelMediaFile = DataModelMediaFile(
-                    id,
-                    title,
-                    displayName,
-                    size,
-                    duration,
-                    path,
-                    dateAdded
-                )
-                videoFiles.add(dataModelMediaFile)
-            } while (cursor.moveToNext())
+        try {
+            cursor = context?.contentResolver?.query(uri, null, selection, selectionArg, null)
+            if ((cursor != null) && cursor.moveToNext()) {
+                do {
+                    val id: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID))
+                    val title: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE))
+                    val displayName: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME))
+                    val size: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE))
+                    val duration: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION))
+                    val path: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
+                    val dateAdded: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED))
+                    val dataModelMediaFile = DataModelMediaFile(
+                        id,
+                        title,
+                        displayName,
+                        size,
+                        duration,
+                        path,
+                        dateAdded
+                    )
+                    videoFiles.add(dataModelMediaFile)
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor?.close()
         }
+
         return videoFiles
     }
 

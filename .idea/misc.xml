@@ -41,6 +41,10 @@
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/playback_custom_view.xml" value="0.22" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/popup_window.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/unlock_screen.xml" value="0.33" />
+        <entry key="..\:/training/app/src/main/res/layout/fragment_video_layer.xml" value="0.1" />
+        <entry key="..\:/training/app/src/main/res/layout/item_video_file.xml" value="0.20416666666666666" />
+        <entry key="..\:/training/app/src/main/res/layout/item_video_folder.xml" value="0.17074275362318841" />
+        <entry key="..\:/training/app/src/main/res/layout/playback_custom_view.xml" value="0.17074275362318841" />
       </map>
     </option>
   </component>

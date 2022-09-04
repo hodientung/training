@@ -1,13 +1,17 @@
 package com.example.voicelockscreen.view
 
 import android.content.Context
+import android.database.Cursor
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelMediaFile
 import kotlinx.android.synthetic.main.item_video_folder.view.*
+import java.io.File
 
 class RecyclerViewVideoFolder(val context: Context?) :
     RecyclerView.Adapter<RecyclerViewVideoFolder.VideoFolderViewHolder>() {
@@ -52,6 +56,36 @@ class RecyclerViewVideoFolder(val context: Context?) :
             itemView.tvFolderPath.text = folderPath
             itemView.tvVideoNumber.text =
                 getNumberOfVideos(folderPath).toString() + " Videos"
+            context?.let {
+                Glide.with(it).load(File(getImageOfFolderVideoList(folderPath)))
+                    .into(itemView.imVideoFolder)
+            }
+        }
+
+        private fun getImageOfFolderVideoList(folderPath: String): String {
+            var path = ""
+            var cursor: Cursor? = null
+            val uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+            val selection = MediaStore.Video.Media.DATA + " like?"
+            val selectionArg: Array<String> = arrayOf(
+                "%${
+                    folderPath.substring(
+                        folderPath.lastIndexOf("/")
+                    )
+                }%"
+            )
+            try {
+                cursor =
+                    context?.contentResolver?.query(uri, null, selection, selectionArg, null)
+                if ((cursor != null) && cursor.moveToNext()) {
+                    path =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
+                            ?: "abc"
+                }
+            } finally {
+                cursor?.close()
+            }
+            return path
         }
 
         private fun getNumberOfVideos(folderName: String): Int {
