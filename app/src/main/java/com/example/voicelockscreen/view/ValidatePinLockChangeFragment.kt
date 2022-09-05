@@ -85,7 +85,7 @@ class ValidatePinLockChangeFragment : Fragment() {
                 else ->
                     passwordSetup = removeLastChar(passwordSetup).toString()
             }
-            txtPassValidate.text = passwordSetup
+            txtPassValidate.setText(passwordSetup)
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
@@ -104,7 +104,7 @@ class ValidatePinLockChangeFragment : Fragment() {
                     activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
                         ?.replace(R.id.content_frame, PinCodeEstablishFragment())?.commit()
                 } else {
-                    txtPassValidate.text = ""
+                    txtPassValidate.setText("")
                     passwordSetup = ""
                     Toast.makeText(context, "Wrong Pin Code", Toast.LENGTH_SHORT).show()
                 }

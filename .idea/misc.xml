@@ -20,6 +20,9 @@
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/custom_notification.xml" value="0.365625" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/customview_layout.xml" value="0.365625" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_alternative_lock.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_image_file.xml" value="0.3546875" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_image_folder.xml" value="0.3546875" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_image_layer.xml" value="0.340625" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_pin_code.xml" value="0.25" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_pincode_establish.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_setup_voice_lock.xml" value="0.35260416666666666" />
@@ -34,6 +37,8 @@
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_voice_unlock.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_delete.xml" value="0.33" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_empty.xml" value="0.3582427536231884" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_image_file.xml" value="0.3546875" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_image_folder.xml" value="0.29102564102564105" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_number.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_theme.xml" value="0.25" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_video_file.xml" value="0.3546875" />
@@ -41,10 +46,6 @@
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/playback_custom_view.xml" value="0.22" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/popup_window.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/unlock_screen.xml" value="0.33" />
-        <entry key="..\:/training/app/src/main/res/layout/fragment_video_layer.xml" value="0.1" />
-        <entry key="..\:/training/app/src/main/res/layout/item_video_file.xml" value="0.20416666666666666" />
-        <entry key="..\:/training/app/src/main/res/layout/item_video_folder.xml" value="0.17074275362318841" />
-        <entry key="..\:/training/app/src/main/res/layout/playback_custom_view.xml" value="0.17074275362318841" />
       </map>
     </option>
   </component>

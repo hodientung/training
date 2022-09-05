@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/size_100dp"
         android:text="@string/input"
         android:textColor="@color/white"
         android:textSize="@dimen/size_24"

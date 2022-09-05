@@ -49,6 +49,20 @@ class VideoLayerFragment : Fragment() {
         initAction()
     }
 
+    private fun showView(isVisible: Boolean) {
+        if (isVisible) {
+            controlsMode = ControlsMode.LOCK
+            exoPlayerView.rootLayout.visibility = View.INVISIBLE
+            exoPlayerView.imUnLock.visibility = View.VISIBLE
+            exoPlayerView.imLock.visibility = View.INVISIBLE
+        } else {
+            controlsMode = ControlsMode.FULLSCREEN
+            exoPlayerView.rootLayout.visibility = View.VISIBLE
+            exoPlayerView.imUnLock.visibility = View.INVISIBLE
+            exoPlayerView.imLock.visibility = View.VISIBLE
+        }
+    }
+
     private fun initAction() {
         exoPlayerView.tvBack.setOnClickListener {
             player.stop()
@@ -56,25 +70,17 @@ class VideoLayerFragment : Fragment() {
 
         }
         exoPlayerView.imLock.setOnClickListener {
-            controlsMode = ControlsMode.LOCK
-
-            exoPlayerView.rootLayout.visibility = View.INVISIBLE
-            exoPlayerView.imUnLock.visibility = View.VISIBLE
-            exoPlayerView.imLock.visibility = View.INVISIBLE
+            showView(true)
             Toast.makeText(context, "Locked", Toast.LENGTH_LONG).show()
         }
         exoPlayerView.imUnLock.setOnClickListener {
-            controlsMode = ControlsMode.FULLSCREEN
-            exoPlayerView.rootLayout.visibility = View.VISIBLE
-            exoPlayerView.imUnLock.visibility = View.INVISIBLE
-            exoPlayerView.imLock.visibility = View.VISIBLE
+            showView(false)
             Toast.makeText(context, "Unlocked", Toast.LENGTH_LONG).show()
         }
         exoPlayerView.imNext.setOnClickListener {
             try {
                 player.stop()
                 position++
-                Log.e("anh", position.toString())
                 clearMediaSourceList()
                 setupVideo()
             } catch (e: Exception) {
@@ -137,7 +143,6 @@ class VideoLayerFragment : Fragment() {
 
 
         for (i in 0 until listVideo.size) {
-            //File(listVideo[i].toString())
             val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
                 .createMediaSource(
                     MediaItem.fromUri(
@@ -176,8 +181,6 @@ class VideoLayerFragment : Fragment() {
                 super.onPlayerError(error)
                 Toast.makeText(context, "Video Playing Error", Toast.LENGTH_LONG).show()
             }
-
-
         })
         player.playWhenReady = true
     }
@@ -231,7 +234,7 @@ class VideoLayerFragment : Fragment() {
         }
     }
 
-    private fun clearMediaSourceList(){
+    private fun clearMediaSourceList() {
         mediaSourceList.clear()
     }
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ctItemImageFile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/size_10"
+    android:padding="@dimen/size_8dp">
+
+    <ImageView
+        android:id="@+id/imImageFile"
+        android:layout_width="@dimen/size_112dp"
+        android:layout_height="@dimen/size_62dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/hello_world" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        app:layout_constraintTop_toTopOf="@id/imImageFile"
+        app:layout_constraintBottom_toBottomOf="@id/imImageFile"
+        app:layout_constraintStart_toEndOf="@id/imImageFile"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvFileImageName"
+            android:layout_width="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            android:text="@string/kinemaster"
+            android:textSize="@dimen/size_14_sp" />
+
+        <TextView
+            android:id="@+id/tvImagePath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="@string/starage_emulate_0"
+            android:textSize="@dimen/size_14_sp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

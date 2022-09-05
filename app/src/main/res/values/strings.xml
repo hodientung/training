@@ -23,8 +23,13 @@
     <string name="pattern_lock">Pattern Lock</string>
     <string name="theme">Theme</string>
     <string name="video_gallery">Video Gallery</string>
+    <string name="image_gallery">Image Gallery</string>
     <string name="_1">1</string>
     <string name="change_pin_lock">Change pin Lock</string>
     <string name="www_google_com">www.google.com</string>
     <string name="kinemaster">KineMaster</string>
+    <string name="Videos"> %1$d Videos</string>
+    <string name="starage_emulate_0">/starage/emulate/0</string>
+    <string name="_64_images">64 Images</string>
+    <string name="_1234">1234</string>
 </resources>

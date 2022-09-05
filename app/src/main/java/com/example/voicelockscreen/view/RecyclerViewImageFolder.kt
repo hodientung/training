@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelMediaFile
-import kotlinx.android.synthetic.main.item_video_folder.view.*
+import kotlinx.android.synthetic.main.item_image_folder.view.*
 import java.io.File
 
-class RecyclerViewVideoFolder(val context: Context?) :
-    RecyclerView.Adapter<RecyclerViewVideoFolder.VideoFolderViewHolder>() {
+class RecyclerViewImageFolder(val context: Context?) :
+    RecyclerView.Adapter<RecyclerViewImageFolder.ImageFolderViewHolder>() {
 
     var onItemClicked: ((position: Int) -> Unit)? = null
     var dataModelMediaFile: ArrayList<DataModelMediaFile> = arrayListOf()
@@ -29,22 +29,23 @@ class RecyclerViewVideoFolder(val context: Context?) :
         }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoFolderViewHolder =
-        VideoFolderViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.item_video_folder, parent, false),
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageFolderViewHolder =
+        ImageFolderViewHolder(
+            LayoutInflater.from(context).inflate(R.layout.item_image_folder, parent, false),
             onItemClicked
         )
 
-    override fun onBindViewHolder(holder: VideoFolderViewHolder, position: Int) {
+
+    override fun onBindViewHolder(holder: ImageFolderViewHolder, position: Int) {
         holder.bind(folderPath[position])
     }
 
     override fun getItemCount(): Int = folderPath.size
 
-    inner class VideoFolderViewHolder(itemView: View, onItemClicked: ((Int) -> Unit)?) :
+    inner class ImageFolderViewHolder(itemView: View, onItemClicked: ((Int) -> Unit)?) :
         RecyclerView.ViewHolder(itemView) {
         init {
-            itemView.ctItemVideoFolder.setOnClickListener {
+            itemView.ctItemImageFolder.setOnClickListener {
                 onItemClicked?.invoke(adapterPosition)
             }
         }
@@ -52,21 +53,20 @@ class RecyclerViewVideoFolder(val context: Context?) :
         fun bind(folderPath: String) {
             val indexPath: Int = folderPath.lastIndexOf("/")
             val nameOfFolder = folderPath.substring(indexPath + 1)
-            itemView.tvFolderName.text = nameOfFolder
-            itemView.tvFolderPath.text = folderPath
-            itemView.tvVideoNumber.text =
-                context?.getString(R.string.Videos, getNumberOfVideos(folderPath))
+            itemView.tvFolderImageName.text = nameOfFolder
+            itemView.tvImageNumber.text =
+                context?.getString(R.string.Videos, getNumberOfImages(folderPath))
             context?.let {
                 Glide.with(it).load(File(getImageOfFolderVideoList(folderPath)))
-                    .into(itemView.imVideoFolder)
+                    .into(itemView.imImageFolder)
             }
         }
 
         private fun getImageOfFolderVideoList(folderPath: String): String {
             var path = ""
             var cursor: Cursor? = null
-            val uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-            val selection = MediaStore.Video.Media.DATA + " like?"
+            val uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            val selection = MediaStore.Images.Media.DATA + " like?"
             val selectionArg: Array<String> = arrayOf(
                 "%${
                     folderPath.substring(
@@ -79,7 +79,7 @@ class RecyclerViewVideoFolder(val context: Context?) :
                     context?.contentResolver?.query(uri, null, selection, selectionArg, null)
                 if ((cursor != null) && cursor.moveToNext()) {
                     path =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA))
                             ?: "abc"
                 }
             } finally {
@@ -88,14 +88,13 @@ class RecyclerViewVideoFolder(val context: Context?) :
             return path
         }
 
-        private fun getNumberOfVideos(folderName: String): Int {
-            var numberOfVideo = 0
+        private fun getNumberOfImages(folderName: String): Int {
+            var numberOfImage = 0
             dataModelMediaFile.forEach {
                 if (it.path?.substring(0, it.path.lastIndexOf("/"))?.endsWith(folderName) == true)
-                    numberOfVideo++
+                    numberOfImage++
             }
-            return numberOfVideo
+            return numberOfImage
         }
-
     }
 }

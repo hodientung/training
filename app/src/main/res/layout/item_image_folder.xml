@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/ctItemImageFolder"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/size_10"
+    android:padding="@dimen/size_8dp">
+
+    <ImageView
+        android:id="@+id/imImageFolder"
+        android:layout_width="@dimen/size_112dp"
+        android:layout_height="@dimen/size_62dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/hello_world" />
+
+    <LinearLayout
+        android:layout_width="@dimen/size_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/imImageFolder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imImageFolder"
+        app:layout_constraintTop_toTopOf="@id/imImageFolder">
+
+        <TextView
+            android:id="@+id/tvFolderImageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kinemaster"
+            android:textSize="@dimen/size_16_sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvImageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_64_images"
+            android:textSize="@dimen/size_16_sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFolderImageName" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

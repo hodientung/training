@@ -2,8 +2,8 @@ package com.example.voicelockscreen.view
 
 
 import android.Manifest
+import android.Manifest.permission.SYSTEM_ALERT_WINDOW
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -14,11 +14,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker.checkCallingOrSelfPermission
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.permission.ManagePermissions
 import com.example.voicelockscreen.service.VoiceLockService
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.customPreference
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoiceLock
@@ -29,26 +32,67 @@ import kotlinx.android.synthetic.main.fragment_voice_lock.*
 
 class VoiceLockFragment : Fragment() {
 
-    var isEnableService = false
+    private var isEnableService = false
+    private lateinit var managePermissions: ManagePermissions
+    private val activityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            // Handle Permission granted/rejected
+            permissions.entries.forEach {
+                val permissionName = it.key
+                val isGranted = it.value
+                if (isGranted) {
+                    // Permission is granted
+                } else {
+                    // Permission is denied
+                }
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        checkOverlayPermission()
-        if (context?.let {
-                ContextCompat.checkSelfPermission(
-                    it,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )
-            } == PackageManager.PERMISSION_GRANTED)
-            Toast.makeText(context, "Write external storage is granted", Toast.LENGTH_LONG).show()
-        else
-            activity?.let {
-                ActivityCompat.requestPermissions(
-                    it,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    1
-                )
-            }
+        val list = listOf(Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE, SYSTEM_ALERT_WINDOW)
+        managePermissions = ManagePermissions(requireActivity(),list,123)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            managePermissions.checkPermissions()
+//        activityResultLauncher.launch(
+//            list.toTypedArray()
+//        )
+//        checkOverlayPermission()
+
+//        if (context?.let {
+//                checkCallingOrSelfPermission(
+//                    it,
+//                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+//                )
+//            } == PackageManager.PERMISSION_GRANTED)
+//            Toast.makeText(context, "Write external storage is granted", Toast.LENGTH_LONG).show()
+//        else
+//            activity?.let {
+//                ActivityCompat.requestPermissions(
+//                    it,
+//                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+//                    1
+//                )
+//            }
+    }
+
+    private fun requestPermission(permissionType: String, requestCode: Int) {
+        val permission = ContextCompat.checkSelfPermission(
+            requireActivity(),
+            permissionType
+        )
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(permissionType), requestCode
+            )
+        } else
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(permissionType), requestCode
+            )
     }
 
     override fun onRequestPermissionsResult(
@@ -57,10 +101,30 @@ class VoiceLockFragment : Fragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1) {
-            for (i in permissions.indices) {
-                val permission = permissions[i]
-                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+        when (requestCode) {
+            101 -> {
+                if (grantResults.isEmpty() || grantResults[0]
+                    != PackageManager.PERMISSION_GRANTED
+                ) {
+
+                    Toast.makeText(
+                        requireContext(),
+                        "Record permission required",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    requestPermission(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        102
+                    )
+                }
+                return
+            }
+
+
+            102 -> {
+                val permission = Manifest.permission.WRITE_EXTERNAL_STORAGE
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                     val showRotation = shouldShowRequestPermissionRationale(permission)
                     if (!showRotation) {
                         val builder = AlertDialog.Builder(context)
@@ -81,11 +145,12 @@ class VoiceLockFragment : Fragment() {
                         activity?.let {
                             ActivityCompat.requestPermissions(
                                 it,
-                                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1
+                                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 102
                             )
                         }
                     }
                 }
+
             }
         }
     }
@@ -149,6 +214,12 @@ class VoiceLockFragment : Fragment() {
             activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
                 ?.replace(R.id.content_frame, VideoFolderFragment())?.commit()
         }
+
+        btnImageGallery.setOnClickListener {
+            //Show list folder contain image in storage
+            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                ?.replace(R.id.content_frame, ImageFolderFragment())?.commit()
+        }
     }
 
     private fun startService() {
@@ -166,24 +237,21 @@ class VoiceLockFragment : Fragment() {
     }
 
     private fun checkOverlayPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val requiredPermission: String = android.Manifest.permission.RECORD_AUDIO
-
-            // If the user previously denied this permission then show a message explaining why
-            // this permission is needed
-            if (activity?.let {
-                    checkCallingOrSelfPermission(
-                        it,
-                        requiredPermission
-                    )
-                } == PackageManager.PERMISSION_DENIED) {
-                activity?.let {
-                    ActivityCompat.requestPermissions(
-                        it,
-                        arrayOf(requiredPermission),
-                        101
-                    )
-                }
+        val requiredPermission: String = Manifest.permission.RECORD_AUDIO
+        // If the user previously denied this permission then show a message explaining why
+        // this permission is needed
+        if (activity?.let {
+                checkCallingOrSelfPermission(
+                    it,
+                    requiredPermission
+                )
+            } == PackageManager.PERMISSION_DENIED) {
+            activity?.let {
+                ActivityCompat.requestPermissions(
+                    it,
+                    arrayOf(requiredPermission),
+                    101
+                )
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(context)) {
@@ -191,48 +259,5 @@ class VoiceLockFragment : Fragment() {
             startActivityForResult(intent, Util.PERM_REQUEST_CODE_DRAW_OVERLAYS)
             //}
         }
-    }
-
-//    private fun promptSpeechInput() {
-//        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-//        intent.putExtra(
-//            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-//            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-//        )
-//        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-//        intent.putExtra(
-//            RecognizerIntent.EXTRA_PROMPT,
-//            getString(R.string.speech_prompt)
-//        )
-//        try {
-//            startActivityForResult(intent, Util.REQ_CODE_SPEECH_INPUT)
-//        } catch (a: ActivityNotFoundException) {
-//            Toast.makeText(
-//                context,
-//                getString(R.string.speech_not_supported),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-//    }
-//
-//
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        when (requestCode) {
-//            Util.REQ_CODE_SPEECH_INPUT -> {
-//                if (resultCode == RESULT_OK && data != null) {
-//                    val result: ArrayList<String> =
-//                        data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
-//                    val prefs = context?.let { customPreference(it, Util.CUSTOM_PREF_NAME) }
-//                    prefs?.input = result[0]
-//
-//                }
-//            }
-//            else -> {}
-//        }
-//    }
-
-    companion object {
-        //
     }
 }

@@ -82,7 +82,7 @@ class PinCodeFragment : Fragment() {
                 else ->
                     passwordSetup = removeLastChar(passwordSetup).toString()
             }
-            txtPass.text = passwordSetup
+            txtPass.setText(passwordSetup)
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
@@ -96,7 +96,7 @@ class PinCodeFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
                 prefs?.inputPinLock = passwordSetup
-                txtPass.text = ""
+                txtPass.setText("")
                 isSetupPassword = true
                 passwordSetup = ""
 
