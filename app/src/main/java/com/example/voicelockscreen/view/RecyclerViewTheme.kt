@@ -43,7 +43,7 @@ class RecyclerViewTheme(val context: Context?) :
         }
 
         fun bind(dataModelTheme: DataModelTheme) {
-            itemView.tvTheme.text = dataModelTheme.toString()
+            itemView.tvTheme.setBackgroundResource(dataModelTheme.colorTheme)
         }
 
     }

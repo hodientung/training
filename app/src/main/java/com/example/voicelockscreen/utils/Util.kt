@@ -22,32 +22,33 @@ class Util {
         const val KEY_PLAYER_PLAY_WHEN_READY = "key_player_play_when_ready"
 
         private fun getColorListScreen(): ArrayList<Int> {
-            var colorList = arrayListOf<Int>()
-            colorList.add(R.color.bright_pink)
-            colorList.add(R.color.red)
-            colorList.add(R.color.orange)
-            colorList.add(R.color.yellow)
-            colorList.add(R.color.chartreuse)
-            colorList.add(R.color.green)
-            colorList.add(R.color.spring_green)
-            colorList.add(R.color.cyan)
-            colorList.add(R.color.azure)
-            colorList.add(R.color.blue)
+            val colorList = arrayListOf<Int>()
+            colorList.add(R.drawable.background_girl1)
+            colorList.add(R.drawable.girl)
+            colorList.add(R.drawable.background1)
+            colorList.add(R.drawable.background2)
+            colorList.add(R.drawable.background3)
+            colorList.add(R.drawable.background4)
+            colorList.add(R.drawable.background5)
+            colorList.add(R.drawable.background16)
+            colorList.add(R.drawable.background7)
+            colorList.add(R.drawable.background8)
             return colorList
         }
 
         private fun getColorListButton(): ArrayList<Int> {
-            var colorList = arrayListOf<Int>()
-            colorList.add(R.color.blue)
-            colorList.add(R.color.azure)
-            colorList.add(R.color.cyan)
-            colorList.add(R.color.spring_green)
-            colorList.add(R.color.green)
-            colorList.add(R.color.chartreuse)
-            colorList.add(R.color.yellow)
-            colorList.add(R.color.orange)
-            colorList.add(R.color.red)
-            colorList.add(R.color.bright_pink)
+            val colorList = arrayListOf<Int>()
+            colorList.add(R.drawable.round_button)
+            colorList.add(R.drawable.round_button2)
+            colorList.add(R.drawable.round_button3)
+            colorList.add(R.drawable.round_button4)
+            colorList.add(R.drawable.round_button5)
+            colorList.add(R.drawable.round_button6)
+            colorList.add(R.drawable.round_button7)
+            colorList.add(R.drawable.round_button8)
+            colorList.add(R.drawable.round_button9)
+            colorList.add(R.drawable.round_button12)
+
             return colorList
         }
 

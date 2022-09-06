@@ -8,6 +8,15 @@
     tools:context=".view.SetupVoiceLockFragment">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/size_10"
+        android:text="@string/voice_lock"
+        android:textSize="@dimen/size_20sp" />
+
+    <TextView
         android:id="@+id/txtSpeechInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,6 +52,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
             android:text="@string/tap_on_mic"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_15"
+            android:textStyle="normal" />
+        <TextView
+            android:id="@+id/tvCreateNewPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:text="@string/create_new_password"
             android:textColor="@color/white"
             android:textSize="@dimen/size_15"
             android:textStyle="normal" />

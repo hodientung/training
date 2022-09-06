@@ -13,22 +13,29 @@ import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
+import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.view.ForgetPasswordActivity
 import com.example.voicelockscreen.view.Window
+import com.example.voicelockscreen.view.WindowSecurityQuestion
+import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 
 
 class VoiceLockService : Service() {
 
     lateinit var window: Window
+    lateinit var windowSecurityQuestion: WindowSecurityQuestion
 
     private val stateOfPhone = object : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
@@ -41,22 +48,36 @@ class VoiceLockService : Service() {
                         ?.setOnClickListener {
                             startListeningRecognitionService()
                         }
+                    setTheme(
+                        p0,
+                        window.getView()?.findViewById<LinearLayout>(R.id.content_add_view)
+                    )
+                    window.getView()?.findViewById<AppCompatButton>(R.id.btnForgetPassword)
+                        ?.setOnClickListener {
+                           windowSecurityQuestion.open()
+                        }
                 }
                 ACTION_SCREEN_OFF -> {
                     Log.e("tung", "screen off")
                 }
-                Util.ACTION_THEME -> {
-                    window.getView()?.findViewById<LinearLayout>(R.id.content_add_view)
-                        ?.setBackgroundResource(
-                            p1.getIntExtra(
-                                "background_theme",
-                                R.color.teal_200
-                            )
-                        )
-                }
             }
         }
     }
+
+    private fun setTheme(context: Context?, view: View?) {
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+
+        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
+            ?.let { view?.setBackgroundResource(it) }
+
+    }
+
 
     private fun startListeningRecognitionService() {
 
@@ -74,7 +95,6 @@ class VoiceLockService : Service() {
             getString(R.string.speech_prompt)
         )
 
-        val formattedSpeech = StringBuffer()
         val recognition = SpeechRecognizer.createSpeechRecognizer(this)
         val recognitionListener = object : RecognitionListener {
             override fun onReadyForSpeech(p0: Bundle?) {
@@ -144,11 +164,11 @@ class VoiceLockService : Service() {
     override fun onCreate() {
         super.onCreate()
         window = Window(this)
+        windowSecurityQuestion = WindowSecurityQuestion(this)
         val filter = IntentFilter()
         filter.addAction(ACTION_SCREEN_ON)
         filter.addAction(ACTION_SCREEN_OFF)
         filter.addAction(ACTION_USER_PRESENT)
-        filter.addAction(Util.ACTION_THEME)
         registerReceiver(stateOfPhone, filter)
     }
 

@@ -92,10 +92,11 @@ class PinCodeFragment : Fragment() {
                 }
             if (passwordSetup.length == 4 && !isSetupPassword) {
                 Toast.makeText(
-                    context, "Enter Pin Lock again",
+                    context, getString(R.string.enter_pin_code_again),
                     Toast.LENGTH_LONG
                 ).show()
                 prefs?.inputPinLock = passwordSetup
+                tvSetPinCode.text = getString(R.string.enter_pin_code_again)
                 txtPass.setText("")
                 isSetupPassword = true
                 passwordSetup = ""

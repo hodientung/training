@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:gravity="center"
     android:id="@+id/content_add_view"
-    android:background="#502A5E"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#502A5E"
+    android:gravity="center"
     android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/btnSpeakUnlock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
         android:background="@null"
         android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
         android:src="@drawable/icon_voice_mix" />
+
     <TextView
         android:id="@+id/test_thu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/speak_password_to_unlock"
-        />
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_16_sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnForgetPassword"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_marginTop="@dimen/size_20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_20dp"
+        android:background="@drawable/rectangle_button"
+        android:text="@string/forget_password"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_12sp" />
 
 </LinearLayout>

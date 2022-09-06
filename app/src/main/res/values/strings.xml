@@ -32,4 +32,11 @@
     <string name="starage_emulate_0">/starage/emulate/0</string>
     <string name="_64_images">64 Images</string>
     <string name="_1234">1234</string>
+    <string name="empty">empty</string>
+    <string name="set_pin_code">Set Pin Code</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="set_backup_pin">Set backup Pin</string>
+    <string name="enter_pin_code_again">Enter Pin Lock again</string>
+    <string name="create_new_password">Create New Password</string>
+    <string name="forget_password">Forget Password</string>
 </resources>

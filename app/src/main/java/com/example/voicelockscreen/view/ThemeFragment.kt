@@ -13,6 +13,7 @@ import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelTheme
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_theme.*
 import java.util.ArrayList
@@ -38,8 +39,8 @@ class ThemeFragment : Fragment() {
 
     private fun initAction() {
         adapterTheme.onItemClicked = {
-            Toast.makeText(context, "Vi tri $it", Toast.LENGTH_SHORT).show()
-            //send broad cast den cac man chua layout set theme
+            Toast.makeText(context, "Theme $it is updated", Toast.LENGTH_SHORT).show()
+            //save setting theme into share preference
             val prefs =
                 context?.let { it1 ->
                     PreferenceHelper.customPreference(
@@ -48,6 +49,7 @@ class ThemeFragment : Fragment() {
                     )
                 }
             prefs?.themeCode = it
+            prefs?.themePinButton = it
 
         }
     }
@@ -62,14 +64,16 @@ class ThemeFragment : Fragment() {
     private fun getListTheme(): ArrayList<DataModelTheme> {
         val item = arrayListOf<DataModelTheme>()
 
-        item.add(DataModelTheme(R.color.purple_200))
-        item.add(DataModelTheme(R.color.purple_500))
-        item.add(DataModelTheme(R.color.purple_700))
-        item.add(DataModelTheme(R.color.teal_200))
-        item.add(DataModelTheme(R.color.teal_700))
-        item.add(DataModelTheme(R.color.black))
-        item.add(DataModelTheme(R.color.white))
-        item.add(DataModelTheme(R.color.color_502A5E))
+        item.add(DataModelTheme(R.drawable.background_girl1))
+        item.add(DataModelTheme(R.drawable.girl))
+        item.add(DataModelTheme(R.drawable.background1))
+        item.add(DataModelTheme(R.drawable.background2))
+        item.add(DataModelTheme(R.drawable.background3))
+        item.add(DataModelTheme(R.drawable.background4))
+        item.add(DataModelTheme(R.drawable.background5))
+        item.add(DataModelTheme(R.drawable.background16))
+        item.add(DataModelTheme(R.drawable.background7))
+        item.add(DataModelTheme(R.drawable.background8))
 
         return item
     }

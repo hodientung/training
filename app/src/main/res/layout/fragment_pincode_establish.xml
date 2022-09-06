@@ -8,6 +8,57 @@
     android:padding="8dp"
     tools:context=".view.PinCodeEstablishFragment">
 
+
+    <TextView
+        android:id="@+id/tvNameVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/set_backup_pin"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvBack"
+        app:layout_constraintBottom_toBottomOf="@id/tvBack"/>
+
+    <ImageView
+        android:id="@+id/tvBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_round_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/tvNameVideo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvNameVideo"
+        android:contentDescription="@string/hello_world" />
+
+    <ImageView
+        android:layout_width="@dimen/size_50dp"
+        android:layout_height="@dimen/size_50dp"
+        android:src="@drawable/ic_outline_lock_24"
+        android:layout_marginBottom="@dimen/size_10"
+        app:layout_constraintBottom_toTopOf="@id/tvSetPinCode"
+        app:layout_constraintStart_toStartOf="@id/txtPassEstablish"
+        app:layout_constraintEnd_toEndOf="@id/txtPassEstablish"
+        />
+
+    <TextView
+        android:id="@+id/tvSetPinCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_pin_code"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/size_10"
+        app:layout_constraintBottom_toTopOf="@id/txtPassEstablish"
+        app:layout_constraintStart_toStartOf="@id/txtPassEstablish"
+        app:layout_constraintEnd_toEndOf="@id/txtPassEstablish"
+        />
+
+
     <TextView
         android:id="@+id/txtPassEstablish"
         android:layout_width="wrap_content"

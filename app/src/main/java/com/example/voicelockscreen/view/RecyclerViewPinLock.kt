@@ -1,9 +1,14 @@
 package com.example.voicelockscreen.view
 
 import android.content.Context
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
@@ -38,6 +43,7 @@ class RecyclerViewPinLock(
             itemView.btnNumber.text = dataModel.number
             dataModel.backgroundPinButton?.let { itemView.btnNumber.setBackgroundResource(it) }
         }
+
     }
 
     private inner class CircleEmptyViewViewHolder(itemView: View, onItemClicked: ((Int) -> Unit)?) :
@@ -69,7 +75,7 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
-            dataModel.backgroundPinButton?.let { itemView.btnNumberDelete.setBackgroundResource(it) }
+            //dataModel.backgroundPinButton?.let { itemView.btnNumberDelete.setBackgroundResource(it) }
         }
     }
 
