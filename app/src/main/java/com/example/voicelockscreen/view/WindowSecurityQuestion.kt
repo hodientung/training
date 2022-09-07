@@ -8,14 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.*
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.answer
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.positionAnswer
+import com.example.voicelockscreen.utils.Util
+import kotlinx.android.synthetic.main.fragment_security_question.*
 
-class WindowSecurityQuestion (context: Context) {
+class WindowSecurityQuestion(context: Context) {
     private var context: Context? = context
     private var mView: View? = null
     private var mParams: WindowManager.LayoutParams? = null
     private var mWindowManager: WindowManager? = null
     private var layoutInflater: LayoutInflater? = null
+    private var position = 0
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -23,13 +31,13 @@ class WindowSecurityQuestion (context: Context) {
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
                 PixelFormat.TRANSLUCENT
             )
         }
         layoutInflater =
             context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater?
-        mView = layoutInflater?.inflate(R.layout.activity_forget_password, null)
+        mView = layoutInflater?.inflate(R.layout.window_forget_password, null)
         mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
     }
 
@@ -44,14 +52,52 @@ class WindowSecurityQuestion (context: Context) {
             Log.e("Error1", e.toString())
         }
 
-        //bat su kien
-//        mView?.findViewById<ImageButton>(R.id.btnSpeakUnlock)?.setOnClickListener {
-//
-//        }
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.ANSWER_DATA
+                )
+            }
+        val mArrayAdapter = context?.let {
+            ArrayAdapter<Any?>(
+                it,
+                android.R.layout.simple_spinner_dropdown_item,
+                it.resources.getStringArray(R.array.questions)
+            )
+        }
+        mArrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        mView?.findViewById<Spinner>(R.id.spinnerWindow)?.adapter = mArrayAdapter
+        mView?.findViewById<Spinner>(R.id.spinnerWindow)?.let {
+            it.adapter = mArrayAdapter
+            it.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                        position = p2
+                    }
 
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+                        TODO("Not yet implemented")
+                    }
+                }
+        }
+        mView?.findViewById<Button>(R.id.btnSubmitWindow)?.setOnClickListener {
+            mView?.findViewById<EditText>(R.id.tvAnswerWindow)?.let {
+                val answer = it.text.toString()
+                if (answer.isEmpty())
+                    it.error = context?.resources?.getString(R.string.no_match_found)
+                else {
+                    if (answer == prefs?.answer && position == prefs.positionAnswer) {
+                        mView?.findViewById<EditText>(R.id.tvAnswerWindow)?.setText("")
+                        context?.let { it1 -> Window(it1).close() }
+                        close()
+                    } else it.error = context?.resources?.getString(R.string.no_match_found)
+                }
+            }
+        }
     }
 
-    fun close() {
+    private fun close() {
         try {
             (context?.getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.removeView(mView)
             mView?.invalidate()

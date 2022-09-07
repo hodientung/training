@@ -7,11 +7,13 @@ object PreferenceHelper {
 
     private const val INPUT = "input"
     private const val CODE_THEME = "code_theme"
+    private const val POSITION_ANSWER = "position_answer"
     private const val CODE_THEME_BUTTON = "code_theme_button"
     private const val ON_SERVICE = "on_service"
     private const val OFF_SERVICE = "off_service"
     private const val SETUP_VOICE_LOCK = "setup_voice_lock"
     private const val INPUT_PIN_LOCK = "input_pin_lock"
+    private const val ANSWER = "answer"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)
@@ -98,6 +100,23 @@ object PreferenceHelper {
                 it.putInt(CODE_THEME_BUTTON, value)
             }
         }
+
+    var SharedPreferences.answer
+        get() = getString(ANSWER, "")
+        set(value) {
+            editMe {
+                it.putString(ANSWER, value)
+            }
+        }
+
+    var SharedPreferences.positionAnswer
+        get() = getInt(POSITION_ANSWER, 0)
+        set(value) {
+            editMe {
+                it.putInt(POSITION_ANSWER, value)
+            }
+        }
+
 
 //    var SharedPreferences.clearValues
 //        get() = { }

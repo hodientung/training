@@ -19,7 +19,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker.checkCallingOrSelfPermission
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.model.DataModelFunction
 import com.example.voicelockscreen.permission.ManagePermissions
 import com.example.voicelockscreen.service.VoiceLockService
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.customPreference
@@ -27,12 +29,14 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoice
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.onService
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_voice_lock.*
+import java.util.ArrayList
 
 
 class VoiceLockFragment : Fragment() {
 
     private var isEnableService = false
     private lateinit var managePermissions: ManagePermissions
+    private lateinit var adapterFunction: RecyclerViewFunction
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,57 +78,131 @@ class VoiceLockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         initAction()
+    }
+
+    private fun initView() {
+        rvFunction.layoutManager = GridLayoutManager(context, 2)
+        adapterFunction = RecyclerViewFunction(context)
+        adapterFunction.functionList = Util.getFunctionList(resources)
+        rvFunction.adapter = adapterFunction
     }
 
     private fun initAction() {
         val prefs = context?.let { customPreference(it, Util.CUSTOM_PREF_NAME) }
-
-        btnStartService.setOnClickListener {
-            isEnableService = true
-            prefs?.onService = isEnableService
-            startService()
-        }
-        btnStopService.setOnClickListener {
-            isEnableService = false
-            prefs?.onService = isEnableService
-            stopService()
-        }
-        btnVoiceLock.setOnClickListener {
-            if (prefs?.isSetupVoiceLock == true)
-            // open fragment enter old password to open voice lock screen setup new password
-                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                    ?.replace(R.id.content_frame, ValidateVoiceLockChangeFragment())?.commit()
-            else
-            //exchange to setup new password
-                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                    ?.replace(R.id.content_frame, AlternativeLockFragment())?.commit()
+        switchMaterial.setOnCheckedChangeListener { _, isChecked ->
+            if (prefs?.isSetupVoiceLock == true) {
+                if (isChecked) {
+                    isEnableService = true
+                    prefs.onService = isEnableService
+                    startService()
+                } else {
+                    isEnableService = false
+                    prefs.onService = isEnableService
+                    stopService()
+                }
+            } else {
+                switchMaterial.isChecked = false
+                Toast.makeText(context, "First Set The Voice Password", Toast.LENGTH_LONG).show()
+            }
         }
 
-        btnPinLock.setOnClickListener {
-            if (prefs?.isSetupVoiceLock == true)
-                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                    ?.replace(R.id.content_frame, ValidatePinLockChangeFragment())?.commit()
-            else Toast.makeText(context, "First Set The Voice Password", Toast.LENGTH_LONG).show()
+        adapterFunction.onItemClicked = {
+            when (it) {
+                0 -> {
+                        if (prefs?.isSetupVoiceLock == true)
+                        // open fragment enter old password to open voice lock screen setup new password
+                            activity?.supportFragmentManager?.beginTransaction()
+                                ?.addToBackStack(null)
+                                ?.replace(R.id.content_frame, ValidateVoiceLockChangeFragment())
+                                ?.commit()
+                        else
+                        //exchange to security question
+                            activity?.supportFragmentManager?.beginTransaction()
+                                ?.addToBackStack(null)
+                                ?.replace(R.id.content_frame, SecurityQuestionFragment())?.commit()
+                }
+                1 -> {
+                    if (prefs?.isSetupVoiceLock == true)
+                        activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                            ?.replace(R.id.content_frame, ValidatePinLockChangeFragment())?.commit()
+                    else Toast.makeText(context, "First Set The Voice Password", Toast.LENGTH_LONG)
+                        .show()
+                }
+                2 -> {
+                    //to do theme
+                }
+                3 -> {
+                    // refer fragment list theme
+                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                        ?.replace(R.id.content_frame, ThemeFragment())?.commit()
+                }
+                4 -> {
+                    //Show list folder contain image in storage
+                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                        ?.replace(R.id.content_frame, ImageFolderFragment())?.commit()
+                }
+                5 -> {
+                    //Show list folder contain video in storage
+                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                        ?.replace(R.id.content_frame, VideoFolderFragment())?.commit()
+                }
+                6 -> {
+
+                }
+                7 -> {
+
+                }
+            }
         }
 
-        btnTheme.setOnClickListener {
-            // refer fragment list theme
-            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, ThemeFragment())?.commit()
-        }
-
-        btnVideoGallery.setOnClickListener {
-            //Show list folder contain video in storage
-            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, VideoFolderFragment())?.commit()
-        }
-
-        btnImageGallery.setOnClickListener {
-            //Show list folder contain image in storage
-            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, ImageFolderFragment())?.commit()
-        }
+//        btnStartService.setOnClickListener {
+//            isEnableService = true
+//            prefs?.onService = isEnableService
+//            startService()
+//        }
+//        btnStopService.setOnClickListener {
+//            isEnableService = false
+//            prefs?.onService = isEnableService
+//            stopService()
+//        }
+//        btnVoiceLock.setOnClickListener {
+//            if (prefs?.isSetupVoiceLock == true)
+//            // open fragment enter old password to open voice lock screen setup new password
+//                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+//                    ?.replace(R.id.content_frame, ValidateVoiceLockChangeFragment())?.commit()
+//            else
+//            //exchange to security question
+//            //exchange to setup new password
+//                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+//                    ?.replace(R.id.content_frame, SecurityQuestionFragment())?.commit()
+//        }
+//
+//        btnPinLock.setOnClickListener {
+//            if (prefs?.isSetupVoiceLock == true)
+//                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+//                    ?.replace(R.id.content_frame, ValidatePinLockChangeFragment())?.commit()
+//            else Toast.makeText(context, "First Set The Voice Password", Toast.LENGTH_LONG).show()
+//        }
+//
+//        btnTheme.setOnClickListener {
+//            // refer fragment list theme
+//            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+//                ?.replace(R.id.content_frame, ThemeFragment())?.commit()
+//        }
+//
+//        btnVideoGallery.setOnClickListener {
+//            //Show list folder contain video in storage
+//            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+//                ?.replace(R.id.content_frame, VideoFolderFragment())?.commit()
+//        }
+//
+//        btnImageGallery.setOnClickListener {
+//            //Show list folder contain image in storage
+//            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+//                ?.replace(R.id.content_frame, ImageFolderFragment())?.commit()
+//        }
     }
 
     private fun startService() {

@@ -3,16 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/paditech/.gradle/caches/transforms-3/93b1b56698467befbe6d774b9c44c4cb/transformed/appcompat-1.5.0/res/layout/abc_screen_simple_overlay_action_mode.xml" value="0.3546875" />
+        <entry key="..\:/Users/paditech/.gradle/caches/transforms-3/93b1b56698467befbe6d774b9c44c4cb/transformed/appcompat-1.5.0/res/layout/support_simple_spinner_dropdown_item.xml" value="0.3546875" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/circle_button.xml" value="0.2185" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/circle_button_empty.xml" value="0.195" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/circle_delete.xml" value="0.194" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/circle_textview.xml" value="0.2185" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic1.xml" value="0.219" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic2.xml" value="0.219" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_baseline_bubble_chart_24.xml" value="0.171" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_baseline_image_search_24.xml" value="0.171" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.171" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_baseline_vertical_align_top_24.xml" value="0.171" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_baseline_video_library_24.xml" value="0.171" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_delete_number.xml" value="0.194" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1855" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_outline_lock_24.xml" value="0.2175" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_outline_play.xml" value="0.2175" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_sharp_lock_open_24.xml" value="0.171" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_sharp_mic_none_24.xml" value="0.171" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_sharp_pattern_24.xml" value="0.171" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/ic_sharp_preview_24.xml" value="0.171" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/img.xml" value="0.194" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/rectange_button.xml" value="0.2175" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/drawable/rectangle_button.xml" value="0.2175" />
@@ -40,6 +51,7 @@
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_image_layer.xml" value="0.340625" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_pin_code.xml" value="0.25" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_pincode_establish.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_security_question.xml" value="0.25" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_setup_voice_lock.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_simple_dialog.xml" value="0.365625" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_theme.xml" value="0.36666666666666664" />
@@ -48,10 +60,11 @@
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_video_files.xml" value="0.28125" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_video_folder.xml" value="0.3546875" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_video_layer.xml" value="0.3546875" />
-        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_voice_lock.xml" value="0.2" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_voice_lock.xml" value="0.25" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/fragment_voice_unlock.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_delete.xml" value="0.33" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_empty.xml" value="0.3582427536231884" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_function.xml" value="0.25" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_image_file.xml" value="0.3546875" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_image_folder.xml" value="0.29102564102564105" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/item_number.xml" value="1.0" />
@@ -61,6 +74,8 @@
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/playback_custom_view.xml" value="0.22" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/popup_window.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/unlock_screen.xml" value="0.33" />
+        <entry key="..\:/Users/paditech/AndroidStudioProjects/VoiceLockScreen/app/src/main/res/layout/window_forget_password.xml" value="0.25" />
+        <entry key="..\:/Users/paditech/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.3546875" />
       </map>
     </option>
   </component>

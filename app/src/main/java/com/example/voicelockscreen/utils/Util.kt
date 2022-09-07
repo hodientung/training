@@ -1,12 +1,15 @@
 package com.example.voicelockscreen.utils
 
+import android.content.res.Resources
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.model.DataModelFunction
 import com.example.voicelockscreen.model.DataModelTheme
 
 class Util {
     companion object {
         const val CUSTOM_PREF_NAME = "Input_data"
         const val THEME_SETTING = "theme_data"
+        const val ANSWER_DATA = "answer_data"
         const val PIN_LOCK_CUSTOM_PREF_NAME = "Input_data_pin_lock"
         const val STATE_SERVICE_CUSTOM_PREF_NAME = "Input_data_pin_lock"
         const val LANGUAGE = "ja"
@@ -110,6 +113,59 @@ class Util {
                 String.format("%02d:%02d:%02d", hours, minute, seconds)
             else String.format("%02d:%02d", minute, seconds)
             return videoTime
+        }
+
+        fun getFunctionList(resources: Resources): ArrayList<DataModelFunction> {
+            val dataModelFunction = arrayListOf<DataModelFunction>()
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.voice_lock),
+                    R.drawable.ic_sharp_mic_none_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.pin_lock),
+                    R.drawable.ic_sharp_lock_open_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.pattern_lock),
+                    R.drawable.ic_sharp_pattern_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.theme),
+                    R.drawable.ic_baseline_bubble_chart_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.image_gallery),
+                    R.drawable.ic_baseline_image_search_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.video_gallery),
+                    R.drawable.ic_baseline_video_library_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.preview),
+                    R.drawable.ic_sharp_preview_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.setting),
+                    R.drawable.ic_baseline_settings_24
+                )
+            )
+            return dataModelFunction
         }
 
     }

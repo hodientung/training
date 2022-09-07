@@ -17,7 +17,6 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
@@ -26,10 +25,8 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
-import com.example.voicelockscreen.view.ForgetPasswordActivity
 import com.example.voicelockscreen.view.Window
 import com.example.voicelockscreen.view.WindowSecurityQuestion
-import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 
 
 class VoiceLockService : Service() {

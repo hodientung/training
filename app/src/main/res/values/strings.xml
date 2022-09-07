@@ -24,6 +24,9 @@
     <string name="theme">Theme</string>
     <string name="video_gallery">Video Gallery</string>
     <string name="image_gallery">Image Gallery</string>
+    <string name="preview">Preview</string>
+    <string name="setting">Setting</string>
+    <string name="no_match_found">No Match Found</string>
     <string name="_1">1</string>
     <string name="change_pin_lock">Change pin Lock</string>
     <string name="www_google_com">www.google.com</string>
@@ -39,4 +42,11 @@
     <string name="enter_pin_code_again">Enter Pin Lock again</string>
     <string name="create_new_password">Create New Password</string>
     <string name="forget_password">Forget Password</string>
+    <string name="select_recovery_question">Select Recovery Question</string>
+    <string name="security_question">Security Question</string>
+    <string name="type_your_answer_here">Type Your Answer Here</string>
+    <string name="submit">Submit</string>
+    <string name="voice_lock_screen">Voice Lock Screen</string>
+    <string name="lock_screen_status">Lock Screen Status</string>
+    <string name="enable_lock_service">Enable Lock Service</string>
 </resources>

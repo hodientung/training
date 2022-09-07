@@ -1,82 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_502A5E"
-    android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/size_16dp"
     tools:context=".view.VoiceLockFragment">
 
-    <Button
-        android:id="@+id/btnVoiceLock"
-        android:layout_width="200dp"
+    <TextView
+        android:id="@+id/tvVoiceLockScreen"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/voice_lock" />
+        android:text="@string/voice_lock_screen"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnPinLock"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnVoiceLock"
-        android:layout_centerInParent="true"
-        android:text="@string/change_pin_lock" />
 
-    <Button
-        android:id="@+id/btnPatternLock"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnPinLock"
-        android:layout_centerInParent="true"
-        android:text="@string/pattern_lock" />
-
-    <Button
-        android:id="@+id/btnTheme"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnPatternLock"
-        android:layout_centerInParent="true"
-        android:text="@string/theme" />
-
-    <Button
-        android:id="@+id/btnVideoGallery"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnTheme"
-        android:layout_centerInParent="true"
-        android:text="@string/video_gallery" />
-
-    <Button
-        android:id="@+id/btnImageGallery"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnVideoGallery"
-        android:layout_centerInParent="true"
-        android:text="@string/image_gallery" />
-
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:layout_height="@dimen/size_120dp"
+        android:layout_marginTop="@dimen/size_20dp"
+        app:cardCornerRadius="@dimen/size_8dp"
+        app:cardElevation="@dimen/size_3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvVoiceLockScreen">
 
-        <Button
-            android:id="@+id/btnStartService"
-            style="?android:attr/selectableItemBackgroundBorderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/turn_on_service" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/size_16dp">
 
-        <Button
-            android:id="@+id/btnStopService"
-            style="?android:attr/selectableItemBackgroundBorderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="0.5"
-            android:text="@string/turn_off_service" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvLockScreenStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lock_screen_status"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_16_sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/tvEnableLockService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable_lock_service"
+                android:textColor="@color/black"
+                android:textSize="@dimen/size_14_sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLockScreenStatus" />
+
+            <TextView
+                android:id="@+id/tvChangeTimeLock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enable_lock_service"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/size_16_sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchMaterial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFunction"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0dp"
+        android:padding="32dp"
+        android:layout_marginTop="@dimen/size_10"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnVoiceLock"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:text="@string/voice_lock" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnPinLock"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/btnVoiceLock"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:text="@string/change_pin_lock" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnPatternLock"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/btnPinLock"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:text="@string/pattern_lock" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnTheme"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/btnPatternLock"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:text="@string/theme" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnVideoGallery"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/btnTheme"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:text="@string/video_gallery" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnImageGallery"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/btnVideoGallery"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:text="@string/image_gallery" />-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:weightSum="1">-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/btnStartService"-->
+    <!--            style="?android:attr/selectableItemBackgroundBorderless"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="0.5"-->
+    <!--            android:text="@string/turn_on_service" />-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/btnStopService"-->
+    <!--            style="?android:attr/selectableItemBackgroundBorderless"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="20dp"-->
+    <!--            android:layout_weight="0.5"-->
+    <!--            android:text="@string/turn_off_service" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>
