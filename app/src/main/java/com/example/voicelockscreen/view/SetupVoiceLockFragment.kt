@@ -4,11 +4,11 @@ import android.app.Activity
 import android.content.*
 import android.os.Bundle
 import android.speech.RecognizerIntent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
@@ -98,9 +98,14 @@ class SetupVoiceLockFragment : Fragment() {
                             Util.CUSTOM_PREF_NAME
                         )
                     }
-
                     prefs?.input = result[0]
                     prefs?.isSetupVoiceLock = true
+                    activity?.supportFragmentManager?.let {
+                        ImportantDialogFragment().show(
+                            it,
+                            Util.TAG
+                        )
+                    }
 
                 }
             }

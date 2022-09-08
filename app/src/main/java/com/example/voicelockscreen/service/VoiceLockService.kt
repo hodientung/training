@@ -18,11 +18,13 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isCloseWindowSecurityQuestionScreen
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.view.Window
@@ -47,11 +49,12 @@ class VoiceLockService : Service() {
                         }
                     setTheme(
                         p0,
-                        window.getView()?.findViewById<LinearLayout>(R.id.content_add_view)
+                        window.getView()?.findViewById<ConstraintLayout>(R.id.content_add_view)
                     )
                     window.getView()?.findViewById<AppCompatButton>(R.id.btnForgetPassword)
                         ?.setOnClickListener {
-                           windowSecurityQuestion.open()
+                            windowSecurityQuestion.open()
+                            checkStateOfSecurityQuestionScreen(p0)
                         }
                 }
                 ACTION_SCREEN_OFF -> {
@@ -59,6 +62,17 @@ class VoiceLockService : Service() {
                 }
             }
         }
+    }
+
+    private fun checkStateOfSecurityQuestionScreen(p0: Context?) {
+        val prefs =
+            p0?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.CLOSE_WINDOW
+                )
+            }
+        if (prefs?.isCloseWindowSecurityQuestionScreen == true) window.close()
     }
 
     private fun setTheme(context: Context?, view: View?) {
@@ -69,7 +83,6 @@ class VoiceLockService : Service() {
                     Util.THEME_SETTING
                 )
             }
-
         prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
             ?.let { view?.setBackgroundResource(it) }
 
@@ -176,10 +189,11 @@ class VoiceLockService : Service() {
 
     private fun sendNotification() {
 
-        val notification: Notification = NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
-            .setContentTitle(getText(R.string.notification_title))
-            .setSmallIcon(R.drawable.icon_voice_mix)
-            .build()
+        val notification: Notification =
+            NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
+                .setContentTitle(getText(R.string.notification_title))
+                .setSmallIcon(R.drawable.icon_voice_mix)
+                .build()
         startForeground(1, notification)
     }
 

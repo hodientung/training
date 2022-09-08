@@ -11,6 +11,7 @@ class Util {
         const val THEME_SETTING = "theme_data"
         const val ANSWER_DATA = "answer_data"
         const val PIN_LOCK_CUSTOM_PREF_NAME = "Input_data_pin_lock"
+        const val CLOSE_WINDOW = "close_window"
         const val STATE_SERVICE_CUSTOM_PREF_NAME = "Input_data_pin_lock"
         const val LANGUAGE = "ja"
         const val timeout = 20001
@@ -21,6 +22,7 @@ class Util {
         const val THE_SECOND_VIEW = 2
         const val THE_THIRD_VIEW = 3
         const val ACTION_THEME = "data_theme"
+        const val TAG = "ImportantDialogFragment"
         const val KEY_PLAYER_POSITION = "key_player_position"
         const val KEY_PLAYER_PLAY_WHEN_READY = "key_player_play_when_ready"
 

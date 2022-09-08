@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
         android:layout_marginTop="@dimen/size_10"
         android:text="@string/voice_lock"
+        android:textColor="@color/white"
         android:textSize="@dimen/size_20sp" />
 
     <TextView
@@ -23,7 +23,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/size_100dp"
-        android:text="@string/input"
         android:textColor="@color/white"
         android:textSize="@dimen/size_24"
         android:textStyle="normal" />
@@ -44,7 +43,7 @@
             android:background="@null"
             android:contentDescription="@string/hello_world"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_voice_mix" />
+            android:src="@drawable/ic_round_mic_24_white" />
 
         <TextView
             android:id="@+id/test_thu_service"
@@ -53,8 +52,9 @@
             android:layout_marginTop="@dimen/size_10"
             android:text="@string/tap_on_mic"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_15"
+            android:textSize="@dimen/size_16_sp"
             android:textStyle="normal" />
+
         <TextView
             android:id="@+id/tvCreateNewPassword"
             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
             android:layout_marginTop="@dimen/size_10"
             android:text="@string/create_new_password"
             android:textColor="@color/white"
-            android:textSize="@dimen/size_15"
+            android:textSize="@dimen/size_16_sp"
             android:textStyle="normal" />
     </LinearLayout>
 

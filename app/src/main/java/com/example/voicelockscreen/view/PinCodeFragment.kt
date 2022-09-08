@@ -11,6 +11,7 @@ import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoiceLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
@@ -73,6 +74,7 @@ class PinCodeFragment : Fragment() {
 //        }
         setUpPassword()
     }
+
 
     private fun setUpPassword() {
         mAdapter.onItemClicked = { position ->

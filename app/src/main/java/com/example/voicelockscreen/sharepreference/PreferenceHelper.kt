@@ -12,6 +12,7 @@ object PreferenceHelper {
     private const val ON_SERVICE = "on_service"
     private const val OFF_SERVICE = "off_service"
     private const val SETUP_VOICE_LOCK = "setup_voice_lock"
+    private const val CLOSE_Window_SECURITY_SCREEN = "isCloseWindowSecurityQuestionScreen"
     private const val INPUT_PIN_LOCK = "input_pin_lock"
     private const val ANSWER = "answer"
 
@@ -114,6 +115,14 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putInt(POSITION_ANSWER, value)
+            }
+        }
+
+    var SharedPreferences.isCloseWindowSecurityQuestionScreen
+        get() = getBoolean(CLOSE_Window_SECURITY_SCREEN, false)
+        set(value) {
+            editMe {
+                it.putBoolean(CLOSE_Window_SECURITY_SCREEN, value)
             }
         }
 

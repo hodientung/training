@@ -90,44 +90,58 @@ class VoiceLockFragment : Fragment() {
     }
 
     private fun initAction() {
+
+        //Check state of switch when service is active
         val prefs = context?.let { customPreference(it, Util.CUSTOM_PREF_NAME) }
-        switchMaterial.setOnCheckedChangeListener { _, isChecked ->
-            if (prefs?.isSetupVoiceLock == true) {
-                if (isChecked) {
+        switchMaterial.isChecked = prefs?.onService == true
+        switchMaterial.setOnClickListener {
+            if (prefs?.isSetupVoiceLock == false) {
+                switchMaterial.isChecked = false
+                Toast.makeText(
+                    context,
+                    getString(R.string.first_set_the_voice_password),
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                if (switchMaterial.isChecked) {
                     isEnableService = true
-                    prefs.onService = isEnableService
+                    prefs?.onService = isEnableService
                     startService()
                 } else {
                     isEnableService = false
-                    prefs.onService = isEnableService
+                    prefs?.onService = isEnableService
                     stopService()
                 }
-            } else {
-                switchMaterial.isChecked = false
-                Toast.makeText(context, "First Set The Voice Password", Toast.LENGTH_LONG).show()
             }
         }
 
+        // handle event for functions of application
         adapterFunction.onItemClicked = {
             when (it) {
                 0 -> {
-                        if (prefs?.isSetupVoiceLock == true)
-                        // open fragment enter old password to open voice lock screen setup new password
-                            activity?.supportFragmentManager?.beginTransaction()
-                                ?.addToBackStack(null)
-                                ?.replace(R.id.content_frame, ValidateVoiceLockChangeFragment())
-                                ?.commit()
-                        else
-                        //exchange to security question
-                            activity?.supportFragmentManager?.beginTransaction()
-                                ?.addToBackStack(null)
-                                ?.replace(R.id.content_frame, SecurityQuestionFragment())?.commit()
+                    if (prefs?.isSetupVoiceLock == true)
+                    // open fragment enter old password to open voice lock screen setup new password
+                        activity?.supportFragmentManager?.beginTransaction()
+                            ?.addToBackStack(null)
+                            ?.replace(R.id.content_frame, ValidateVoiceLockChangeFragment())
+                            ?.commit()
+                    else
+                    //exchange to security question
+                        activity?.supportFragmentManager?.beginTransaction()
+                            ?.addToBackStack(null)
+                            ?.replace(R.id.content_frame, SecurityQuestionFragment())?.commit()
                 }
                 1 -> {
                     if (prefs?.isSetupVoiceLock == true)
-                        activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                            ?.replace(R.id.content_frame, ValidatePinLockChangeFragment())?.commit()
-                    else Toast.makeText(context, "First Set The Voice Password", Toast.LENGTH_LONG)
+                        activity?.supportFragmentManager?.beginTransaction()
+                            ?.addToBackStack(null)
+                            ?.replace(R.id.content_frame, ValidatePinLockChangeFragment())
+                            ?.commit()
+                    else Toast.makeText(
+                        context,
+                        "First Set The Voice Password",
+                        Toast.LENGTH_LONG
+                    )
                         .show()
                 }
                 2 -> {
@@ -149,7 +163,8 @@ class VoiceLockFragment : Fragment() {
                         ?.replace(R.id.content_frame, VideoFolderFragment())?.commit()
                 }
                 6 -> {
-
+                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                        ?.replace(R.id.content_frame, PreviousFragment())?.commit()
                 }
                 7 -> {
 

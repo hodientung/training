@@ -36,6 +36,7 @@
     <string name="_64_images">64 Images</string>
     <string name="_1234">1234</string>
     <string name="empty">empty</string>
+    <string name="report_input">Your Voice Password is: "%1$s</string>
     <string name="set_pin_code">Set Pin Code</string>
     <string name="enter_your_password">Enter Your Password</string>
     <string name="set_backup_pin">Set backup Pin</string>
@@ -49,4 +50,8 @@
     <string name="voice_lock_screen">Voice Lock Screen</string>
     <string name="lock_screen_status">Lock Screen Status</string>
     <string name="enable_lock_service">Enable Lock Service</string>
+    <string name="first_set_the_voice_password">First Set The Voice Password</string>
+    <string name="important">Important</string>
+    <string name="your_voice_password_is_alo">Your Voice Password is: alo</string>
+    <string name="you_can_change_your_voice_or_pin_or_pattern_from_given_option">You can change your voice or pin or \n pattern from given option</string>
 </resources>
