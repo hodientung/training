@@ -111,6 +111,7 @@ class PinCodeFragment : Fragment() {
                         context, "Successfully Set Pin Lock",
                         Toast.LENGTH_LONG
                     ).show()
+                    activity?.supportFragmentManager?.popBackStack()
                     activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
                         ?.replace(R.id.content_frame, SetupVoiceLockFragment())?.commit()
 
