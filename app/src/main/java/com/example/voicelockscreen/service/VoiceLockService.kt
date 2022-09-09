@@ -15,19 +15,22 @@ import android.speech.SpeechRecognizer
 import android.util.Log
 import android.view.View
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.clearValues
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isCloseWindow
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isCloseWindowSecurityQuestionScreen
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.view.Window
+import com.example.voicelockscreen.view.WindowPinLock
 import com.example.voicelockscreen.view.WindowSecurityQuestion
 
 
@@ -35,7 +38,7 @@ class VoiceLockService : Service() {
 
     lateinit var window: Window
     lateinit var windowSecurityQuestion: WindowSecurityQuestion
-
+    lateinit var windowPinLock: WindowPinLock
     private val stateOfPhone = object : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
 
@@ -54,7 +57,15 @@ class VoiceLockService : Service() {
                     window.getView()?.findViewById<AppCompatButton>(R.id.btnForgetPassword)
                         ?.setOnClickListener {
                             windowSecurityQuestion.open()
-                            checkStateOfSecurityQuestionScreen(p0)
+                            //checkStateOfSecurityQuestionScreen(p0)
+                        }
+
+                    window.getView()?.findViewById<CardView>(R.id.cardViewPin)
+                        ?.setOnClickListener {
+                            // open verify pin lock
+                            windowPinLock.open()
+                            checkStateOfPinLockScreen(p0)
+
                         }
                 }
                 ACTION_SCREEN_OFF -> {
@@ -72,7 +83,20 @@ class VoiceLockService : Service() {
                     Util.CLOSE_WINDOW
                 )
             }
-        if (prefs?.isCloseWindowSecurityQuestionScreen == true) window.close()
+        if (prefs?.isCloseWindowSecurityQuestionScreen == true) {
+            window.close()
+        }
+    }
+
+    private fun checkStateOfPinLockScreen(p0: Context?) {
+        val prefs =
+            p0?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.CLOSE_WINDOW_PIN
+                )
+            }
+        if (prefs?.isCloseWindow == true) window.close()
     }
 
     private fun setTheme(context: Context?, view: View?) {
@@ -175,6 +199,7 @@ class VoiceLockService : Service() {
         super.onCreate()
         window = Window(this)
         windowSecurityQuestion = WindowSecurityQuestion(this)
+        windowPinLock = WindowPinLock(this)
         val filter = IntentFilter()
         filter.addAction(ACTION_SCREEN_ON)
         filter.addAction(ACTION_SCREEN_OFF)

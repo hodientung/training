@@ -15,6 +15,7 @@ object PreferenceHelper {
     private const val CLOSE_Window_SECURITY_SCREEN = "isCloseWindowSecurityQuestionScreen"
     private const val INPUT_PIN_LOCK = "input_pin_lock"
     private const val ANSWER = "answer"
+    private const val CLOSE_Window_FIRST = "close_window_first"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)
@@ -86,7 +87,7 @@ object PreferenceHelper {
             }
         }
 
-        var SharedPreferences.themeCode
+    var SharedPreferences.themeCode
         get() = getInt(CODE_THEME, 0)
         set(value) {
             editMe {
@@ -126,13 +127,20 @@ object PreferenceHelper {
             }
         }
 
+    var SharedPreferences.isCloseWindow
+        get() = getBoolean(CLOSE_Window_FIRST, false)
+        set(value) {
+            editMe {
+                it.putBoolean(CLOSE_Window_FIRST, value)
+            }
+        }
 
-//    var SharedPreferences.clearValues
-//        get() = { }
-//        set(value) {
-//            editMe {
-//                it.clear()
-//            }
-//        }
+    var SharedPreferences.clearValues
+        get() = { }
+        set(value) {
+            editMe {
+                it.clear()
+            }
+        }
 
 }

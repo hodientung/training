@@ -94,6 +94,7 @@ class VoiceLockFragment : Fragment() {
         //Check state of switch when service is active
         val prefs = context?.let { customPreference(it, Util.CUSTOM_PREF_NAME) }
         switchMaterial.isChecked = prefs?.onService == true
+        if (switchMaterial.isChecked) startService()
         switchMaterial.setOnClickListener {
             if (prefs?.isSetupVoiceLock == false) {
                 switchMaterial.isChecked = false

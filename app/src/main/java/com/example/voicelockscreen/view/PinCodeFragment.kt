@@ -44,7 +44,7 @@ class PinCodeFragment : Fragment() {
 
         prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
             ?.let { contentPinCode.setBackgroundResource(it) }
-        for (i in 0 until getListNumber().size) {
+        for (i in 0 until Util.getListNumber().size) {
             mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
                 Util.getThemeToScreen(
                     it
@@ -82,7 +82,7 @@ class PinCodeFragment : Fragment() {
                 in 0..8, 10 ->
                     passwordSetup += position.toString()
                 else ->
-                    passwordSetup = removeLastChar(passwordSetup).toString()
+                    passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }
             txtPass.setText(passwordSetup)
             val prefs =
@@ -120,33 +120,10 @@ class PinCodeFragment : Fragment() {
         }
     }
 
-
-    private fun removeLastChar(text: String?): String? = if (text.isNullOrEmpty())
-        text
-    else text.substring(0, text.length - 1)
-
-
     private fun initView() {
         rvPinCode.layoutManager = GridLayoutManager(context, 3)
         mAdapter = RecyclerViewPinLock(context)
-        mAdapter.dataModel = getListNumber()
+        mAdapter.dataModel = Util.getListNumber()
         rvPinCode.adapter = mAdapter
-    }
-
-    private fun getListNumber(): ArrayList<DataModel> {
-        val item = arrayListOf<DataModel>()
-        item.add(DataModel(1, "1"))
-        item.add(DataModel(1, "2"))
-        item.add(DataModel(1, "3"))
-        item.add(DataModel(1, "4"))
-        item.add(DataModel(1, "5"))
-        item.add(DataModel(1, "6"))
-        item.add(DataModel(1, "7"))
-        item.add(DataModel(1, "8"))
-        item.add(DataModel(1, "9"))
-        item.add(DataModel(2, "100"))
-        item.add(DataModel(1, "0"))
-        item.add(DataModel(3, "xoa"))
-        return item
     }
 }

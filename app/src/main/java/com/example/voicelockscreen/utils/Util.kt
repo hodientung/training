@@ -2,6 +2,7 @@ package com.example.voicelockscreen.utils
 
 import android.content.res.Resources
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.model.DataModelFunction
 import com.example.voicelockscreen.model.DataModelTheme
 
@@ -12,6 +13,7 @@ class Util {
         const val ANSWER_DATA = "answer_data"
         const val PIN_LOCK_CUSTOM_PREF_NAME = "Input_data_pin_lock"
         const val CLOSE_WINDOW = "close_window"
+        const val CLOSE_WINDOW_PIN = "close_window_pin"
         const val STATE_SERVICE_CUSTOM_PREF_NAME = "Input_data_pin_lock"
         const val LANGUAGE = "ja"
         const val timeout = 20001
@@ -25,6 +27,27 @@ class Util {
         const val TAG = "ImportantDialogFragment"
         const val KEY_PLAYER_POSITION = "key_player_position"
         const val KEY_PLAYER_PLAY_WHEN_READY = "key_player_play_when_ready"
+
+        fun removeLastChar(text: String?): String? = if (text.isNullOrEmpty())
+            text
+        else text.substring(0, text.length - 1)
+
+        fun getListNumber(): ArrayList<DataModel> {
+            val item = arrayListOf<DataModel>()
+            item.add(DataModel(1, "1"))
+            item.add(DataModel(1, "2"))
+            item.add(DataModel(1, "3"))
+            item.add(DataModel(1, "4"))
+            item.add(DataModel(1, "5"))
+            item.add(DataModel(1, "6"))
+            item.add(DataModel(1, "7"))
+            item.add(DataModel(1, "8"))
+            item.add(DataModel(1, "9"))
+            item.add(DataModel(2, "100"))
+            item.add(DataModel(1, "0"))
+            item.add(DataModel(3, "xoa"))
+            return item
+        }
 
         private fun getColorListScreen(): ArrayList<Int> {
             val colorList = arrayListOf<Int>()
