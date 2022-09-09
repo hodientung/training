@@ -17,7 +17,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.isCloseWindo
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.positionAnswer
 import com.example.voicelockscreen.utils.Util
 
-class WindowSecurityQuestion(context: Context) {
+class WindowSecurityQuestion(context: Context, val onClose: () -> Unit) {
     private var context: Context? = context
     private var mView: View? = null
     private var mParams: WindowManager.LayoutParams? = null
@@ -96,7 +96,7 @@ class WindowSecurityQuestion(context: Context) {
                                     Util.CLOSE_WINDOW
                                 )
                             }
-                       // prefsSecurity?.isCloseWindowSecurityQuestionScreen = true
+                        // prefsSecurity?.isCloseWindowSecurityQuestionScreen = true
                         close()
                     } else it.error = context?.resources?.getString(R.string.no_match_found)
                 }
@@ -127,11 +127,12 @@ class WindowSecurityQuestion(context: Context) {
                     it
                 ).getView()
             }?.invalidate()
-            ( context?.let {
+            (context?.let {
                 com.example.voicelockscreen.view.Window(
                     it
                 ).getView()
             }?.parent as? ViewGroup)?.removeAllViews()
+            onClose.invoke()
         } catch (e: Exception) {
             Log.e("Error2", e.toString())
         }

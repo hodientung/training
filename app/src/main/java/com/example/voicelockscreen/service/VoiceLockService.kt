@@ -198,7 +198,9 @@ class VoiceLockService : Service() {
     override fun onCreate() {
         super.onCreate()
         window = Window(this)
-        windowSecurityQuestion = WindowSecurityQuestion(this)
+        windowSecurityQuestion = WindowSecurityQuestion(this){
+            window.close()
+        }
         windowPinLock = WindowPinLock(this)
         val filter = IntentFilter()
         filter.addAction(ACTION_SCREEN_ON)
