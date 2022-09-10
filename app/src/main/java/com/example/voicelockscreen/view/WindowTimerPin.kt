@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetTimerPin
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
 
-class WindowPinLock(context: Context, private val onClose: () -> Unit) {
+class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
     private var context: Context? = context
     private var mView: View? = null
     private var mParams: WindowManager.LayoutParams? = null
@@ -41,7 +41,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
         }
         layoutInflater =
             context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater?
-        mView = layoutInflater?.inflate(R.layout.window_pin_lock, null)
+        mView = layoutInflater?.inflate(R.layout.window_timer_pin, null)
         mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
     }
 
@@ -66,7 +66,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
     }
 
     private fun initView() {
-        mView?.findViewById<RecyclerView>(R.id.rvPinCodeWindow)?.let {
+        mView?.findViewById<RecyclerView>(R.id.rvTimerPinWindow)?.let {
             it.layoutManager = GridLayoutManager(context, 3)
             mAdapter = RecyclerViewPinLock(context)
             mAdapter.dataModel = Util.getListNumber()
@@ -90,7 +90,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
 
         prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
             ?.let {
-                mView?.findViewById<ConstraintLayout>(R.id.contentPinCodeWindow)
+                mView?.findViewById<ConstraintLayout>(R.id.contentTimerPinWindow)
                     ?.setBackgroundResource(it)
             }
         for (i in 0 until Util.getListNumber().size) {
@@ -111,27 +111,27 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
                 else ->
                     passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }
-            mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText(passwordSetup)
+            mView?.findViewById<EditText>(R.id.txtPassTimerPinWindow)?.setText(passwordSetup)
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
                         it,
-                        Util.PIN_LOCK_CUSTOM_PREF_NAME
+                        Util.TIMER_PIN_PREF_NAME
                     )
                 }
             if (passwordSetup.length == 4) {
-                if (passwordSetup == prefs?.inputPinLock) {
+                if (prefs?.isSetTimerPin == true && passwordSetup == Util.getPassCurrentTime()) {
                     onCloseWhenVerifyPin()
                 } else {
-                    mView?.findViewById<TextView>(R.id.tvSetPinCodeWindow)?.text =
+                    mView?.findViewById<TextView>(R.id.tvEnterYourPassword)?.text =
                         context?.getString(R.string.wrong_pin_code)
                     passwordSetup = ""
                 }
 
-                mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText("")
+                mView?.findViewById<EditText>(R.id.txtPassTimerPinWindow)?.setText("")
             }
         }
-        mView?.findViewById<ImageView>(R.id.tvBackWindow)?.setOnClickListener {
+        mView?.findViewById<ImageView>(R.id.tvBackTimerPin)?.setOnClickListener {
             onBackButton()
         }
     }

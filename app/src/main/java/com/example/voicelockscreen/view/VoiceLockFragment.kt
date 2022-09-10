@@ -168,7 +168,8 @@ class VoiceLockFragment : Fragment() {
                         ?.replace(R.id.content_frame, PreviousFragment())?.commit()
                 }
                 7 -> {
-
+                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                        ?.replace(R.id.content_frame, SettingFragment())?.commit()
                 }
             }
         }

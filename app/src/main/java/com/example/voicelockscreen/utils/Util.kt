@@ -5,6 +5,11 @@ import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.model.DataModelFunction
 import com.example.voicelockscreen.model.DataModelTheme
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Util {
     companion object {
@@ -12,6 +17,7 @@ class Util {
         const val THEME_SETTING = "theme_data"
         const val ANSWER_DATA = "answer_data"
         const val PIN_LOCK_CUSTOM_PREF_NAME = "Input_data_pin_lock"
+        const val TIMER_PIN_PREF_NAME = "time_pin"
         const val CLOSE_WINDOW = "close_window"
         const val CLOSE_WINDOW_PIN = "close_window_pin"
         const val STATE_SERVICE_CUSTOM_PREF_NAME = "Input_data_pin_lock"
@@ -31,6 +37,12 @@ class Util {
         fun removeLastChar(text: String?): String? = if (text.isNullOrEmpty())
             text
         else text.substring(0, text.length - 1)
+
+        fun getPassCurrentTime(): String {
+            val timePassword =
+                SimpleDateFormat("HH:mm", Locale.getDefault()).format(Calendar.getInstance().time)
+            return timePassword.replace(":", "")
+        }
 
         fun getListNumber(): ArrayList<DataModel> {
             val item = arrayListOf<DataModel>()
@@ -138,6 +150,23 @@ class Util {
                 String.format("%02d:%02d:%02d", hours, minute, seconds)
             else String.format("%02d:%02d", minute, seconds)
             return videoTime
+        }
+
+        fun getFunctionAlternativeList(resources: Resources): ArrayList<DataModelFunction> {
+            val dataModelFunction = arrayListOf<DataModelFunction>()
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.voice_lock),
+                    R.drawable.ic_sharp_mic_none_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.current_time),
+                    R.drawable.ic_round_watch_later_24
+                )
+            )
+            return dataModelFunction
         }
 
         fun getFunctionList(resources: Resources): ArrayList<DataModelFunction> {

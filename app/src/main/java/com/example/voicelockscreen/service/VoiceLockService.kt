@@ -23,10 +23,7 @@ import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.clearValues
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.isCloseWindow
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.isCloseWindowSecurityQuestionScreen
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.view.Window
@@ -57,14 +54,12 @@ class VoiceLockService : Service() {
                     window.getView()?.findViewById<AppCompatButton>(R.id.btnForgetPassword)
                         ?.setOnClickListener {
                             windowSecurityQuestion.open()
-                            //checkStateOfSecurityQuestionScreen(p0)
                         }
 
                     window.getView()?.findViewById<CardView>(R.id.cardViewPin)
                         ?.setOnClickListener {
                             // open verify pin lock
                             windowPinLock.open()
-                            checkStateOfPinLockScreen(p0)
 
                         }
                 }
@@ -73,30 +68,6 @@ class VoiceLockService : Service() {
                 }
             }
         }
-    }
-
-    private fun checkStateOfSecurityQuestionScreen(p0: Context?) {
-        val prefs =
-            p0?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.CLOSE_WINDOW
-                )
-            }
-        if (prefs?.isCloseWindowSecurityQuestionScreen == true) {
-            window.close()
-        }
-    }
-
-    private fun checkStateOfPinLockScreen(p0: Context?) {
-        val prefs =
-            p0?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.CLOSE_WINDOW_PIN
-                )
-            }
-        if (prefs?.isCloseWindow == true) window.close()
     }
 
     private fun setTheme(context: Context?, view: View?) {
@@ -198,10 +169,12 @@ class VoiceLockService : Service() {
     override fun onCreate() {
         super.onCreate()
         window = Window(this)
-        windowSecurityQuestion = WindowSecurityQuestion(this){
+        windowSecurityQuestion = WindowSecurityQuestion(this) {
             window.close()
         }
-        windowPinLock = WindowPinLock(this)
+        windowPinLock = WindowPinLock(this) {
+            window.close()
+        }
         val filter = IntentFilter()
         filter.addAction(ACTION_SCREEN_ON)
         filter.addAction(ACTION_SCREEN_OFF)

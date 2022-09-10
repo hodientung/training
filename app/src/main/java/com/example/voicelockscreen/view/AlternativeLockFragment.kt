@@ -34,9 +34,9 @@ class AlternativeLockFragment : Fragment() {
         adapterFunctionAlternativeLock.onItemClicked = {
             when (it) {
                 0 -> activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                    ?.replace(R.id.content_frame, PinCodeFragment(), "abc")?.commit()
-                1 -> {//to do}
-                }
+                    ?.replace(R.id.content_frame, PinCodeFragment())?.commit()
+                1 -> activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                    ?.replace(R.id.content_frame, SetTimerLockFragment())?.commit()
             }
         }
     }
@@ -44,8 +44,7 @@ class AlternativeLockFragment : Fragment() {
     private fun initView() {
         rvFunctionAlternativeLock.layoutManager = LinearLayoutManager(context)
         adapterFunctionAlternativeLock = RecyclerViewFunctionAlternativeLock(context)
-        adapterFunctionAlternativeLock.functionList = Util.getFunctionList(resources)
-            .filter { it.nameFunction == getString(R.string.pin_lock) } as ArrayList<DataModelFunction>
+        adapterFunctionAlternativeLock.functionList = Util.getFunctionAlternativeList(resources)
         rvFunctionAlternativeLock.adapter = adapterFunctionAlternativeLock
     }
 }

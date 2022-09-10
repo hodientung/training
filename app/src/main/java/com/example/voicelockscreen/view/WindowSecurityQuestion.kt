@@ -7,17 +7,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.view.WindowManager
 import android.widget.*
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.answer
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.isCloseWindowSecurityQuestionScreen
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.positionAnswer
 import com.example.voicelockscreen.utils.Util
 
-class WindowSecurityQuestion(context: Context, val onClose: () -> Unit) {
+class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) {
     private var context: Context? = context
     private var mView: View? = null
     private var mParams: WindowManager.LayoutParams? = null
@@ -89,55 +87,35 @@ class WindowSecurityQuestion(context: Context, val onClose: () -> Unit) {
                 else {
                     if (answer == prefs?.answer && position == prefs.positionAnswer) {
                         mView?.findViewById<EditText>(R.id.tvAnswerWindow)?.setText("")
-                        val prefsSecurity =
-                            context?.let { it1 ->
-                                PreferenceHelper.customPreference(
-                                    it1,
-                                    Util.CLOSE_WINDOW
-                                )
-                            }
-                        // prefsSecurity?.isCloseWindowSecurityQuestionScreen = true
-                        close()
+                        onSubmitButton()
                     } else it.error = context?.resources?.getString(R.string.no_match_found)
                 }
             }
         }
         mView?.findViewById<ImageView>(R.id.tvBackSecurityQuestion)?.setOnClickListener {
-            close()
+            onBackButton()
         }
     }
 
-    private fun close() {
+    private fun onSubmitButton() {
         try {
 
             (context?.getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.removeView(mView)
             mView?.invalidate()
             (mView?.parent as? ViewGroup)?.removeAllViews()
-
-
-            (context?.getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.removeView(
-                context?.let {
-                    com.example.voicelockscreen.view.Window(
-                        it
-                    ).getView()
-                }
-            )
-            context?.let {
-                com.example.voicelockscreen.view.Window(
-                    it
-                ).getView()
-            }?.invalidate()
-            (context?.let {
-                com.example.voicelockscreen.view.Window(
-                    it
-                ).getView()
-            }?.parent as? ViewGroup)?.removeAllViews()
             onClose.invoke()
         } catch (e: Exception) {
             Log.e("Error2", e.toString())
         }
-
-
     }
 
+    private fun onBackButton() {
+        try {
+            (context?.getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.removeView(mView)
+            mView?.invalidate()
+            (mView?.parent as? ViewGroup)?.removeAllViews()
+        } catch (e: Exception) {
+            Log.e("error2", e.toString())
+        }
+    }
 }

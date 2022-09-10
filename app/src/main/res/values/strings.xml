@@ -40,7 +40,8 @@
     <string name="report_input">Your Voice Password is: "%1$s</string>
     <string name="set_pin_code">Set Pin Code</string>
     <string name="enter_your_password">Enter Your Password</string>
-    <string name="set_backup_pin">Set backup Pin</string>
+    <string name="set_backup_pin">Set Backup Pin</string>
+    <string name="set_timer_pin">Set Timer Pin</string>
     <string name="enter_pin_code_again">Enter Pin Lock again</string>
     <string name="create_new_password">Create New Password</string>
     <string name="forget_password">Forget Password</string>
@@ -48,11 +49,20 @@
     <string name="security_question">Security Question</string>
     <string name="type_your_answer_here">Type Your Answer Here</string>
     <string name="submit">Submit</string>
+    <string name="current_time">Current Time</string>
     <string name="voice_lock_screen">Voice Lock Screen</string>
     <string name="lock_screen_status">Lock Screen Status</string>
     <string name="enable_lock_service">Enable Lock Service</string>
     <string name="first_set_the_voice_password">First Set The Voice Password</string>
     <string name="important">Important</string>
+    <string name="you_clicked_on_cancel">You clicked on Cancel</string>
+    <string name="successfully_set_time_lock">Successfully Set Time Lock!!!</string>
     <string name="your_voice_password_is_alo">Your Voice Password is: alo</string>
     <string name="you_can_change_your_voice_or_pin_or_pattern_from_given_option">You can change your voice or pin or \n pattern from given option</string>
+    <string name="set_time_lock">Set Time Lock</string>
+    <string name="note_timer_pin">If your current time is 12:00 then password is 1200 and if current time is 05:30 then password is 0530.</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="disable_system_lock">Disable System Lock</string>
+    <string name="alternative_lock">Alternative Lock</string>
 </resources>

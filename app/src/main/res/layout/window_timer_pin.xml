@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentTimerPinWindow"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/size_8dp">
+
+
+    <TextView
+        android:id="@+id/tvNameTimerPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/set_timer_pin"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvBackTimerPin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvBackTimerPin" />
+
+    <ImageView
+        android:id="@+id/tvBackTimerPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_round_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/tvNameTimerPin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvNameTimerPin" />
+
+    <ImageView
+        android:layout_width="@dimen/size_50dp"
+        android:layout_height="@dimen/size_50dp"
+        android:layout_marginBottom="@dimen/size_10"
+        android:contentDescription="@string/hello_world"
+        android:src="@drawable/ic_outline_lock_24"
+        app:layout_constraintBottom_toTopOf="@id/tvEnterYourPassword"
+        app:layout_constraintEnd_toEndOf="@id/txtPassTimerPinWindow"
+        app:layout_constraintStart_toStartOf="@id/txtPassTimerPinWindow" />
+
+    <TextView
+        android:id="@+id/tvEnterYourPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_10"
+        android:text="@string/enter_your_password"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/txtPassTimerPinWindow"
+        app:layout_constraintEnd_toEndOf="@id/txtPassTimerPinWindow"
+        app:layout_constraintStart_toStartOf="@id/txtPassTimerPinWindow" />
+
+    <EditText
+        android:id="@+id/txtPassTimerPinWindow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="150dp"
+        android:autofillHints="password"
+        android:inputType="numberPassword"
+        android:letterSpacing="1.5"
+        android:maxLength="4"
+        android:text="@string/_1234"
+        android:textColor="#EDE8E8"
+        android:textSize="@dimen/size_22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/rvTimerPinWindow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="LabelFor" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTimerPinWindow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

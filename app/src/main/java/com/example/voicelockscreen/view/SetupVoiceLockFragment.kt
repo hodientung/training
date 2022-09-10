@@ -59,6 +59,11 @@ class SetupVoiceLockFragment : Fragment() {
         btnSpeak.setOnClickListener {
             promptSpeechInput()
         }
+        imBack.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
+            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                ?.replace(R.id.content_frame, AlternativeLockFragment())?.commit()
+        }
     }
 
     private fun promptSpeechInput() {

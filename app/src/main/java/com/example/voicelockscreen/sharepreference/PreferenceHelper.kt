@@ -10,6 +10,7 @@ object PreferenceHelper {
     private const val POSITION_ANSWER = "position_answer"
     private const val CODE_THEME_BUTTON = "code_theme_button"
     private const val ON_SERVICE = "on_service"
+    private const val CHECK_TIMER_PIN = "check_timer_pin"
     private const val OFF_SERVICE = "off_service"
     private const val SETUP_VOICE_LOCK = "setup_voice_lock"
     private const val CLOSE_Window_SECURITY_SCREEN = "isCloseWindowSecurityQuestionScreen"
@@ -132,6 +133,14 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putBoolean(CLOSE_Window_FIRST, value)
+            }
+        }
+
+    var SharedPreferences.isSetTimerPin
+        get() = getBoolean(CHECK_TIMER_PIN, false)
+        set(value) {
+            editMe {
+                it.putBoolean(CHECK_TIMER_PIN, value)
             }
         }
 
