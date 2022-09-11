@@ -36,6 +36,8 @@ class AlternativeLockFragment : Fragment() {
                 0 -> activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
                     ?.replace(R.id.content_frame, PinCodeFragment())?.commit()
                 1 -> activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
+                    ?.replace(R.id.content_frame, PatternLockFragment())?.commit()
+                2 -> activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
                     ?.replace(R.id.content_frame, SetTimerLockFragment())?.commit()
             }
         }

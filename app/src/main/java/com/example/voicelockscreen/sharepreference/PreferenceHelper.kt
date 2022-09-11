@@ -13,9 +13,13 @@ object PreferenceHelper {
     private const val CHECK_TIMER_PIN = "check_timer_pin"
     private const val OFF_SERVICE = "off_service"
     private const val SETUP_VOICE_LOCK = "setup_voice_lock"
+    private const val SETUP_PIN_LOCK = "setup_pin_lock"
+    private const val SETUP_PATTERN_LOCK = "setup_pattern_lock"
+    private const val SETUP_TIMER_PIN = "setup_timer_pin"
     private const val CLOSE_Window_SECURITY_SCREEN = "isCloseWindowSecurityQuestionScreen"
     private const val INPUT_PIN_LOCK = "input_pin_lock"
     private const val ANSWER = "answer"
+    private const val INPUT_PATTERN = "input_pattern"
     private const val CLOSE_Window_FIRST = "close_window_first"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
@@ -87,6 +91,20 @@ object PreferenceHelper {
                 it.putBoolean(SETUP_VOICE_LOCK, value)
             }
         }
+    var SharedPreferences.isSetupPinLock
+        get() = getBoolean(SETUP_PIN_LOCK, false)
+        set(value) {
+            editMe {
+                it.putBoolean(SETUP_PIN_LOCK, value)
+            }
+        }
+    var SharedPreferences.isSetupPatternLock
+        get() = getBoolean(SETUP_PATTERN_LOCK, false)
+        set(value) {
+            editMe {
+                it.putBoolean(SETUP_PATTERN_LOCK, value)
+            }
+        }
 
     var SharedPreferences.themeCode
         get() = getInt(CODE_THEME, 0)
@@ -109,6 +127,13 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putString(ANSWER, value)
+            }
+        }
+    var SharedPreferences.patternPassword
+        get() = getString(INPUT_PATTERN, "")
+        set(value) {
+            editMe {
+                it.putString(INPUT_PATTERN, value)
             }
         }
 

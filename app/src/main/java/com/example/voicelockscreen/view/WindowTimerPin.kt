@@ -107,7 +107,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->
-                    passwordSetup += position.toString()
+                    passwordSetup += (position + 1).toString()
                 else ->
                     passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }
@@ -124,7 +124,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
                     onCloseWhenVerifyPin()
                 } else {
                     mView?.findViewById<TextView>(R.id.tvEnterYourPassword)?.text =
-                        context?.getString(R.string.wrong_pin_code)
+                        context?.getString(R.string.wrong_pin_code_timer)
                     passwordSetup = ""
                 }
 

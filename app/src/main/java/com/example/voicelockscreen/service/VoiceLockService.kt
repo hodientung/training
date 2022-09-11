@@ -14,7 +14,6 @@ import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
@@ -29,6 +28,7 @@ import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.view.Window
 import com.example.voicelockscreen.view.WindowPinLock
 import com.example.voicelockscreen.view.WindowSecurityQuestion
+import com.example.voicelockscreen.view.WindowTimerPin
 
 
 class VoiceLockService : Service() {
@@ -36,6 +36,7 @@ class VoiceLockService : Service() {
     lateinit var window: Window
     lateinit var windowSecurityQuestion: WindowSecurityQuestion
     lateinit var windowPinLock: WindowPinLock
+    lateinit var windowTimerPin: WindowTimerPin
     private val stateOfPhone = object : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
 
@@ -43,7 +44,7 @@ class VoiceLockService : Service() {
                 ACTION_SCREEN_ON -> {
                     Log.e("tung", "screen on")
                     window.open()
-                    window.getView()?.findViewById<ImageButton>(R.id.btnSpeakUnlock)
+                    window.getView()?.findViewById<CardView>(R.id.btnSpeakUnlock1)
                         ?.setOnClickListener {
                             startListeningRecognitionService()
                         }
@@ -60,6 +61,12 @@ class VoiceLockService : Service() {
                         ?.setOnClickListener {
                             // open verify pin lock
                             windowPinLock.open()
+
+                        }
+                    window.getView()?.findViewById<CardView>(R.id.cardViewPin2)
+                        ?.setOnClickListener {
+                            // open verify timer pin
+                            windowTimerPin.open()
 
                         }
                 }
@@ -173,6 +180,9 @@ class VoiceLockService : Service() {
             window.close()
         }
         windowPinLock = WindowPinLock(this) {
+            window.close()
+        }
+        windowTimerPin = WindowTimerPin(this) {
             window.close()
         }
         val filter = IntentFilter()

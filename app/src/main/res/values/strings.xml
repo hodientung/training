@@ -37,6 +37,8 @@
     <string name="_1234">1234</string>
     <string name="empty">empty</string>
     <string name="wrong_pin_code">Wrong Pin Code</string>
+    <string name="wrong_pin_code_timer">Wrong Pin Code or not active Timer Pin</string>
+    <string name="wrong_password">Wrong Password</string>
     <string name="report_input">Your Voice Password is: "%1$s</string>
     <string name="set_pin_code">Set Pin Code</string>
     <string name="enter_your_password">Enter Your Password</string>
@@ -49,6 +51,7 @@
     <string name="security_question">Security Question</string>
     <string name="type_your_answer_here">Type Your Answer Here</string>
     <string name="submit">Submit</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="current_time">Current Time</string>
     <string name="voice_lock_screen">Voice Lock Screen</string>
     <string name="lock_screen_status">Lock Screen Status</string>
@@ -65,4 +68,9 @@
     <string name="ok">Ok</string>
     <string name="disable_system_lock">Disable System Lock</string>
     <string name="alternative_lock">Alternative Lock</string>
+    <string name="set_pattern">Set Pattern</string>
+    <string name="draw_your_pattern">Draw Your Pattern</string>
+    <string name="create_password">Create Password</string>
+    <string name="speak_your_old_voice_password">Speak your old voice password</string>
+    <string name="speak_password_to_confirm">Speak password to confirm</string>
 </resources>

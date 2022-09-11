@@ -16,6 +16,7 @@ class Util {
         const val CUSTOM_PREF_NAME = "Input_data"
         const val THEME_SETTING = "theme_data"
         const val ANSWER_DATA = "answer_data"
+        const val PATTERN_INPUT = "password_pattern"
         const val PIN_LOCK_CUSTOM_PREF_NAME = "Input_data_pin_lock"
         const val TIMER_PIN_PREF_NAME = "time_pin"
         const val CLOSE_WINDOW = "close_window"
@@ -158,6 +159,12 @@ class Util {
                 DataModelFunction(
                     resources.getString(R.string.voice_lock),
                     R.drawable.ic_sharp_mic_none_24
+                )
+            )
+            dataModelFunction.add(
+                DataModelFunction(
+                    resources.getString(R.string.pattern_lock),
+                    R.drawable.ic_sharp_pattern_24
                 )
             )
             dataModelFunction.add(

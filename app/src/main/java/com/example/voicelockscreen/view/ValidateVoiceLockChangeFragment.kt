@@ -96,10 +96,11 @@ class ValidateVoiceLockChangeFragment : Fragment() {
                             Util.CUSTOM_PREF_NAME
                         )
                     }
-                    if (prefs?.input == result[0])
+                    if (prefs?.input == result[0]) {
+                        activity?.supportFragmentManager?.popBackStack()
                         activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
                             ?.replace(R.id.content_frame, SetupVoiceLockFragment())?.commit()
-                    else
+                    } else
                         Toast.makeText(context, "Invalid voice", Toast.LENGTH_LONG).show()
 
                 }

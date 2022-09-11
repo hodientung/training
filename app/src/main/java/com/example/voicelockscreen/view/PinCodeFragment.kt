@@ -11,6 +11,7 @@ import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoiceLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
@@ -106,6 +107,7 @@ class PinCodeFragment : Fragment() {
             }
             if (isSetupPassword && passwordSetup.length == 4) {
                 val againInput = prefs?.inputPinLock
+                prefs?.isSetupPinLock = true
                 if (againInput == passwordSetup) {
                     Toast.makeText(
                         context, "Successfully Set Pin Lock",
