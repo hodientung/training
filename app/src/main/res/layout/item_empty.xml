@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:gravity="center"
-    android:layout_margin="@dimen/size_10"
+    android:layout_margin="@dimen/size_20dp"
     android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/btnNumberEmpty"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/size_50dp"
+        android:layout_height="@dimen/size_50dp"
         android:visibility="invisible"
         android:background="@drawable/round_button"
         style="?android:attr/borderlessButtonStyle"

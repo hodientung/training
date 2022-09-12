@@ -33,9 +33,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnSpeakValidate"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:cardCornerRadius="100dp">
+            android:layout_width="@dimen/size_64dp"
+            android:layout_height="@dimen/size_64dp"
+            app:cardCornerRadius="@dimen/size_100dp">
 
             <ImageView
                 android:id="@+id/contentImage"

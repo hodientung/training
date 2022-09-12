@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.voicelockscreen.R
-import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
@@ -42,7 +41,7 @@ class PinCodeEstablishFragment : Fragment() {
 
         prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
             ?.let { contentEstablishSetup.setBackgroundResource(it) }
-        for (i in 0 until getListNumber().size) {
+        for (i in 0 until Util.getListNumber().size) {
             mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
                 Util.getThemeToScreen(
                     it
@@ -105,7 +104,7 @@ class PinCodeEstablishFragment : Fragment() {
                 val againInput = prefs?.inputPinLock
                 if (againInput == passwordSetup) {
                     Toast.makeText(
-                        context, "Successfully Set Pin Lock",
+                        context, getString(R.string.successful_set_pin_lock),
                         Toast.LENGTH_LONG
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()
@@ -124,26 +123,7 @@ class PinCodeEstablishFragment : Fragment() {
     private fun initView() {
         rvPinCodeEstablish.layoutManager = GridLayoutManager(context, 3)
         mAdapter = RecyclerViewPinLock(context)
-        mAdapter.dataModel = getListNumber()
+        mAdapter.dataModel = Util.getListNumber()
         rvPinCodeEstablish.adapter = mAdapter
     }
-
-    private fun getListNumber(): ArrayList<DataModel> {
-        val item = arrayListOf<DataModel>()
-        item.add(DataModel(1, "1"))
-        item.add(DataModel(1, "2"))
-        item.add(DataModel(1, "3"))
-        item.add(DataModel(1, "4"))
-        item.add(DataModel(1, "5"))
-        item.add(DataModel(1, "6"))
-        item.add(DataModel(1, "7"))
-        item.add(DataModel(1, "8"))
-        item.add(DataModel(1, "9"))
-        item.add(DataModel(2, "100"))
-        item.add(DataModel(1, "0"))
-        item.add(DataModel(3, "xoa"))
-        return item
-    }
-
-
 }

@@ -33,8 +33,11 @@ class ImportantDialogFragment : DialogFragment() {
         }
         tv2.text = getString(R.string.report_input, prefs?.input)
         btnSubmitImportant.setOnClickListener {
-            Toast.makeText(requireContext(), "Successful Set Voice password!!!", Toast.LENGTH_LONG)
-                .show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.successful_set_voice_password),
+                Toast.LENGTH_LONG
+            ).show()
             dismiss()
         }
     }

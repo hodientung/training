@@ -1,13 +1,11 @@
 package com.example.voicelockscreen.view
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelTheme
@@ -64,12 +62,12 @@ class ThemeFragment : Fragment() {
     private fun getListTheme(): ArrayList<DataModelTheme> {
         val item = arrayListOf<DataModelTheme>()
 
+        item.add(DataModelTheme(R.drawable.themec))
+        item.add(DataModelTheme(R.drawable.themee))
+        item.add(DataModelTheme(R.drawable.themeb))
+        item.add(DataModelTheme(R.drawable.thema))
         item.add(DataModelTheme(R.drawable.background_girl1))
         item.add(DataModelTheme(R.drawable.girl))
-        item.add(DataModelTheme(R.drawable.background1))
-        item.add(DataModelTheme(R.drawable.background2))
-        item.add(DataModelTheme(R.drawable.background3))
-        item.add(DataModelTheme(R.drawable.background4))
         item.add(DataModelTheme(R.drawable.background5))
         item.add(DataModelTheme(R.drawable.background16))
         item.add(DataModelTheme(R.drawable.background7))

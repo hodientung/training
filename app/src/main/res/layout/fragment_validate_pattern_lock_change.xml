@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/content3"
     android:padding="@dimen/size_8dp"
     tools:context=".view.ValidatePatternLockChangeFragment">
 
@@ -12,11 +12,11 @@
         android:id="@+id/tvSetPatternValidate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/size_20dp"
+        android:layout_marginTop="@dimen/size_10"
         android:text="@string/set_pattern"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/size_20sp"
         app:layout_constraintBottom_toBottomOf="@id/tvBackValidate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +38,8 @@
         android:id="@+id/imLockPatternValidate"
         android:layout_width="@dimen/size_50dp"
         android:layout_height="@dimen/size_50dp"
-        android:layout_marginBottom="@dimen/size_10"
         android:layout_marginTop="@dimen/size_20dp"
+        android:layout_marginBottom="@dimen/size_10"
         android:contentDescription="@string/hello_world"
         android:src="@drawable/ic_outline_lock_24"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,10 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/size_10"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/imLockPatternValidate"
+        android:textSize="@dimen/size_16_sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imLockPatternValidate" />
 
     <TextView
         android:id="@+id/tvSetPinCodeValidate"
@@ -64,7 +64,7 @@
         android:layout_marginBottom="@dimen/size_10"
         android:text="@string/draw_your_pattern"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/size_16_sp"
         app:layout_constraintBottom_toTopOf="@id/patternViewValidate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -73,9 +73,8 @@
         android:id="@+id/patternViewValidate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:plv_errorDotColor="@color/purple_200"
-        app:plv_errorLineColor="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:plv_errorDotColor="@color/purple_200"
+        app:plv_errorLineColor="@color/purple_200" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

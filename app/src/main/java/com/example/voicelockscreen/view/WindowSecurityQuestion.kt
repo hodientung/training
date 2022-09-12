@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
+import androidx.appcompat.widget.AppCompatButton
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.answer
@@ -79,7 +80,7 @@ class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) 
                     }
                 }
         }
-        mView?.findViewById<Button>(R.id.btnSubmitWindow)?.setOnClickListener {
+        mView?.findViewById<AppCompatButton>(R.id.btnSubmitWindow)?.setOnClickListener {
             mView?.findViewById<EditText>(R.id.tvAnswerWindow)?.let {
                 val answer = it.text.toString()
                 if (answer.isEmpty())

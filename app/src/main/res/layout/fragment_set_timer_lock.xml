@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSetTimeLock"
         app:strokeColor="@color/black"
-        app:strokeWidth="2dp">
+        app:strokeWidth="@dimen/size_2dp">
 
         <ImageView
             android:id="@+id/imHint"
@@ -64,21 +64,21 @@
             android:id="@+id/btnCancel"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:background="@drawable/round_corner_timer_lock_button"
             android:text="@string/cancel"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@id/btnOk"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOk"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
             android:background="@drawable/round_corner_timer_lock_button"
             android:text="@string/ok"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnCancel"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

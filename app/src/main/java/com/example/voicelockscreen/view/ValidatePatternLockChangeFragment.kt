@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.patternPassword
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import com.itsxtt.patternlock.PatternLockView
-import kotlinx.android.synthetic.main.fragment_confirm_pattern.*
 import kotlinx.android.synthetic.main.fragment_validate_pattern_lock_change.*
 
 
@@ -47,13 +48,6 @@ class ValidatePatternLockChangeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         patternViewValidate.setOnPatternListener(object : PatternLockView.OnPatternListener {
-            override fun onStarted() {
-                super.onStarted()
-            }
-
-            override fun onProgress(ids: ArrayList<Int>) {
-                super.onProgress(ids)
-            }
 
             override fun onComplete(ids: ArrayList<Int>): Boolean {
                 /*
@@ -73,8 +67,7 @@ class ValidatePatternLockChangeFragment : Fragment() {
                 }
                 if (prefs?.patternPassword == valuePatternPassword) {
                     activity?.supportFragmentManager?.popBackStack()
-                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                        ?.replace(R.id.content_frame, PatternCodeEstablishFragment())?.commit()
+                    PatternCodeEstablishFragment().pushToScreen(activity as MainActivity)
                 } else
                     Toast.makeText(
                         context, getString(R.string.wrong_password),

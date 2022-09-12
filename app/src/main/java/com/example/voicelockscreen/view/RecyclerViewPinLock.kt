@@ -1,14 +1,9 @@
 package com.example.voicelockscreen.view
 
 import android.content.Context
-import android.graphics.BlendModeColorFilter
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.BlendModeColorFilterCompat
-import androidx.core.graphics.BlendModeCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
@@ -56,7 +51,7 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
-            itemView.btnNumberEmpty.text = "empty"
+            itemView.btnNumberEmpty.text = context?.getString(R.string.empty)
             dataModel.backgroundPinButton?.let { itemView.btnNumberEmpty.setBackgroundResource(it) }
         }
 
@@ -124,18 +119,5 @@ class RecyclerViewPinLock(
 
     override fun getItemViewType(position: Int): Int = dataModel[position].viewType
     override fun getItemCount(): Int = dataModel.size
-
-//    class ViewHolderPinLock(itemView: View, onItemClicked: (Int) -> Unit) :
-//        RecyclerView.ViewHolder(itemView) {
-//        init {
-//            itemView.btnNumber.setOnClickListener {
-//                onItemClicked(adapterPosition)
-//            }
-//        }
-//
-//        fun bind(dataModel: DataModel) {
-//            itemView.btnNumber.text = dataModel.number
-//        }
-//    }
 
 }

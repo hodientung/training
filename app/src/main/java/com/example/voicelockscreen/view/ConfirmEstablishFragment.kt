@@ -13,7 +13,6 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.itsxtt.patternlock.PatternLockView
 import kotlinx.android.synthetic.main.fragment_confirm_establish.*
-import kotlinx.android.synthetic.main.fragment_pattern_code_establish.*
 
 class ConfirmEstablishFragment : Fragment() {
 
@@ -49,13 +48,6 @@ class ConfirmEstablishFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         patternViewConfirmEstablish.setOnPatternListener(object :
             PatternLockView.OnPatternListener {
-            override fun onStarted() {
-                super.onStarted()
-            }
-
-            override fun onProgress(ids: ArrayList<Int>) {
-                super.onProgress(ids)
-            }
 
             override fun onComplete(ids: ArrayList<Int>): Boolean {
                 /*
@@ -75,7 +67,7 @@ class ConfirmEstablishFragment : Fragment() {
                 }
                 if (prefs?.patternPassword == valuePatternPassword) {
                     Toast.makeText(
-                        context, "Pattern Successfully Change!!!",
+                        context, getString(R.string.pattern_successful_change),
                         Toast.LENGTH_LONG
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()

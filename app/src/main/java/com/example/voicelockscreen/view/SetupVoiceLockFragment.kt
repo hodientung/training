@@ -9,12 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoiceLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 import java.util.*
 
@@ -61,8 +63,7 @@ class SetupVoiceLockFragment : Fragment() {
         }
         imBack.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()
-            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, AlternativeLockFragment())?.commit()
+            AlternativeLockFragment().pushToScreen(activity as MainActivity)
         }
     }
 

@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetTimerPin
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_set_timer_lock.*
 
 
@@ -53,8 +55,7 @@ class SetTimerLockFragment : Fragment() {
                 Toast.LENGTH_LONG
             ).show()
             activity?.supportFragmentManager?.popBackStack()
-            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, SetupVoiceLockFragment())?.commit()
+            SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
         }
     }
 

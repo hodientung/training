@@ -9,9 +9,9 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="@dimen/size_100dp"
+        android:layout_marginTop="@dimen/size_32dp"
+        android:layout_marginBottom="@dimen/size_32dp"
         android:adjustViewBounds="true"
         android:background="#F4F2F4"
         android:scaleType="centerCrop"
@@ -24,11 +24,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1AlternativeLock"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/size_64dp"
+        android:layout_height="@dimen/size_64dp"
         android:layout_marginStart="@dimen/size_10"
         app:cardBackgroundColor="@color/color_CBABE6"
-        app:cardCornerRadius="100dp"
+        app:cardCornerRadius="@dimen/size_100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,16 +37,17 @@
             android:id="@+id/imageView1AlternativeLock"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/hello_world"
             android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2AlternativeLock"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/size_32dp"
+        android:layout_height="@dimen/size_32dp"
         android:layout_marginEnd="@dimen/size_10"
         app:cardBackgroundColor="@color/color_CBABE6"
-        app:cardCornerRadius="100dp"
+        app:cardCornerRadius="@dimen/size_100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -55,6 +56,7 @@
             android:id="@+id/imageView2AlternativeLock"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/hello_world"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_vertical_align_top_24" />
     </androidx.cardview.widget.CardView>
@@ -63,11 +65,11 @@
         android:id="@+id/tvNameFunctionAlternativeLock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sze_40dp"
         android:text="@string/voice_lock"
         android:textColor="@color/black"
         android:textSize="@dimen/size_16_sp"
         android:textStyle="bold"
-        android:layout_marginStart="@dimen/sze_40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/cardView1AlternativeLock"
         app:layout_constraintTop_toTopOf="parent" />

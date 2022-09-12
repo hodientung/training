@@ -1,13 +1,13 @@
 package com.example.voicelockscreen.utils
 
 import android.content.res.Resources
+import androidx.fragment.app.Fragment
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.model.DataModelFunction
 import com.example.voicelockscreen.model.DataModelTheme
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -19,18 +19,9 @@ class Util {
         const val PATTERN_INPUT = "password_pattern"
         const val PIN_LOCK_CUSTOM_PREF_NAME = "Input_data_pin_lock"
         const val TIMER_PIN_PREF_NAME = "time_pin"
-        const val CLOSE_WINDOW = "close_window"
-        const val CLOSE_WINDOW_PIN = "close_window_pin"
-        const val STATE_SERVICE_CUSTOM_PREF_NAME = "Input_data_pin_lock"
-        const val LANGUAGE = "ja"
-        const val timeout = 20001
-        const val PERM_REQUEST_CODE_DRAW_OVERLAYS = 1234
         const val REQ_CODE_SPEECH_INPUT = 100
-        const val REQ_CODE_PIN_LOCK = 101
         const val THE_FIRST_VIEW = 1
         const val THE_SECOND_VIEW = 2
-        const val THE_THIRD_VIEW = 3
-        const val ACTION_THEME = "data_theme"
         const val TAG = "ImportantDialogFragment"
         const val KEY_PLAYER_POSITION = "key_player_position"
         const val KEY_PLAYER_PLAY_WHEN_READY = "key_player_play_when_ready"
@@ -62,14 +53,20 @@ class Util {
             return item
         }
 
+        fun Fragment.pushToScreen(activity: MainActivity) {
+            activity.supportFragmentManager.beginTransaction().addToBackStack(null)
+                .replace(R.id.content_frame, this).commit()
+        }
+
         private fun getColorListScreen(): ArrayList<Int> {
             val colorList = arrayListOf<Int>()
+
+            colorList.add(R.drawable.themec)
+            colorList.add(R.drawable.themee)
+            colorList.add(R.drawable.themeb)
+            colorList.add(R.drawable.thema)
             colorList.add(R.drawable.background_girl1)
             colorList.add(R.drawable.girl)
-            colorList.add(R.drawable.background1)
-            colorList.add(R.drawable.background2)
-            colorList.add(R.drawable.background3)
-            colorList.add(R.drawable.background4)
             colorList.add(R.drawable.background5)
             colorList.add(R.drawable.background16)
             colorList.add(R.drawable.background7)

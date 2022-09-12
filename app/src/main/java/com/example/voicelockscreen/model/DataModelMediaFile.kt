@@ -2,17 +2,15 @@ package com.example.voicelockscreen.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.io.Serializable
 
 class DataModelMediaFile(
-    val index: String?,
-    val title: String?,
+    private val index: String?,
+    private val title: String?,
     val name: String?,
     val size: String?,
     val duration: String?,
     val path: String?,
-    val dateAdded: String?,
-    val imageFolder: String? = null
+    private val dateAdded: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -21,10 +19,8 @@ class DataModelMediaFile(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
         parcel.readString()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(index)

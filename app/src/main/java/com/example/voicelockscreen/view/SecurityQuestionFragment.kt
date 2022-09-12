@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.answer
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.positionAnswer
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_security_question.*
 
 
@@ -62,8 +64,7 @@ class SecurityQuestionFragment : Fragment() {
                 prefs?.answer = answer
                 tvAnswer.setText("")
                 activity?.supportFragmentManager?.popBackStack()
-                activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                    ?.replace(R.id.content_frame, AlternativeLockFragment())?.commit()
+                AlternativeLockFragment().pushToScreen(activity as MainActivity)
             }
         }
     }

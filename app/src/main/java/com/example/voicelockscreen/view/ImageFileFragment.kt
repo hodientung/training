@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelMediaFile
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_image_file.*
 import java.util.ArrayList
 
@@ -45,8 +47,7 @@ class ImageFileFragment : Fragment() {
             bundle.putString("path", adapterImageFile.imageList[it].path)
             val imageLayerFragment = ImageLayerFragment()
             imageLayerFragment.arguments = bundle
-            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, imageLayerFragment)?.commit()
+            imageLayerFragment.pushToScreen(activity as MainActivity)
         }
     }
 

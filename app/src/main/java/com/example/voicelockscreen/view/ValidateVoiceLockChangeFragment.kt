@@ -9,11 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 import java.util.*
 
@@ -98,8 +100,7 @@ class ValidateVoiceLockChangeFragment : Fragment() {
                     }
                     if (prefs?.input == result[0]) {
                         activity?.supportFragmentManager?.popBackStack()
-                        activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                            ?.replace(R.id.content_frame, SetupVoiceLockFragment())?.commit()
+                        SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
                     } else
                         Toast.makeText(context, "Invalid voice", Toast.LENGTH_LONG).show()
 

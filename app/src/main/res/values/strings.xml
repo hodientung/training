@@ -52,6 +52,9 @@
     <string name="type_your_answer_here">Type Your Answer Here</string>
     <string name="submit">Submit</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="pattern_successful_change">Pattern Successfully Change!!!</string>
+    <string name="successful_set_voice_password">Successful Set Voice password!!!</string>
+    <string name="successful_set_pin_lock">Successful Set Pin Lock!!!</string>
     <string name="current_time">Current Time</string>
     <string name="voice_lock_screen">Voice Lock Screen</string>
     <string name="lock_screen_status">Lock Screen Status</string>
@@ -73,4 +76,13 @@
     <string name="create_password">Create Password</string>
     <string name="speak_your_old_voice_password">Speak your old voice password</string>
     <string name="speak_password_to_confirm">Speak password to confirm</string>
+    <string name="_04_12">04:12</string>
+    <string name="video_name">Video name</string>
+    <string name="_286_09_mb">286.09 Mb</string>
+    <string name="_64_videos">64 Videos</string>
+    <string name="_00_02">00:02</string>
+    <string name="_00_55">00:55</string>
+    <string name="stereo">Stereo</string>
+    <string name="displaying_over_other_apps">Displaying over other apps!</string>
+    <string name="remove">Remove</string>
 </resources>

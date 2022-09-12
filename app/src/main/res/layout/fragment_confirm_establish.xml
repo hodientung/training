@@ -18,19 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/tvBack"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="@dimen/size_10"-->
-    <!--        android:contentDescription="@string/hello_world"-->
-    <!--        android:scaleType="fitXY"-->
-    <!--        android:src="@drawable/ic_round_arrow_back"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/tvSetPattern"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/tvSetPattern" />-->
-
-
     <ImageView
         android:id="@+id/imLockPatternConfirmEstablish"
         android:layout_width="@dimen/size_50dp"

@@ -42,12 +42,6 @@ class Window(context: Context) {
         } catch (e: Exception) {
             Log.e("Error1", e.toString())
         }
-
-        //bat su kien
-//        mView?.findViewById<ImageButton>(R.id.btnSpeakUnlock)?.setOnClickListener {
-//
-//        }
-
     }
 
     fun close() {

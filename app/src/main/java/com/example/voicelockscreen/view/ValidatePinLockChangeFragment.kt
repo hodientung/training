@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
@@ -14,6 +15,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_validate_pin_lock_change.*
 
 class ValidatePinLockChangeFragment : Fragment() {
@@ -94,12 +96,12 @@ class ValidatePinLockChangeFragment : Fragment() {
                     ).show()
 
                     //sua lai fragment
-                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                        ?.replace(R.id.content_frame, PinCodeEstablishFragment())?.commit()
+                    PinCodeEstablishFragment().pushToScreen(activity as MainActivity)
                 } else {
                     txtPassValidate.setText("")
                     passwordSetup = ""
-                    Toast.makeText(context, "Wrong Pin Code", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.wrong_pin_code), Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }

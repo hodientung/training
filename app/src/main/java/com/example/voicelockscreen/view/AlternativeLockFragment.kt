@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
-import com.example.voicelockscreen.model.DataModelFunction
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_alternative_lock.*
 
 
@@ -33,12 +34,11 @@ class AlternativeLockFragment : Fragment() {
     private fun initAction() {
         adapterFunctionAlternativeLock.onItemClicked = {
             when (it) {
-                0 -> activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                    ?.replace(R.id.content_frame, PinCodeFragment())?.commit()
-                1 -> activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                    ?.replace(R.id.content_frame, PatternLockFragment())?.commit()
-                2 -> activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                    ?.replace(R.id.content_frame, SetTimerLockFragment())?.commit()
+                0 -> PinCodeFragment().pushToScreen(activity as MainActivity)
+
+                1 -> PatternLockFragment().pushToScreen(activity as MainActivity)
+
+                2 -> SetTimerLockFragment().pushToScreen(activity as MainActivity)
             }
         }
     }

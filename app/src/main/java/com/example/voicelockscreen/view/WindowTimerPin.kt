@@ -57,12 +57,6 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
         }
         initView()
         initAction()
-
-        //bat su kien
-//        mView?.findViewById<ImageButton>(R.id.btnSpeakUnlock)?.setOnClickListener {
-//
-//        }
-
     }
 
     private fun initView() {

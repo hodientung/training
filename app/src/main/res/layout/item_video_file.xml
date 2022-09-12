@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom|end"
+            android:contentDescription="@string/hello_world"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background" />
 
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:background="@color/light_dark"
             android:padding="4dp"
-            android:text="04:12"
+            android:text="@string/_04_12"
             android:textColor="@android:color/white"
             android:textSize="12sp"
 
@@ -41,7 +42,6 @@
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
         android:layout_toEndOf="@id/thumbnailCard"
-        android:layout_toRightOf="@id/thumbnailCard"
         android:orientation="vertical">
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_marginBottom="5dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="Video name"
+            android:text="@string/video_name"
             android:textColor="@android:color/black"
 
             />
@@ -60,7 +60,7 @@
             android:id="@+id/tvVideoSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="286.09 Mb"
+            android:text="@string/_286_09_mb"
             android:textColor="@color/light_dark" />
     </LinearLayout>
 </RelativeLayout>

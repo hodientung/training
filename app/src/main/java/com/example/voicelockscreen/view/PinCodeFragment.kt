@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
-import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupPinLock
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoiceLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_pin_code.*
 
 
@@ -74,6 +74,9 @@ class PinCodeFragment : Fragment() {
 //            Toast.makeText(context, "vi tri $it", Toast.LENGTH_SHORT).show()
 //        }
         setUpPassword()
+        tvBack.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
+        }
     }
 
 
@@ -110,13 +113,11 @@ class PinCodeFragment : Fragment() {
                 prefs?.isSetupPinLock = true
                 if (againInput == passwordSetup) {
                     Toast.makeText(
-                        context, "Successfully Set Pin Lock",
+                        context, getString(R.string.successful_set_pin_lock),
                         Toast.LENGTH_LONG
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()
-                    activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                        ?.replace(R.id.content_frame, SetupVoiceLockFragment())?.commit()
-
+                    SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
                 }
             }
         }

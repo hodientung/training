@@ -19,7 +19,7 @@ class ManagePermissions(val activity: Activity, val list: List<String>, val code
         if (isPermissionsGranted() != PackageManager.PERMISSION_GRANTED) {
             showAlert()
         } else {
-           // Toast.makeText(activity, "Permissions already granted.", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(activity, "Permissions already granted.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -63,12 +63,10 @@ class ManagePermissions(val activity: Activity, val list: List<String>, val code
     private fun requestPermissions() {
         val permission = deniedPermission()
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
-            // Show an explanation asynchronously
-
+            // Show an explanation asynchronously (show dialog to explain to user the reason request permission)
             Toast.makeText(activity, "Should show an explanation.", Toast.LENGTH_SHORT).show()
-        } else {
+        } else
             ActivityCompat.requestPermissions(activity, list.toTypedArray(), code)
-        }
     }
 
 

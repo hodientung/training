@@ -19,9 +19,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/btnSpeakUnlock1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:cardCornerRadius="100dp"
+        android:layout_width="@dimen/size_50dp"
+        android:layout_height="@dimen/size_50dp"
+        app:cardCornerRadius="@dimen/size_100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,10 +41,10 @@
         android:id="@+id/test_thu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20dp"
         android:text="@string/speak_password_to_unlock"
         android:textColor="@color/white"
         android:textSize="@dimen/size_16_sp"
-        android:layout_marginTop="@dimen/size_20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSpeakUnlock1" />
@@ -73,10 +73,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewPin"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:cardBackgroundColor="#382E40"
-            app:cardCornerRadius="100dp"
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="@dimen/size_50dp"
+            app:cardBackgroundColor="#80000000"
+            app:cardCornerRadius="@dimen/size_100dp"
             app:layout_constraintEnd_toStartOf="@id/cardViewPin2"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -91,11 +91,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewPin2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="@dimen/size_50dp"
             android:layout_marginStart="@dimen/size_20dp"
-            app:cardBackgroundColor="#382E40"
-            app:cardCornerRadius="100dp"
+            app:cardBackgroundColor="#80000000"
+            app:cardCornerRadius="@dimen/size_100dp"
             app:layout_constraintStart_toEndOf="@id/cardViewPin"
             app:layout_constraintTop_toTopOf="parent">
 

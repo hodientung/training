@@ -11,28 +11,24 @@ object PreferenceHelper {
     private const val CODE_THEME_BUTTON = "code_theme_button"
     private const val ON_SERVICE = "on_service"
     private const val CHECK_TIMER_PIN = "check_timer_pin"
-    private const val OFF_SERVICE = "off_service"
     private const val SETUP_VOICE_LOCK = "setup_voice_lock"
     private const val SETUP_PIN_LOCK = "setup_pin_lock"
     private const val SETUP_PATTERN_LOCK = "setup_pattern_lock"
-    private const val SETUP_TIMER_PIN = "setup_timer_pin"
-    private const val CLOSE_Window_SECURITY_SCREEN = "isCloseWindowSecurityQuestionScreen"
     private const val INPUT_PIN_LOCK = "input_pin_lock"
     private const val ANSWER = "answer"
     private const val INPUT_PATTERN = "input_pattern"
-    private const val CLOSE_Window_FIRST = "close_window_first"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)
 
-    inline fun SharedPreferences.editMe(operation: (SharedPreferences.Editor) -> Unit) {
+    private inline fun SharedPreferences.editMe(operation: (SharedPreferences.Editor) -> Unit) {
         val editMe = edit()
         operation(editMe)
         editMe.apply()
     }
 
     // custom put du lieu vao share preference
-    inline fun SharedPreferences.Editor.put(pair: Pair<String, Any>) {
+    fun SharedPreferences.Editor.put(pair: Pair<String, Any>) {
         val key = pair.first
         when (val value = pair.second) {
             is String -> putString(key, value)
@@ -73,14 +69,6 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putBoolean(ON_SERVICE, value)
-            }
-        }
-
-    var SharedPreferences.offService
-        get() = getBoolean(OFF_SERVICE, false)
-        set(value) {
-            editMe {
-                it.putBoolean(OFF_SERVICE, value)
             }
         }
 
@@ -142,22 +130,6 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putInt(POSITION_ANSWER, value)
-            }
-        }
-
-    var SharedPreferences.isCloseWindowSecurityQuestionScreen
-        get() = getBoolean(CLOSE_Window_SECURITY_SCREEN, false)
-        set(value) {
-            editMe {
-                it.putBoolean(CLOSE_Window_SECURITY_SCREEN, value)
-            }
-        }
-
-    var SharedPreferences.isCloseWindow
-        get() = getBoolean(CLOSE_Window_FIRST, false)
-        set(value) {
-            editMe {
-                it.putBoolean(CLOSE_Window_FIRST, value)
             }
         }
 

@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelMediaFile
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_video_files.*
 import java.util.ArrayList
 
@@ -47,8 +49,7 @@ class VideoFilesFragment : Fragment() {
             bundle.putParcelableArrayList("video_array_list", adapterVideoFile.videoList)
             val videoLayerFragment = VideoLayerFragment()
             videoLayerFragment.arguments = bundle
-            activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(null)
-                ?.replace(R.id.content_frame, videoLayerFragment)?.commit()
+            videoLayerFragment.pushToScreen(activity as MainActivity)
         }
     }
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contentSetupVoiceLock"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/size_8dp"
-    android:background="@color/color_502A5E"
     tools:context=".view.SetupVoiceLockFragment">
 
     <TextView
@@ -78,11 +77,12 @@
 
     <ImageView
         android:id="@+id/imBack"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/size_24dp"
+        android:layout_height="@dimen/size_24dp"
         android:layout_alignTop="@id/linearVoice"
         android:layout_alignBottom="@id/linearVoice"
         android:layout_marginStart="@dimen/size_20dp"
+        android:contentDescription="@string/hello_world"
         android:layout_toEndOf="@id/linearVoice"
         android:src="@drawable/ic_baseline_forward_alternative_24" />
 
