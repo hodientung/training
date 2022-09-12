@@ -37,6 +37,7 @@
     <string name="_1234">1234</string>
     <string name="empty">empty</string>
     <string name="wrong_pin_code">Wrong Pin Code</string>
+    <string name="wrong_pattern_code">Wrong Pattern Code</string>
     <string name="wrong_pin_code_timer">Wrong Pin Code or not active Timer Pin</string>
     <string name="wrong_password">Wrong Password</string>
     <string name="report_input">Your Voice Password is: "%1$s</string>

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/content_add_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#502A5E">
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
@@ -106,6 +105,24 @@
                 android:contentDescription="@string/hello_world"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_round_watch_later_24" />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewPin3"
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="@dimen/size_50dp"
+            android:layout_marginStart="@dimen/size_20dp"
+            app:cardBackgroundColor="#80000000"
+            app:cardCornerRadius="@dimen/size_100dp"
+            app:layout_constraintStart_toEndOf="@id/cardViewPin2"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageViewPin3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/hello_world"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_round_confirmation_number_24" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

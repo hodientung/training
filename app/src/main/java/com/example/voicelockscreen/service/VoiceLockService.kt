@@ -25,10 +25,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
-import com.example.voicelockscreen.view.Window
-import com.example.voicelockscreen.view.WindowPinLock
-import com.example.voicelockscreen.view.WindowSecurityQuestion
-import com.example.voicelockscreen.view.WindowTimerPin
+import com.example.voicelockscreen.view.*
 
 
 class VoiceLockService : Service() {
@@ -36,6 +33,7 @@ class VoiceLockService : Service() {
     lateinit var window: Window
     lateinit var windowSecurityQuestion: WindowSecurityQuestion
     lateinit var windowPinLock: WindowPinLock
+    lateinit var windowPatternLock: WindowPatternLock
     lateinit var windowTimerPin: WindowTimerPin
     private val stateOfPhone = object : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
@@ -62,6 +60,11 @@ class VoiceLockService : Service() {
                             // open verify pin lock
                             windowPinLock.open()
 
+                        }
+                    window.getView()?.findViewById<CardView>(R.id.cardViewPin3)
+                        ?.setOnClickListener {
+                            // open verify pattern lock
+                            windowPatternLock.open()
                         }
                     window.getView()?.findViewById<CardView>(R.id.cardViewPin2)
                         ?.setOnClickListener {
@@ -180,6 +183,9 @@ class VoiceLockService : Service() {
             window.close()
         }
         windowPinLock = WindowPinLock(this) {
+            window.close()
+        }
+        windowPatternLock = WindowPatternLock(this) {
             window.close()
         }
         windowTimerPin = WindowTimerPin(this) {

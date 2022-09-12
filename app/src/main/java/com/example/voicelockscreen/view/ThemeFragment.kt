@@ -62,16 +62,16 @@ class ThemeFragment : Fragment() {
     private fun getListTheme(): ArrayList<DataModelTheme> {
         val item = arrayListOf<DataModelTheme>()
 
+        item.add(DataModelTheme(R.drawable.t6))
+        item.add(DataModelTheme(R.drawable.t4))
         item.add(DataModelTheme(R.drawable.themec))
         item.add(DataModelTheme(R.drawable.themee))
         item.add(DataModelTheme(R.drawable.themeb))
         item.add(DataModelTheme(R.drawable.thema))
-        item.add(DataModelTheme(R.drawable.background_girl1))
-        item.add(DataModelTheme(R.drawable.girl))
-        item.add(DataModelTheme(R.drawable.background5))
-        item.add(DataModelTheme(R.drawable.background16))
-        item.add(DataModelTheme(R.drawable.background7))
-        item.add(DataModelTheme(R.drawable.background8))
+        item.add(DataModelTheme(R.drawable.t1))
+        item.add(DataModelTheme(R.drawable.t2))
+        item.add(DataModelTheme(R.drawable.t3))
+        item.add(DataModelTheme(R.drawable.t7))
 
         return item
     }

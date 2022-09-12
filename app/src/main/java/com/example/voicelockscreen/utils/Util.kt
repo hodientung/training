@@ -61,16 +61,16 @@ class Util {
         private fun getColorListScreen(): ArrayList<Int> {
             val colorList = arrayListOf<Int>()
 
+            colorList.add(R.drawable.t6)
+            colorList.add(R.drawable.t4)
             colorList.add(R.drawable.themec)
             colorList.add(R.drawable.themee)
             colorList.add(R.drawable.themeb)
             colorList.add(R.drawable.thema)
-            colorList.add(R.drawable.background_girl1)
-            colorList.add(R.drawable.girl)
-            colorList.add(R.drawable.background5)
-            colorList.add(R.drawable.background16)
-            colorList.add(R.drawable.background7)
-            colorList.add(R.drawable.background8)
+            colorList.add(R.drawable.t1)
+            colorList.add(R.drawable.t2)
+            colorList.add(R.drawable.t3)
+            colorList.add(R.drawable.t7)
             return colorList
         }
 
