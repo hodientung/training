@@ -41,12 +41,15 @@ class ImageFolderFragment : Fragment() {
             bundle.putString(
                 "folderName",
                 adapterImageFolder.folderPath[it].substring(
-                    adapterImageFolder.folderPath[it].lastIndexOf("/")
+                    adapterImageFolder.folderPath[it].lastIndexOf("/")+1
                 )
             )
             val imageFilesFragment = ImageFileFragment()
             imageFilesFragment.arguments = bundle
             imageFilesFragment.pushToScreen(activity as MainActivity)
+        }
+        tvBackImage.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 

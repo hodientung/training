@@ -48,6 +48,10 @@ class PatternCodeEstablishFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAction()
+    }
+
+    private fun initAction() {
         patternViewEstablish.setOnPatternListener(object : PatternLockView.OnPatternListener {
 
             override fun onComplete(ids: ArrayList<Int>): Boolean {
@@ -72,6 +76,9 @@ class PatternCodeEstablishFragment : Fragment() {
                 return true
             }
         })
+        tvBackEstablish.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 }

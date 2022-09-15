@@ -7,6 +7,18 @@
     android:padding="@dimen/size_8dp"
     tools:context=".view.SecurityQuestionFragment">
 
+
+    <ImageView
+        android:id="@+id/tvBackSecurityQuestionFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:src="@drawable/ic_round_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/tvSecurityQuestion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvSecurityQuestion"
+        android:contentDescription="@string/hello_world" />
+
     <TextView
         android:id="@+id/tvSecurityQuestion"
         android:layout_width="wrap_content"
@@ -78,6 +90,7 @@
         android:layout_marginTop="@dimen/size_20dp"
         android:text="@string/submit"
         android:textAllCaps="false"
+        android:background="@drawable/border_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvContent" />

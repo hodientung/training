@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/content_add_view"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/imTheme"
+    tools:context=".view.PreviewThemeFragment">
+
+    <ImageView
+        android:id="@+id/tvBackPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="@+id/tvNamePreview"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNamePreview"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_round_arrow_back" />
 
     <TextView
+        android:id="@+id/tvNamePreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
@@ -17,9 +32,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/btnSpeakUnlock1"
-        android:layout_width="@dimen/size_50dp"
-        android:layout_height="@dimen/size_50dp"
+        android:id="@+id/btnSpeakUnlockTheme"
+        android:layout_width="@dimen/size_64dp"
+        android:layout_height="@dimen/size_64dp"
         app:cardCornerRadius="@dimen/size_100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/abc"
+            android:id="@+id/contentImageTheme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/main_header_selector"
@@ -37,7 +52,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/test_thu"
+        android:id="@+id/test_thuTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20dp"
@@ -46,21 +61,22 @@
         android:textSize="@dimen/size_16_sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnSpeakUnlock1" />
+        app:layout_constraintTop_toBottomOf="@id/btnSpeakUnlockTheme" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnForgetPassword"
+        android:id="@+id/btnForgetPasswordTheme"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/size_20dp"
         android:layout_marginTop="@dimen/size_20dp"
+        android:textAllCaps="false"
         android:background="@drawable/rectangle_button"
         android:text="@string/forget_password"
         android:textColor="@color/white"
         android:textSize="@dimen/size_12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/test_thu" />
+        app:layout_constraintTop_toBottomOf="@id/test_thuTheme" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -68,19 +84,19 @@
         android:layout_marginTop="@dimen/sze_40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnForgetPassword">
+        app:layout_constraintTop_toBottomOf="@id/btnForgetPasswordTheme">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewPin"
+            android:id="@+id/cardViewPinTheme"
             android:layout_width="@dimen/size_50dp"
             android:layout_height="@dimen/size_50dp"
-            app:cardBackgroundColor="#80000000"
+            app:cardBackgroundColor="#90000000"
             app:cardCornerRadius="@dimen/size_100dp"
-            app:layout_constraintEnd_toStartOf="@id/cardViewPin2"
+            app:layout_constraintEnd_toStartOf="@id/cardViewPin2Theme"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageViewPin"
+                android:id="@+id/imageViewPinTheme"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/hello_world"
@@ -89,31 +105,32 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewPin2"
-            android:layout_width="@dimen/size_50dp"
-            android:layout_height="@dimen/size_50dp"
+            android:id="@+id/cardViewPin2Theme"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="@dimen/size_20dp"
-            app:cardBackgroundColor="#80000000"
+            app:cardBackgroundColor="#90000000"
             app:cardCornerRadius="@dimen/size_100dp"
-            app:layout_constraintStart_toEndOf="@id/cardViewPin"
+            app:layout_constraintStart_toEndOf="@id/cardViewPinTheme"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageViewPin2"
+                android:id="@+id/imageViewPin2Theme"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/hello_world"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_round_watch_later_24" />
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewPin3"
             android:layout_width="@dimen/size_50dp"
             android:layout_height="@dimen/size_50dp"
             android:layout_marginStart="@dimen/size_20dp"
-            app:cardBackgroundColor="#80000000"
+            app:cardBackgroundColor="#90000000"
             app:cardCornerRadius="@dimen/size_100dp"
-            app:layout_constraintStart_toEndOf="@id/cardViewPin2"
+            app:layout_constraintStart_toEndOf="@id/cardViewPin2Theme"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
@@ -127,5 +144,28 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnApply"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/size_20dp"
+        android:background="@drawable/border_button"
+        android:gravity="center"
+        android:text="@string/apply"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_16_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline1"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,6 +65,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:text="@string/submit"
                 android:textAllCaps="false"
+                android:background="@drawable/border_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv3" />

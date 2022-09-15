@@ -15,6 +15,11 @@ import kotlinx.android.synthetic.main.fragment_previous.*
 
 class PreviousFragment : Fragment() {
 
+    override fun onResume() {
+        super.onResume()
+        setTheme(requireContext(), content_add_view_preview)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,7 +30,13 @@ class PreviousFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setTheme(requireContext(), content_add_view_preview)
+        initAction()
+    }
+
+    private fun initAction() {
+        tvBackPreview2.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun setTheme(context: Context?, view: View?) {

@@ -57,6 +57,9 @@ class SetTimerLockFragment : Fragment() {
             activity?.supportFragmentManager?.popBackStack()
             SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
         }
+        tvBackTimerLock.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 

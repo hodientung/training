@@ -44,6 +44,7 @@ class RecyclerViewTheme(val context: Context?) :
 
         fun bind(dataModelTheme: DataModelTheme) {
             itemView.tvTheme.setBackgroundResource(dataModelTheme.colorTheme)
+            itemView.tvNameTheme.text = dataModelTheme.name
         }
 
     }

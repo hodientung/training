@@ -70,6 +70,9 @@ class PinCodeEstablishFragment : Fragment() {
 //            Toast.makeText(context, "vi tri $it", Toast.LENGTH_SHORT).show()
 //        }
         setUpPassword()
+        tvBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun setUpPassword() {

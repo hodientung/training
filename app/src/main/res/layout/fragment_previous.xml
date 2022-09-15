@@ -5,7 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/tvBackPreview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="@+id/tvNamePreviewF"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNamePreviewF"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_round_arrow_back" />
+
     <TextView
+        android:id="@+id/tvNamePreviewF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
@@ -74,7 +87,7 @@
             android:id="@+id/cardViewPin"
             android:layout_width="@dimen/size_50dp"
             android:layout_height="@dimen/size_50dp"
-            app:cardBackgroundColor="#382E40"
+            app:cardBackgroundColor="#90000000"
             app:cardCornerRadius="@dimen/size_100dp"
             app:layout_constraintEnd_toStartOf="@id/cardViewPin2"
             app:layout_constraintTop_toTopOf="parent">
@@ -93,7 +106,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="@dimen/size_20dp"
-            app:cardBackgroundColor="#382E40"
+            app:cardBackgroundColor="#90000000"
             app:cardCornerRadius="@dimen/size_100dp"
             app:layout_constraintStart_toEndOf="@id/cardViewPin"
             app:layout_constraintTop_toTopOf="parent">
@@ -105,6 +118,25 @@
                 android:contentDescription="@string/hello_world"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_round_watch_later_24" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewPin3"
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="@dimen/size_50dp"
+            android:layout_marginStart="@dimen/size_20dp"
+            app:cardBackgroundColor="#90000000"
+            app:cardCornerRadius="@dimen/size_100dp"
+            app:layout_constraintStart_toEndOf="@id/cardViewPin2"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageViewPin3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/hello_world"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_sharp_pattern_24" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

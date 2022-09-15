@@ -41,6 +41,10 @@ class AlternativeLockFragment : Fragment() {
                 2 -> SetTimerLockFragment().pushToScreen(activity as MainActivity)
             }
         }
+
+        tvBackAlternative.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun initView() {

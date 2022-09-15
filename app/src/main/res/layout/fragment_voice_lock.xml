@@ -58,6 +58,7 @@
                     android:id="@+id/tvEnableLockService"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
                     android:text="@string/enable_lock_service"
                     android:textColor="@color/black"
                     android:textSize="@dimen/size_14_sp" />

@@ -24,6 +24,7 @@ class ValidatePatternLockChangeFragment : Fragment() {
         super.onResume()
         setTheme()
     }
+
     //show theme for layout
     private fun setTheme() {
         val prefs =
@@ -37,6 +38,7 @@ class ValidatePatternLockChangeFragment : Fragment() {
         prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
             ?.let { content3.setBackgroundResource(it) }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +49,11 @@ class ValidatePatternLockChangeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAction()
+    }
+
+    private fun initAction() {
+        Toast.makeText(requireContext(), getString(R.string.enter_old_password), Toast.LENGTH_LONG).show()
         patternViewValidate.setOnPatternListener(object : PatternLockView.OnPatternListener {
 
             override fun onComplete(ids: ArrayList<Int>): Boolean {
@@ -66,6 +73,11 @@ class ValidatePatternLockChangeFragment : Fragment() {
                     )
                 }
                 if (prefs?.patternPassword == valuePatternPassword) {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.correct_password),
+                        Toast.LENGTH_LONG
+                    ).show()
                     activity?.supportFragmentManager?.popBackStack()
                     PatternCodeEstablishFragment().pushToScreen(activity as MainActivity)
                 } else
@@ -76,6 +88,9 @@ class ValidatePatternLockChangeFragment : Fragment() {
                 return true
             }
         })
+        tvBackValidate.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 }

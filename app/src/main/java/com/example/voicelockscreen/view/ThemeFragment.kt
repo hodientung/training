@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelTheme
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_theme.*
 import java.util.ArrayList
 
@@ -36,24 +39,19 @@ class ThemeFragment : Fragment() {
     }
 
     private fun initAction() {
+        val bundle = Bundle()
+        val previewTheme = PreviewThemeFragment()
         adapterTheme.onItemClicked = {
-            Toast.makeText(context, "Theme $it is updated", Toast.LENGTH_SHORT).show()
-            //save setting theme into share preference
-            val prefs =
-                context?.let { it1 ->
-                    PreferenceHelper.customPreference(
-                        it1,
-                        Util.THEME_SETTING
-                    )
-                }
-            prefs?.themeCode = it
-            prefs?.themePinButton = it
+            bundle.putSerializable("theme", adapterTheme.dataModelTheme[it])
+            bundle.putInt("position", it)
+            previewTheme.arguments = bundle
+            previewTheme.pushToScreen(activity as MainActivity)
 
         }
     }
 
     private fun initView() {
-        rvTheme.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvTheme.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         adapterTheme = RecyclerViewTheme(context)
         adapterTheme.dataModelTheme = getListTheme()
         rvTheme.adapter = adapterTheme
@@ -62,16 +60,16 @@ class ThemeFragment : Fragment() {
     private fun getListTheme(): ArrayList<DataModelTheme> {
         val item = arrayListOf<DataModelTheme>()
 
-        item.add(DataModelTheme(R.drawable.t6))
-        item.add(DataModelTheme(R.drawable.t4))
-        item.add(DataModelTheme(R.drawable.themec))
-        item.add(DataModelTheme(R.drawable.themee))
-        item.add(DataModelTheme(R.drawable.themeb))
-        item.add(DataModelTheme(R.drawable.thema))
-        item.add(DataModelTheme(R.drawable.t1))
-        item.add(DataModelTheme(R.drawable.t2))
-        item.add(DataModelTheme(R.drawable.t3))
-        item.add(DataModelTheme(R.drawable.t7))
+        item.add(DataModelTheme(colorTheme = R.drawable.t6, name = " Theme One"))
+        item.add(DataModelTheme(colorTheme = R.drawable.t4, name = "Theme Two"))
+        item.add(DataModelTheme(colorTheme = R.drawable.themec, name = "Theme Three"))
+        item.add(DataModelTheme(colorTheme = R.drawable.themee, name = "Theme Four"))
+        item.add(DataModelTheme(colorTheme = R.drawable.themeb, name = "Theme Five"))
+        item.add(DataModelTheme(colorTheme = R.drawable.thema, name = "Theme Six"))
+        item.add(DataModelTheme(colorTheme = R.drawable.t1, name = "Theme Seven"))
+        item.add(DataModelTheme(colorTheme = R.drawable.t2, name = "Theme Eight"))
+        item.add(DataModelTheme(colorTheme = R.drawable.t3, name = "Theme Nine"))
+        item.add(DataModelTheme(colorTheme = R.drawable.t7, name = "Theme Ten"))
 
         return item
     }

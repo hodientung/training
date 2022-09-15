@@ -24,6 +24,7 @@ class ConfirmPatternFragment : Fragment() {
         super.onResume()
         setTheme()
     }
+
     //show theme for layout
     private fun setTheme() {
         val prefs =
@@ -67,7 +68,7 @@ class ConfirmPatternFragment : Fragment() {
                     )
                 }
                 if (prefs?.patternPassword == valuePatternPassword) {
-                    prefs.isSetupPatternLock= true
+                    prefs.isSetupPatternLock = true
                     Toast.makeText(
                         context, "Successfully Set Pattern Lock",
                         Toast.LENGTH_LONG
@@ -82,6 +83,10 @@ class ConfirmPatternFragment : Fragment() {
                 return true
             }
         })
+
+        tvBackConfirmPatternLock.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 

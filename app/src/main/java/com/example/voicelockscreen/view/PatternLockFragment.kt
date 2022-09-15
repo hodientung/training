@@ -16,7 +16,6 @@ import com.itsxtt.patternlock.PatternLockView
 import kotlinx.android.synthetic.main.fragment_pattern_lock.*
 
 
-
 class PatternLockFragment : Fragment() {
 
 
@@ -24,6 +23,7 @@ class PatternLockFragment : Fragment() {
         super.onResume()
         setTheme()
     }
+
     //show theme for layout
     private fun setTheme() {
         val prefs =
@@ -72,5 +72,9 @@ class PatternLockFragment : Fragment() {
                 return true
             }
         })
+
+        tvBackPatternLock.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 }

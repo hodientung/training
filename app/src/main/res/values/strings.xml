@@ -36,7 +36,7 @@
     <string name="_64_images">64 Images</string>
     <string name="_1234">1234</string>
     <string name="empty">empty</string>
-    <string name="wrong_pin_code">Wrong Pin Code</string>
+    <string name="wrong_pin_code">Wrong Pin Code, enter password again</string>
     <string name="wrong_pattern_code">Wrong Pattern Code</string>
     <string name="wrong_pin_code_timer">Wrong Pin Code or not active Timer Pin</string>
     <string name="wrong_password">Wrong Password</string>
@@ -86,4 +86,9 @@
     <string name="stereo">Stereo</string>
     <string name="displaying_over_other_apps">Displaying over other apps!</string>
     <string name="remove">Remove</string>
+    <string name="theme_1">Theme 1</string>
+    <string name="apply">Apply theme</string>
+    <string name="successfully_set_theme">Successfully Set Theme!!!</string>
+    <string name="enter_old_password">Enter old password to change</string>
+    <string name="correct_password">Correct password</string>
 </resources>

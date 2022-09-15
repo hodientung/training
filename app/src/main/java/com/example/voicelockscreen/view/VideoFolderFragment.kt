@@ -41,12 +41,15 @@ class VideoFolderFragment : Fragment() {
             bundle.putString(
                 "folderName",
                 adapterVideoFolder.folderPath[it].substring(
-                    adapterVideoFolder.folderPath[it].lastIndexOf("/")
+                    adapterVideoFolder.folderPath[it].lastIndexOf("/")+1
                 )
             )
             val videoFilesFragment = VideoFilesFragment()
             videoFilesFragment.arguments = bundle
             videoFilesFragment.pushToScreen(activity as MainActivity)
+        }
+        tvBackImage1.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 

@@ -59,6 +59,9 @@ class ValidateVoiceLockChangeFragment : Fragment() {
         btnSpeakValidate.setOnClickListener {
             promptSpeechInput()
         }
+        tvBackValidateVoiceLock.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun promptSpeechInput() {

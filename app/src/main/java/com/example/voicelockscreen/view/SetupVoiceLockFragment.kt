@@ -65,6 +65,9 @@ class SetupVoiceLockFragment : Fragment() {
             activity?.supportFragmentManager?.popBackStack()
             AlternativeLockFragment().pushToScreen(activity as MainActivity)
         }
+        tvBackSetupVoiceLock.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun promptSpeechInput() {

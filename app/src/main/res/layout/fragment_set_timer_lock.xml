@@ -7,6 +7,16 @@
     android:padding="@dimen/size_8dp"
     tools:context=".view.SetTimerLockFragment">
 
+    <ImageView
+        android:id="@+id/tvBackTimerLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_round_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/tvSetTimeLock"
+        app:layout_constraintStart_toStartOf="@+id/cardViewHint"
+        app:layout_constraintTop_toTopOf="@id/tvSetTimeLock"
+        android:contentDescription="@string/hello_world" />
+
     <TextView
         android:id="@+id/tvSetTimeLock"
         android:layout_width="wrap_content"
@@ -24,6 +34,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginEnd="@dimen/size_10"
+        android:layout_marginTop="@dimen/size_20dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="100dp"
         app:layout_constraintStart_toStartOf="parent"

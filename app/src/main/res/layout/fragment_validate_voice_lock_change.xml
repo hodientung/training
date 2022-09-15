@@ -8,6 +8,18 @@
     android:padding="@dimen/size_8dp"
     tools:context=".view.ValidateVoiceLockChangeFragment">
 
+    <ImageView
+        android:id="@+id/tvBackValidateVoiceLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintTop_toTopOf="@+id/tvTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_round_arrow_back" />
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"

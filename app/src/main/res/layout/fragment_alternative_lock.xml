@@ -7,6 +7,17 @@
     android:padding="@dimen/size_16dp"
     tools:context=".view.AlternativeLockFragment">
 
+    <ImageView
+        android:id="@+id/tvBackAlternative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:src="@drawable/ic_round_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/tvAlternativeLock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvAlternativeLock"
+        android:contentDescription="@string/hello_world" />
+
     <TextView
         android:id="@+id/tvAlternativeLock"
         android:layout_width="wrap_content"

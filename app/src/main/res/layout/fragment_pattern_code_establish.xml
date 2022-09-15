@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     android:padding="@dimen/size_8dp">
 
+    <ImageView
+        android:id="@+id/tvBackEstablish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_10"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_round_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/tvSetPatternEstablish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvSetPatternEstablish" />
+
     <TextView
         android:id="@+id/tvSetPatternEstablish"
         android:layout_width="wrap_content"

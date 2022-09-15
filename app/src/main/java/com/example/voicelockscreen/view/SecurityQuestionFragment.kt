@@ -67,6 +67,10 @@ class SecurityQuestionFragment : Fragment() {
                 AlternativeLockFragment().pushToScreen(activity as MainActivity)
             }
         }
+
+        tvBackSecurityQuestionFragment.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     private fun initView() {

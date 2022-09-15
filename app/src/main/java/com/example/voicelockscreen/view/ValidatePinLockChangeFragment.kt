@@ -63,6 +63,9 @@ class ValidatePinLockChangeFragment : Fragment() {
 //            Toast.makeText(context, "vi tri $it", Toast.LENGTH_SHORT).show()
 //        }
         setUpPassword()
+        tvBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,6 +76,8 @@ class ValidatePinLockChangeFragment : Fragment() {
     }
 
     private fun setUpPassword() {
+        Toast.makeText(requireContext(), getString(R.string.enter_old_password), Toast.LENGTH_LONG)
+            .show()
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->
@@ -90,12 +95,13 @@ class ValidatePinLockChangeFragment : Fragment() {
                 }
             if (passwordSetup.length == 4) {
                 if (passwordSetup == prefs?.inputPinLock) {
+                    //sua lai fragment
                     Toast.makeText(
-                        context, "Exchange Screen",
+                        requireContext(),
+                        getString(R.string.correct_password),
                         Toast.LENGTH_LONG
                     ).show()
-
-                    //sua lai fragment
+                    activity?.supportFragmentManager?.popBackStack()
                     PinCodeEstablishFragment().pushToScreen(activity as MainActivity)
                 } else {
                     txtPassValidate.setText("")
