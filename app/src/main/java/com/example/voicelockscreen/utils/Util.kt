@@ -139,15 +139,13 @@ class Util {
         }
 
         fun timeConversion(value: Long): String {
-            var videoTime = ""
             val duration = value.toInt()
             val hours = duration / 3600000
             val minute = (duration / 60000) % 60000
             val seconds = duration % 60000 / 1000
-            videoTime = if (hours > 0)
+            return if (hours > 0)
                 String.format("%02d:%02d:%02d", hours, minute, seconds)
             else String.format("%02d:%02d", minute, seconds)
-            return videoTime
         }
 
         fun getFunctionAlternativeList(resources: Resources): ArrayList<DataModelFunction> {
@@ -183,13 +181,13 @@ class Util {
             )
             dataModelFunction.add(
                 DataModelFunction(
-                    resources.getString(R.string.pin_lock),
+                    resources.getString(R.string.change_pin_lock),
                     R.drawable.ic_sharp_lock_open_24
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
-                    resources.getString(R.string.pattern_lock),
+                    resources.getString(R.string.change_pattern_lock),
                     R.drawable.ic_sharp_pattern_24
                 )
             )

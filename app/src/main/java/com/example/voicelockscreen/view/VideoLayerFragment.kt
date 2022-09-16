@@ -71,11 +71,15 @@ class VideoLayerFragment : Fragment() {
         }
         exoPlayerView.imLock.setOnClickListener {
             showView(true)
-            Toast.makeText(context, "Locked", Toast.LENGTH_LONG).show()
+            val toast = Toast.makeText(context, "Locked", Toast.LENGTH_LONG)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
         }
         exoPlayerView.imUnLock.setOnClickListener {
             showView(false)
-            Toast.makeText(context, "Unlocked", Toast.LENGTH_LONG).show()
+            val toast = Toast.makeText(context, "Unlocked", Toast.LENGTH_LONG)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
         }
         exoPlayerView.imNext.setOnClickListener {
             try {
