@@ -47,7 +47,7 @@ class VoiceLockFragment : Fragment() {
     }
 
     private fun initView() {
-        rvFunction.layoutManager = GridLayoutManager(context, 2)
+        rvFunction.layoutManager = GridLayoutManager(context, 3)
         adapterFunction = RecyclerViewFunction(context)
         adapterFunction.functionList = Util.getFunctionList(resources)
         rvFunction.adapter = adapterFunction

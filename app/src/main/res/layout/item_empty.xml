@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:gravity="center"
-    android:layout_margin="@dimen/size_20dp"
+    android:layout_margin="@dimen/size_35dp"
     android:layout_height="wrap_content">
 
-    <Button
+    <ImageView
         android:id="@+id/btnNumberEmpty"
-        android:layout_width="@dimen/size_50dp"
-        android:layout_height="@dimen/size_50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:background="@drawable/round_button"
-        style="?android:attr/borderlessButtonStyle"
-        android:text="@string/empty" />
+        android:scaleType="fitXY"
+        android:contentDescription="@string/hello_world"
+        android:background="@drawable/rate_us" />
 </LinearLayout>

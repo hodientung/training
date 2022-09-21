@@ -70,7 +70,7 @@
     <string name="set_time_lock">Set Time Lock</string>
     <string name="note_timer_pin">If your current time is 12:00 then password is 1200 and if current time is 05:30 then password is 0530.</string>
     <string name="cancel">Cancel</string>
-    <string name="ok">OK</string>
+    <string name="ok">Ok</string>
     <string name="disable_system_lock">Disable System Lock</string>
     <string name="alternative_lock">Alternative Lock</string>
     <string name="set_pattern">Set Pattern</string>
@@ -92,9 +92,29 @@
     <string name="successfully_set_theme">Successfully Set Theme!!!</string>
     <string name="enter_old_password">Enter old password to change</string>
     <string name="correct_password">Correct password</string>
+    <string name="in_correct_password">In correct password</string>
     <string name="instructions_for_use">Instructions for use</string>
     <string name="step_01">STEP 01</string>
     <string name="step_02">STEP 02</string>
     <string name="choose_alternative_lock">Choose alternative lock</string>
     <string name="b1">- Click Pin Lock Item to establish Pin Lock Password\n - Click Pattern Lock Item to establish Pattern Lock Password\n - Click Current Time Item to active Pin Lock Screen with time</string>
+    <string name="voice_nlock_screen">Voice \nLock Screen</string>
+    <string name="rate_us">Rate US</string>
+    <string name="share_app">Share App</string>
+    <string name="privacy">Privacy</string>
+    <string name="title_activity_onboard">OnboardActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="before_setting_voice_lock_you_need_to_set_nanother_pin_code">Before setting Voice lock you need to set \nanother pin code</string>
+    <string name="create_n_new_voice_password">Tap on Mic\nCreate new voice password</string>
+    <string name="tap_on_mic_n_conf">Tap on Mic \nConfirm old voice password to create\n new voice password</string>
+    <string name="please_speak_something">Please speak something to Record…</string>
+    <string name="did_not_understand">Didn’t understand. Please Try again</string>
+    <string name="sorry_password_voice">Sorry old password not matched !!!\n Tap on mic to confirm</string>
 </resources>

@@ -1,77 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/size_8dp"
-    android:layout_height="wrap_content">
+    android:background="@drawable/round_important">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvContentWindow"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:cardCornerRadius="@dimen/size_8dp"
-        app:cardElevation="@dimen/size_3dp">
+        android:layout_marginTop="@dimen/size_66dp"
+        android:text="@string/important"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/size_20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/size_8dp">
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/size_7sp"
+        android:text="@string/your_voice_password_is_alo"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/size_13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv1" />
 
-            <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/important"
-                android:textColor="@color/black"
-                android:textSize="@dimen/size_16_sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tvChange"
+        app:layout_constraintTop_toBottomOf="@id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:text="@string/you_can_change_your_voice_or_pin_or_pattern_from_given_option"
+        android:textSize="@dimen/size_13sp"
+        />
 
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_10"
-                android:text="@string/your_voice_password_is_alo"
-                android:textColor="@color/black"
-                android:textSize="@dimen/size_14_sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv1" />
-
-            <TextView
-                android:id="@+id/tv3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_10"
-                android:gravity="center"
-                android:text="@string/you_can_change_your_voice_or_pin_or_pattern_from_given_option"
-                android:textColor="@color/black"
-                android:textSize="@dimen/size_16_sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv2" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSubmitImportant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_10"
-                android:text="@string/submit"
-                android:textAllCaps="false"
-                android:background="@drawable/border_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv3" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSubmitImportant"
+        android:layout_width="@dimen/size_102dp"
+        android:layout_height="@dimen/size_30dp"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:layout_marginBottom="@dimen/size_46dp"
+        android:background="@drawable/border_button"
+        android:text="@string/ok"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvChange" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

@@ -1,103 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contentSetupVoiceLock"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/size_8dp"
     tools:context=".view.SetupVoiceLockFragment">
 
+    <TextView
+        android:id="@+id/tvSetVoiceLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:text="@string/voice_lock"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/tvBackSetupVoiceLock"
+        android:id="@+id/animation_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvVoiceLockTitle"
-        android:layout_alignBottom="@+id/tvVoiceLockTitle"
-        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginTop="@dimen/size_100dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_round_arrow_back" />
+        android:background="@drawable/icon_animation_voice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSetVoiceLock" />
 
     <TextView
-        android:id="@+id/tvVoiceLockTitle"
+        android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/size_10"
-        android:text="@string/voice_lock"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_20sp" />
-
-    <TextView
-        android:id="@+id/txtSpeechInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/size_100dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_24"
-        android:textStyle="normal" />
+        android:gravity="center"
+        android:text="@string/create_n_new_voice_password"
+        android:textColor="#333333"
+        android:textSize="@dimen/size_16_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/animation_image" />
 
-    <LinearLayout
-        android:id="@+id/linearVoice"
+    <ImageView
+        android:id="@+id/imKara"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/size_60"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginTop="@dimen/size_36dp"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_kara"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnSpeak"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            app:cardCornerRadius="100dp">
-
-            <ImageView
-                android:id="@+id/contentImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/main_header_selector"
-                android:contentDescription="@string/hello_world"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_round_mic_24_white" />
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/test_thu_service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_10"
-            android:text="@string/tap_on_mic"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size_16_sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/tvCreateNewPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_10"
-            android:text="@string/create_new_password"
-            android:textColor="@color/white"
-            android:textSize="@dimen/size_16_sp"
-            android:textStyle="normal" />
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/imBack"
         android:layout_width="@dimen/size_24dp"
         android:layout_height="@dimen/size_24dp"
-        android:layout_alignTop="@id/linearVoice"
-        android:layout_alignBottom="@id/linearVoice"
-        android:layout_marginStart="@dimen/size_20dp"
+        android:layout_marginEnd="@dimen/size_16dp"
         android:contentDescription="@string/hello_world"
-        android:layout_toEndOf="@id/linearVoice"
-        android:src="@drawable/ic_baseline_forward_alternative_24" />
+        android:src="@drawable/icon_next_alter"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSetVoiceLock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvSetVoiceLock" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

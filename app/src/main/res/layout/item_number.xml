@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/size_20dp">
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/size_35dp">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageView
         android:id="@+id/btnNumber"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="@dimen/size_50dp"
-        android:layout_height="@dimen/size_50dp"
-        android:background="@drawable/round_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rate_us"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
         android:text="@string/_1"
-        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_1"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/size_13sp"
+        app:layout_constraintBottom_toBottomOf="@id/btnNumber"
+        app:layout_constraintEnd_toEndOf="@+id/btnNumber"
+        app:layout_constraintStart_toStartOf="@+id/btnNumber"
+        app:layout_constraintTop_toTopOf="@id/btnNumber" />
+</androidx.constraintlayout.widget.ConstraintLayout>

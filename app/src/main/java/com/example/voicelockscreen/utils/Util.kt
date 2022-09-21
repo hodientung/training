@@ -7,6 +7,7 @@ import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.model.DataModelFunction
 import com.example.voicelockscreen.model.DataModelTheme
+import com.example.voicelockscreen.view.OnboardActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -56,6 +57,11 @@ class Util {
         fun Fragment.pushToScreen(activity: MainActivity) {
             activity.supportFragmentManager.beginTransaction().addToBackStack(null)
                 .replace(R.id.content_frame, this).commit()
+        }
+
+        fun Fragment.pushToScreenOfOnBoard(activity: OnboardActivity) {
+            activity.supportFragmentManager.beginTransaction().addToBackStack(null)
+                .replace(R.id.contentOnboard, this).commit()
         }
 
         private fun getColorListScreen(): ArrayList<Int> {
@@ -153,19 +159,19 @@ class Util {
             dataModelFunction.add(
                 DataModelFunction(
                     resources.getString(R.string.voice_lock),
-                    R.drawable.ic_sharp_mic_none_24
+                    R.drawable.icon_pin_alternative
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
                     resources.getString(R.string.pattern_lock),
-                    R.drawable.ic_sharp_pattern_24
+                    R.drawable.icon_pattern_alternative
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
                     resources.getString(R.string.current_time),
-                    R.drawable.ic_round_watch_later_24
+                    R.drawable.icon_current_time
                 )
             )
             return dataModelFunction
@@ -176,49 +182,43 @@ class Util {
             dataModelFunction.add(
                 DataModelFunction(
                     resources.getString(R.string.voice_lock),
-                    R.drawable.ic_sharp_mic_none_24
+                    R.drawable.icon_voice_lock
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
-                    resources.getString(R.string.change_pin_lock),
-                    R.drawable.ic_sharp_lock_open_24
+                    resources.getString(R.string.pin_lock),
+                    R.drawable.icon_pin
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
-                    resources.getString(R.string.change_pattern_lock),
-                    R.drawable.ic_sharp_pattern_24
+                    resources.getString(R.string.pattern_lock),
+                    R.drawable.icon_pattern
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
                     resources.getString(R.string.theme),
-                    R.drawable.ic_baseline_bubble_chart_24
+                    R.drawable.ic_theme
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
                     resources.getString(R.string.image_gallery),
-                    R.drawable.ic_baseline_image_search_24
+                    R.drawable.icon_image_gallery
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
                     resources.getString(R.string.video_gallery),
-                    R.drawable.ic_baseline_video_library_24
-                )
-            )
-            dataModelFunction.add(
-                DataModelFunction(
-                    resources.getString(R.string.preview),
-                    R.drawable.ic_sharp_preview_24
+                    R.drawable.ic_video_gallery
                 )
             )
             dataModelFunction.add(
                 DataModelFunction(
                     resources.getString(R.string.setting),
-                    R.drawable.ic_baseline_settings_24
+                    R.drawable.icon_setting
                 )
             )
             return dataModelFunction

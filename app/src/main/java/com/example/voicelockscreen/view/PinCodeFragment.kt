@@ -71,7 +71,7 @@ class PinCodeFragment : Fragment() {
 
     private fun initAction() {
         setUpPassword()
-        tvBack.setOnClickListener {
+        tvBackPin.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()
         }
     }
@@ -107,15 +107,22 @@ class PinCodeFragment : Fragment() {
             }
             if (isSetupPassword && passwordSetup.length == 4) {
                 val againInput = prefs?.inputPinLock
-                prefs?.isSetupPinLock = true
                 if (againInput == passwordSetup) {
+                    prefs.isSetupPinLock = true
                     Toast.makeText(
                         context, getString(R.string.successful_set_pin_lock),
                         Toast.LENGTH_LONG
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()
                     SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
+                } else{
+                    Toast.makeText(
+                        context, getString(R.string.wrong_pin_code),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    passwordSetup = ""
                 }
+
             }
         }
     }
