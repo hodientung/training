@@ -66,7 +66,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
             mAdapter.dataModel = Util.getListNumber()
             it.adapter = mAdapter
         }
-        setTheme()
+        //setTheme()
     }
 
     private fun initAction() {
@@ -125,7 +125,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
                 mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText("")
             }
         }
-        mView?.findViewById<ImageView>(R.id.tvBackWindow)?.setOnClickListener {
+        mView?.findViewById<ImageView>(R.id.tvBackPinWindow)?.setOnClickListener {
             onBackButton()
         }
     }

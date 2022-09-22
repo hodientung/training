@@ -37,6 +37,130 @@ class Util {
             return timePassword.replace(":", "")
         }
 
+        fun getListTheme(): ArrayList<DataModelTheme> {
+            val item = arrayListOf<DataModelTheme>()
+
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_1,
+                    bg = R.drawable.bg2,
+                    imVoice = R.drawable.bg_voice1,
+                    colorVoice = R.color.white,
+                    bgFunction = R.color.color_F5670E,
+                    fontText = R.font.hallo_witchz,
+                    colorText = R.color.white,
+                    sizeText1 = 30,
+                    sizeText2 = 25,
+                )
+            )
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_2,
+                    bg = R.drawable.background_voice1,
+                    imVoice = R.drawable.icon_voice_wina,
+                    colorVoice = R.color.white,
+                    bgFunction = R.color.color_DB7D1D,
+                    fontText = R.font.deep_jungle,
+                    colorText = R.color.white,
+                    sizeText1 = 40,
+                    sizeText2 = 30,
+                )
+            )
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_3,
+                    bg = R.drawable.bg3,
+                    imVoice = R.drawable.bg_voice3,
+                    colorVoice = R.color.orange,
+                    bgFunction = R.color.color_00FFB4,
+                    fontText = R.font.jost_black,
+                    colorText = R.color.white,
+                    sizeText1 = 24,
+                    sizeText2 = 20,
+                )
+            )
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_4,
+                    bg = R.drawable.bg4,
+                    imVoice = R.drawable.bg_voice4,
+                    colorVoice = R.color.white,
+                    bgFunction = R.color.color_E9D754,
+                    fontText = R.font.deep_jungle,
+                    colorText = R.color.white,
+                    sizeText1 = 40,
+                    sizeText2 = 30,
+                )
+            )
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_5,
+                    bg = R.drawable.bg6,
+                    imVoice = R.drawable.bg_voice6,
+                    colorVoice = R.color.white,
+                    bgFunction = R.color.color_DF5A27,
+                    fontText = R.font.deep_jungle,
+                    colorText = R.color.color_DF5A27,
+                    sizeText1 = 40,
+                    sizeText2 = 30,
+                )
+            )
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_6,
+                    bg = R.drawable.bg5,
+                    imVoice = R.drawable.bg_voice5,
+                    colorVoice = R.color.white,
+                    bgFunction = R.color.color_137045,
+                    fontText = R.font.merry_sugar_snow,
+                    colorText = R.color.white,
+                    sizeText1 = 35,
+                    sizeText2 = 20,
+                )
+            )
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_7,
+                    bg = R.drawable.bg7,
+                    imVoice = R.drawable.bg_voice7,
+                    colorVoice = R.color.white,
+                    bgFunction = R.color.color_815D8A,
+                    fontText = R.font.deep_jungle,
+                    colorText = R.color.color_815D8A,
+                    sizeText1 = 40,
+                    sizeText2 = 30,
+                )
+            )
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_8,
+                    bg = R.drawable.bg9,
+                    imVoice = R.drawable.bg_voice9,
+                    colorVoice = R.color.white,
+                    bgFunction = R.color.color_00BDFF,
+                    fontText = R.font.digital_7,
+                    colorText = R.color.white,
+                    sizeText1 = 36,
+                    sizeText2 = 30,
+                    fontTextForget = R.font.deep_jungle
+                )
+            )
+            item.add(
+                DataModelTheme(
+                    colorTheme = R.drawable.theme_9,
+                    bg = R.drawable.bg8,
+                    imVoice = R.drawable.bg_voice8,
+                    colorVoice = R.color.white,
+                    bgFunction = R.color.color_A4D498,
+                    fontText = R.font.deep_jungle,
+                    colorText = R.color.white,
+                    sizeText1 = 40,
+                    sizeText2 = 30,
+                )
+            )
+            return item
+        }
+
         fun getListNumber(): ArrayList<DataModel> {
             val item = arrayListOf<DataModel>()
             item.add(DataModel(1, "1"))

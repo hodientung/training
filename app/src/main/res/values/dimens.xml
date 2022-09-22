@@ -55,4 +55,11 @@
     <dimen name="size_102dp">102dp</dimen>
     <dimen name="size_46dp">46dp</dimen>
     <dimen name="size_12dp">12dp</dimen>
+    <dimen name="size_180dp">180dp</dimen>
+    <dimen name="size_40sp">40sp</dimen>
+    <dimen name="size_70dp">70dp</dimen>
+    <dimen name="size_98dp">98dp</dimen>
+    <dimen name="size_25dp">25dp</dimen>
+    <dimen name="size_11sp">11sp</dimen>
+    <dimen name="siz4e_160dp">160dp</dimen>
 </resources>

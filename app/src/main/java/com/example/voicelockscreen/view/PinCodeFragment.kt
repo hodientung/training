@@ -27,32 +27,32 @@ class PinCodeFragment : Fragment() {
 
     private var passwordSetup = ""
 
-    override fun onResume() {
-        super.onResume()
-        setTheme()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        setTheme()
+//    }
 
 
     //show theme for layout
-    private fun setTheme() {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.THEME_SETTING
-                )
-            }
-
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { contentPinCode.setBackgroundResource(it) }
-        for (i in 0 until Util.getListNumber().size) {
-            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
-                Util.getThemeToScreen(
-                    it
-                ).colorPinButton
-            }
-        }
-    }
+//    private fun setTheme() {
+//        val prefs =
+//            context?.let {
+//                PreferenceHelper.customPreference(
+//                    it,
+//                    Util.THEME_SETTING
+//                )
+//            }
+//
+//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
+//            ?.let { contentPinCode.setBackgroundResource(it) }
+//        for (i in 0 until Util.getListNumber().size) {
+//            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
+//                Util.getThemeToScreen(
+//                    it
+//                ).colorPinButton
+//            }
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_pincode_establish.*
 
@@ -26,29 +24,29 @@ class PinCodeEstablishFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        setTheme()
+        //setTheme()
     }
 
     //show theme for layout
-    private fun setTheme() {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.THEME_SETTING
-                )
-            }
-
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { contentEstablishSetup.setBackgroundResource(it) }
-        for (i in 0 until Util.getListNumber().size) {
-            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
-                Util.getThemeToScreen(
-                    it
-                ).colorPinButton
-            }
-        }
-    }
+//    private fun setTheme() {
+//        val prefs =
+//            context?.let {
+//                PreferenceHelper.customPreference(
+//                    it,
+//                    Util.THEME_SETTING
+//                )
+//            }
+//
+//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
+//            ?.let { contentEstablishSetup.setBackgroundResource(it) }
+//        for (i in 0 until Util.getListNumber().size) {
+//            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
+//                Util.getThemeToScreen(
+//                    it
+//                ).colorPinButton
+//            }
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,7 +68,7 @@ class PinCodeEstablishFragment : Fragment() {
 //            Toast.makeText(context, "vi tri $it", Toast.LENGTH_SHORT).show()
 //        }
         setUpPassword()
-        tvBack.setOnClickListener {
+        tvBackPinEstablish.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
@@ -83,7 +81,7 @@ class PinCodeEstablishFragment : Fragment() {
                 else ->
                     passwordSetup = removeLastChar(passwordSetup).toString()
             }
-            txtPassEstablish.text = passwordSetup
+            txtPassEstablish.setText(passwordSetup)
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
@@ -97,8 +95,8 @@ class PinCodeEstablishFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
                 prefs?.inputPinLock = passwordSetup
-                tvSetPinCode.text = getString(R.string.enter_pin_code_again)
-                txtPassEstablish.text = ""
+                tvSetPinCodeEstablish.text = getString(R.string.enter_pin_code_again)
+                txtPassEstablish.setText("")
                 isSetupPassword = true
                 passwordSetup = ""
 
@@ -111,7 +109,12 @@ class PinCodeEstablishFragment : Fragment() {
                         Toast.LENGTH_LONG
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()
-
+                } else {
+                    Toast.makeText(
+                        context, getString(R.string.wrong_pin_code),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    passwordSetup = ""
                 }
             }
         }

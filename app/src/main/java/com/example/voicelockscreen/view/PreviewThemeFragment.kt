@@ -1,11 +1,18 @@
 package com.example.voicelockscreen.view
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
+import com.bumptech.glide.load.engine.Resource
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelTheme
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
@@ -33,7 +40,7 @@ class PreviewThemeFragment : Fragment() {
     private fun initAction() {
         val dataTheme = arguments?.getSerializable("theme") as? DataModelTheme
         val position = arguments?.getInt("position")
-        dataTheme?.colorTheme?.let { imTheme.setBackgroundResource(it) }
+        dataTheme?.bg?.let { content_add_view.setBackgroundResource(it) }
         btnApply.setOnClickListener {
             Toast.makeText(
                 requireContext(),
@@ -52,8 +59,46 @@ class PreviewThemeFragment : Fragment() {
             prefs?.themePinButton = position ?: 0
 
         }
-        tvBackPreview.setOnClickListener {
+        tvPreviewBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        val background1 = view1Win.background
+        val background2 = view2Win.background
+        val background3 = view3Win.background
+        dataTheme?.bgFunction?.let {
+            ContextCompat.getColor(
+                requireContext(),
+                it
+            )
+        }?.let {
+            background1.setTint(it)
+            background2.setTint(it)
+            background3.setTint(it)
+        }
+        dataTheme?.colorVoice?.let {
+            imV.setColorFilter(ContextCompat.getColor(requireContext(), it))
+        }
+        dataTheme?.imVoice?.let { imBackgroundVoice.setBackgroundResource(it) }
+        dataTheme?.fontText?.let {
+            tvSpeak.typeface = ResourcesCompat.getFont(requireContext(), it)
+            tvForget.typeface = ResourcesCompat.getFont(requireContext(), it)
+        }
+        if (position == 7)
+            dataTheme?.fontTextForget?.let {
+                tvForget.typeface = ResourcesCompat.getFont(requireContext(), it)
+            }
+        dataTheme?.colorText?.let {
+            tvSpeak.setTextColor(ContextCompat.getColor(requireContext(), it))
+        }
+        dataTheme?.colorText?.let {
+            tvForget.setTextColor(ContextCompat.getColor(requireContext(), it))
+        }
+        dataTheme?.sizeText1?.let {
+            tvSpeak.setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
+        }
+        dataTheme?.sizeText2?.let {
+            tvForget.setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
         }
     }
 }

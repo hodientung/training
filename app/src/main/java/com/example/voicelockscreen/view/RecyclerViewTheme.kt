@@ -37,14 +37,13 @@ class RecyclerViewTheme(val context: Context?) :
     inner class ThemeViewHolder(itemView: View, onItemClicked: ((Int) -> Unit)?) :
         RecyclerView.ViewHolder(itemView) {
         init {
-            itemView.tvTheme.setOnClickListener {
+            itemView.imThemeSet.setOnClickListener {
                 onItemClicked?.invoke(adapterPosition)
             }
         }
 
         fun bind(dataModelTheme: DataModelTheme) {
-            itemView.tvTheme.setBackgroundResource(dataModelTheme.colorTheme)
-            itemView.tvNameTheme.text = dataModelTheme.name
+            itemView.imThemeSet.setBackgroundResource(dataModelTheme.colorTheme)
         }
 
     }

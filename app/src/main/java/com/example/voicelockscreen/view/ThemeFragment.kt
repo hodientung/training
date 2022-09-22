@@ -48,30 +48,15 @@ class ThemeFragment : Fragment() {
             previewTheme.pushToScreen(activity as MainActivity)
 
         }
+        tvBackTheme.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
+        }
     }
 
     private fun initView() {
-        rvTheme.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        rvTheme.layoutManager = LinearLayoutManager(context)
         adapterTheme = RecyclerViewTheme(context)
-        adapterTheme.dataModelTheme = getListTheme()
+        adapterTheme.dataModelTheme = Util.getListTheme()
         rvTheme.adapter = adapterTheme
     }
-
-    private fun getListTheme(): ArrayList<DataModelTheme> {
-        val item = arrayListOf<DataModelTheme>()
-
-        item.add(DataModelTheme(colorTheme = R.drawable.t6, name = " Theme One"))
-        item.add(DataModelTheme(colorTheme = R.drawable.t4, name = "Theme Two"))
-        item.add(DataModelTheme(colorTheme = R.drawable.themec, name = "Theme Three"))
-        item.add(DataModelTheme(colorTheme = R.drawable.themee, name = "Theme Four"))
-        item.add(DataModelTheme(colorTheme = R.drawable.themeb, name = "Theme Five"))
-        item.add(DataModelTheme(colorTheme = R.drawable.thema, name = "Theme Six"))
-        item.add(DataModelTheme(colorTheme = R.drawable.t1, name = "Theme Seven"))
-        item.add(DataModelTheme(colorTheme = R.drawable.t2, name = "Theme Eight"))
-        item.add(DataModelTheme(colorTheme = R.drawable.t3, name = "Theme Nine"))
-        item.add(DataModelTheme(colorTheme = R.drawable.t7, name = "Theme Ten"))
-
-        return item
-    }
-
 }

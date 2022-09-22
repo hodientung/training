@@ -31,7 +31,7 @@ class SetTimerLockFragment : Fragment() {
     }
 
     private fun initAction() {
-        btnCancel.setOnClickListener {
+        tvCancel.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()
             Toast.makeText(
                 requireContext(),
@@ -40,7 +40,7 @@ class SetTimerLockFragment : Fragment() {
             ).show()
         }
 
-        btnOk.setOnClickListener {
+        tvOk.setOnClickListener {
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
@@ -57,7 +57,7 @@ class SetTimerLockFragment : Fragment() {
             activity?.supportFragmentManager?.popBackStack()
             SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
         }
-        tvBackTimerLock.setOnClickListener {
+        tvBackTimer.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
     }

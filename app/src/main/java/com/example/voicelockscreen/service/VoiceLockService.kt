@@ -14,6 +14,7 @@ import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
@@ -42,31 +43,31 @@ class VoiceLockService : Service() {
                 ACTION_SCREEN_ON -> {
                     Log.e("tung", "screen on")
                     window.open()
-                    window.getView()?.findViewById<CardView>(R.id.btnSpeakUnlock1)
+                    window.getView()?.findViewById<ImageView>(R.id.imBackgroundVoice)
                         ?.setOnClickListener {
                             startListeningRecognitionService()
                         }
-                    setTheme(
-                        p0,
-                        window.getView()?.findViewById<ConstraintLayout>(R.id.content_add_view)
-                    )
-                    window.getView()?.findViewById<AppCompatButton>(R.id.btnForgetPassword)
+//                    setTheme(
+//                        p0,
+//                        window.getView()?.findViewById<ConstraintLayout>(R.id.content_add_view)
+//                    )
+                    window.getView()?.findViewById<TextView>(R.id.tvForget)
                         ?.setOnClickListener {
                             windowSecurityQuestion.open()
                         }
 
-                    window.getView()?.findViewById<CardView>(R.id.cardViewPin)
+                    window.getView()?.findViewById<ImageView>(R.id.view1Win)
                         ?.setOnClickListener {
                             // open verify pin lock
                             windowPinLock.open()
 
                         }
-                    window.getView()?.findViewById<CardView>(R.id.cardViewPin3)
+                    window.getView()?.findViewById<ImageView>(R.id.view2Win)
                         ?.setOnClickListener {
                             // open verify pattern lock
                             windowPatternLock.open()
                         }
-                    window.getView()?.findViewById<CardView>(R.id.cardViewPin2)
+                    window.getView()?.findViewById<ImageView>(R.id.view3Win)
                         ?.setOnClickListener {
                             // open verify timer pin
                             windowTimerPin.open()
