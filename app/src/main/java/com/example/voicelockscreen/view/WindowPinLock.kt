@@ -28,6 +28,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
     private var mWindowManager: WindowManager? = null
     private var layoutInflater: LayoutInflater? = null
     private lateinit var mAdapter: RecyclerViewPinLock
+    private var passwordSetup = ""
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -97,7 +98,6 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
     }
 
     private fun verifyPassword() {
-        var passwordSetup = ""
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->

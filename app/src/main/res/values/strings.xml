@@ -33,6 +33,7 @@
     <string name="www_google_com">www.google.com</string>
     <string name="kinemaster">KineMaster</string>
     <string name="Videos"> %1$d Videos</string>
+    <string name="Images"> %1$d Images</string>
     <string name="starage_emulate_0">/starage/emulate/0</string>
     <string name="_64_images">64 Images</string>
     <string name="_1234">1234</string>
@@ -118,4 +119,12 @@
     <string name="please_speak_something">Please speak something to Record…</string>
     <string name="did_not_understand">Didn’t understand. Please Try again</string>
     <string name="sorry_password_voice">Sorry old password not matched !!!\n Tap on mic to confirm</string>
+    <string name="skip">Skip</string>
+    <string name="voice_lock_is_easy">Voice lock is easy</string>
+    <string name="enhance_the_security_of_your_information_with_voice_lock">Enhance the security of your information \nwith voice lock</string>
+    <string name="let_s_go">Let\'s go</string>
+    <string name="password_changes_over_time">Password changes over time</string>
+    <string name="with_the_current_time">With the current time feature, your password will be\n changed according to the time of day</string>
+    <string name="you_can_choose_the_themes_for_your_lock_screen">You can choose the themes for your\n lock screen</string>
+    <string name="click_view">Click View</string>
 </resources>

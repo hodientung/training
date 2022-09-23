@@ -16,6 +16,7 @@ object PreferenceHelper {
     private const val SETUP_PATTERN_LOCK = "setup_pattern_lock"
     private const val INPUT_PIN_LOCK = "input_pin_lock"
     private const val ANSWER = "answer"
+    private const val FIRST_FLASH = "flash"
     private const val INPUT_PATTERN = "input_pattern"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
@@ -138,6 +139,14 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putBoolean(CHECK_TIMER_PIN, value)
+            }
+        }
+
+    var SharedPreferences.isFistOnboard
+        get() = getBoolean(FIRST_FLASH, false)
+        set(value) {
+            editMe {
+                it.putBoolean(FIRST_FLASH, value)
             }
         }
 

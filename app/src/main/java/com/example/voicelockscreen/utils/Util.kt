@@ -17,6 +17,7 @@ class Util {
         const val CUSTOM_PREF_NAME = "Input_data"
         const val THEME_SETTING = "theme_data"
         const val ANSWER_DATA = "answer_data"
+        const val ON_BOARDING = "on_boarding"
         const val PATTERN_INPUT = "password_pattern"
         const val PIN_LOCK_CUSTOM_PREF_NAME = "Input_data_pin_lock"
         const val TIMER_PIN_PREF_NAME = "time_pin"

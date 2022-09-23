@@ -28,7 +28,7 @@ class OnBoarding2Fragment(private val onClose: () -> Unit) : Fragment() {
     }
 
     private fun initAction() {
-        imNext2.setOnClickListener {
+        btn2.setOnClickListener {
             onClose.invoke()
         }
     }

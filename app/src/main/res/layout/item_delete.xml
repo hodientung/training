@@ -5,22 +5,26 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/size_35dp">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="@dimen/size_53dp"
-        android:layout_height="@dimen/size_60"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/btnNumberDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/round_pin_set"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/ic_outline_cancel_24"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="@id/view"
-        app:layout_constraintEnd_toEndOf="@id/view"
-        app:layout_constraintStart_toStartOf="@id/view"
-        app:layout_constraintTop_toTopOf="@id/view" />
+        app:layout_constraintBottom_toBottomOf="@id/btnNumberDelete"
+        app:layout_constraintEnd_toEndOf="@id/btnNumberDelete"
+        app:layout_constraintStart_toStartOf="@id/btnNumberDelete"
+        app:layout_constraintTop_toTopOf="@id/btnNumberDelete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

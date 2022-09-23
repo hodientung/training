@@ -19,15 +19,18 @@
 
     <TextView
         android:id="@+id/tvSetPinCodeEstablish"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
         android:lineSpacingExtra="@dimen/size_10sp"
         android:text="@string/set_pin_code"
-        android:textColor="#FFFFFF"
+        android:layout_marginStart="@dimen/size_10"
+        android:textColor="#000000"
+        android:gravity="center"
         android:textSize="@dimen/size_22sp"
+        android:layout_marginEnd="@dimen/size_10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvBackPinEstablish"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView

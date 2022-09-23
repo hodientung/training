@@ -62,4 +62,13 @@
     <dimen name="size_25dp">25dp</dimen>
     <dimen name="size_11sp">11sp</dimen>
     <dimen name="siz4e_160dp">160dp</dimen>
+    <dimen name="size_18sp">18sp</dimen>
+    <dimen name="size_13dp">13dp</dimen>
+    <dimen name="size_55dp">55dp</dimen>
+    <dimen name="size_26sp">26sp</dimen>
+    <dimen name="size_328dp">328dp</dimen>
+    <dimen name="size_75dp">75dp</dimen>
+    <dimen name="size_276dp">276dp</dimen>
+    <dimen name="size_310dp">310dp</dimen>
+    <dimen name="size_38dp">38dp</dimen>
 </resources>

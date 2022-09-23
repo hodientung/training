@@ -10,7 +10,7 @@
         android:id="@+id/btnNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rate_us"
+        android:background="@drawable/round_pin_set"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
         android:text="@string/_1"
@@ -19,13 +19,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_1"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/size_13sp"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_20sp"
         app:layout_constraintBottom_toBottomOf="@id/btnNumber"
         app:layout_constraintEnd_toEndOf="@+id/btnNumber"
         app:layout_constraintStart_toStartOf="@+id/btnNumber"

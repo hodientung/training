@@ -8,7 +8,7 @@
     android:elevation="@dimen/size_3dp"
     android:padding="8dp"
     app:cardBackgroundColor="#F4F2F4"
-    app:cardCornerRadius="@dimen/size_20dp">
+    app:cardCornerRadius="@dimen/size_16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,11 +20,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:elevation="3dp"
-            app:cardCornerRadius="@dimen/size_20dp"
+            app:cardCornerRadius="@dimen/size_8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.5">
+            app:layout_constraintWidth_percent="0.3">
 
             <ImageView
                 android:id="@+id/imThumbnail"
@@ -52,9 +52,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/thumbnailCard"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/set3"
             app:layout_constraintStart_toEndOf="@+id/thumbnailCard"
             app:layout_constraintTop_toTopOf="@+id/thumbnailCard">
 
@@ -63,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="3"
+                android:maxLines="1"
                 android:text="@string/video_name"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/size_14_sp"
@@ -73,10 +74,25 @@
                 android:id="@+id/tvVideoSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="@string/_286_09_mb"
                 android:textColor="@color/black"
                 android:textSize="@dimen/size_12sp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/set3"
+            android:layout_width="@dimen/size_62dp"
+            android:layout_height="@dimen/size_25dp"
+            android:background="@drawable/round_click_view"
+            android:gravity="center"
+            android:text="@string/click_view"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/size_11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

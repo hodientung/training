@@ -5,30 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/size_10"
-    app:cardBackgroundColor="#F4F2F4"
+    app:cardBackgroundColor="#E3F2FD"
     android:elevation="@dimen/size_3dp"
     android:padding="@dimen/size_8dp"
-    app:cardCornerRadius="@dimen/size_20dp">
+    app:cardCornerRadius="@dimen/size_16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_100dp"
-        android:padding="@dimen/size_8dp">
+        android:paddingTop="@dimen/size_8dp"
+        android:paddingBottom="@dimen/size_8dp"
+        android:paddingEnd="@dimen/size_10"
+        android:paddingStart="@dimen/size_8dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvItem"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintWidth_percent="0.3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:cardCornerRadius="@dimen/size_20dp"
+            app:cardCornerRadius="@dimen/size_8dp"
             android:elevation="3dp">
             <ImageView
                 android:id="@+id/imImageFolder"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:contentDescription="@string/hello_world"
                 android:scaleType="fitXY"
                 android:src="@drawable/t1"
@@ -51,9 +54,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/kinemaster"
-                android:textSize="@dimen/size_20sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:textSize="@dimen/size_16_sp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="#353535"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,12 +66,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/_64_images"
-                android:textSize="@dimen/size_16_sp"
-                android:textColor="@color/black"
+                android:textSize="@dimen/size_11sp"
+                android:textColor="@color/color_828282"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvFolderImageName" />
 
         </LinearLayout>
+        <TextView
+            android:layout_width="@dimen/size_62dp"
+            android:layout_height="@dimen/size_25dp"
+            android:text="@string/click_view"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/size_11sp"
+            android:background="@drawable/round_click_view"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

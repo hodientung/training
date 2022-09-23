@@ -16,9 +16,6 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatButton
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
@@ -43,7 +40,7 @@ class VoiceLockService : Service() {
                 ACTION_SCREEN_ON -> {
                     Log.e("tung", "screen on")
                     window.open()
-                    window.getView()?.findViewById<ImageView>(R.id.imBackgroundVoice)
+                    window.getView()?.findViewById<ImageView>(R.id.imBackgroundVoiceLock)
                         ?.setOnClickListener {
                             startListeningRecognitionService()
                         }
@@ -51,23 +48,23 @@ class VoiceLockService : Service() {
 //                        p0,
 //                        window.getView()?.findViewById<ConstraintLayout>(R.id.content_add_view)
 //                    )
-                    window.getView()?.findViewById<TextView>(R.id.tvForget)
+                    window.getView()?.findViewById<TextView>(R.id.tvForgetLock)
                         ?.setOnClickListener {
                             windowSecurityQuestion.open()
                         }
 
-                    window.getView()?.findViewById<ImageView>(R.id.view1Win)
+                    window.getView()?.findViewById<ImageView>(R.id.view1WinLock)
                         ?.setOnClickListener {
                             // open verify pin lock
                             windowPinLock.open()
 
                         }
-                    window.getView()?.findViewById<ImageView>(R.id.view2Win)
+                    window.getView()?.findViewById<ImageView>(R.id.view2WinLock)
                         ?.setOnClickListener {
                             // open verify pattern lock
                             windowPatternLock.open()
                         }
-                    window.getView()?.findViewById<ImageView>(R.id.view3Win)
+                    window.getView()?.findViewById<ImageView>(R.id.view3WinLock)
                         ?.setOnClickListener {
                             // open verify timer pin
                             windowTimerPin.open()

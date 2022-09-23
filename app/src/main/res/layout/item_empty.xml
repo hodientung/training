@@ -11,5 +11,5 @@
         android:visibility="invisible"
         android:scaleType="fitXY"
         android:contentDescription="@string/hello_world"
-        android:background="@drawable/rate_us" />
+        android:background="@drawable/round_pin_set" />
 </LinearLayout>

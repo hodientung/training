@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
-import androidx.appcompat.widget.AppCompatButton
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.answer
@@ -58,29 +57,36 @@ class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) 
                     Util.ANSWER_DATA
                 )
             }
-        val mArrayAdapter = context?.let {
-            ArrayAdapter<Any?>(
-                it,
-                android.R.layout.simple_spinner_dropdown_item,
-                it.resources.getStringArray(R.array.questions)
-            )
+        val spinner = mView?.findViewById<CustomSpinner>(R.id.spinnerWindow)
+        val adapterSpinner = QuestionAdapter(context)
+        val answerLists =
+            context?.resources?.getStringArray(R.array.questions)?.toCollection(ArrayList())
+        answerLists?.let {
+            adapterSpinner.listQuestion = it
         }
-        mArrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mView?.findViewById<Spinner>(R.id.spinnerWindow)?.adapter = mArrayAdapter
-        mView?.findViewById<Spinner>(R.id.spinnerWindow)?.let {
-            it.adapter = mArrayAdapter
-            it.onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        position = p2
-                    }
+        spinner?.adapter = adapterSpinner
+        spinner?.setSpinnerEventsListener(object : CustomSpinner.OnSpinnerEventsListener {
+            override fun onPopupWindowOpened(spinner: Spinner?) {
+                //TODO("Not yet implemented")
+            }
 
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                        TODO("Not yet implemented")
-                    }
-                }
+            override fun onPopupWindowClosed(spinner: Spinner?) {
+                //TODO("Not yet implemented")
+            }
+
+        })
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                position = p2
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
         }
-        mView?.findViewById<AppCompatButton>(R.id.btnSubmitWindow)?.setOnClickListener {
+
+        mView?.findViewById<TextView>(R.id.btnSubmitWindow)?.setOnClickListener {
             mView?.findViewById<EditText>(R.id.tvAnswerWindow)?.let {
                 val answer = it.text.toString()
                 if (answer.isEmpty())
@@ -93,7 +99,7 @@ class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) 
                 }
             }
         }
-        mView?.findViewById<ImageView>(R.id.tvBackSecurityQuestion)?.setOnClickListener {
+        mView?.findViewById<ImageView>(R.id.tvBackSecurityQuestionWindow)?.setOnClickListener {
             onBackButton()
         }
     }

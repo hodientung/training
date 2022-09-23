@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isFistOnboard
+import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.actitvity_onboard.*
 import kotlinx.android.synthetic.main.fragment_on_boarding2.*
 import kotlinx.android.synthetic.main.fragment_on_boarding3.*
@@ -29,7 +32,15 @@ class OnBoarding3Fragment : Fragment() {
     }
 
     private fun initAction() {
-        imNext3.setOnClickListener {
+        btn3.setOnClickListener {
+            val prefs =
+                context?.let {
+                    PreferenceHelper.customPreference(
+                        it,
+                        Util.ON_BOARDING
+                    )
+                }
+            prefs?.isFistOnboard = true
             startActivity(Intent(activity, MainActivity::class.java))
         }
     }

@@ -3,47 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingEnd="@dimen/size_16dp"
-    android:paddingStart="@dimen/size_16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.OnBoarding2Fragment">
 
-    <TextView
-        android:id="@+id/tvTitleVoice"
+    <ImageView
+        android:id="@+id/im1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_11dp"
-        android:gravity="top"
-        android:lineSpacingExtra="10sp"
-        android:text="@string/voice_nlock_screen"
-        android:textColor="#4F4F4F"
-        android:textSize="@dimen/size_20sp"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        android:src="@drawable/onboard2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <ImageView
-        android:id="@+id/imVoice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/hello_world"
-        android:src="@drawable/bachground_voice"
-        app:layout_constraintTop_toBottomOf="@id/tvTitleVoice"
-        android:layout_marginTop="@dimen/size_33dp"
-        />
 
     <ImageView
-        android:id="@+id/imNext2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:scaleType="fitXY"
         android:contentDescription="@string/hello_world"
-        app:layout_constraintTop_toBottomOf="@id/imVoice"
-        android:src="@drawable/next_button"
-        android:layout_marginTop="@dimen/size_46_97"
-        />
+        android:scaleType="fitXY"
+        android:layout_marginStart="@dimen/size_36dp"
+        android:src="@drawable/character_onboard2"
+        app:layout_constraintBottom_toBottomOf="@id/im1"
+        app:layout_constraintStart_toStartOf="@id/im1" />
 
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_60"
+        android:text="@string/password_changes_over_time"
+        android:gravity="center"
+        android:textColor="@color/color_4f4f4f"
+        android:textSize="@dimen/size_26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/im1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20dp"
+        android:gravity="center"
+        android:text="@string/with_the_current_time"
+        android:textColor="@color/color_828282"
+        android:textSize="@dimen/size_13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/t1" />
+
+    <TextView
+        android:id="@+id/btn2"
+        android:layout_width="@dimen/size_328dp"
+        android:layout_height="@dimen/size_55dp"
+        android:background="@drawable/round_button_onboard"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/size_16_sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

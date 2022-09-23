@@ -13,9 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
         android:text="@string/image_gallery"
-        android:textColor="@color/black"
+        android:textColor="#000000"
         android:textSize="@dimen/size_20sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

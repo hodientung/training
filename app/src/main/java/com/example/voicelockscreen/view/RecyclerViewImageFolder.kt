@@ -55,7 +55,7 @@ class RecyclerViewImageFolder(val context: Context?) :
             val nameOfFolder = folderPath.substring(indexPath + 1)
             itemView.tvFolderImageName.text = nameOfFolder
             itemView.tvImageNumber.text =
-                context?.getString(R.string.Videos, getNumberOfImages(folderPath))
+                context?.getString(R.string.Images, getNumberOfImages(folderPath))
             context?.let {
                 Glide.with(it).load(File(getImageOfFolderVideoList(folderPath)))
                     .into(itemView.imImageFolder)
