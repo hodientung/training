@@ -4,10 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.utils.Util
+import kotlinx.android.synthetic.main.fragment_preview_theme.*
 import kotlinx.android.synthetic.main.item_delete.view.*
 import kotlinx.android.synthetic.main.item_empty.view.*
 import kotlinx.android.synthetic.main.item_number.view.*
@@ -35,7 +38,10 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
+            dataModel.backgroundPinButton?.let { itemView.btnNumber.setImageResource(it) }
             itemView.tvNumber.text = dataModel.number
+            itemView.tvNumber.typeface =
+                dataModel.typeFace?.let { context?.let { it1 -> ResourcesCompat.getFont(it1, it) } }
             //dataModel.backgroundPinButton?.let { itemView.btnNumber.setBackgroundResource(it) }
         }
 
@@ -66,7 +72,13 @@ class RecyclerViewPinLock(
             }
         }
 
-        fun bind(dataModel: DataModel) {
+        fun bind(dataModel: DataModel?) {
+
+            dataModel?.colorDelete?.let {
+                context?.let { context ->
+                    itemView.icon.setColorFilter(ContextCompat.getColor(context, it))
+                }
+            }
             // show data
             //dataModel.backgroundPinButton?.let { itemView.btnNumberDelete.setBackgroundResource(it) }
         }

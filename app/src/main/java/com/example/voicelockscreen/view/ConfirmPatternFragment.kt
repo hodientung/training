@@ -16,28 +16,29 @@ import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import com.itsxtt.patternlock.PatternLockView
 import kotlinx.android.synthetic.main.fragment_confirm_pattern.*
+import kotlinx.android.synthetic.main.fragment_pattern_lock.*
 
 
 class ConfirmPatternFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        setTheme()
+        //setTheme()
     }
 
     //show theme for layout
-    private fun setTheme() {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.THEME_SETTING
-                )
-            }
-
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { content2.setBackgroundResource(it) }
-    }
+//    private fun setTheme() {
+//        val prefs =
+//            context?.let {
+//                PreferenceHelper.customPreference(
+//                    it,
+//                    Util.THEME_SETTING
+//                )
+//            }
+//
+//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
+//            ?.let { content2.setBackgroundResource(it) }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,42 +50,39 @@ class ConfirmPatternFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        patternViewConfirm.setOnPatternListener(object : PatternLockView.OnPatternListener {
+        val prefs = context?.let {
+            PreferenceHelper.customPreference(
+                it,
+                Util.PATTERN_INPUT
+            )
+        }
+        Toast.makeText(
+            context, getString(R.string.draw_pattern_again),
+            Toast.LENGTH_LONG
+        ).show()
+        tvDescriptionPatternConfirm.text = getString(R.string.draw_pattern_again)
+        patternViewConfirm.setImageRes(R.drawable.ic_icon_eclipse_pattern)
+        patternViewConfirm.setColorPath(R.color.color_2D78F4)
+        patternViewConfirm.onCheckPattern = { it ->
 
-            override fun onComplete(ids: ArrayList<Int>): Boolean {
-                /*
-                 * A return value required
-                 * if the pattern is not correct and you'd like change the pattern to error state, return false
-                 * otherwise return true
-                 */
-                var valuePatternPassword = ""
-                for (value in ids) {
-                    valuePatternPassword += value.toString()
-                }
-                val prefs = context?.let {
-                    PreferenceHelper.customPreference(
-                        it,
-                        Util.PATTERN_INPUT
-                    )
-                }
-                if (prefs?.patternPassword == valuePatternPassword) {
+                val pattern = prefs?.patternPassword
+                if (it == pattern) {
                     prefs.isSetupPatternLock = true
                     Toast.makeText(
-                        context, "Successfully Set Pattern Lock",
+                        context, getString(R.string.successful_set_pattern_lock),
                         Toast.LENGTH_LONG
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()
                     SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
-                } else
+                } else {
                     Toast.makeText(
-                        context, getString(R.string.wrong_password),
+                        context, getString(R.string.wrong_pattern_code),
                         Toast.LENGTH_LONG
                     ).show()
-                return true
-            }
-        })
-
-        tvBackConfirmPatternLock.setOnClickListener {
+                    tvDescriptionPatternConfirm.text = getString(R.string.wrong_pattern_code)
+                }
+        }
+        tvBackPatternLockConfirm.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
     }

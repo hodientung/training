@@ -98,6 +98,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
     }
 
     private fun verifyPassword() {
+        mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText("")
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->
@@ -114,15 +115,14 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
                     )
                 }
             if (passwordSetup.length == 4) {
-                if (passwordSetup == prefs?.inputPinLock) {
+                if (passwordSetup == prefs?.inputPinLock)
                     onCloseWhenVerifyPin()
-                } else {
+                else {
                     mView?.findViewById<TextView>(R.id.tvSetPinCodeWindow)?.text =
                         context?.getString(R.string.wrong_pin_code)
                     passwordSetup = ""
+                    mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText("")
                 }
-
-                mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText("")
             }
         }
         mView?.findViewById<ImageView>(R.id.tvBackPinWindow)?.setOnClickListener {

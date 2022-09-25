@@ -10,13 +10,16 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupPatternLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.patternPassword
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.itsxtt.patternlock.PatternLockView
+import kotlinx.android.synthetic.main.fragment_confirm_pattern_change.*
 
 
 class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
@@ -52,63 +55,60 @@ class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
         } catch (e: Exception) {
             Log.e("Error1", e.toString())
         }
-        setTheme()
+        //setTheme()
         initAction()
     }
 
     private fun initAction() {
-        mView?.findViewById<ImageView>(R.id.tvBackWindowPattern)?.setOnClickListener {
-            onBackButton()
-        }
+        mView?.findViewById<ImageView>(R.id.tvBackPatternLockConfirmChangeWindow)
+            ?.setOnClickListener {
+                onBackButton()
+            }
         verifyPassword()
     }
 
-    private fun setTheme() {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.PATTERN_INPUT
-                )
-            }
-
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let {
-                mView?.findViewById<ConstraintLayout>(R.id.content2Window)
-                    ?.setBackgroundResource(it)
-            }
-    }
+//    private fun setTheme() {
+//        val prefs =
+//            context?.let {
+//                PreferenceHelper.customPreference(
+//                    it,
+//                    Util.PATTERN_INPUT
+//                )
+//            }
+//
+//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
+//            ?.let {
+//                mView?.findViewById<ConstraintLayout>(R.id.content2Window)
+//                    ?.setBackgroundResource(it)
+//            }
+//    }
 
     private fun verifyPassword() {
 
-        mView?.findViewById<PatternLockView>(R.id.patternViewConfirmWindow)
-            ?.setOnPatternListener(object : PatternLockView.OnPatternListener {
-
-                override fun onComplete(ids: ArrayList<Int>): Boolean {
-                    /*
-                     * A return value required
-                     * if the pattern is not correct and you'd like change the pattern to error state, return false
-                     * otherwise return true
-                     */
-                    var valuePatternPassword = ""
-                    for (value in ids) {
-                        valuePatternPassword += value.toString()
-                    }
-                    val prefs = context?.let {
-                        PreferenceHelper.customPreference(
-                            it,
-                            Util.PATTERN_INPUT
-                        )
-                    }
-                    if (prefs?.patternPassword == valuePatternPassword)
-                        onCloseWhenVerifyPattern()
-                    else
-                        mView?.findViewById<TextView>(R.id.tvSetPatternCodeConfirmWindow)?.text =
-                            context?.getString(R.string.wrong_pattern_code)
-
-                    return true
-                }
-            })
+        val prefs = context?.let {
+            PreferenceHelper.customPreference(
+                it,
+                Util.PATTERN_INPUT
+            )
+        }
+        Toast.makeText(
+            context, context?.getString(R.string.draw_your_pattern_to_unlock),
+            Toast.LENGTH_LONG
+        ).show()
+        mView?.findViewById<TextView>(R.id.tvDescriptionPatternConfirmChangeWindow)?.text =
+            context?.getString(R.string.draw_your_pattern_to_unlock)
+        mView?.findViewById<PatternView>(R.id.patternViewConfirmChangeWindow)?.let {
+            it.setImageRes(R.drawable.ic_icon_eclipse_pattern)
+            it.setColorPath(R.color.color_2D78F4)
+            it.onCheckPattern = { it ->
+                val pattern = prefs?.patternPassword
+                if (it == pattern)
+                    onCloseWhenVerifyPattern()
+                else
+                    mView?.findViewById<TextView>(R.id.tvDescriptionPatternConfirmChangeWindow)?.text =
+                        context?.getString(R.string.wrong_pattern_code)
+            }
+        }
     }
 
     private fun onBackButton() {

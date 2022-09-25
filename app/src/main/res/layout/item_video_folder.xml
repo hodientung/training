@@ -54,11 +54,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/kinemaster"
-                android:textColor="@color/black"
+                android:textColor="#353535"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,8 +68,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/www_google_com"
-                android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/size_11sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvFolderName" />
@@ -82,9 +80,8 @@
                 android:text="@string/_64_videos"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="#353535"
                 android:textSize="@dimen/size_16_sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvFolderPath" />
 

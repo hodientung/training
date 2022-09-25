@@ -24,13 +24,12 @@
         android:layout_marginTop="@dimen/size_24dp"
         android:lineSpacingExtra="@dimen/size_10sp"
         android:text="@string/set_pin_code"
-        android:layout_marginStart="@dimen/size_10"
         android:textColor="#000000"
         android:gravity="center"
-        android:textSize="@dimen/size_22sp"
-        android:layout_marginEnd="@dimen/size_10"
+        android:textSize="@dimen/size_16_sp"
+        android:layout_marginHorizontal="@dimen/size_50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvBackPinEstablish"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView

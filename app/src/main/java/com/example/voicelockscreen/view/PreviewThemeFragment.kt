@@ -55,8 +55,8 @@ class PreviewThemeFragment : Fragment() {
                         Util.THEME_SETTING
                     )
                 }
-            prefs?.themeCode = position ?: 0
-            prefs?.themePinButton = position ?: 0
+            prefs?.themeCode = position ?: -1
+            prefs?.themePinButton = position ?: -1
 
         }
         tvPreviewBack.setOnClickListener {

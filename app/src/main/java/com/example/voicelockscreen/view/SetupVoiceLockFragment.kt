@@ -39,16 +39,16 @@ class SetupVoiceLockFragment : Fragment() {
     }
 
     //show theme for layout
-    private fun setTheme() {
-        val prefs =
-            PreferenceHelper.customPreference(
-                requireContext(),
-                Util.THEME_SETTING
-            )
-        prefs.themeCode.let { Util.getThemeToScreen(it).colorTheme }
-            .let { contentSetupVoiceLock.setBackgroundResource(it) }
-
-    }
+//    private fun setTheme() {
+//        val prefs =
+//            PreferenceHelper.customPreference(
+//                requireContext(),
+//                Util.THEME_SETTING
+//            )
+//        prefs.themeCode.let { Util.getThemeToScreen(it).colorTheme }
+//            .let { contentSetupVoiceLock.setBackgroundResource(it) }
+//
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

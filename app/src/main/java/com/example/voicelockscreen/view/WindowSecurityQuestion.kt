@@ -14,6 +14,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.answer
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.positionAnswer
 import com.example.voicelockscreen.utils.Util
+import kotlinx.android.synthetic.main.fragment_security_question.*
 
 class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) {
     private var context: Context? = context
@@ -57,34 +58,29 @@ class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) 
                     Util.ANSWER_DATA
                 )
             }
-        val spinner = mView?.findViewById<CustomSpinner>(R.id.spinnerWindow)
-        val adapterSpinner = QuestionAdapter(context)
-        val answerLists =
-            context?.resources?.getStringArray(R.array.questions)?.toCollection(ArrayList())
-        answerLists?.let {
-            adapterSpinner.listQuestion = it
+        val mArrayAdapter = context?.let {
+            ArrayAdapter<Any?>(
+                it,
+                android.R.layout.simple_spinner_dropdown_item,
+                it.resources.getStringArray(R.array.questions)
+            )
         }
-        spinner?.adapter = adapterSpinner
-        spinner?.setSpinnerEventsListener(object : CustomSpinner.OnSpinnerEventsListener {
-            override fun onPopupWindowOpened(spinner: Spinner?) {
-                //TODO("Not yet implemented")
-            }
+        mArrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        mView?.findViewById<Spinner>(R.id.spinnerWindow)?.adapter = mArrayAdapter
+        mView?.findViewById<Spinner>(R.id.spinnerWindow)?.let {
+            it.adapter = mArrayAdapter
+            it.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    position = p2
+                }
 
-            override fun onPopupWindowClosed(spinner: Spinner?) {
-                //TODO("Not yet implemented")
-            }
-
-        })
-        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                position = p2
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    //TODO("Not yet implemented")
+                }
             }
         }
+
+
 
         mView?.findViewById<TextView>(R.id.btnSubmitWindow)?.setOnClickListener {
             mView?.findViewById<EditText>(R.id.tvAnswerWindow)?.let {

@@ -9,8 +9,7 @@
                 </shape>
 
             </item>
-            <item android:drawable="@drawable/item_rowdown" android:gravity="end"
-                />
+
 
         </layer-list>
 

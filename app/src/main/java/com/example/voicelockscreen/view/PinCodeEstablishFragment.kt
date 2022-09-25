@@ -74,6 +74,10 @@ class PinCodeEstablishFragment : Fragment() {
     }
 
     private fun setUpPassword() {
+        txtPassEstablish.setText("")
+        tvSetPinCodeEstablish.text =  getString(R.string.enter_new_password)
+        Toast.makeText(requireContext(), getString(R.string.enter_new_password), Toast.LENGTH_LONG)
+            .show()
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->
@@ -115,6 +119,7 @@ class PinCodeEstablishFragment : Fragment() {
                         Toast.LENGTH_LONG
                     ).show()
                     passwordSetup = ""
+                    txtPassEstablish.setText("")
                 }
             }
         }

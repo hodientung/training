@@ -23,13 +23,13 @@ class SplashVoiceLockActivity : AppCompatActivity() {
         if (prefs.isFistOnboard)
             CoroutineScope(Dispatchers.Main).launch {
                 delay(1200L)
-                startActivity(Intent(this@SplashVoiceLockActivity, OnboardActivity::class.java))
+                startActivity(Intent(this@SplashVoiceLockActivity, MainActivity::class.java))
                 finish()
             }
         else
             CoroutineScope(Dispatchers.Main).launch {
                 delay(1200L)
-                startActivity(Intent(this@SplashVoiceLockActivity, MainActivity::class.java))
+                startActivity(Intent(this@SplashVoiceLockActivity, OnboardActivity::class.java))
                 finish()
             }
 

@@ -20,6 +20,8 @@ import com.google.android.exoplayer2.util.Log
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.fragment_video_layer.*
 import kotlinx.android.synthetic.main.playback_custom_view.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class VideoLayerFragment : Fragment() {
@@ -31,6 +33,26 @@ class VideoLayerFragment : Fragment() {
     private var controlsMode = ControlsMode.LOCK
     private lateinit var concatenatingMediaSource: ConcatenatingMediaSource
     private var mediaSourceList = arrayListOf<MediaSource>()
+
+    private val first: View.OnClickListener = View.OnClickListener {
+        exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
+        player.videoScalingMode = C.VIDEO_SCALING_MODE_DEFAULT
+        exoPlayerView.imZoom.setImageResource(R.drawable.ic_round_zoom_out_map)
+        exoPlayerView.imZoom.setOnClickListener(second)
+    }
+    private val second = View.OnClickListener {
+        exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+        player.videoScalingMode = C.VIDEO_SCALING_MODE_DEFAULT
+        exoPlayerView.imZoom.setImageResource(R.drawable.ic_round_zoom_out_map)
+        exoPlayerView.imZoom.setOnClickListener(third)
+    }
+
+    private val third = View.OnClickListener {
+        exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+        player.videoScalingMode = C.VIDEO_SCALING_MODE_DEFAULT
+        exoPlayerView.imZoom.setImageResource(R.drawable.ic_round_center_focus_strong)
+        exoPlayerView.imZoom.setOnClickListener(first)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +86,9 @@ class VideoLayerFragment : Fragment() {
     }
 
     private fun initAction() {
-        exoPlayerView.tvBack.setOnClickListener {
+
+        exoPlayerView.tvNameVideo.text = titleVideo
+        exoPlayerView.imb.setOnClickListener {
             player.stop()
             activity?.supportFragmentManager?.popBackStack()
 
@@ -81,7 +105,7 @@ class VideoLayerFragment : Fragment() {
             toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()
         }
-        exoPlayerView.imNext.setOnClickListener {
+        exoPlayerView.exo_next.setOnClickListener {
             try {
                 player.stop()
                 position++
@@ -92,7 +116,8 @@ class VideoLayerFragment : Fragment() {
                 activity?.supportFragmentManager?.popBackStack()
             }
         }
-        exoPlayerView.imPrevious.setOnClickListener {
+
+        exoPlayerView.exo_prev.setOnClickListener {
             try {
                 player.stop()
                 position--
@@ -103,38 +128,7 @@ class VideoLayerFragment : Fragment() {
                 activity?.supportFragmentManager?.popBackStack()
             }
         }
-        exoPlayerView.imPlay.setOnClickListener {
-            playVideo()
-            exoPlayerView.imPlay.visibility = View.INVISIBLE
-            exoPlayerView.imPause.visibility = View.VISIBLE
-
-        }
-        exoPlayerView.imPause.setOnClickListener {
-            pausePlayer()
-            exoPlayerView.imPlay.visibility = View.VISIBLE
-            exoPlayerView.imPause.visibility = View.INVISIBLE
-        }
-
-        exoPlayerView.imZoom.setOnClickListener {
-            exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-            player.videoScalingMode = C.VIDEO_SCALING_MODE_DEFAULT
-            exoPlayerView.imZoom.setImageResource(R.drawable.ic_round_zoom_out_map)
-            exoPlayerView.imZoom.setOnClickListener {
-                exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
-                player.videoScalingMode = C.VIDEO_SCALING_MODE_DEFAULT
-                exoPlayerView.imZoom.setOnClickListener {
-                    exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
-                    player.videoScalingMode = C.VIDEO_SCALING_MODE_DEFAULT
-                    exoPlayerView.imZoom.setImageResource(R.drawable.ic_round_center_focus_strong)
-                    exoPlayerView.imZoom.setOnClickListener {
-                        exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-                        player.videoScalingMode = C.VIDEO_SCALING_MODE_DEFAULT
-                        exoPlayerView.imZoom.setImageResource(R.drawable.ic_round_zoom_out_map)
-                    }
-                }
-
-            }
-        }
+        exoPlayerView.imZoom.setOnClickListener(first)
     }
 
     private fun setupVideo() {

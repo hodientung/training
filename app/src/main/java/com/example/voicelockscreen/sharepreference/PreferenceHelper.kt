@@ -96,7 +96,7 @@ object PreferenceHelper {
         }
 
     var SharedPreferences.themeCode
-        get() = getInt(CODE_THEME, 0)
+        get() = getInt(CODE_THEME, -1)
         set(value) {
             editMe {
                 it.putInt(CODE_THEME, value)

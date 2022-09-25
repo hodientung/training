@@ -77,6 +77,7 @@ class ValidatePinLockChangeFragment : Fragment() {
         Toast.makeText(requireContext(), getString(R.string.enter_old_password), Toast.LENGTH_LONG)
             .show()
         tvSetPinCodeValidate.text = getString(R.string.enter_old_password)
+        txtPassValidate.setText("")
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->

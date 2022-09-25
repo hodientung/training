@@ -1,6 +1,7 @@
 package com.example.voicelockscreen.utils
 
 import android.content.res.Resources
+import android.graphics.Color
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
@@ -222,51 +223,209 @@ class Util {
         }
 
         fun getThemeToScreen(type: Int): DataModelTheme {
-            var backgroundScreen = 0
-            var backgroundPinButton = 0
+            var colorBack = 0
+            var fontText = 0
+            var colorText = 0
+            var largeImage = 0
+            var smallImage = 0
+            var colorInputPin = 0
+            var iconPin = 0
+            var iconPattern = 0
+            var sizeText1 = 0
+            var sizeText2 = 0
+            var fontTextForget = 0
+            var colorPath = 0
+            var imVoice = 0
+            var bg = 0
+            var colorVoice = 0
+            var bgFunction = 0
+            var colorDelete: Int? = 0
+
             when (type) {
                 0 -> {
-                    backgroundScreen = getColorListScreen()[0]
-                    backgroundPinButton = getColorListButton()[0]
+                    colorBack = Color.WHITE
+                    fontText = R.font.deep_jungle
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.large1
+                    smallImage = R.drawable.ic_small1
+                    iconPin = R.drawable.icon_pin1
+                    iconPattern = R.drawable.icon_pattern1
+                    colorInputPin = R.color.color_F5670E
+                    sizeText1 = 30
+                    sizeText2 = 25
+                    colorPath = R.color.color_EB5005
+                    bg = R.drawable.bg2
+                    imVoice = R.drawable.bg_voice1
+                    colorVoice = R.color.white
+                    bgFunction = R.color.color_F5670E
+                    colorDelete = R.color.color_F5670E
+
                 }
                 1 -> {
-                    backgroundScreen = getColorListScreen()[1]
-                    backgroundPinButton = getColorListButton()[1]
+                    colorBack = Color.WHITE
+                    fontText = R.font.deep_jungle
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.large2
+                    smallImage = R.drawable.small2
+                    iconPin = R.drawable.icon_pin2
+                    iconPattern = R.drawable.icon_pattern2
+                    colorInputPin = R.color.color_DF5A27
+                    sizeText1 = 40
+                    sizeText2 = 30
+                    colorPath = R.color.color_EB5005
+                    bg = R.drawable.background_voice1
+                    imVoice = R.drawable.icon_voice_wina
+                    colorVoice = R.color.white
+                    bgFunction = R.color.color_DB7D1D
+                    colorDelete = R.color.color_DB7D1D
                 }
                 2 -> {
-                    backgroundScreen = getColorListScreen()[2]
-                    backgroundPinButton = getColorListButton()[2]
+                    colorBack = Color.WHITE
+                    fontText = R.font.jost_black
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.large3
+                    smallImage = R.drawable.ic_small1
+                    iconPin = R.drawable.icon_pin3
+                    iconPattern = R.drawable.icon_pattern3
+                    colorInputPin = R.color.color_00FFB4
+                    sizeText1 = 24
+                    sizeText2 = 20
+                    colorPath = R.color.color_00FFB4
+                    bg = R.drawable.bg3
+                    imVoice = R.drawable.bg_voice3
+                    colorVoice = R.color.orange
+                    bgFunction = R.color.color_00FFB4
+                    colorDelete = R.color.color_00FFB4
                 }
                 3 -> {
-                    backgroundScreen = getColorListScreen()[3]
-                    backgroundPinButton = getColorListButton()[3]
+                    colorBack = Color.WHITE
+                    fontText = R.font.deep_jungle
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.large4
+                    smallImage = R.drawable.small4
+                    iconPin = R.drawable.icon_pin4
+                    iconPattern = R.drawable.icon_pattern4
+                    colorInputPin = R.color.color_00FFB4
+                    sizeText1 = 40
+                    sizeText2 = 30
+                    colorPath = R.color.color_E9D754
+                    bg = R.drawable.bg4
+                    imVoice = R.drawable.bg_voice4
+                    colorVoice = R.color.white
+                    bgFunction = R.color.color_E9D754
+                    colorDelete = R.color.color_E9D754
                 }
                 4 -> {
-                    backgroundScreen = getColorListScreen()[4]
-                    backgroundPinButton = getColorListButton()[4]
+                    colorBack = Color.WHITE
+                    fontText = R.font.deep_jungle
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.large5
+                    smallImage = R.drawable.ic_small1
+                    iconPin = R.drawable.icon_pin5
+                    iconPattern = R.drawable.icon_pattern5
+                    colorInputPin = R.color.color_FD6D04
+                    sizeText1 = 40
+                    sizeText2 = 30
+                    colorPath = R.color.color_FD6D04
+                    bg = R.drawable.bg6
+                    imVoice = R.drawable.bg_voice6
+                    colorVoice = R.color.white
+                    bgFunction = R.color.color_DF5A27
+                    colorDelete = R.color.color_DF5A27
                 }
                 5 -> {
-                    backgroundScreen = getColorListScreen()[5]
-                    backgroundPinButton = getColorListButton()[5]
+                    colorBack = Color.WHITE
+                    fontText = R.font.merry_sugar_snow
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.large6
+                    smallImage = R.drawable.small4
+                    iconPin = R.drawable.icon_pin6
+                    iconPattern = R.drawable.icon_pattern6
+                    colorInputPin = R.color.color_FD6D04
+                    sizeText1 = 35
+                    sizeText2 = 20
+                    colorPath = R.color.color_137045
+                    bg = R.drawable.bg5
+                    imVoice = R.drawable.bg_voice5
+                    colorVoice = R.color.white
+                    bgFunction = R.color.color_137045
+                    colorDelete = R.color.color_137045
                 }
                 6 -> {
-                    backgroundScreen = getColorListScreen()[6]
-                    backgroundPinButton = getColorListButton()[6]
+                    colorBack = Color.WHITE
+                    fontText = R.font.deep_jungle
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.bg_voice7
+                    smallImage = R.drawable.ic_small1
+                    iconPin = R.drawable.icon_pin7
+                    iconPattern = R.drawable.icon_pattern7
+                    colorInputPin = R.color.color_815D8A
+                    sizeText1 = 40
+                    sizeText2 = 30
+                    colorPath = R.color.color_815D8A
+                    bg = R.drawable.bg7
+                    imVoice = R.drawable.bg_voice7
+                    colorVoice = R.color.white
+                    bgFunction = R.color.color_815D8A
+                    colorDelete = R.color.color_815D8A
                 }
                 7 -> {
-                    backgroundScreen = getColorListScreen()[7]
-                    backgroundPinButton = getColorListButton()[7]
+                    colorBack = Color.WHITE
+                    fontText = R.font.digital_7
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.bg_voice9
+                    smallImage = R.drawable.ic_small1
+                    iconPin = R.drawable.icon_pin8
+                    iconPattern = R.drawable.icon_pin8
+                    colorInputPin = R.color.color_00BDFF
+                    sizeText1 = 36
+                    sizeText2 = 30
+                    colorPath = R.color.color_00BDFF
+                    bg = R.drawable.bg9
+                    imVoice = R.drawable.bg_voice9
+                    colorVoice = R.color.white
+                    bgFunction = R.color.color_00BDFF
+                    fontTextForget = R.font.deep_jungle
+                    colorDelete = R.color.color_00BDFF
                 }
                 8 -> {
-                    backgroundScreen = getColorListScreen()[8]
-                    backgroundPinButton = getColorListButton()[8]
-                }
-                9 -> {
-                    backgroundScreen = getColorListScreen()[9]
-                    backgroundPinButton = getColorListButton()[9]
+                    colorBack = Color.WHITE
+                    fontText = R.font.deep_jungle
+                    colorText = Color.WHITE
+                    largeImage = R.drawable.large9
+                    smallImage = R.drawable.ic_small1
+                    iconPin = R.drawable.icon_pin9
+                    iconPattern = R.drawable.icon_pattern9
+                    colorInputPin = R.color.color_A4D498
+                    sizeText1 = 40
+                    sizeText2 = 30
+                    colorPath = R.color.color_A4D498
+                    bg = R.drawable.bg8
+                    imVoice = R.drawable.bg_voice8
+                    colorVoice = R.color.white
+                    bgFunction = R.color.color_A4D498
+                    colorDelete = R.color.color_A4D498
                 }
             }
-            return DataModelTheme(backgroundScreen, backgroundPinButton)
+            return DataModelTheme(
+                colorBack = colorBack,
+                fontText = fontText,
+                colorText = colorText,
+                largeImage = largeImage,
+                smallImage = smallImage,
+                iconPin = iconPin,
+                iconPattern = iconPattern,
+                colorInputPin = colorInputPin,
+                sizeText1 = sizeText1,
+                sizeText2 = sizeText2,
+                colorPath = colorPath,
+                bg = bg,
+                imVoice = imVoice,
+                colorVoice = colorVoice,
+                bgFunction = bgFunction,
+                fontTextForget = fontTextForget,
+                colorDelete = colorDelete
+            )
         }
 
         fun timeConversion(value: Long): String {

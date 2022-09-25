@@ -42,7 +42,7 @@
         android:id="@+id/indicator_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:ci_width="@dimen/size_30dp"
+        app:ci_width="@dimen/size_25dp"
         app:ci_height="@dimen/size_5dp"
         app:ci_orientation="horizontal"
         app:ci_gravity="center"

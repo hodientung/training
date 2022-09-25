@@ -43,7 +43,7 @@ class RecyclerViewTheme(val context: Context?) :
         }
 
         fun bind(dataModelTheme: DataModelTheme) {
-            itemView.imThemeSet.setBackgroundResource(dataModelTheme.colorTheme)
+            dataModelTheme.colorTheme?.let { itemView.imThemeSet.setBackgroundResource(it) }
         }
 
     }

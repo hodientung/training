@@ -1,5 +1,6 @@
 package com.example.voicelockscreen.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,15 +35,38 @@ class PinCodeFragment : Fragment() {
 
 
     //show theme for layout
-//    private fun setTheme() {
-//        val prefs =
-//            context?.let {
-//                PreferenceHelper.customPreference(
-//                    it,
-//                    Util.THEME_SETTING
-//                )
-//            }
-//
+    private fun setTheme() {
+
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+        val sizeNumberPin = Util.getListNumber().size
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1) {
+
+            for (i in 0 until sizeNumberPin) {
+                if (i < 9 || i == 10) {
+                    mAdapter.dataModel[i].backgroundPinButton = listTheme?.iconPin
+                    mAdapter.dataModel[i].colorDelete = listTheme?.colorDelete
+                    mAdapter.dataModel[i].typeFace = listTheme?.fontText
+                } else {
+                    mAdapter.dataModel[i].colorDelete = listTheme?.colorDelete
+                }
+
+            }
+        } else {
+            for (i in 0 until sizeNumberPin) {
+                mAdapter.dataModel[i].backgroundPinButton = R.drawable.round_pin_set
+            }
+        }
+
+
 //        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
 //            ?.let { contentPinCode.setBackgroundResource(it) }
 //        for (i in 0 until Util.getListNumber().size) {
@@ -52,7 +76,7 @@ class PinCodeFragment : Fragment() {
 //                ).colorPinButton
 //            }
 //        }
-//    }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,6 +90,7 @@ class PinCodeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initAction()
+        setTheme()
 
     }
 
@@ -78,6 +103,12 @@ class PinCodeFragment : Fragment() {
 
 
     private fun setUpPassword() {
+        txtPass.setText("")
+        tvSetPinCode.text = getString(R.string.create_new_password)
+        Toast.makeText(
+            context, getString(R.string.create_new_password),
+            Toast.LENGTH_LONG
+        ).show()
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->
@@ -115,11 +146,13 @@ class PinCodeFragment : Fragment() {
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()
                     SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
-                } else{
+                } else {
                     Toast.makeText(
                         context, getString(R.string.wrong_pin_code),
                         Toast.LENGTH_LONG
                     ).show()
+                    tvSetPinCode.text = getString(R.string.wrong_pin_code)
+                    txtPass.setText("")
                     passwordSetup = ""
                 }
 

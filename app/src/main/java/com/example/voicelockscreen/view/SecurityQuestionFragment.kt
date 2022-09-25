@@ -80,7 +80,7 @@ class SecurityQuestionFragment : Fragment(), CustomSpinner.OnSpinnerEventsListen
         answerLists = resources.getStringArray(R.array.questions).toCollection(ArrayList())
         adapterSpinner.listQuestion = answerLists
         spinner.adapter = adapterSpinner
-        spinner.setSpinnerEventsListener(this)
+        //spinner.setSpinnerEventsListener(this)
     }
 
     override fun onPopupWindowOpened(spinner: Spinner?) {
