@@ -147,7 +147,7 @@ class PatternView : View {
 
     private fun drawPatternPath(canvas: Canvas?) {
         color?.let {
-            paint.color = it
+            paint.color = ContextCompat.getColor(context,it)
         }
         paint.strokeWidth = 10f
         if (patternPath.size < 2) {

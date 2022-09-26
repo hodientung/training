@@ -18,7 +18,6 @@ import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
 
 class WindowPinLock(context: Context, private val onClose: () -> Unit) {
@@ -48,6 +47,73 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
 
     fun getView() = mView
 
+
+    private fun setTheme() {
+        val contentPinCode = mView?.findViewById<ConstraintLayout>(R.id.contentPinCodeWindow)
+        val tvSetPinCodeEstablish = mView?.findViewById<TextView>(R.id.tvSetPinCodeWindow)
+        val txtPassEstablish = mView?.findViewById<EditText>(R.id.txtPassWindow)
+        val tvBackPinEstablish = mView?.findViewById<ImageView>(R.id.tvBackPinWindow)
+        val imLockPinEstablish = mView?.findViewById<ImageView>(R.id.imLockPinWindow)
+        val imVSmallEstablish = mView?.findViewById<ImageView>(R.id.imVSmallWindow)
+
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+        val sizeNumberPin = Util.getListNumber().size
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1)
+        //setThemeScreen(listTheme, sizeNumberPin)
+            contentPinCode?.let {
+                tvSetPinCodeEstablish?.let { it1 ->
+                    txtPassEstablish?.let { it2 ->
+                        tvBackPinEstablish?.let { it3 ->
+                            imLockPinEstablish?.let { it4 ->
+                                imVSmallEstablish?.let { it5 ->
+                                    context?.let { it6 ->
+                                        Util.setThemeView(
+                                            it,
+                                            it1,
+                                            it2,
+                                            it3,
+                                            it4,
+                                            it5,
+                                            listTheme,
+                                            sizeNumberPin,
+                                            mAdapter.dataModel,
+                                            it6
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        else
+            imLockPinEstablish?.let {
+                txtPassEstablish?.let { it1 ->
+                    context?.let { it2 ->
+                        tvSetPinCodeEstablish?.let { it3 ->
+                            Util.setOriginalScreen(
+                                sizeNumberPin,
+                                it,
+                                it1,
+                                it3,
+                                mAdapter.dataModel,
+                                it2
+                            )
+                        }
+                    }
+                }
+            }
+    }
+
     fun open() {
         try {
             if (mView?.windowToken == null && mView?.parent == null)
@@ -67,34 +133,11 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
             mAdapter.dataModel = Util.getListNumber()
             it.adapter = mAdapter
         }
-        //setTheme()
+        setTheme()
     }
 
     private fun initAction() {
         verifyPassword()
-    }
-
-    private fun setTheme() {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.THEME_SETTING
-                )
-            }
-
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let {
-                mView?.findViewById<ConstraintLayout>(R.id.contentPinCodeWindow)
-                    ?.setBackgroundResource(it)
-            }
-        for (i in 0 until Util.getListNumber().size) {
-            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
-                Util.getThemeToScreen(
-                    it
-                ).colorPinButton
-            }
-        }
     }
 
     private fun verifyPassword() {

@@ -5,5 +5,8 @@ data class DataModel(
     val number: String,
     var backgroundPinButton: Int? = null,
     var typeFace: Int? = null,
-    var colorDelete: Int? = null
+    var colorDelete: Int? = null,
+    var colorNumber: Int? = null,
+    var sizeNumber: Int? = null,
+    var margin: Int? = null,
 )

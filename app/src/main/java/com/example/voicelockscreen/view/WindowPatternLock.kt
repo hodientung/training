@@ -14,12 +14,9 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupPatternLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.patternPassword
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
-import com.itsxtt.patternlock.PatternLockView
-import kotlinx.android.synthetic.main.fragment_confirm_pattern_change.*
 
 
 class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
@@ -45,6 +42,67 @@ class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
         mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
     }
 
+    private fun setTheme() {
+        val content1 = mView?.findViewById<ConstraintLayout>(R.id.content1)
+        val tvDescriptionPatternConfirm =
+            mView?.findViewById<TextView>(R.id.tvDescriptionPatternConfirmChangeWindow)
+        val tvBackPatternLockConfirm =
+            mView?.findViewById<ImageView>(R.id.tvBackPatternLockConfirmChangeWindow)
+        val imBackgroundVoicePatternConfirm =
+            mView?.findViewById<ImageView>(R.id.imBackgroundVoicePatternConfirmChangeWindow)
+        val imVPatternConfirm = mView?.findViewById<ImageView>(R.id.imVPatternConfirmChangeWindow)
+        val patternViewConfirm =
+            mView?.findViewById<PatternView>(R.id.patternViewConfirmChangeWindow)
+
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1)
+            content1?.let {
+                tvDescriptionPatternConfirm?.let { it1 ->
+                    tvBackPatternLockConfirm?.let { it2 ->
+                        imBackgroundVoicePatternConfirm?.let { it3 ->
+                            imVPatternConfirm?.let { it4 ->
+                                context?.let { it5 ->
+                                    patternViewConfirm?.let { it6 ->
+                                        Util.setThemePatternView(
+                                            it,
+                                            it1,
+                                            it2,
+                                            it3,
+                                            it4,
+                                            listTheme,
+                                            it5,
+                                            it6
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        else imBackgroundVoicePatternConfirm?.let {
+            tvDescriptionPatternConfirm?.let { it1 ->
+                patternViewConfirm?.let { it2 ->
+                    Util.setOriginalPatternScreen(
+                        it,
+                        it1,
+                        it2
+                    )
+                }
+            }
+        }
+
+    }
+
     fun getView() = mView
 
     fun open() {
@@ -60,11 +118,12 @@ class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
     }
 
     private fun initAction() {
+        setTheme()
+        verifyPassword()
         mView?.findViewById<ImageView>(R.id.tvBackPatternLockConfirmChangeWindow)
             ?.setOnClickListener {
                 onBackButton()
             }
-        verifyPassword()
     }
 
 //    private fun setTheme() {
@@ -98,8 +157,6 @@ class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
         mView?.findViewById<TextView>(R.id.tvDescriptionPatternConfirmChangeWindow)?.text =
             context?.getString(R.string.draw_your_pattern_to_unlock)
         mView?.findViewById<PatternView>(R.id.patternViewConfirmChangeWindow)?.let {
-            it.setImageRes(R.drawable.ic_icon_eclipse_pattern)
-            it.setColorPath(R.color.color_2D78F4)
             it.onCheckPattern = { it ->
                 val pattern = prefs?.patternPassword
                 if (it == pattern)

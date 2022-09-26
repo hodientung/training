@@ -46,6 +46,72 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
         mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
     }
 
+    private fun setTheme() {
+        val contentPinCode = mView?.findViewById<ConstraintLayout>(R.id.contentPinCodeTimer)
+        val tvSetPinCodeEstablish = mView?.findViewById<TextView>(R.id.tvSetPinCodeTimer)
+        val txtPassEstablish = mView?.findViewById<EditText>(R.id.txtPassTimer)
+        val tvBackPinEstablish = mView?.findViewById<ImageView>(R.id.tvBackPinTimer)
+        val imLockPinEstablish = mView?.findViewById<ImageView>(R.id.imLockPinTimer)
+        val imVSmallEstablish = mView?.findViewById<ImageView>(R.id.imVSmallTimer)
+
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+        val sizeNumberPin = Util.getListNumber().size
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1)
+        //setThemeScreen(listTheme, sizeNumberPin)
+            contentPinCode?.let {
+                tvSetPinCodeEstablish?.let { it1 ->
+                    txtPassEstablish?.let { it2 ->
+                        tvBackPinEstablish?.let { it3 ->
+                            imLockPinEstablish?.let { it4 ->
+                                imVSmallEstablish?.let { it5 ->
+                                    context?.let { it6 ->
+                                        Util.setThemeView(
+                                            it,
+                                            it1,
+                                            it2,
+                                            it3,
+                                            it4,
+                                            it5,
+                                            listTheme,
+                                            sizeNumberPin,
+                                            mAdapter.dataModel,
+                                            it6
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        else
+            imLockPinEstablish?.let {
+                txtPassEstablish?.let { it1 ->
+                    context?.let { it2 ->
+                        tvSetPinCodeEstablish?.let { it3 ->
+                            Util.setOriginalScreen(
+                                sizeNumberPin,
+                                it,
+                                it1,
+                                it3,
+                                mAdapter.dataModel,
+                                it2
+                            )
+                        }
+                    }
+                }
+            }
+    }
+
     fun getView() = mView
 
     fun open() {
@@ -58,6 +124,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
         }
         initView()
         initAction()
+
     }
 
     private fun initView() {
@@ -67,7 +134,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
             mAdapter.dataModel = Util.getListNumber()
             it.adapter = mAdapter
         }
-        //setTheme()
+        setTheme()
     }
 
     private fun initAction() {

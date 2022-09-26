@@ -24,7 +24,7 @@
         android:layout_marginHorizontal="@dimen/size_50dp"
         android:layout_marginTop="@dimen/size_24dp"
         android:gravity="center"
-        android:lineSpacingExtra="@dimen/size_10sp"
+        android:lineSpacingExtra="@dimen/size_3dp"
         android:maxLines="2"
         android:text="@string/create_new_your_pattern"
         android:textColor="#000000"
@@ -38,12 +38,11 @@
         android:id="@+id/imBackgroundVoicePatternValidate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_24dp"
-        android:background="@drawable/ic_icon_frament_pattern"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/patternViewValidate"
         app:layout_constraintTop_toBottomOf="@id/tvDescriptionPatternValidate" />
 
     <ImageView
@@ -56,6 +55,17 @@
         app:layout_constraintEnd_toEndOf="@id/imBackgroundVoicePatternValidate"
         app:layout_constraintStart_toStartOf="@id/imBackgroundVoicePatternValidate"
         app:layout_constraintTop_toTopOf="@id/imBackgroundVoicePatternValidate" />
+
+    <ImageView
+        android:id="@+id/imVPattern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/imVPatternValidate"
+        app:layout_constraintEnd_toEndOf="@id/imVPatternValidate"
+        app:layout_constraintStart_toStartOf="@id/imVPatternValidate"
+        app:layout_constraintTop_toTopOf="@id/imVPatternValidate" />
 
     <com.example.voicelockscreen.view.PatternView
         android:id="@+id/patternViewValidate"

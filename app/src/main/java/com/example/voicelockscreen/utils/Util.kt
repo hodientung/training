@@ -1,7 +1,17 @@
 package com.example.voicelockscreen.utils
 
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
+import android.util.TypedValue
+import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
@@ -9,6 +19,8 @@ import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.model.DataModelFunction
 import com.example.voicelockscreen.model.DataModelTheme
 import com.example.voicelockscreen.view.OnboardActivity
+import com.example.voicelockscreen.view.PatternView
+import kotlinx.android.synthetic.main.fragment_preview_theme.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -243,9 +255,9 @@ class Util {
 
             when (type) {
                 0 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.deep_jungle
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.large1
                     smallImage = R.drawable.ic_small1
                     iconPin = R.drawable.icon_pin1
@@ -262,9 +274,9 @@ class Util {
 
                 }
                 1 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.deep_jungle
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.large2
                     smallImage = R.drawable.small2
                     iconPin = R.drawable.icon_pin2
@@ -280,13 +292,13 @@ class Util {
                     colorDelete = R.color.color_DB7D1D
                 }
                 2 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.jost_black
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.large3
                     smallImage = R.drawable.ic_small1
                     iconPin = R.drawable.icon_pin3
-                    iconPattern = R.drawable.icon_pattern3
+                    iconPattern = R.drawable.icon_patter3
                     colorInputPin = R.color.color_00FFB4
                     sizeText1 = 24
                     sizeText2 = 20
@@ -298,9 +310,9 @@ class Util {
                     colorDelete = R.color.color_00FFB4
                 }
                 3 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.deep_jungle
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.large4
                     smallImage = R.drawable.small4
                     iconPin = R.drawable.icon_pin4
@@ -316,9 +328,9 @@ class Util {
                     colorDelete = R.color.color_E9D754
                 }
                 4 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.deep_jungle
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.large5
                     smallImage = R.drawable.ic_small1
                     iconPin = R.drawable.icon_pin5
@@ -334,9 +346,9 @@ class Util {
                     colorDelete = R.color.color_DF5A27
                 }
                 5 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.merry_sugar_snow
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.large6
                     smallImage = R.drawable.small4
                     iconPin = R.drawable.icon_pin6
@@ -352,9 +364,9 @@ class Util {
                     colorDelete = R.color.color_137045
                 }
                 6 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.deep_jungle
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.bg_voice7
                     smallImage = R.drawable.ic_small1
                     iconPin = R.drawable.icon_pin7
@@ -370,9 +382,9 @@ class Util {
                     colorDelete = R.color.color_815D8A
                 }
                 7 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.digital_7
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.bg_voice9
                     smallImage = R.drawable.ic_small1
                     iconPin = R.drawable.icon_pin8
@@ -389,9 +401,9 @@ class Util {
                     colorDelete = R.color.color_00BDFF
                 }
                 8 -> {
-                    colorBack = Color.WHITE
+                    colorBack = R.color.white
                     fontText = R.font.deep_jungle
-                    colorText = Color.WHITE
+                    colorText = R.color.white
                     largeImage = R.drawable.large9
                     smallImage = R.drawable.ic_small1
                     iconPin = R.drawable.icon_pin9
@@ -508,5 +520,226 @@ class Util {
             return dataModelFunction
         }
 
+        fun View.setMargins(
+            left: Int? = null,
+            top: Int? = null,
+            right: Int? = null,
+            bottom: Int? = null
+        ) {
+            val lp = layoutParams as? ViewGroup.MarginLayoutParams
+                ?: return
+
+            lp.setMargins(
+                left ?: lp.leftMargin,
+                top ?: lp.topMargin,
+                right ?: lp.rightMargin,
+                bottom ?: lp.bottomMargin
+            )
+
+            layoutParams = lp
+        }
+
+        fun setThemePatternView(
+            contentPinCode1: View, tvSetPinCode: View, tvBackPin: View, imLockPin: View,
+            imVSmall: View, listTheme: DataModelTheme?, context: Context, patternView: View
+        ) {
+            listTheme?.bg?.let { contentPinCode1.setBackgroundResource(it) }
+            listTheme?.colorText?.let {
+                (tvSetPinCode as TextView).setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        it
+                    )
+                )
+            }
+            listTheme?.fontText?.let {
+                (tvSetPinCode as TextView).typeface = ResourcesCompat.getFont(context, it)
+            }
+            (tvSetPinCode as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, 30f)
+            listTheme?.colorBack?.let {
+                (tvBackPin as ImageView).setColorFilter(
+                    ContextCompat.getColor(
+                        context,
+                        it
+                    )
+                )
+            }
+            listTheme?.largeImage?.let { imLockPin.setBackgroundResource(it) }
+            listTheme?.smallImage?.let { imVSmall.setBackgroundResource(it) }
+            listTheme?.iconPattern?.let { (patternView as PatternView).setImageRes(it) }
+            listTheme?.colorPath?.let { (patternView as PatternView).setColorPath(it) }
+        }
+
+        fun setOriginalPatternScreen(
+            imLockPin: View,
+            tvSetPinCode: View,
+            patternView: View,
+        ) {
+            (imLockPin as ImageView).setBackgroundResource(R.drawable.ic_icon_frament_pattern)
+            (tvSetPinCode as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+            (patternView as PatternView).setColorPath(R.color.color_2D78F4)
+            patternView.setImageRes(R.drawable.ic_icon_eclipse_pattern)
+        }
+
+        fun setThemeView(
+            contentPinCode1: View,
+            tvSetPinCode: View,
+            txtPass: View,
+            tvBackPin: View,
+            imLockPin: View,
+            imVSmall: View,
+            listTheme: DataModelTheme?,
+            sizeNumberPin: Int,
+            dataModel: ArrayList<DataModel>,
+            context: Context
+        ) {
+            listTheme?.bg?.let { contentPinCode1.setBackgroundResource(it) }
+            listTheme?.colorText?.let {
+                (tvSetPinCode as TextView).setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        it
+                    )
+                )
+            }
+            listTheme?.colorInputPin?.let {
+                (txtPass as EditText).setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        it
+                    )
+                )
+            }
+            listTheme?.fontText?.let {
+                (tvSetPinCode as TextView).typeface = ResourcesCompat.getFont(context, it)
+            }
+            listTheme?.colorBack?.let {
+                (tvBackPin as ImageView).setColorFilter(
+                    ContextCompat.getColor(
+                        context,
+                        it
+                    )
+                )
+            }
+            listTheme?.largeImage?.let { imLockPin.setBackgroundResource(it) }
+            listTheme?.smallImage?.let { imVSmall.setBackgroundResource(it) }
+            (tvSetPinCode as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, 30f)
+            for (i in 0 until sizeNumberPin) {
+                dataModel[i].margin = 35
+                if (i < 9 || i == 10) {
+                    dataModel[i].backgroundPinButton = listTheme?.iconPin
+                    dataModel[i].typeFace = listTheme?.fontText
+                    dataModel[i].colorNumber =
+                        ContextCompat.getColor(context, R.color.white)
+                } else {
+                    dataModel[i].colorDelete =
+                        listTheme?.colorDelete?.let { ContextCompat.getColor(context, it) }
+                }
+            }
+            dataModel[11].backgroundPinButton = R.drawable.round_delete_56
+        }
+
+        fun setOriginalScreen(
+            sizeNumberPin: Int,
+            imLockPin: View,
+            txtPass: View,
+            tvSetPinCode: View,
+            dataModel: ArrayList<DataModel>,
+            context: Context
+        ) {
+            (imLockPin as ImageView).setBackgroundResource(R.drawable.ic_lock)
+            (txtPass as EditText).setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.black
+                )
+            )
+            (tvSetPinCode as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+            for (i in 0 until sizeNumberPin) {
+                dataModel[i].backgroundPinButton = R.drawable.round_pin_set
+                dataModel[i].colorNumber =
+                    ContextCompat.getColor(context, R.color.black)
+                dataModel[i].sizeNumber = 20
+                dataModel[i].margin = 80
+            }
+        }
+
+        fun setThemeUnlockScreen(
+            view1Win: View,
+            view2Win: View,
+            view3Win: View,
+            imBackgroundVoice: View,
+            imv: View,
+            tvSpeak: View,
+            tvForget: View,
+            contentAddView: View,
+            textDescription: View,
+            context: Context,
+            dataTheme: DataModelTheme?,
+            position: Int
+        ) {
+            dataTheme?.bg?.let { (contentAddView as ConstraintLayout).setBackgroundResource(it) }
+            (textDescription as TextView).setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.white
+                )
+            )
+            val background1 = (view1Win as ImageView).background
+            val background2 = (view2Win as ImageView).background
+            val background3 = (view3Win as ImageView).background
+            dataTheme?.bgFunction?.let {
+                ContextCompat.getColor(
+                    context,
+                    it
+                )
+            }?.let {
+                background1.setTint(it)
+                background2.setTint(it)
+                background3.setTint(it)
+            }
+            dataTheme?.imVoice?.let { (imBackgroundVoice as ImageView).setImageResource(it) }
+            dataTheme?.colorVoice?.let {
+                (imv as ImageView).setColorFilter(ContextCompat.getColor(context, it))
+            }
+            dataTheme?.fontText?.let {
+                (tvSpeak as TextView).typeface = ResourcesCompat.getFont(context, it)
+                (tvForget as TextView).typeface = ResourcesCompat.getFont(context, it)
+            }
+            if (position == 7)
+                dataTheme?.fontTextForget?.let {
+                    (tvForget as TextView).typeface = ResourcesCompat.getFont(context, it)
+                }
+            dataTheme?.colorText?.let {
+                (tvSpeak as TextView).setTextColor(ContextCompat.getColor(context, it))
+            }
+            dataTheme?.colorText?.let {
+                (tvForget as TextView).setTextColor(ContextCompat.getColor(context, it))
+            }
+            dataTheme?.sizeText1?.let {
+                (tvSpeak as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
+            }
+            dataTheme?.sizeText2?.let {
+                (tvForget as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
+            }
+        }
+
+        fun setOriginalThemeUnlockScreen(
+            imBackgroundVoice: View,
+            contentAddView: View,
+            textDescription: View,
+            context: Context
+        ) {
+            (contentAddView as ConstraintLayout).setBackgroundResource(R.drawable.gradient_bg)
+            (imBackgroundVoice as ImageView).setImageResource(R.drawable.round_speak)
+            (textDescription as TextView).setTextColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.black
+                )
+            )
+
+        }
     }
+
 }

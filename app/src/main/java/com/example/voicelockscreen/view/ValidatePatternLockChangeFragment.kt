@@ -9,38 +9,45 @@ import android.widget.Toast
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupPatternLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.patternPassword
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
-import com.itsxtt.patternlock.PatternLockView
-import kotlinx.android.synthetic.main.fragment_confirm_pattern.*
 import kotlinx.android.synthetic.main.fragment_validate_pattern_lock_change.*
-import kotlinx.android.synthetic.main.fragment_validate_pin_lock_change.*
 
 
 class ValidatePatternLockChangeFragment : Fragment() {
 
 
-    override fun onResume() {
-        super.onResume()
-       // setTheme()
-    }
+    private fun setTheme() {
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1)
+            Util.setThemePatternView(
+                content1,
+                tvDescriptionPatternValidate,
+                tvBackPatternLockValidate,
+                imBackgroundVoicePatternValidate,
+                imVPatternValidate,
+                listTheme,
+                requireContext(),
+                patternViewValidate
+            )
+        else Util.setOriginalPatternScreen(
+            imBackgroundVoicePatternValidate,
+            tvDescriptionPatternValidate,
+            patternViewValidate
+        )
 
-    //show theme for layout
-//    private fun setTheme() {
-//        val prefs =
-//            context?.let {
-//                PreferenceHelper.customPreference(
-//                    it,
-//                    Util.THEME_SETTING
-//                )
-//            }
-//
-//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-//            ?.let { content3.setBackgroundResource(it) }
-//    }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +59,7 @@ class ValidatePatternLockChangeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setTheme()
         initAction()
     }
 
@@ -62,11 +70,13 @@ class ValidatePatternLockChangeFragment : Fragment() {
                 Util.PATTERN_INPUT
             )
         }
-        Toast.makeText(requireContext(), getString(R.string.draw_old_your_pattern), Toast.LENGTH_LONG)
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.draw_old_your_pattern),
+            Toast.LENGTH_LONG
+        )
             .show()
         tvDescriptionPatternValidate.text = getString(R.string.draw_old_your_pattern)
-        patternViewValidate.setImageRes(R.drawable.ic_icon_eclipse_pattern)
-        patternViewValidate.setColorPath(R.color.color_2D78F4)
         patternViewValidate.onCheckPattern = { it ->
 
             val pattern = prefs?.patternPassword

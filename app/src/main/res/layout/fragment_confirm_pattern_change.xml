@@ -24,7 +24,7 @@
         android:layout_marginHorizontal="@dimen/size_50dp"
         android:layout_marginTop="@dimen/size_24dp"
         android:gravity="center"
-        android:lineSpacingExtra="@dimen/size_10sp"
+        android:lineSpacingExtra="@dimen/size_3dp"
         android:maxLines="2"
         android:text="@string/create_new_your_pattern"
         android:textColor="#000000"
@@ -38,11 +38,10 @@
         android:id="@+id/imBackgroundVoicePatternConfirmChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_24dp"
-        android:background="@drawable/ic_icon_frament_pattern"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/patternViewConfirmChange"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDescriptionPatternConfirmChange" />
 

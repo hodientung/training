@@ -69,13 +69,13 @@
     <string name="enable_lock_service">Enable Lock Service</string>
     <string name="first_set_the_voice_password">First Set The Voice Password</string>
     <string name="important">Important</string>
-    <string name="you_clicked_on_cancel">You clicked on Cancel</string>
+    <string name="you_clicked_on_cancel">You cancelled set up pin lock based on timer pin</string>
     <string name="successfully_set_time_lock">Successfully Set Time Lock!!!</string>
     <string name="your_voice_password_is_alo">Your Voice Password is: alo</string>
     <string name="you_can_change_your_voice_or_pin_or_pattern_from_given_option">You can change your voice or pin or \n pattern from given option</string>
     <string name="set_time_lock">Set Time Lock</string>
     <string name="set_theme">Set Theme</string>
-    <string name="note_timer_pin">If your current time is 12:00 then\n password is 1200 and if current time is \n05:30 then password is 0530.</string>
+    <string name="note_timer_pin">If your current time is 12:00 then\n password is 1200 and if current time is\n 05:30 then password is 0530.</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="disable_system_lock">Disable System Lock</string>

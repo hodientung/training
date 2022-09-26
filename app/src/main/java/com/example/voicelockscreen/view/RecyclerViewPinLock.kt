@@ -1,16 +1,19 @@
 package com.example.voicelockscreen.view
 
 import android.content.Context
+import android.graphics.Color
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.setMargins
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.utils.Util
-import kotlinx.android.synthetic.main.fragment_preview_theme.*
+import com.example.voicelockscreen.utils.Util.Companion.setMargins
 import kotlinx.android.synthetic.main.item_delete.view.*
 import kotlinx.android.synthetic.main.item_empty.view.*
 import kotlinx.android.synthetic.main.item_number.view.*
@@ -38,11 +41,16 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
-            dataModel.backgroundPinButton?.let { itemView.btnNumber.setImageResource(it) }
+            dataModel.backgroundPinButton?.let { itemView.btnNumber.setBackgroundResource(it) }
             itemView.tvNumber.text = dataModel.number
+            dataModel.colorNumber?.let { itemView.tvNumber.setTextColor(it) }
+            dataModel.sizeNumber?.toFloat()
+                ?.let { itemView.tvNumber.setTextSize(TypedValue.COMPLEX_UNIT_SP, it) }
             itemView.tvNumber.typeface =
                 dataModel.typeFace?.let { context?.let { it1 -> ResourcesCompat.getFont(it1, it) } }
-            //dataModel.backgroundPinButton?.let { itemView.btnNumber.setBackgroundResource(it) }
+            dataModel.margin.let {
+                itemView.ct1.setMargins(it,it,it,it)
+            }
         }
 
     }
@@ -57,6 +65,10 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
+            dataModel.margin.let {
+                itemView.ct2.setMargins(it,it,it,it)
+            }
+
         }
 
     }
@@ -73,12 +85,13 @@ class RecyclerViewPinLock(
         }
 
         fun bind(dataModel: DataModel?) {
-
-            dataModel?.colorDelete?.let {
-                context?.let { context ->
-                    itemView.icon.setColorFilter(ContextCompat.getColor(context, it))
-                }
+            dataModel?.backgroundPinButton?.let { itemView.btnNumberDelete.setBackgroundResource(it) }
+            dataModel?.colorDelete?.let { itemView.icon.setColorFilter(it) }
+            dataModel?.margin.let {
+                itemView.ct3.setMargins(it,it,it,it)
             }
+
+
             // show data
             //dataModel.backgroundPinButton?.let { itemView.btnNumberDelete.setBackgroundResource(it) }
         }

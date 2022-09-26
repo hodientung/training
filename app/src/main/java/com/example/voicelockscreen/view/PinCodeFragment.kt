@@ -1,6 +1,5 @@
 package com.example.voicelockscreen.view
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,10 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_pin_code.*
+
 
 
 class PinCodeFragment : Fragment() {
@@ -28,15 +27,8 @@ class PinCodeFragment : Fragment() {
 
     private var passwordSetup = ""
 
-//    override fun onResume() {
-//        super.onResume()
-//        setTheme()
-//    }
-
-
     //show theme for layout
     private fun setTheme() {
-
         val prefs =
             context?.let {
                 PreferenceHelper.customPreference(
@@ -48,34 +40,29 @@ class PinCodeFragment : Fragment() {
         val listTheme = prefs?.themeCode?.let {
             Util.getThemeToScreen(it)
         }
-        if (prefs?.themeCode != -1) {
-
-            for (i in 0 until sizeNumberPin) {
-                if (i < 9 || i == 10) {
-                    mAdapter.dataModel[i].backgroundPinButton = listTheme?.iconPin
-                    mAdapter.dataModel[i].colorDelete = listTheme?.colorDelete
-                    mAdapter.dataModel[i].typeFace = listTheme?.fontText
-                } else {
-                    mAdapter.dataModel[i].colorDelete = listTheme?.colorDelete
-                }
-
-            }
-        } else {
-            for (i in 0 until sizeNumberPin) {
-                mAdapter.dataModel[i].backgroundPinButton = R.drawable.round_pin_set
-            }
-        }
-
-
-//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-//            ?.let { contentPinCode.setBackgroundResource(it) }
-//        for (i in 0 until Util.getListNumber().size) {
-//            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
-//                Util.getThemeToScreen(
-//                    it
-//                ).colorPinButton
-//            }
-//        }
+        if (prefs?.themeCode != -1)
+        //setThemeScreen(listTheme, sizeNumberPin)
+            Util.setThemeView(
+                contentPinCode1,
+                tvSetPinCode,
+                txtPass,
+                tvBackPin,
+                imLockPin,
+                imVSmall,
+                listTheme,
+                sizeNumberPin,
+                mAdapter.dataModel,
+                requireContext()
+            )
+        else
+            Util.setOriginalScreen(
+                sizeNumberPin,
+                imLockPin,
+                txtPass,
+                tvSetPinCode,
+                mAdapter.dataModel,
+                requireContext()
+            )
     }
 
     override fun onCreateView(
@@ -100,7 +87,6 @@ class PinCodeFragment : Fragment() {
             activity?.supportFragmentManager?.popBackStack()
         }
     }
-
 
     private fun setUpPassword() {
         txtPass.setText("")

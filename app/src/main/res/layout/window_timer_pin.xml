@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/contentPinCode"
+    android:id="@+id/contentPinCodeTimer"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
-        android:lineSpacingExtra="@dimen/size_10sp"
+        android:lineSpacingExtra="@dimen/size_3dp"
         android:text="@string/enter_timer_pin_to_unlock"
         android:textColor="#000000"
         android:textSize="@dimen/size_16_sp"
@@ -41,7 +42,6 @@
         android:layout_marginBottom="@dimen/size_10"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_lock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSetPinCodeTimer" />
@@ -67,9 +67,7 @@
         android:maxLength="4"
         android:text="@string/_1234"
         android:background="@null"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_30sp"
-        android:layout_marginTop="@dimen/sze_40dp"
+        android:textSize="@dimen/size_40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imLockPinTimer"

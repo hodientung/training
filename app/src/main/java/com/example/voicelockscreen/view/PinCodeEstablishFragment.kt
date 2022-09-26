@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_pincode_establish.*
+import kotlinx.android.synthetic.main.fragment_pincode_establish.contentPinCode
+import kotlinx.android.synthetic.main.fragment_validate_pin_lock_change.*
 
 
 class PinCodeEstablishFragment : Fragment() {
@@ -22,31 +25,42 @@ class PinCodeEstablishFragment : Fragment() {
     private var passwordSetup = ""
 
 
-    override fun onResume() {
-        super.onResume()
-        //setTheme()
+    private fun setTheme() {
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+        val sizeNumberPin = Util.getListNumber().size
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1)
+        //setThemeScreen(listTheme, sizeNumberPin)
+            Util.setThemeView(
+                contentPinCode,
+                tvSetPinCodeEstablish,
+                txtPassEstablish,
+                tvBackPinEstablish,
+                imLockPinEstablish,
+                imVSmallEstablish,
+                listTheme,
+                sizeNumberPin,
+                mAdapter.dataModel,
+                requireContext()
+            )
+        else
+            Util.setOriginalScreen(
+                sizeNumberPin,
+                imLockPinEstablish,
+                txtPassEstablish,
+                tvSetPinCodeEstablish,
+                mAdapter.dataModel,
+                requireContext()
+            )
     }
-
-    //show theme for layout
-//    private fun setTheme() {
-//        val prefs =
-//            context?.let {
-//                PreferenceHelper.customPreference(
-//                    it,
-//                    Util.THEME_SETTING
-//                )
-//            }
-//
-//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-//            ?.let { contentEstablishSetup.setBackgroundResource(it) }
-//        for (i in 0 until Util.getListNumber().size) {
-//            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
-//                Util.getThemeToScreen(
-//                    it
-//                ).colorPinButton
-//            }
-//        }
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +74,7 @@ class PinCodeEstablishFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initAction()
-
+        setTheme()
     }
 
     private fun initAction() {
@@ -75,7 +89,7 @@ class PinCodeEstablishFragment : Fragment() {
 
     private fun setUpPassword() {
         txtPassEstablish.setText("")
-        tvSetPinCodeEstablish.text =  getString(R.string.enter_new_password)
+        tvSetPinCodeEstablish.text = getString(R.string.enter_new_password)
         Toast.makeText(requireContext(), getString(R.string.enter_new_password), Toast.LENGTH_LONG)
             .show()
         mAdapter.onItemClicked = { position ->
