@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isShowTime
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 
@@ -48,6 +49,8 @@ class Window(context: Context) {
         val tvForget = mView?.findViewById<TextView>(R.id.tvForgetLock)
         val contentAddView = mView?.findViewById<ConstraintLayout>(R.id.content_add_view_window)
         val textDescription = mView?.findViewById<TextView>(R.id.tvTitle)
+        val time = mView?.findViewById<TextView>(R.id.tvTime)
+        val date = mView?.findViewById<TextView>(R.id.tvDate)
         val context = context
         val prefs =
             context?.let {
@@ -56,6 +59,20 @@ class Window(context: Context) {
                     Util.THEME_SETTING
                 )
             }
+        val prefs1 =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.TIME_DEVICE
+                )
+            }
+        if (prefs1?.isShowTime == true) {
+            time?.visibility = View.VISIBLE
+            date?.visibility = View.VISIBLE
+        } else {
+            time?.visibility = View.GONE
+            date?.visibility = View.GONE
+        }
         val position = prefs?.themeCode
         val dataTheme = position?.let {
             Util.getThemeToScreen(it)
@@ -71,20 +88,26 @@ class Window(context: Context) {
                                         context?.let { it8 ->
                                             position?.let { it9 ->
                                                 textDescription?.let { it10 ->
-                                                    Util.setThemeUnlockScreen(
-                                                        it,
-                                                        it1,
-                                                        it2,
-                                                        it3,
-                                                        it4,
-                                                        it5,
-                                                        it6,
-                                                        it7,
-                                                        it10,
-                                                        it8,
-                                                        dataTheme,
-                                                        it9
-                                                    )
+                                                    time?.let { it11 ->
+                                                        date?.let { it12 ->
+                                                            Util.setThemeUnlockScreen(
+                                                                it,
+                                                                it1,
+                                                                it2,
+                                                                it3,
+                                                                it4,
+                                                                it5,
+                                                                it6,
+                                                                it7,
+                                                                it10,
+                                                                it11,
+                                                                it12,
+                                                                it8,
+                                                                dataTheme,
+                                                                it9
+                                                            )
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }

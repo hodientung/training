@@ -17,6 +17,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/imBackgroundVoiceLock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_20dp"
+            android:textColor="#000000"
+            android:text="@string/_09_39_sa"
+            android:textSize="@dimen/size_40sp" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/size_16dp"
+            android:text="@string/tuesday_27_september_2022"
+            android:textSize="@dimen/size_24" />
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/imBackgroundVoiceLock"
         android:layout_width="wrap_content"
@@ -32,14 +64,13 @@
         android:id="@+id/imVLock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/imBackgroundVoiceLock"
-        app:layout_constraintBottom_toBottomOf="@id/imBackgroundVoiceLock"
-        app:layout_constraintStart_toStartOf="@id/imBackgroundVoiceLock"
-        app:layout_constraintEnd_toEndOf="@id/imBackgroundVoiceLock"
-        android:scaleType="fitXY"
         android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
         android:src="@drawable/icon_voice_win"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/imBackgroundVoiceLock"
+        app:layout_constraintEnd_toEndOf="@id/imBackgroundVoiceLock"
+        app:layout_constraintStart_toStartOf="@id/imBackgroundVoiceLock"
+        app:layout_constraintTop_toTopOf="@id/imBackgroundVoiceLock" />
 
     <TextView
         android:id="@+id/tvSpeakLock"
@@ -47,10 +78,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
         android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_16dp"
+        android:lineSpacingExtra="@dimen/size_3dp"
         android:text="@string/speak_password_to_unlock"
         android:textColor="#000000"
         android:textSize="@dimen/size_24"
-        android:lineSpacingExtra="@dimen/size_20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imBackgroundVoiceLock" />
@@ -62,7 +94,7 @@
         android:layout_marginTop="@dimen/size_15dp"
         android:text="@string/forget_password"
         android:textColor="#000000"
-        android:textSize="@dimen/size_20sp"
+        android:textSize="@dimen/size_16_sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSpeakLock" />
@@ -72,9 +104,9 @@
         android:id="@+id/view1WinLock"
         android:layout_width="@dimen/size_66dp"
         android:layout_height="@dimen/size_66dp"
+        android:background="@drawable/round_image_window"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:background="@drawable/round_image_window"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/view2WinLock"
@@ -84,9 +116,9 @@
         android:id="@+id/view2WinLock"
         android:layout_width="@dimen/size_66dp"
         android:layout_height="@dimen/size_66dp"
+        android:background="@drawable/round_image_window"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:background="@drawable/round_image_window"
         app:layout_constraintLeft_toRightOf="@+id/view1WinLock"
         app:layout_constraintRight_toLeftOf="@+id/view3WinLock"
         app:layout_constraintTop_toTopOf="@id/view1WinLock"
@@ -96,9 +128,9 @@
         android:id="@+id/view3WinLock"
         android:layout_width="@dimen/size_66dp"
         android:layout_height="@dimen/size_66dp"
+        android:background="@drawable/round_image_window"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:background="@drawable/round_image_window"
         app:layout_constraintLeft_toRightOf="@+id/view2WinLock"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/view1WinLock"
@@ -107,35 +139,33 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/hello_world"
-        android:scaleType="fitXY"
         android:background="@drawable/number_key"
-        app:layout_constraintTop_toTopOf="@id/view1WinLock"
-        app:layout_constraintBottom_toBottomOf="@id/view1WinLock"
-        app:layout_constraintStart_toStartOf="@id/view1WinLock"
-        app:layout_constraintEnd_toEndOf="@id/view1WinLock"
-        />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:background="@drawable/icon_union"
-        app:layout_constraintTop_toTopOf="@id/view2WinLock"
-        app:layout_constraintBottom_toBottomOf="@id/view2WinLock"
-        app:layout_constraintStart_toStartOf="@id/view2WinLock"
-        app:layout_constraintEnd_toEndOf="@id/view2WinLock"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/view1WinLock"
+        app:layout_constraintEnd_toEndOf="@id/view1WinLock"
+        app:layout_constraintStart_toStartOf="@id/view1WinLock"
+        app:layout_constraintTop_toTopOf="@id/view1WinLock" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/icon_union"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/view2WinLock"
+        app:layout_constraintEnd_toEndOf="@id/view2WinLock"
+        app:layout_constraintStart_toStartOf="@id/view2WinLock"
+        app:layout_constraintTop_toTopOf="@id/view2WinLock" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/icon_recent"
-        app:layout_constraintTop_toTopOf="@id/view2WinLock"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@id/view3WinLock"
-        app:layout_constraintStart_toStartOf="@id/view3WinLock"
         app:layout_constraintEnd_toEndOf="@id/view3WinLock"
-        />
+        app:layout_constraintStart_toStartOf="@id/view3WinLock"
+        app:layout_constraintTop_toTopOf="@id/view2WinLock" />
 </androidx.constraintlayout.widget.ConstraintLayout>

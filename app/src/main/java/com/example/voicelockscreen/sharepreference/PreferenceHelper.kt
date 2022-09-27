@@ -17,6 +17,7 @@ object PreferenceHelper {
     private const val INPUT_PIN_LOCK = "input_pin_lock"
     private const val ANSWER = "answer"
     private const val FIRST_FLASH = "flash"
+    private const val SHOW_TIME = "current_time"
     private const val INPUT_PATTERN = "input_pattern"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
@@ -149,6 +150,15 @@ object PreferenceHelper {
                 it.putBoolean(FIRST_FLASH, value)
             }
         }
+
+    var SharedPreferences.isShowTime
+        get() = getBoolean(SHOW_TIME, false)
+        set(value) {
+            editMe {
+                it.putBoolean(SHOW_TIME, value)
+            }
+        }
+
 
     var SharedPreferences.clearValues
         get() = { }

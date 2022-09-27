@@ -148,11 +148,7 @@ class VoiceLockFragment : Fragment() {
                     VideoFolderFragment().pushToScreen(activity as MainActivity)
 
                 6 ->
-                    PreviousFragment().pushToScreen(activity as MainActivity)
-
-                7 ->
                     SettingFragment().pushToScreen(activity as MainActivity)
-
 
             }
         }

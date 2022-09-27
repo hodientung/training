@@ -142,6 +142,8 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
 
     private fun verifyPassword() {
         mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText("")
+        mView?.findViewById<TextView>(R.id.tvSetPinCodeWindow)?.text =
+            context?.getString(R.string.enter_pin_code_to_unlock)
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->

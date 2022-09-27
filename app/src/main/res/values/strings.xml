@@ -137,4 +137,15 @@
     <string name="click_view">Click View</string>
     <string name="create_new_your_pattern">Create new your pattern</string>
     <string name="enter_timer_pin_to_unlock">Enter timer pin to unlock</string>
+
+    <string name="hidden_date">Display Date &amp; Time</string>
+    <string name="language">Language</string>
+    <string name="share">Share</string>
+    <string name="about">about</string>
+    <string name="_09_39_sa">09:39 SA</string>
+    <string name="tuesday_27_september_2022">Tuesday, 27 September 2022</string>
+    <string name="show_time">Date &amp; Time is displayed on unlock screen</string>
+    <string name="hidden_time">Date &amp; Time is hidden on unlock screen</string>
+
+
 </resources>

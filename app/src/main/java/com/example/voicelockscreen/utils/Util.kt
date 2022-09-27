@@ -2,7 +2,6 @@ package com.example.voicelockscreen.utils
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +16,10 @@ import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
 import com.example.voicelockscreen.model.DataModelFunction
+import com.example.voicelockscreen.model.DataModelSetting
 import com.example.voicelockscreen.model.DataModelTheme
 import com.example.voicelockscreen.view.OnboardActivity
 import com.example.voicelockscreen.view.PatternView
-import kotlinx.android.synthetic.main.fragment_preview_theme.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -37,6 +36,7 @@ class Util {
         const val REQ_CODE_SPEECH_INPUT = 100
         const val THE_FIRST_VIEW = 1
         const val THE_SECOND_VIEW = 2
+        const val TIME_DEVICE = "current_time_device"
         const val TAG = "ImportantDialogFragment"
         const val KEY_PLAYER_POSITION = "key_player_position"
         const val KEY_PLAYER_PLAY_WHEN_READY = "key_player_play_when_ready"
@@ -49,6 +49,23 @@ class Util {
             val timePassword =
                 SimpleDateFormat("HH:mm", Locale.getDefault()).format(Calendar.getInstance().time)
             return timePassword.replace(":", "")
+        }
+
+        fun getPassCurrentTimeLock(): String {
+            return SimpleDateFormat(
+                "HH:mm a",
+                Locale.getDefault()
+            ).format(Calendar.getInstance().time)
+        }
+
+        fun getPassCurrentDateLock(): String {
+            return SimpleDateFormat(
+                "E",
+                Locale.getDefault()
+            ).format(Calendar.getInstance().time) + ", " + SimpleDateFormat(
+                "dd MMMM yyyy ",
+                Locale.getDefault()
+            ).format(Calendar.getInstance().time)
         }
 
         fun getListTheme(): ArrayList<DataModelTheme> {
@@ -189,6 +206,33 @@ class Util {
             item.add(DataModel(2, "100"))
             item.add(DataModel(1, "0"))
             item.add(DataModel(3, "xoa"))
+            return item
+        }
+
+        fun getListItemSetting(context: Context): ArrayList<DataModelSetting> {
+            val item = arrayListOf<DataModelSetting>()
+            item.add(
+                DataModelSetting(
+                    R.drawable.icon_lock,
+                    context.getString(R.string.disable_system_lock)
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.icon_mail,
+                    context.getString(R.string.hidden_date)
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.icon_language,
+                    context.getString(R.string.language)
+                )
+            )
+            item.add(DataModelSetting(R.drawable.icon_share, context.getString(R.string.share)))
+            item.add(DataModelSetting(R.drawable.icon_star, context.getString(R.string.rate_us)))
+            item.add(DataModelSetting(R.drawable.icon_privacy, context.getString(R.string.privacy)))
+            item.add(DataModelSetting(R.drawable.icon_about, context.getString(R.string.about)))
             return item
         }
 
@@ -674,6 +718,8 @@ class Util {
             tvForget: View,
             contentAddView: View,
             textDescription: View,
+            time: View,
+            date: View,
             context: Context,
             dataTheme: DataModelTheme?,
             position: Int
@@ -721,6 +767,16 @@ class Util {
             }
             dataTheme?.sizeText2?.let {
                 (tvForget as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
+            }
+            (time as TextView).typeface =
+                dataTheme?.fontText?.let { ResourcesCompat.getFont(context, it) }
+            (date as TextView).typeface =
+                dataTheme?.fontText?.let { ResourcesCompat.getFont(context, it) }
+            dataTheme?.colorText?.let {
+                time.setTextColor(ContextCompat.getColor(context,it))
+            }
+            dataTheme?.colorText?.let {
+                date.setTextColor(ContextCompat.getColor(context,it))
             }
         }
 

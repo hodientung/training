@@ -1,9 +1,9 @@
 package com.example.voicelockscreen.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
@@ -14,7 +14,7 @@ import kotlinx.coroutines.*
 class SplashVoiceLockActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        //setContentView(R.layout.activity_splash_screen)
         val prefs =
             PreferenceHelper.customPreference(
                 this,
@@ -22,13 +22,13 @@ class SplashVoiceLockActivity : AppCompatActivity() {
             )
         if (prefs.isFistOnboard)
             CoroutineScope(Dispatchers.Main).launch {
-                delay(1200L)
+                delay(3000L)
                 startActivity(Intent(this@SplashVoiceLockActivity, MainActivity::class.java))
                 finish()
             }
         else
             CoroutineScope(Dispatchers.Main).launch {
-                delay(1200L)
+                delay(3000L)
                 startActivity(Intent(this@SplashVoiceLockActivity, OnboardActivity::class.java))
                 finish()
             }

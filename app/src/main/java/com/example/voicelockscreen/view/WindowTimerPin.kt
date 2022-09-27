@@ -166,6 +166,8 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
 
     private fun verifyPassword() {
         mView?.findViewById<EditText>(R.id.txtPassTimer)?.setText("")
+        mView?.findViewById<TextView>(R.id.tvSetPinCodeTimer)?.text =
+            context?.getString(R.string.enter_timer_pin_to_unlock)
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->
