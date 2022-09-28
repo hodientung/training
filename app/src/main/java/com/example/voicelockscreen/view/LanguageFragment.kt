@@ -7,16 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.voicelockscreen.R
-import com.example.voicelockscreen.model.DataModelSetting
-import com.example.voicelockscreen.model.ModelLanguage
-import com.example.voicelockscreen.utils.LocaleHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_language.*
-import kotlinx.android.synthetic.main.fragment_setting.*
 
 
 class LanguageFragment : Fragment() {
     private lateinit var mAdapter: RecyclerViewLanguage
+     var onClose: (() -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +33,12 @@ class LanguageFragment : Fragment() {
 
     private fun initAction() {
         mAdapter.onItemClicked = {
-            mAdapter.dataModelSetting[it].code?.let { it1 ->
-                LocaleHelper.persist(
-                    requireContext(),
-                    it1
-                )
-            }
+            val prefs = PreferenceHelper.customPreference(requireContext(), Util.DATA_LANGUAGE_APP)
+            prefs.codeLanguage = mAdapter.dataModelSetting[it].code
+            requireActivity().supportFragmentManager.popBackStack()
+            onClose?.invoke()
+
+
         }
     }
 

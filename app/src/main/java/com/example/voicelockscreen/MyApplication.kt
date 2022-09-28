@@ -3,14 +3,7 @@ package com.example.voicelockscreen
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Context
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Build
-import com.example.voicelockscreen.sharepreference.PreferenceHelper
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
-import com.example.voicelockscreen.utils.LocaleHelper
-import com.example.voicelockscreen.utils.Util
 
 class MyApplication : Application() {
     override fun onCreate() {

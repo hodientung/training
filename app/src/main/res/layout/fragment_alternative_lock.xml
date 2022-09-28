@@ -24,6 +24,7 @@
         android:layout_marginTop="@dimen/size_24dp"
         android:text="@string/alternative_lock"
         android:textColor="#000000"
+        android:textStyle="bold"
         android:textSize="@dimen/size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

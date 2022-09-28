@@ -44,7 +44,12 @@ class SettingFragment : Fragment() {
                 0 -> startActivity(Intent(Settings.ACTION_SECURITY_SETTINGS))
                 1 -> {}
                 2 -> {
-                    LanguageFragment().pushToScreen(activity as MainActivity)
+                    val languageFragment = LanguageFragment()
+                    languageFragment.onClose = {
+                        requireActivity().supportFragmentManager.popBackStack()
+                        requireActivity().recreate()
+                    }
+                    languageFragment.pushToScreen(activity as MainActivity)
                 }
                 3 -> shareApp()
 

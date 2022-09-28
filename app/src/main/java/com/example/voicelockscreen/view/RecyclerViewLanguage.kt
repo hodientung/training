@@ -17,11 +17,17 @@ class RecyclerViewLanguage(val context: Context?) :
 
 
     var onItemClicked: ((position: Int) -> Unit)? = null
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     var dataModelSetting: ArrayList<DataModelSetting> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+    var selectedPosition = -1
 
 
     override fun onCreateViewHolder(
@@ -48,14 +54,22 @@ class RecyclerViewLanguage(val context: Context?) :
     ) :
         RecyclerView.ViewHolder(itemView) {
         init {
-            itemView.ctLanguage.setOnClickListener {
-                onItemClicked?.invoke(adapterPosition)
-            }
         }
 
         fun bind(dataModelSetting: DataModelSetting) {
             dataModelSetting.imageSetting?.let { itemView.imLanguage.setImageResource(it) }
             itemView.tvLanguage.text = dataModelSetting.text
+
+            itemView.rbLanguage.isChecked = adapterPosition == selectedPosition
+            itemView.rbLanguage.setOnCheckedChangeListener { _, b ->
+                if (b) {
+                    selectedPosition = adapterPosition
+                    itemView.rbLanguage.setOnClickListener {
+                        onItemClicked?.invoke(selectedPosition)
+                    }
+
+                }
+            }
         }
     }
 }

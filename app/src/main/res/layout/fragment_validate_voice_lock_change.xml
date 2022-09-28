@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
         android:text="@string/voice_lock"
+        android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="@dimen/size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,10 +32,11 @@
 
     <TextView
         android:id="@+id/tvDescriptionValidate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_100dp"
         android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:text="@string/tap_on_mic_n_conf"
         android:textColor="#333333"
         android:textSize="@dimen/size_16_sp"

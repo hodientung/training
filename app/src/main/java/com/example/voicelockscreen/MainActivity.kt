@@ -8,11 +8,12 @@ import android.provider.Settings
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.example.voicelockscreen.permission.ManagePermissions
+import com.example.voicelockscreen.view.BaseActivity
 import com.example.voicelockscreen.view.VoiceLockFragment
 
 private const val REQUEST_OVERLAY_PERMISSION = 155
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var managePermissions: ManagePermissions
 

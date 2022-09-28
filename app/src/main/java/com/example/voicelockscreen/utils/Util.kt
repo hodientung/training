@@ -292,43 +292,6 @@ class Util {
                 .replace(R.id.content_frame, this).commit()
         }
 
-        fun Fragment.pushToScreenOfOnBoard(activity: OnboardActivity) {
-            activity.supportFragmentManager.beginTransaction().addToBackStack(null)
-                .replace(R.id.contentOnboard, this).commit()
-        }
-
-        private fun getColorListScreen(): ArrayList<Int> {
-            val colorList = arrayListOf<Int>()
-
-            colorList.add(R.drawable.t6)
-            colorList.add(R.drawable.t4)
-            colorList.add(R.drawable.themec)
-            colorList.add(R.drawable.themee)
-            colorList.add(R.drawable.themeb)
-            colorList.add(R.drawable.thema)
-            colorList.add(R.drawable.t1)
-            colorList.add(R.drawable.t2)
-            colorList.add(R.drawable.t3)
-            colorList.add(R.drawable.t7)
-            return colorList
-        }
-
-        private fun getColorListButton(): ArrayList<Int> {
-            val colorList = arrayListOf<Int>()
-            colorList.add(R.drawable.round_button)
-            colorList.add(R.drawable.round_button2)
-            colorList.add(R.drawable.round_button3)
-            colorList.add(R.drawable.round_button4)
-            colorList.add(R.drawable.round_button5)
-            colorList.add(R.drawable.round_button6)
-            colorList.add(R.drawable.round_button7)
-            colorList.add(R.drawable.round_button8)
-            colorList.add(R.drawable.round_button9)
-            colorList.add(R.drawable.round_button12)
-
-            return colorList
-        }
-
         fun getThemeToScreen(type: Int): DataModelTheme {
             var colorBack = 0
             var fontText = 0
