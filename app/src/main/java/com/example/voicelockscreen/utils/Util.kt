@@ -718,7 +718,7 @@ class Util {
                 dataModel[i].colorNumber =
                     ContextCompat.getColor(context, R.color.black)
                 dataModel[i].sizeNumber = 20
-                dataModel[i].margin = 80
+                dataModel[i].margin = 60
             }
         }
 

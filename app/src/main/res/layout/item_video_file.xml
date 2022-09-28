@@ -7,7 +7,7 @@
     android:layout_margin="@dimen/size_10"
     android:elevation="@dimen/size_3dp"
     android:padding="8dp"
-    app:cardBackgroundColor="#F4F2F4"
+    app:cardBackgroundColor="@color/E3F2FD"
     app:cardCornerRadius="@dimen/size_16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,8 +32,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|end"
                 android:contentDescription="@string/hello_world"
-                android:scaleType="centerCrop"
-                android:src="@drawable/t1" />
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/videoDuration"
@@ -80,10 +79,14 @@
 
         <TextView
             android:id="@+id/set3"
-            android:layout_width="@dimen/size_62dp"
-            android:layout_height="@dimen/size_25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/round_click_view"
             android:gravity="center"
+            android:maxLines="2"
+            android:paddingVertical="@dimen/size_6dp"
+            android:paddingHorizontal="@dimen/size_18dp"
+            android:ellipsize="end"
             android:text="@string/click_view"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/size_11sp"

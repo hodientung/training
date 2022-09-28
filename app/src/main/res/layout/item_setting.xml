@@ -12,6 +12,7 @@
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
         android:layout_marginVertical="@dimen/size_8dp"
+        android:src="@drawable/rate_us"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_1dp"
         android:background="@color/color_F2F2F2"
-        app:layout_constraintTop_toBottomOf="@id/imSetting"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

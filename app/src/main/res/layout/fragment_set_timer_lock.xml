@@ -13,6 +13,7 @@
         android:layout_marginTop="@dimen/size_24dp"
         android:text="@string/set_time_lock"
         android:textColor="#000000"
+        android:textStyle="bold"
         android:textSize="@dimen/size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +32,11 @@
 
     <TextView
         android:id="@+id/tvDes"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/sze_40dp"
         android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:text="@string/note_timer_pin"
         android:textColor="#828282"
         android:textSize="@dimen/size_13sp"
@@ -51,11 +53,13 @@
 
     <TextView
         android:id="@+id/tvCancel"
-        android:layout_width="@dimen/size_98dp"
-        android:layout_height="@dimen/size_25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
         android:background="@drawable/round_text_cancel"
         android:gravity="center"
+        android:paddingHorizontal="@dimen/size_38dp"
+        android:paddingVertical="@dimen/size_6dp"
         android:layout_marginEnd="@dimen/size_5dp"
         android:text="@string/cancel"
         android:textColor="#FFFFFF"
@@ -65,9 +69,11 @@
 
     <TextView
         android:id="@+id/tvOk"
-        android:layout_width="@dimen/size_98dp"
-        android:layout_height="@dimen/size_25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
+        android:paddingHorizontal="@dimen/size_38dp"
+        android:paddingVertical="@dimen/size_6dp"
         android:background="@drawable/round_text_ok"
         android:gravity="center"
         android:text="@string/ok"

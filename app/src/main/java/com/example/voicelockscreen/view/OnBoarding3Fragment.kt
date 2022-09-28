@@ -11,8 +11,6 @@ import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isFistOnboard
 import com.example.voicelockscreen.utils.Util
-import kotlinx.android.synthetic.main.actitvity_onboard.*
-import kotlinx.android.synthetic.main.fragment_on_boarding2.*
 import kotlinx.android.synthetic.main.fragment_on_boarding3.*
 
 
