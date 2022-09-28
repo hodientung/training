@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelSetting
 import com.example.voicelockscreen.model.ModelLanguage
+import com.example.voicelockscreen.utils.LocaleHelper
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_language.*
 import kotlinx.android.synthetic.main.fragment_setting.*
@@ -33,7 +34,12 @@ class LanguageFragment : Fragment() {
 
     private fun initAction() {
         mAdapter.onItemClicked = {
-
+            mAdapter.dataModelSetting[it].code?.let { it1 ->
+                LocaleHelper.persist(
+                    requireContext(),
+                    it1
+                )
+            }
         }
     }
 

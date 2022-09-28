@@ -19,6 +19,7 @@ object PreferenceHelper {
     private const val FIRST_FLASH = "flash"
     private const val SHOW_TIME = "current_time"
     private const val INPUT_PATTERN = "input_pattern"
+    private const val CODE_LANGUAGE = "code_language"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)
@@ -124,6 +125,14 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putString(INPUT_PATTERN, value)
+            }
+        }
+
+    var SharedPreferences.codeLanguage
+        get() = getString(CODE_LANGUAGE, "en")
+        set(value) {
+            editMe {
+                it.putString(CODE_LANGUAGE, value)
             }
         }
 

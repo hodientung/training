@@ -24,6 +24,7 @@ import kotlin.collections.ArrayList
 class Util {
     companion object {
         const val CUSTOM_PREF_NAME = "Input_data"
+        const val DATA_LANGUAGE_APP = "data_language_app"
         const val THEME_SETTING = "theme_data"
         const val ANSWER_DATA = "answer_data"
         const val ON_BOARDING = "on_boarding"
