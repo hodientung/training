@@ -205,7 +205,7 @@ class VoiceLockService : Service() {
 
         val notification: Notification =
             NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
-                .setContentTitle(getText(R.string.notification_title))
+                .setContentTitle(getText(R.string.voice_lock_screen))
                 .setSmallIcon(R.drawable.icon_voice_mix)
                 .build()
         startForeground(1, notification)

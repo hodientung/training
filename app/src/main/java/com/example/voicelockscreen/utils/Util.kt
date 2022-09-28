@@ -14,10 +14,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
-import com.example.voicelockscreen.model.DataModel
-import com.example.voicelockscreen.model.DataModelFunction
-import com.example.voicelockscreen.model.DataModelSetting
-import com.example.voicelockscreen.model.DataModelTheme
+import com.example.voicelockscreen.model.*
 import com.example.voicelockscreen.view.OnboardActivity
 import com.example.voicelockscreen.view.PatternView
 import java.text.SimpleDateFormat
@@ -233,6 +230,59 @@ class Util {
             item.add(DataModelSetting(R.drawable.icon_star, context.getString(R.string.rate_us)))
             item.add(DataModelSetting(R.drawable.icon_privacy, context.getString(R.string.privacy)))
             item.add(DataModelSetting(R.drawable.icon_about, context.getString(R.string.about)))
+            return item
+        }
+
+        fun getListItemLanguage(context: Context): ArrayList<DataModelSetting> {
+            val item = arrayListOf<DataModelSetting>()
+            item.add(
+                DataModelSetting(
+                    R.drawable.c1,
+                    context.getString(R.string.english),
+                    code = "en"
+                )
+            )
+            item.add(                        //"en", "hi", "es", "fr", "de", "su", "pt"
+                DataModelSetting(
+                    R.drawable.c2,
+                    context.getString(R.string.hindi),
+                    code = "hi"
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.c3,
+                    context.getString(R.string.spanish), code = "es"
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.c4,
+                    context.getString(R.string.french),
+                    code = "fr"
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.c5,
+                    context.getString(R.string.german),
+                    code = "de"
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.c6,
+                    context.getString(R.string.indonesian),
+                    code = "su"
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.c7,
+                    context.getString(R.string.portuguese),
+                    code = "pt"
+                )
+            )
             return item
         }
 
@@ -773,10 +823,10 @@ class Util {
             (date as TextView).typeface =
                 dataTheme?.fontText?.let { ResourcesCompat.getFont(context, it) }
             dataTheme?.colorText?.let {
-                time.setTextColor(ContextCompat.getColor(context,it))
+                time.setTextColor(ContextCompat.getColor(context, it))
             }
             dataTheme?.colorText?.let {
-                date.setTextColor(ContextCompat.getColor(context,it))
+                date.setTextColor(ContextCompat.getColor(context, it))
             }
         }
 

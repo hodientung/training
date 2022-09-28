@@ -41,7 +41,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/light_dark"
                 android:padding="4dp"
-                android:text="@string/_04_12"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
 
@@ -65,7 +64,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/video_name"
                 android:textColor="#353535"
                 android:textSize="@dimen/size_16_sp"
                 />
@@ -76,7 +74,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/_286_09_mb"
                 android:textColor="@color/color_828282"
                 android:textSize="@dimen/size_11sp" />
         </LinearLayout>

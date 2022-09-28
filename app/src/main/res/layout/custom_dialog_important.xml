@@ -26,7 +26,6 @@
         android:layout_marginTop="@dimen/size_10"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/size_7sp"
-        android:text="@string/your_voice_password_is_alo"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/size_13sp"
         app:layout_constraintEnd_toEndOf="parent"
