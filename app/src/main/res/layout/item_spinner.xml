@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_world"
         android:textColor="#353535"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:textSize="@dimen/size_17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

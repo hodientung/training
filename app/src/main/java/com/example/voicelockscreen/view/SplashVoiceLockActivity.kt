@@ -3,6 +3,7 @@ package com.example.voicelockscreen.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R

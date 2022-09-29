@@ -42,6 +42,7 @@ class VoiceLockService : Service() {
                     window.open()
                     window.getView()?.findViewById<ImageView>(R.id.imBackgroundVoiceLock)
                         ?.setOnClickListener {
+                            window.startAnimationRipple()
                             startListeningRecognitionService()
                         }
 //                    setTheme(
@@ -77,20 +78,6 @@ class VoiceLockService : Service() {
             }
         }
     }
-
-    private fun setTheme(context: Context?, view: View?) {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.THEME_SETTING
-                )
-            }
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { view?.setBackgroundResource(it) }
-
-    }
-
 
     private fun startListeningRecognitionService() {
 
@@ -132,6 +119,7 @@ class VoiceLockService : Service() {
 
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
+                window.cancelAnimationRipple()
             }
 
             override fun onResults(p0: Bundle?) {
@@ -147,9 +135,8 @@ class VoiceLockService : Service() {
                     println("No voice results")
                 } else {
                     for (match in voiceResults) {
-                        window.getView()?.findViewById<TextView>(R.id.test_thu)?.text =
-                            match.toString()
                         if (match.toString() == firstInput) {
+                            window.cancelAnimationRipple()
                             window.close()
                         }
                     }

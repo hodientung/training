@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_11dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:text="@string/hello_world"
         android:textColor="@color/color_616161"
         android:textSize="@dimen/size_13sp"

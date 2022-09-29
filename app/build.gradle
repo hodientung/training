@@ -61,5 +61,5 @@ dependencies {
     implementation 'io.github.itsxtt:pattern-lock:0.2.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'me.relex:circleindicator:2.1.6'
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 }

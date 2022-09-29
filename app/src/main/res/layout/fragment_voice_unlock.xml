@@ -10,21 +10,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:text="@string/voice_lock"
         android:textColor="#000000"
-        android:textStyle="bold"
         android:textSize="@dimen/size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/ln"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/imBackgroundVoiceLock"
+        app:layout_constraintBottom_toTopOf="@id/imVLock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle">
@@ -34,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_20dp"
+            android:fontFamily="@font/standard_font_sf_pro_regular"
             android:textColor="#000000"
             android:textSize="@dimen/size_40sp" />
 
@@ -41,23 +43,37 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:gravity="center"
             android:layout_marginHorizontal="@dimen/size_16dp"
+            android:fontFamily="@font/standard_font_sf_pro_regular"
+            android:gravity="center"
+            android:textColor="#000000"
             android:textSize="@dimen/size_24" />
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imBackgroundVoiceLock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_180dp"
-        android:contentDescription="@string/hello_world"
-        android:scaleType="fitXY"
+
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/content3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:rb_duration="3000"
+        app:rb_radius="32dp"
+        app:rb_rippleAmount="4"
+        app:rb_scale="6">
+        <ImageView
+            android:id="@+id/imBackgroundVoiceLock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/hello_world"
+            android:scaleType="fitXY" />
+    </com.skyfishjy.library.RippleBackground>
+
 
     <ImageView
         android:id="@+id/imVLock"
@@ -66,31 +82,33 @@
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
         android:src="@drawable/icon_voice_win"
-        app:layout_constraintBottom_toBottomOf="@id/imBackgroundVoiceLock"
-        app:layout_constraintEnd_toEndOf="@id/imBackgroundVoiceLock"
-        app:layout_constraintStart_toStartOf="@id/imBackgroundVoiceLock"
-        app:layout_constraintTop_toTopOf="@id/imBackgroundVoiceLock" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvSpeakLock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_24dp"
-        android:gravity="center"
         android:layout_marginHorizontal="@dimen/size_16dp"
+        android:layout_marginTop="@dimen/size_100dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:gravity="center"
         android:lineSpacingExtra="@dimen/size_3dp"
         android:text="@string/speak_password_to_unlock"
         android:textColor="#000000"
         android:textSize="@dimen/size_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imBackgroundVoiceLock" />
+        app:layout_constraintTop_toBottomOf="@id/imVLock" />
 
     <TextView
         android:id="@+id/tvForgetLock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_15dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:text="@string/forget_password"
         android:textColor="#000000"
         android:textSize="@dimen/size_16_sp"

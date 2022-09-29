@@ -25,6 +25,7 @@
         android:layout_marginHorizontal="@dimen/size_50dp"
         android:layout_marginTop="@dimen/size_24dp"
         android:gravity="center"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:lineSpacingExtra="@dimen/size_3dp"
         android:maxLines="2"
         android:text="@string/draw_your_pattern_to_unlock"

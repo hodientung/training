@@ -59,11 +59,13 @@
 
     <TextView
         android:id="@+id/t1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_60"
         android:text="@string/password_changes_over_time"
         android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_16dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:textColor="@color/color_4f4f4f"
         android:textSize="@dimen/size_26sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,10 +73,12 @@
         app:layout_constraintTop_toBottomOf="@id/view1" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_20dp"
         android:gravity="center"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:text="@string/you_can_choose_the_themes_for_your_lock_screen"
         android:textColor="@color/color_828282"
         android:textSize="@dimen/size_13sp"
@@ -89,6 +93,7 @@
         android:background="@drawable/round_button_onboard"
         android:gravity="center"
         android:text="@string/next"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/size_16_sp"
         app:layout_constraintBottom_toBottomOf="parent"

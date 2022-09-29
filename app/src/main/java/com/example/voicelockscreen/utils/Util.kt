@@ -718,7 +718,7 @@ class Util {
                 dataModel[i].colorNumber =
                     ContextCompat.getColor(context, R.color.black)
                 dataModel[i].sizeNumber = 20
-                dataModel[i].margin = 60
+                dataModel[i].margin = 35
             }
         }
 
@@ -792,15 +792,19 @@ class Util {
             dataTheme?.colorText?.let {
                 date.setTextColor(ContextCompat.getColor(context, it))
             }
+            time.text = getPassCurrentTimeLock()
+            date.text = getPassCurrentDateLock()
         }
 
         fun setOriginalThemeUnlockScreen(
             imBackgroundVoice: View,
             contentAddView: View,
             textDescription: View,
+            time: View,
+            date: View,
             context: Context
         ) {
-            (contentAddView as ConstraintLayout).setBackgroundResource(R.drawable.gradient_bg)
+            (contentAddView as ConstraintLayout).setBackgroundResource(R.drawable.gradient_background_tung)
             (imBackgroundVoice as ImageView).setImageResource(R.drawable.round_speak)
             (textDescription as TextView).setTextColor(
                 ContextCompat.getColor(
@@ -808,6 +812,8 @@ class Util {
                     R.color.black
                 )
             )
+            (time as TextView).text = getPassCurrentTimeLock()
+            (date as TextView).text = getPassCurrentDateLock()
 
         }
     }

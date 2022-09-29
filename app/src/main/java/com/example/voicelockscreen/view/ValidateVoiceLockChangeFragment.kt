@@ -1,7 +1,11 @@
 package com.example.voicelockscreen.view
 
+import android.animation.ObjectAnimator
+import android.animation.ObjectAnimator.ofFloat
 import android.content.*
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -9,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -24,26 +29,11 @@ import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 
 class ValidateVoiceLockChangeFragment : Fragment() {
 
+    private lateinit var objectAnimator: ObjectAnimator
 
     override fun onResume() {
         super.onResume()
         tvDescriptionValidate.text = getString(R.string.tap_on_mic_n_conf)
-        //setTheme()
-    }
-
-    //show theme for layout
-    private fun setTheme() {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.THEME_SETTING
-                )
-            }
-
-//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-//            ?.let { contentValidateVoiceLockValidate.setBackgroundResource(it) }
-
     }
 
     override fun onCreateView(
@@ -60,13 +50,43 @@ class ValidateVoiceLockChangeFragment : Fragment() {
     }
 
     private fun initAction() {
+        startAnimationImage()
         imKaraValidate.setOnClickListener {
+            startAnimationRipple()
             tvDescriptionValidate.text = getString(R.string.please_speak_something)
             startListeningRecognitionService()
         }
         imBackValidate.setOnClickListener {
             AlternativeLockFragment().pushToScreen(activity as MainActivity)
         }
+    }
+
+    private fun startAnimationImage() =
+        Handler(Looper.getMainLooper()).postDelayed({
+            objectAnimator = ofFloat(animation_image_Validate, View.ROTATION, 0.0f, 360.0f)
+            objectAnimator.repeatCount = Animation.INFINITE
+            objectAnimator.interpolator = LinearInterpolator()
+            objectAnimator.duration = 2000
+            objectAnimator.start()
+        }, 100)
+
+
+    private fun cancelAnimationImage() =
+        Handler(Looper.getMainLooper()).postDelayed({ objectAnimator.cancel() }, 100)
+
+    private fun startAnimationRipple() = Handler(Looper.getMainLooper()).postDelayed({
+        content.startRippleAnimation()
+    }, 100)
+
+    private fun cancelAnimationRipple() =
+        Handler(Looper.getMainLooper()).postDelayed({ content.stopRippleAnimation() }, 100)
+
+
+    override fun onPause() {
+        super.onPause()
+        cancelAnimationImage()
+        if (content.isRippleAnimationRunning)
+            cancelAnimationRipple()
     }
 
     private fun startListeningRecognitionService() {
@@ -105,6 +125,7 @@ class ValidateVoiceLockChangeFragment : Fragment() {
 
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
+                cancelAnimationRipple()
                 val errorMessage: String = getErrorText(p0)
                 tvDescriptionValidate.text = errorMessage
                 Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
@@ -130,6 +151,7 @@ class ValidateVoiceLockChangeFragment : Fragment() {
                                 getString(R.string.correct_password),
                                 Toast.LENGTH_LONG
                             ).show()
+                            cancelAnimationRipple()
                             activity?.supportFragmentManager?.popBackStack()
                             SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
                         } else {

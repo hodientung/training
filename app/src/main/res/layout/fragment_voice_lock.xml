@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
-        android:textStyle="bold"
         android:lineSpacingExtra="@dimen/size_3dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:layout_marginHorizontal="@dimen/size_16dp"
         android:text="@string/voice_lock_screen"
         android:textColor="#000000"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_16dp"
             android:layout_marginTop="@dimen/size_16dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/standard_font_sf_pro_regular"
             android:layout_marginBottom="@dimen/size_5dp"
             android:text="@string/lock_screen_status"
             android:textColor="#353535"
@@ -55,6 +55,7 @@
             android:text="@string/enable_lock_service"
             android:textColor="#AFAFAF"
             android:textSize="@dimen/size_13sp"
+            android:fontFamily="@font/standard_font_sf_pro_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvLockScreenStatus" />
 

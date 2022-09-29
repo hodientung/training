@@ -1,12 +1,18 @@
 package com.example.voicelockscreen.view
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Context.WINDOW_SERVICE
 import android.graphics.PixelFormat
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.*
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.voicelockscreen.R
@@ -14,6 +20,8 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isShowTime
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
+import com.skyfishjy.library.RippleBackground
+import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 
 
 class Window(context: Context) {
@@ -22,6 +30,7 @@ class Window(context: Context) {
     private var mParams: WindowManager.LayoutParams? = null
     private var mWindowManager: WindowManager? = null
     private var layoutInflater: LayoutInflater? = null
+    private lateinit var objectAnimator: ObjectAnimator
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -39,6 +48,19 @@ class Window(context: Context) {
         mWindowManager = context.getSystemService(WINDOW_SERVICE) as WindowManager?
     }
 
+    fun startAnimationRipple() {
+        val content3 = mView?.findViewById<RippleBackground>(R.id.content3)
+        Handler(Looper.getMainLooper()).postDelayed({
+            content3?.startRippleAnimation()
+        }, 100)
+    }
+
+    fun cancelAnimationRipple() {
+        val content3 = mView?.findViewById<RippleBackground>(R.id.content3)
+        Handler(Looper.getMainLooper()).postDelayed({ content3?.stopRippleAnimation() }, 100)
+    }
+
+
     private fun setTheme() {
         val view1Win = mView?.findViewById<ImageView>(R.id.view1WinLock)
         val view2Win = mView?.findViewById<ImageView>(R.id.view2WinLock)
@@ -51,6 +73,7 @@ class Window(context: Context) {
         val textDescription = mView?.findViewById<TextView>(R.id.tvTitle)
         val time = mView?.findViewById<TextView>(R.id.tvTime)
         val date = mView?.findViewById<TextView>(R.id.tvDate)
+        val ln = mView?.findViewById<LinearLayout>(R.id.ln)
         val context = context
         val prefs =
             context?.let {
@@ -66,13 +89,10 @@ class Window(context: Context) {
                     Util.TIME_DEVICE
                 )
             }
-        if (prefs1?.isShowTime == true) {
-            time?.visibility = View.VISIBLE
-            date?.visibility = View.VISIBLE
-        } else {
-            time?.visibility = View.GONE
-            date?.visibility = View.GONE
-        }
+        if (prefs1?.isShowTime == true)
+            ln?.visibility = View.VISIBLE
+        else
+            ln?.visibility = View.GONE
         val position = prefs?.themeCode
         val dataTheme = position?.let {
             Util.getThemeToScreen(it)
@@ -122,10 +142,14 @@ class Window(context: Context) {
             imBackgroundVoice?.let {
                 contentAddView?.let { it1 ->
                     textDescription?.let { it2 ->
-                        Util.setOriginalThemeUnlockScreen(
-                            it,
-                            it1, it2, context
-                        )
+                        time?.let { it3 ->
+                            date?.let { it4 ->
+                                Util.setOriginalThemeUnlockScreen(
+                                    it,
+                                    it1, it2, it3, it4, context
+                                )
+                            }
+                        }
                     }
                 }
             }

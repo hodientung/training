@@ -1,7 +1,10 @@
 package com.example.voicelockscreen.view
 
+import android.animation.ObjectAnimator
 import android.content.*
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
@@ -9,6 +12,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.MainActivity
@@ -20,15 +25,12 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
+import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 
 
 class SetupVoiceLockFragment : Fragment() {
 
-    override fun onResume() {
-        super.onResume()
-        //setTheme()
-    }
-
+    private lateinit var objectAnimator: ObjectAnimator
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,25 +40,15 @@ class SetupVoiceLockFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_setup_voice_lock, container, false)
     }
 
-    //show theme for layout
-//    private fun setTheme() {
-//        val prefs =
-//            PreferenceHelper.customPreference(
-//                requireContext(),
-//                Util.THEME_SETTING
-//            )
-//        prefs.themeCode.let { Util.getThemeToScreen(it).colorTheme }
-//            .let { contentSetupVoiceLock.setBackgroundResource(it) }
-//
-//    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAction()
     }
 
     private fun initAction() {
+        startAnimationImage()
         imKara.setOnClickListener {
+            startAnimationRipple()
             tvDescription.text = getString(R.string.please_speak_something)
             startListeningRecognitionService()
         }
@@ -64,6 +56,35 @@ class SetupVoiceLockFragment : Fragment() {
             activity?.supportFragmentManager?.popBackStack()
             AlternativeLockFragment().pushToScreen(activity as MainActivity)
         }
+    }
+
+    private fun startAnimationImage() =
+        Handler(Looper.getMainLooper()).postDelayed({
+            objectAnimator =
+                ObjectAnimator.ofFloat(animation_image, View.ROTATION, 0.0f, 360.0f)
+            objectAnimator.repeatCount = Animation.INFINITE
+            objectAnimator.interpolator = LinearInterpolator()
+            objectAnimator.duration = 2000
+            objectAnimator.start()
+        }, 100)
+
+
+    private fun cancelAnimationImage() =
+        Handler(Looper.getMainLooper()).postDelayed({ objectAnimator.cancel() }, 100)
+
+    private fun startAnimationRipple() = Handler(Looper.getMainLooper()).postDelayed({
+        content1.startRippleAnimation()
+    }, 100)
+
+    private fun cancelAnimationRipple() =
+        Handler(Looper.getMainLooper()).postDelayed({ content1.stopRippleAnimation() }, 100)
+
+
+    override fun onPause() {
+        super.onPause()
+        cancelAnimationImage()
+        if (content1.isRippleAnimationRunning)
+            cancelAnimationRipple()
     }
 
     private fun startListeningRecognitionService() {
@@ -101,6 +122,7 @@ class SetupVoiceLockFragment : Fragment() {
 
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
+                cancelAnimationRipple()
                 val errorMessage: String = getErrorText(p0)
                 tvDescription.text = errorMessage
                 Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
@@ -122,6 +144,7 @@ class SetupVoiceLockFragment : Fragment() {
                         }
                         tvDescription.text = getString(R.string.create_n_new_voice_password)
                         prefs?.input = result
+                        cancelAnimationRipple()
                         prefs?.isSetupVoiceLock = true
                         activity?.supportFragmentManager?.let {
                             ImportantDialogFragment().show(

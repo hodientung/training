@@ -25,6 +25,7 @@
         android:text="@string/disable_system_lock"
         android:textColor="@color/color_353535"
         android:textSize="@dimen/size_15"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         app:layout_constraintBottom_toBottomOf="@id/imSetting"
         app:layout_constraintStart_toEndOf="@id/imSetting"
         app:layout_constraintTop_toTopOf="@id/imSetting" />
