@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
@@ -23,6 +24,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
+import com.skyfishjy.library.RippleBackground
 import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 
@@ -30,9 +32,12 @@ import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 class ValidateVoiceLockChangeFragment : Fragment() {
 
     private lateinit var objectAnimator: ObjectAnimator
+    private lateinit var rippleBackground: RippleBackground
 
     override fun onResume() {
         super.onResume()
+        Log.e("tung", "resume")
+        startAnimationImage()
         tvDescriptionValidate.text = getString(R.string.tap_on_mic_n_conf)
     }
 
@@ -41,16 +46,39 @@ class ValidateVoiceLockChangeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        Log.e("tung", "onCreateView")
         return inflater.inflate(R.layout.fragment_validate_voice_lock_change, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.e("tung", "onViewCreate")
         initAction()
     }
 
+    override fun onStop() {
+        super.onStop()
+        Log.e("tung", "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("tung", "onDestroy")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.e("tung", "onDetach")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.e("tung", "onDestroyView")
+    }
+
     private fun initAction() {
-        startAnimationImage()
+        rippleBackground = RippleBackground(requireContext())
+        rippleBackground = content
         imKaraValidate.setOnClickListener {
             startAnimationRipple()
             tvDescriptionValidate.text = getString(R.string.please_speak_something)
@@ -75,18 +103,24 @@ class ValidateVoiceLockChangeFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({ objectAnimator.cancel() }, 100)
 
     private fun startAnimationRipple() = Handler(Looper.getMainLooper()).postDelayed({
-        content.startRippleAnimation()
+        if (!rippleBackground.isRippleAnimationRunning)
+            rippleBackground.startRippleAnimation()
     }, 100)
 
     private fun cancelAnimationRipple() =
-        Handler(Looper.getMainLooper()).postDelayed({ content.stopRippleAnimation() }, 100)
-
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                if (rippleBackground.isRippleAnimationRunning
+                ) rippleBackground.stopRippleAnimation()
+            },
+            100
+        )
 
     override fun onPause() {
         super.onPause()
+        Log.e("tung", "onPause")
         cancelAnimationImage()
-        if (content.isRippleAnimationRunning)
-            cancelAnimationRipple()
+        //cancelAnimationRipple()
     }
 
     private fun startListeningRecognitionService() {
@@ -133,6 +167,7 @@ class ValidateVoiceLockChangeFragment : Fragment() {
 
             override fun onResults(p0: Bundle?) {
                 Log.e("tung", "onResult")
+                cancelAnimationRipple()
                 val voiceResults = p0?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                 if (voiceResults == null) tvDescription.text =
                     getString(R.string.did_not_understand)
@@ -151,9 +186,8 @@ class ValidateVoiceLockChangeFragment : Fragment() {
                                 getString(R.string.correct_password),
                                 Toast.LENGTH_LONG
                             ).show()
-                            cancelAnimationRipple()
                             activity?.supportFragmentManager?.popBackStack()
-                            SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
+                            CreateVoiceLockFragment().pushToScreen(activity as MainActivity)
                         } else {
                             tvDescriptionValidate.text = getString(R.string.in_correct_password)
                             Toast.makeText(

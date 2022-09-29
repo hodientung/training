@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.custom_dialog_important.*
 
 
 class ImportantDialogFragment : DialogFragment() {
+
+    var onClose: (() -> Unit)? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,6 +39,7 @@ class ImportantDialogFragment : DialogFragment() {
         }
         tv2.text = getString(R.string.report_input, prefs?.input)
         btnSubmitImportant.setOnClickListener {
+            onClose?.invoke()
             Toast.makeText(
                 requireContext(),
                 getString(R.string.successful_set_voice_password),

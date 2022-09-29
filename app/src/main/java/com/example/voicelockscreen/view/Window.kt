@@ -30,7 +30,7 @@ class Window(context: Context) {
     private var mParams: WindowManager.LayoutParams? = null
     private var mWindowManager: WindowManager? = null
     private var layoutInflater: LayoutInflater? = null
-    private lateinit var objectAnimator: ObjectAnimator
+    private var rippleBackground: RippleBackground? = null
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -46,18 +46,24 @@ class Window(context: Context) {
             context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater?
         mView = layoutInflater?.inflate(R.layout.fragment_voice_unlock, null)
         mWindowManager = context.getSystemService(WINDOW_SERVICE) as WindowManager?
+        rippleBackground = RippleBackground(context)
     }
 
     fun startAnimationRipple() {
         val content3 = mView?.findViewById<RippleBackground>(R.id.content3)
+        rippleBackground = content3
         Handler(Looper.getMainLooper()).postDelayed({
-            content3?.startRippleAnimation()
+            rippleBackground?.startRippleAnimation()
         }, 100)
     }
 
     fun cancelAnimationRipple() {
         val content3 = mView?.findViewById<RippleBackground>(R.id.content3)
-        Handler(Looper.getMainLooper()).postDelayed({ content3?.stopRippleAnimation() }, 100)
+        rippleBackground = content3
+        Handler(Looper.getMainLooper()).postDelayed(
+            { rippleBackground?.stopRippleAnimation() },
+            100
+        )
     }
 
 

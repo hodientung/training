@@ -700,12 +700,14 @@ class Util {
         fun setOriginalScreen(
             sizeNumberPin: Int,
             imLockPin: View,
+            imVSmall: View,
             txtPass: View,
             tvSetPinCode: View,
             dataModel: ArrayList<DataModel>,
             context: Context
         ) {
-            (imLockPin as ImageView).setBackgroundResource(R.drawable.ic_lock)
+            (imLockPin as ImageView).setBackgroundResource(R.drawable.round_image_fake)
+            (imVSmall as ImageView).setBackgroundResource(R.drawable.ic_lock)
             (txtPass as EditText).setTextColor(
                 ContextCompat.getColor(
                     context,

@@ -52,6 +52,7 @@ class ValidatePinLockChangeFragment : Fragment() {
             Util.setOriginalScreen(
                 sizeNumberPin,
                 imLockPinValidate,
+                imVSmallValidate,
                 txtPassValidate,
                 tvSetPinCodeValidate,
                 mAdapter.dataModel,

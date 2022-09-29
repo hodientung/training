@@ -106,5 +106,7 @@
     <string name="german" translatable="false">German</string>
     <string name="indonesian" translatable="false">Indonesian</string>
     <string name="portuguese" translatable="false">Portuguese</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

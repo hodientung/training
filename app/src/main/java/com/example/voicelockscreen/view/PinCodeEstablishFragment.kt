@@ -55,6 +55,7 @@ class PinCodeEstablishFragment : Fragment() {
             Util.setOriginalScreen(
                 sizeNumberPin,
                 imLockPinEstablish,
+                imVSmallEstablish,
                 txtPassEstablish,
                 tvSetPinCodeEstablish,
                 mAdapter.dataModel,

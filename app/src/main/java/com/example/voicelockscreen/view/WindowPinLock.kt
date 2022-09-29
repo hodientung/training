@@ -100,14 +100,17 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
                 txtPassEstablish?.let { it1 ->
                     context?.let { it2 ->
                         tvSetPinCodeEstablish?.let { it3 ->
-                            Util.setOriginalScreen(
-                                sizeNumberPin,
-                                it,
-                                it1,
-                                it3,
-                                mAdapter.dataModel,
-                                it2
-                            )
+                            imVSmallEstablish?.let { it4 ->
+                                Util.setOriginalScreen(
+                                    sizeNumberPin,
+                                    it,
+                                    it4,
+                                    it1,
+                                    it3,
+                                    mAdapter.dataModel,
+                                    it2
+                                )
+                            }
                         }
                     }
                 }
