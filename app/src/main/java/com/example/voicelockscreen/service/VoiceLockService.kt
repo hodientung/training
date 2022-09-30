@@ -138,9 +138,12 @@ class VoiceLockService : Service() {
                     println("No voice results")
                 } else {
                     for (match in voiceResults) {
+                        window.cancelAnimationRipple()
                         if (match.toString() == firstInput) {
-                            window.cancelAnimationRipple()
                             window.close()
+                        } else{
+                            val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
+                            tvText?.text = getString(R.string.sorry_password_voice)
                         }
                     }
                 }

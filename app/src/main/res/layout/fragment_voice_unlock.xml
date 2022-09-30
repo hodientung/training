@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
         android:fontFamily="@font/standard_font_sf_pro_regular"
@@ -22,9 +22,10 @@
 
     <LinearLayout
         android:id="@+id/ln"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:orientation="vertical"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/imVLock"
@@ -45,7 +46,6 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/size_16dp"
             android:fontFamily="@font/standard_font_sf_pro_regular"
             android:gravity="center"
             android:textColor="#000000"
