@@ -6,15 +6,19 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelMediaFile
 import kotlinx.android.synthetic.main.item_video_folder.view.*
 import java.io.File
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RecyclerViewVideoFolder(val context: Context?) :
-    RecyclerView.Adapter<RecyclerViewVideoFolder.VideoFolderViewHolder>() {
+    RecyclerView.Adapter<RecyclerViewVideoFolder.VideoFolderViewHolder>(), Filterable {
 
     var onItemClicked: ((position: Int) -> Unit)? = null
     var dataModelMediaFile: ArrayList<DataModelMediaFile> = arrayListOf()
@@ -27,6 +31,10 @@ class RecyclerViewVideoFolder(val context: Context?) :
             field = value
             notifyDataSetChanged()
         }
+    var countryFilterList = ArrayList<String>()
+    init {
+        countryFilterList = folderPath
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoFolderViewHolder =
@@ -97,5 +105,40 @@ class RecyclerViewVideoFolder(val context: Context?) :
             return numberOfVideo
         }
 
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                folderPath = if (charSearch.isEmpty()) {
+                    countryFilterList
+                } else {
+                    val resultList = ArrayList<String>()
+                    for (row in folderPath) {
+                        val indexPath: Int = row.lastIndexOf("/")
+                        val nameOfFolder = row.substring(indexPath + 1)
+                        if (nameOfFolder.lowercase(Locale.ROOT)
+                                .contains(charSearch.lowercase(Locale.ROOT))
+                        ) {
+                            resultList.add(row)
+                        }
+                    }
+                    resultList
+                }
+                val filterResults = FilterResults()
+
+                filterResults.values = folderPath
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                if (results != null)
+                    folderPath = results.values as ArrayList<String>
+                notifyDataSetChanged()
+            }
+
+        }
     }
 }

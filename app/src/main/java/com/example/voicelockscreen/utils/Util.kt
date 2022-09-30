@@ -2,6 +2,7 @@ package com.example.voicelockscreen.utils
 
 import android.content.Context
 import android.content.res.Resources
+import android.speech.SpeechRecognizer
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -817,6 +818,22 @@ class Util {
             (time as TextView).text = getPassCurrentTimeLock()
             (date as TextView).text = getPassCurrentDateLock()
 
+        }
+
+        fun getErrorText(error: Int): String {
+            val message: String = when (error) {
+                SpeechRecognizer.ERROR_AUDIO -> "Audio recording error, please try again."
+                SpeechRecognizer.ERROR_CLIENT -> "Client side error, please try again."
+                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "Insufficient permissions, please try again."
+                SpeechRecognizer.ERROR_NETWORK -> "Network error, please try again."
+                SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "Network timeout, please try again."
+                SpeechRecognizer.ERROR_NO_MATCH -> "No match"
+                SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "RecognitionService busy, please try again."
+                SpeechRecognizer.ERROR_SERVER -> "error from server, please try again."
+                SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "No speech input, please try again."
+                else -> "Didn't understand, please try again."
+            }
+            return message
         }
     }
 

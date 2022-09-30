@@ -41,6 +41,9 @@ class ThemeFragment : Fragment() {
     private fun initAction() {
         val bundle = Bundle()
         val previewTheme = PreviewThemeFragment()
+        previewTheme.onClose = {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
         adapterTheme.onItemClicked = {
             bundle.putSerializable("theme", adapterTheme.dataModelTheme[it])
             bundle.putInt("position", it)

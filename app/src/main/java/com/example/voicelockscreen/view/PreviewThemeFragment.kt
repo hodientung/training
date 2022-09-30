@@ -1,21 +1,14 @@
 package com.example.voicelockscreen.view
 
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.load.engine.Resource
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelTheme
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
@@ -26,6 +19,8 @@ import kotlinx.android.synthetic.main.fragment_preview_theme.*
 
 
 class PreviewThemeFragment : Fragment() {
+
+    var onClose: (() -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +55,8 @@ class PreviewThemeFragment : Fragment() {
                 }
             prefs?.themeCode = position ?: -1
             prefs?.themePinButton = position ?: -1
+            requireActivity().supportFragmentManager.popBackStack()
+            onClose?.invoke()
 
         }
         tvPreviewBack.setOnClickListener {

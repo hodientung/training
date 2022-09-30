@@ -13,7 +13,6 @@ import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.NotificationCompat
@@ -21,7 +20,6 @@ import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.view.*
 
@@ -42,6 +40,8 @@ class VoiceLockService : Service() {
                     window.open()
                     window.getView()?.findViewById<ImageView>(R.id.imBackgroundVoiceLock)
                         ?.setOnClickListener {
+                            val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
+                            tvText?.text = getString(R.string.speak_password_to_unlock)
                             window.startAnimationRipple()
                             startListeningRecognitionService()
                         }
@@ -119,6 +119,9 @@ class VoiceLockService : Service() {
 
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
+                val errorMessage: String = Util.getErrorText(p0)
+                val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
+                tvText?.text = errorMessage
                 window.cancelAnimationRipple()
             }
 

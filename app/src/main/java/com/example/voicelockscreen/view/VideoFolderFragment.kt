@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
@@ -51,6 +52,17 @@ class VideoFolderFragment : Fragment() {
         tvBackImage1.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
+        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapterVideoFolder.filter.filter(newText)
+                return false
+            }
+
+        })
     }
 
     private fun initView() {
