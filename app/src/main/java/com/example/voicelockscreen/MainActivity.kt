@@ -28,6 +28,12 @@ class MainActivity : BaseActivity() {
             .commit()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount == 0)
+            finish();    // Finish the activity
+    }
+
     private fun setFullScreen() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window?.setFlags(1024, 1024)
