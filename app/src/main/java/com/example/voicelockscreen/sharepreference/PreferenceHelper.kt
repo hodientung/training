@@ -18,6 +18,7 @@ object PreferenceHelper {
     private const val ANSWER = "answer"
     private const val FIRST_FLASH = "flash"
     private const val SHOW_TIME = "current_time"
+    private const val RATE_ME = "rate_me"
     private const val INPUT_PATTERN = "input_pattern"
     private const val CODE_LANGUAGE = "code_language"
 
@@ -165,6 +166,14 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putBoolean(SHOW_TIME, value)
+            }
+        }
+
+    var SharedPreferences.isRate
+        get() = getBoolean(RATE_ME, false)
+        set(value) {
+            editMe {
+                it.putBoolean(RATE_ME, value)
             }
         }
 

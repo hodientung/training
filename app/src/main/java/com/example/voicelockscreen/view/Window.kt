@@ -1,6 +1,5 @@
 package com.example.voicelockscreen.view
 
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Context.WINDOW_SERVICE
 import android.graphics.PixelFormat
@@ -9,8 +8,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.*
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -21,7 +18,6 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.isShowTime
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.skyfishjy.library.RippleBackground
-import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 
 
 class Window(context: Context) {

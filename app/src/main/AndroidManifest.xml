@@ -29,12 +29,17 @@
             android:label="@string/title_activity_onboard" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="mailto" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".view.SplashVoiceLockActivity"
             android:configChanges="orientation|screenSize|layoutDirection"
             android:exported="true"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.VoiceLockScreen.NoActionBar">
             <intent-filter>

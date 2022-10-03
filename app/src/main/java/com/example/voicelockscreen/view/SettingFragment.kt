@@ -1,6 +1,7 @@
 package com.example.voicelockscreen.view
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -13,8 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.voicelockscreen.BuildConfig
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.model.DataModelSetting
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.clearValues
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isRate
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isShowTime
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
@@ -23,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 class SettingFragment : Fragment() {
 
     private lateinit var mAdapter: RecyclerViewSetting
+    private lateinit var prefs: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,11 +57,11 @@ class SettingFragment : Fragment() {
                 }
                 3 -> shareApp()
 
-                4 -> rateUs()
+                if (!prefs.isRate) 4 else -1 -> rateUs()
 
-                5 -> loadWebView()
+                if (prefs.isRate) 4 else 5 -> loadWebView()
 
-                6 -> AboutFragment().pushToScreen(activity as MainActivity)
+                if (prefs.isRate) 5 else 6 -> AboutFragment().pushToScreen(activity as MainActivity)
             }
         }
         tvBackSetting.setOnClickListener {
@@ -77,20 +81,27 @@ class SettingFragment : Fragment() {
         startActivity(Intent.createChooser(shareIntent, null))
     }
 
-    private fun rateUs() {
-        startActivity(
-            Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID)
-            )
-        )
-    }
+    private fun rateUs() =
+        RateUsFragment().show(requireActivity().supportFragmentManager, Util.TAG1)
+
 
     private fun initView() {
+        prefs = PreferenceHelper.customPreference(requireContext(), Util.RATE_ME_TUNG)
         rvSetting.layoutManager = LinearLayoutManager(context)
         mAdapter = RecyclerViewSetting(context)
-        mAdapter.dataModelSetting = Util.getListItemSetting(requireContext())
+        getData()
         rvSetting.adapter = mAdapter
+    }
+
+    private fun getData() {
+        if (prefs.isRate)
+            mAdapter.dataModelSetting = Util.getListItemSetting1(requireContext())
+        else mAdapter.dataModelSetting = Util.getListItemSetting(requireContext())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getData()
     }
 
     private fun loadWebView() {

@@ -35,8 +35,10 @@ class Util {
         const val REQ_CODE_SPEECH_INPUT = 100
         const val THE_FIRST_VIEW = 1
         const val THE_SECOND_VIEW = 2
+        const val RATE_ME_TUNG = "rate_me_app"
         const val TIME_DEVICE = "current_time_device"
         const val TAG = "ImportantDialogFragment"
+        const val TAG1 = "RateUsFragment"
         const val KEY_PLAYER_POSITION = "key_player_position"
         const val KEY_PLAYER_PLAY_WHEN_READY = "key_player_play_when_ready"
 
@@ -230,6 +232,33 @@ class Util {
             )
             item.add(DataModelSetting(R.drawable.icon_share, context.getString(R.string.share)))
             item.add(DataModelSetting(R.drawable.icon_star, context.getString(R.string.rate_us)))
+            item.add(DataModelSetting(R.drawable.icon_privacy, context.getString(R.string.privacy)))
+            item.add(DataModelSetting(R.drawable.icon_about, context.getString(R.string.about)))
+            return item
+        }
+
+
+        fun getListItemSetting1(context: Context): ArrayList<DataModelSetting> {
+            val item = arrayListOf<DataModelSetting>()
+            item.add(
+                DataModelSetting(
+                    R.drawable.icon_lock,
+                    context.getString(R.string.disable_system_lock)
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.icon_mail,
+                    context.getString(R.string.hidden_date)
+                )
+            )
+            item.add(
+                DataModelSetting(
+                    R.drawable.icon_language,
+                    context.getString(R.string.language)
+                )
+            )
+            item.add(DataModelSetting(R.drawable.icon_share, context.getString(R.string.share)))
             item.add(DataModelSetting(R.drawable.icon_privacy, context.getString(R.string.privacy)))
             item.add(DataModelSetting(R.drawable.icon_about, context.getString(R.string.about)))
             return item
