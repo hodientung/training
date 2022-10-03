@@ -3,6 +3,7 @@ package com.example.voicelockscreen.view
 import android.content.Context
 import android.database.Cursor
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,11 +32,6 @@ class RecyclerViewVideoFolder(val context: Context?) :
             field = value
             notifyDataSetChanged()
         }
-    var countryFilterList = ArrayList<String>()
-    init {
-        countryFilterList = folderPath
-    }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoFolderViewHolder =
         VideoFolderViewHolder(
@@ -112,20 +108,21 @@ class RecyclerViewVideoFolder(val context: Context?) :
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 folderPath = if (charSearch.isEmpty()) {
-                    countryFilterList
+                    folderPath
                 } else {
                     val resultList = ArrayList<String>()
                     for (row in folderPath) {
                         val indexPath: Int = row.lastIndexOf("/")
                         val nameOfFolder = row.substring(indexPath + 1)
-                        if (nameOfFolder.lowercase(Locale.ROOT)
-                                .contains(charSearch.lowercase(Locale.ROOT))
+                        if (nameOfFolder.lowercase(Locale.getDefault())
+                                .contains(charSearch.lowercase(Locale.getDefault()))
                         ) {
                             resultList.add(row)
                         }
                     }
                     resultList
                 }
+                notifyDataSetChanged()
                 val filterResults = FilterResults()
 
                 filterResults.values = folderPath
