@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.example.voicelockscreen.permission.ManagePermissions
@@ -19,7 +20,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setFullScreen()
+        //setFullScreen()
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
         setupPermission()
