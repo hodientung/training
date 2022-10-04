@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="questions">
-        <item>Where were you born?</item>
-        <item>What is the name of your BFF?</item>
-        <item>What is the name of your first school?</item>
-        <item>What was your childhood nickname?</item>
-    </string-array>
-</resources>

@@ -719,6 +719,7 @@ class Util {
                     dataModel[i].typeFace = listTheme?.fontText
                     dataModel[i].colorNumber =
                         ContextCompat.getColor(context, R.color.white)
+                    dataModel[i].sizeNumber = 30
                 } else {
                     dataModel[i].colorDelete =
                         listTheme?.colorDelete?.let { ContextCompat.getColor(context, it) }
@@ -741,17 +742,20 @@ class Util {
             (txtPass as EditText).setTextColor(
                 ContextCompat.getColor(
                     context,
-                    R.color.black
+                    R.color.color_2D78F4
                 )
             )
             (tvSetPinCode as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
             for (i in 0 until sizeNumberPin) {
-                dataModel[i].backgroundPinButton = R.drawable.round_pin_set
+                if (i == 11) dataModel[11].backgroundPinButton = R.drawable.round_dele
+                else
+                    dataModel[i].backgroundPinButton = R.drawable.round_pin_set
                 dataModel[i].colorNumber =
                     ContextCompat.getColor(context, R.color.black)
                 dataModel[i].sizeNumber = 20
-                dataModel[i].margin = 35
+                dataModel[i].margin = 80
             }
+
         }
 
         fun setThemeUnlockScreen(

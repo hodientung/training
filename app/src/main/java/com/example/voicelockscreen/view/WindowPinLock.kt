@@ -118,6 +118,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
     }
 
     fun open() {
+        passwordSetup = ""
         try {
             if (mView?.windowToken == null && mView?.parent == null)
                 mWindowManager?.addView(mView, mParams)
@@ -149,10 +150,9 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
             context?.getString(R.string.enter_pin_code_to_unlock)
         mAdapter.onItemClicked = { position ->
             when (position) {
-                in 0..8, 10 ->
-                    passwordSetup += position.toString()
-                else ->
-                    passwordSetup = Util.removeLastChar(passwordSetup).toString()
+                in 0..8 -> passwordSetup += position.toString()
+                10 -> passwordSetup += "9"
+                else -> passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }
             mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText(passwordSetup)
             val prefs =

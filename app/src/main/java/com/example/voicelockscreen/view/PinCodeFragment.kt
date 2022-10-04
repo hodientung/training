@@ -18,7 +18,6 @@ import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_pin_code.*
 
 
-
 class PinCodeFragment : Fragment() {
 
     private lateinit var mAdapter: RecyclerViewPinLock
@@ -98,8 +97,8 @@ class PinCodeFragment : Fragment() {
         ).show()
         mAdapter.onItemClicked = { position ->
             when (position) {
-                in 0..8, 10 ->
-                    passwordSetup += position.toString()
+                in 0..8 -> passwordSetup += position.toString()
+                10 -> passwordSetup += "9"
                 else ->
                     passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }

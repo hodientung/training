@@ -24,6 +24,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoice
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
+import com.skyfishjy.library.RippleBackground
 import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 
@@ -31,6 +32,7 @@ import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
 class SetupVoiceLockFragment : Fragment() {
 
     private lateinit var objectAnimator: ObjectAnimator
+    private var rippleBackground: RippleBackground? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +48,7 @@ class SetupVoiceLockFragment : Fragment() {
     }
 
     private fun initAction() {
+        rippleBackground = RippleBackground(context)
         startAnimationImage()
         imKara.setOnClickListener {
             startAnimationRipple()
@@ -72,13 +75,12 @@ class SetupVoiceLockFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({ objectAnimator.cancel() }, 100)
 
     private fun startAnimationRipple() = Handler(Looper.getMainLooper()).postDelayed({
-        if (!content1.isRippleAnimationRunning)
-            content1.startRippleAnimation()
+        rippleBackground?.startRippleAnimation()
     }, 100)
 
     private fun cancelAnimationRipple() =
         Handler(Looper.getMainLooper()).postDelayed(
-            { if (content1.isRippleAnimationRunning) content1.stopRippleAnimation() },
+            { rippleBackground?.stopRippleAnimation() },
             100
         )
 
@@ -87,7 +89,6 @@ class SetupVoiceLockFragment : Fragment() {
         super.onPause()
         Log.e("tung", "onPause1")
         cancelAnimationImage()
-        //cancelAnimationRipple()
 
     }
 

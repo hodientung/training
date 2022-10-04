@@ -92,4 +92,14 @@
     <string name="about">um</string>
     <string name="show_time">Datum &amp; Die Zeit wird auf dem Entsperrbildschirm angezeigt</string>
     <string name="hidden_time">Datum &amp; Die Zeit ist auf dem Entsperrbildschirm ausgeblendet</string>
+    <string name="please_install_voice_lock">Bitte installieren Sie zuerst die Sprachsperre, \\n dann können Sie die PIN-Sperre ändern</string>
+    <string name="please_install_voice_lock2">Bitte installieren Sie zuerst die Sprachsperre, \\n dann können Sie die Mustersperre ändern</string>
+    <string name="where_was_you">Wo bist du geboren?</string>
+    <string name="what_is_the_name_of">Wie heißt deine BFF?</string>
+    <string name="what_was_your_childhood">Was war Ihr Spitzname aus der Kindheit?</string>
+    <string name="what_is_the_name_of_your_first_school">Wie heißt Ihre erste Schule?</string>
+    <string name="search_here">Suche hier</string>
+    <string name="your_option_matter_to_us">Ihre Option ist uns wichtig</string>
+    <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">Wenn Ihnen diese App gefällt, würden Sie Denken Sie daran, uns auf Google Play zu bewerten</string>
+    <string name="thank_you">Vielen Dank</string>
 </resources>

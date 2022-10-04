@@ -45,6 +45,8 @@
     <string name="lock_screen_status">लॉक स्क्रीन स्थिति</string>
     <string name="enable_lock_service">लॉक सेवा सक्षम करें</string>
     <string name="first_set_the_voice_password">सबसे पहले वॉयस पासवर्ड सेट करें</string>
+    <string name="please_install_voice_lock">कृपया पहले वॉइस लॉक इंस्टॉल करें, फिर \n आप पिन लॉक बदल सकते हैं</string>
+    <string name="please_install_voice_lock2">कृपया पहले वॉइस लॉक इंस्टॉल करें, फिर \n आप पैटर्न लॉक को बदल सकते हैं</string>
     <string name="important">महत्वपूर्ण</string>
     <string name="you_clicked_on_cancel">आपने टाइमर पिन के आधार पर पिन लॉक सेट अप रद्द कर दिया है</string>
     <string name="successfully_set_time_lock">टाइम लॉक सफलतापूर्वक सेट करें!!!</string>
@@ -92,4 +94,12 @@
     <string name="about">के बारे में</string>
     <string name="show_time">दिनांक &amp; अनलॉक स्क्रीन पर समय प्रदर्शित होता है</string>
     <string name="hidden_time">दिनांक &amp; अनलॉक स्क्रीन पर समय छिपा है</string>
+    <string name="where_was_you">आपका जन्म कहां हुआ था?</string>
+    <string name="what_is_the_name_of">आपके BFF का नाम क्या है?</string>
+    <string name="what_was_your_childhood">आपका बचपन में उपनाम क्या था?</string>
+    <string name="what_is_the_name_of_your_first_school">आपके पहले स्कूल का नाम क्या है?</string>
+    <string name="search_here">यहां तलाश करो</string>
+    <string name="your_option_matter_to_us">आपका विकल्प हमारे लिए मायने रखता है</string>
+    <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">यदि आप इस ऐप का आनंद लेते हैं, तो क्या आप दिमाग हमें गूगल प्ले पर रेटिंग देता है</string>
+    <string name="thank_you">आपको धन्यवाद</string>
 </resources>

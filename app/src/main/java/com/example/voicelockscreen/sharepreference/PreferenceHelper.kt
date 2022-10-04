@@ -8,6 +8,7 @@ object PreferenceHelper {
     private const val INPUT = "input"
     private const val CODE_THEME = "code_theme"
     private const val POSITION_ANSWER = "position_answer"
+    private const val POSITION_CHOOSE = "position_choose"
     private const val CODE_THEME_BUTTON = "code_theme_button"
     private const val ON_SERVICE = "on_service"
     private const val CHECK_TIMER_PIN = "check_timer_pin"
@@ -142,6 +143,14 @@ object PreferenceHelper {
         set(value) {
             editMe {
                 it.putInt(POSITION_ANSWER, value)
+            }
+        }
+
+    var SharedPreferences.positionSelect
+        get() = getInt(POSITION_CHOOSE, 0)
+        set(value) {
+            editMe {
+                it.putInt(POSITION_CHOOSE, value)
             }
         }
 

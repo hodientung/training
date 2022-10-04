@@ -45,6 +45,7 @@
     <string name="lock_screen_status">Status da tela de bloqueio</string>
     <string name="enable_lock_service">Ativar serviço de bloqueio</string>
     <string name="first_set_the_voice_password">Primeiro defina a senha de voz</string>
+    <string name="please_install_voice_lock2">Instale o bloqueio de voz primeiro, depois \\nn você pode alterar o bloqueio de padrão</string>
     <string name="important">Importante</string>
     <string name="you_clicked_on_cancel">Você cancelou a configuração do bloqueio de pinos com base no pino do temporizador</string>
     <string name="successfully_set_time_lock">Bloqueio de tempo definido com sucesso!!!</string>
@@ -92,4 +93,13 @@
     <string name="about">cerca de</string>
     <string name="show_time">Data &amp; A hora é exibida na tela de desbloqueio</string>
     <string name="hidden_time">Data &amp; O tempo está oculto na tela de desbloqueio</string>
+    <string name="please_install_voice_lock">Instale o bloqueio de voz primeiro, então \\n você pode alterar o bloqueio de pinos</string>
+    <string name="where_was_you">Onde você nasceu?</string>
+    <string name="what_is_the_name_of">Qual o nome do seu BFF?</string>
+    <string name="what_was_your_childhood">Qual foi o seu apelido de infância?</string>
+    <string name="what_is_the_name_of_your_first_school">Qual é o nome da sua primeira escola?</string>
+    <string name="search_here">Procure aqui</string>
+    <string name="your_option_matter_to_us">Sua opção é importante para nós</string>
+    <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">Se você gosta deste aplicativo, você mente classificando-nos no google play</string>
+    <string name="thank_you">obrigada</string>
 </resources>

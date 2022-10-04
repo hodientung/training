@@ -32,8 +32,8 @@ class LanguageFragment : Fragment() {
     }
 
     private fun initAction() {
+        val prefs = PreferenceHelper.customPreference(requireContext(), Util.DATA_LANGUAGE_APP)
         mAdapter.onItemClicked = {
-            val prefs = PreferenceHelper.customPreference(requireContext(), Util.DATA_LANGUAGE_APP)
             prefs.codeLanguage = mAdapter.dataModelSetting[it].code
             requireActivity().supportFragmentManager.popBackStack()
             onClose?.invoke()

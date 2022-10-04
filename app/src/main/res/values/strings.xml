@@ -48,6 +48,8 @@
     <string name="lock_screen_status">Lock Screen Status</string>
     <string name="enable_lock_service">Enable Lock Service</string>
     <string name="first_set_the_voice_password">First Set The Voice Password</string>
+    <string name="please_install_voice_lock">Please install voice lock first, then \n you can change the pin lock</string>
+    <string name="please_install_voice_lock2">Please install voice lock first, then \n you can change the pattern lock</string>
     <string name="important">Important</string>
     <string name="you_clicked_on_cancel">You cancelled set up pin lock based on timer pin</string>
     <string name="successfully_set_time_lock">Successfully Set Time Lock!!!</string>
@@ -68,7 +70,7 @@
     <string name="enter_new_password">Create new pin code to change</string>
     <string name="correct_password">Correct password</string>
     <string name="in_correct_password">Incorrect password</string>
-    <string name="rate_us">Rate US</string>
+    <string name="rate_us">Rate us</string>
     <string name="share_app">Share App</string>
     <string name="privacy">Privacy</string>
     <string name="title_activity_onboard">OnboardActivity</string>
@@ -106,7 +108,20 @@
     <string name="german" translatable="false">German</string>
     <string name="indonesian" translatable="false">Indonesian</string>
     <string name="portuguese" translatable="false">Portuguese</string>
+    <string-array name="questions">
+        <item>@string/where_was_you</item>
+        <item>@string/what_is_the_name_of</item>
+        <item>@string/what_is_the_name_of_your_first_school</item>
+        <item>@string/what_was_your_childhood</item>
+    </string-array>
+    <string name="where_was_you">Where were you born?</string>
+    <string name="what_is_the_name_of">What is the name of your BFF?</string>
+    <string name="what_is_the_name_of_your_first_school">What is the name of your first school?</string>
+    <string name="what_was_your_childhood">What was your childhood nickname?</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_here">Search here</string>
+    <string name="thank_you">Thank you</string>
+    <string name="your_option_matter_to_us">Your Option Matter To Us</string>
+    <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">If you enjoy this app, would you\n mind rating us on the google play</string>
 
 </resources>

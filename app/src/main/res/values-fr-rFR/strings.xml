@@ -92,4 +92,14 @@
     <string name="about">sur</string>
     <string name="show_time">Date &amp; L\'heure est affichée sur l\'écran de déverrouillage</string>
     <string name="hidden_time">Date &amp; L\'heure est masquée sur l\'écran de déverrouillage</string>
+    <string name="please_install_voice_lock">Veuillez d\'abord installer le verrouillage vocal, puis \\n vous pouvez changer le verrouillage de la broche</string>
+    <string name="please_install_voice_lock2">Veuillez d\'abord installer le verrouillage vocal, puis \\n vous pouvez modifier le schéma de verrouillage</string>
+    <string name="where_was_you">Où êtes-vous né?</string>
+    <string name="what_is_the_name_of">Comment s\'appelle ta BFF ?</string>
+    <string name="what_was_your_childhood">Quel était ton surnom d\'enfance?</string>
+    <string name="what_is_the_name_of_your_first_school">Quel est le nom de votre première école?</string>
+    <string name="search_here">Cherche ici</string>
+    <string name="your_option_matter_to_us">Votre option compte pour nous</string>
+    <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">Si vous aimez cette application, voudriez-vous   pensez à nous noter sur google play</string>
+    <string name="thank_you">Merci</string>
 </resources>

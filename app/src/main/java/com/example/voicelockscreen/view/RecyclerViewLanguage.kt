@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModelSetting
-import com.example.voicelockscreen.model.ModelLanguage
+import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.positionSelect
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.item_languaga.view.*
-import kotlinx.android.synthetic.main.item_setting.view.*
 
 class RecyclerViewLanguage(val context: Context?) :
     RecyclerView.Adapter<RecyclerViewLanguage.LanguageViewHolder>() {
@@ -27,7 +27,7 @@ class RecyclerViewLanguage(val context: Context?) :
             field = value
             notifyDataSetChanged()
         }
-    var selectedPosition = -1
+    var selectedPosition = 0
 
 
     override fun onCreateViewHolder(
@@ -57,13 +57,16 @@ class RecyclerViewLanguage(val context: Context?) :
         }
 
         fun bind(dataModelSetting: DataModelSetting) {
+            val prefs =
+                context?.let { PreferenceHelper.customPreference(it, Util.DATA_LANGUAGE_APP) }
             dataModelSetting.imageSetting?.let { itemView.imLanguage.setImageResource(it) }
             itemView.tvLanguage.text = dataModelSetting.text
 
-            itemView.rbLanguage.isChecked = adapterPosition == selectedPosition
+            itemView.rbLanguage.isChecked = adapterPosition == prefs?.positionSelect
             itemView.rbLanguage.setOnCheckedChangeListener { _, b ->
                 if (b) {
                     selectedPosition = adapterPosition
+                    prefs?.positionSelect = selectedPosition
                     itemView.rbLanguage.setOnClickListener {
                         onItemClicked?.invoke(selectedPosition)
                     }

@@ -22,7 +22,6 @@
         android:id="@+id/animation_image_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_100dp"
         android:background="@drawable/icon_animation_voice"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
@@ -32,14 +31,15 @@
 
     <TextView
         android:id="@+id/tvDescriptionCreate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_100dp"
         android:fontFamily="@font/standard_font_sf_pro_regular"
         android:gravity="center"
+        android:layout_marginHorizontal="56dp"
         android:text="@string/create_n_new_voice_password"
         android:textColor="#333333"
         android:textSize="@dimen/size_16_sp"
+        app:layout_constraintBottom_toTopOf="@id/imFake"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/animation_image_create" />
@@ -62,14 +62,24 @@
             android:id="@+id/imKaraCreate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="135dp"
+            android:layout_centerInParent="true"
             android:contentDescription="@string/hello_world"
             android:scaleType="fitXY"
             android:src="@drawable/icon_kara" />
     </com.skyfishjy.library.RippleBackground>
 
+    <ImageView
+        android:id="@+id/imFake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_kara"
+        android:visibility="invisible"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/content1Create"
+        app:layout_constraintEnd_toEndOf="@id/content1Create"
+        app:layout_constraintStart_toStartOf="@id/content1Create"
+        app:layout_constraintTop_toTopOf="@id/content1Create" />
 
     <ImageView
         android:id="@+id/imBackCreate"

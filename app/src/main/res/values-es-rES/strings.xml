@@ -92,4 +92,14 @@
     <string name="about">sobre</string>
     <string name="show_time">Fecha y amp; El tiempo se muestra en la pantalla de desbloqueo</string>
     <string name="hidden_time">Fecha y amp; El tiempo está oculto en la pantalla de desbloqueo</string>
+    <string name="please_install_voice_lock">Instale primero el bloqueo de voz, luego \\n puede cambiar el bloqueo de PIN</string>
+    <string name="please_install_voice_lock2">Instale el bloqueo de voz primero, luego \\n puede cambiar el bloqueo de patrón</string>
+    <string name="where_was_you">¿Donde naciste?</string>
+    <string name="what_is_the_name_of">¿Cómo se llama tu BFF?</string>
+    <string name="what_was_your_childhood">¿Cuál era su apodo de la infancia?</string>
+    <string name="what_is_the_name_of_your_first_school">¿Cómo se llamaba tu primera escuela?</string>
+    <string name="search_here">Busca aquí</string>
+    <string name="your_option_matter_to_us">Su opción nos importa</string>
+    <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">Si disfrutas de esta aplicación, ¿podrías importa calificarnos en google play</string>
+    <string name="thank_you">Gracias</string>
 </resources>

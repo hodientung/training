@@ -11,6 +11,5 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         android:scaleType="fitXY"
-        android:contentDescription="@string/hello_world"
-        android:background="@drawable/round_pin_set" />
+        android:contentDescription="@string/hello_world" />
 </LinearLayout>

@@ -74,13 +74,12 @@ class CreateVoiceLockFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({ objectAnimator.cancel() }, 100)
 
     private fun startAnimationRipple() = Handler(Looper.getMainLooper()).postDelayed({
-        if (!rippleBackground.isRippleAnimationRunning)
-            rippleBackground.startRippleAnimation()
+        rippleBackground.startRippleAnimation()
     }, 100)
 
     private fun cancelAnimationRipple() =
         Handler(Looper.getMainLooper()).postDelayed(
-            { if (rippleBackground.isRippleAnimationRunning) rippleBackground.stopRippleAnimation() },
+            { rippleBackground.stopRippleAnimation() },
             100
         )
 
@@ -89,7 +88,6 @@ class CreateVoiceLockFragment : Fragment() {
         super.onPause()
         Log.e("tung", "onPause1")
         cancelAnimationImage()
-        //cancelAnimationRipple()
 
     }
 

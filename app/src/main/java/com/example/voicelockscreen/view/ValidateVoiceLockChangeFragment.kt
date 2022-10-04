@@ -103,15 +103,13 @@ class ValidateVoiceLockChangeFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({ objectAnimator.cancel() }, 100)
 
     private fun startAnimationRipple() = Handler(Looper.getMainLooper()).postDelayed({
-        if (!rippleBackground.isRippleAnimationRunning)
-            rippleBackground.startRippleAnimation()
+        rippleBackground.startRippleAnimation()
     }, 100)
 
     private fun cancelAnimationRipple() =
         Handler(Looper.getMainLooper()).postDelayed(
             {
-                if (rippleBackground.isRippleAnimationRunning
-                ) rippleBackground.stopRippleAnimation()
+                rippleBackground.stopRippleAnimation()
             },
             100
         )
@@ -120,7 +118,6 @@ class ValidateVoiceLockChangeFragment : Fragment() {
         super.onPause()
         Log.e("tung", "onPause")
         cancelAnimationImage()
-        //cancelAnimationRipple()
     }
 
     private fun startListeningRecognitionService() {

@@ -92,4 +92,14 @@
     <string name="about">tentang</string>
     <string name="show_time">Tanggal &amp; Waktu ditampilkan di layar buka kunci</string>
     <string name="hidden_time">Tanggal &amp; Waktu disembunyikan di layar buka kunci</string>
+    <string name="please_install_voice_lock">Silakan instal kunci suara terlebih dahulu, lalu \\n Anda dapat mengubah kunci pin</string>
+    <string name="please_install_voice_lock2">Silakan instal kunci suara terlebih dahulu, lalu \\n Anda dapat mengubah kunci pola</string>
+    <string name="where_was_you">Dimanakah kamu lahir?</string>
+    <string name="what_is_the_name_of">Siapa nama BFF kamu?</string>
+    <string name="what_was_your_childhood">Apa julukan masa kecil Anda?</string>
+    <string name="what_is_the_name_of_your_first_school">Apa nama sekolah pertamamu?</string>
+    <string name="search_here">Cari di sini</string>
+    <string name="your_option_matter_to_us">Pilihan Anda Penting Bagi Kami</string>
+    <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">Jika Anda menikmati aplikasi ini, maukah Anda peringkat pikiran kami di google play</string>
+    <string name="thank_you">Terima kasih</string>
 </resources>

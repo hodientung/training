@@ -95,8 +95,8 @@ class PinCodeEstablishFragment : Fragment() {
             .show()
         mAdapter.onItemClicked = { position ->
             when (position) {
-                in 0..8, 10 ->
-                    passwordSetup += position.toString()
+                in 0..8 -> passwordSetup += position.toString()
+                10 -> passwordSetup += "9"
                 else ->
                     passwordSetup = removeLastChar(passwordSetup).toString()
             }
