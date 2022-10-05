@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isFistOnboard
+import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.actitvity_onboard.*
 
 class OnboardActivity : AppCompatActivity() {
@@ -21,6 +24,8 @@ class OnboardActivity : AppCompatActivity() {
         indicator_view.setViewPager(view_pager)
         indicator_view.animatePageSelected(1)
         tvSkip.setOnClickListener {
+            val prefs = PreferenceHelper.customPreference(this, Util.ON_BOARDING)
+            prefs.isFistOnboard = true
             finish()
             startActivity(Intent(this, MainActivity::class.java))
         }
