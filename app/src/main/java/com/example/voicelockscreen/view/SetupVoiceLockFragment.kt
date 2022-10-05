@@ -49,6 +49,7 @@ class SetupVoiceLockFragment : Fragment() {
 
     private fun initAction() {
         rippleBackground = RippleBackground(context)
+        rippleBackground = content1
         startAnimationImage()
         imKara.setOnClickListener {
             startAnimationRipple()
