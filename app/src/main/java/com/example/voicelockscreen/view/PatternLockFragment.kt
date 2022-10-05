@@ -44,7 +44,8 @@ class PatternLockFragment : Fragment() {
         else Util.setOriginalPatternScreen(
             imBackgroundVoicePattern,
             tvDescriptionPattern,
-            patternView
+            patternView,
+            requireContext()
         )
 
     }

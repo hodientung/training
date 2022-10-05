@@ -2,10 +2,7 @@ package com.example.voicelockscreen.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -40,7 +37,7 @@ class PatternView : View {
 
     var onPatternChanged: ((patternString: String) -> Unit)? = null
     var onCheckPattern: ((patternString: String) -> Unit)? = null
-    var src: Int = 0
+    var src: Bitmap? = null
     var color: Int? = null
 
     init {
@@ -52,7 +49,7 @@ class PatternView : View {
         paint.isAntiAlias = true
     }
 
-    fun setImageRes(src: Int) {
+    fun setImageRes(src: Bitmap) {
         this.src = src
         invalidate()
     }
@@ -128,12 +125,12 @@ class PatternView : View {
                 Color.parseColor("#FF018786")
             }
             //val bitmap = BitmapFactory.decodeResource(resources, src)
-            val bitmap = AppCompatResources.getDrawable(context, src)?.toBitmap()
+            val bitmap = src
             bitmap?.let {
                 canvas?.drawBitmap(
                     it,
-                    point.x - (ContextCompat.getDrawable(context, src)?.intrinsicWidth ?: 0) / 2,
-                    point.y - (ContextCompat.getDrawable(context, src)?.intrinsicHeight ?: 0) / 2,
+                    point.x - it.width / 2,
+                    point.y - it.height / 2,
                     paint
                 )
             }
@@ -193,14 +190,8 @@ class PatternView : View {
                 touchX = event.x
                 touchY = event.y
                 for (point in pointPositions) {
-                    if (abs(event.x - point.x) < (ContextCompat.getDrawable(
-                            context,
-                            src
-                        )?.intrinsicWidth ?: 0) / 2 * 1
-                        && abs(event.y - point.y) < (ContextCompat.getDrawable(
-                            context,
-                            src
-                        )?.intrinsicHeight ?: 0) / 2 * 1
+                    if (abs(event.x - point.x) < (src?.width?.div(2) ?: 0) * 1
+                        && abs(event.y - point.y) < (src?.height?.div(2) ?: 0) * 1
                     ) {
                         if (!point.isSelected) {
                             point.isSelected = true

@@ -44,7 +44,8 @@ class ValidatePatternLockChangeFragment : Fragment() {
         else Util.setOriginalPatternScreen(
             imBackgroundVoicePatternValidate,
             tvDescriptionPatternValidate,
-            patternViewValidate
+            patternViewValidate,
+            requireContext()
         )
 
     }

@@ -29,11 +29,12 @@
 
     <TextView
         android:id="@+id/t1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_60"
         android:text="@string/password_changes_over_time"
         android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_16dp"
         android:fontFamily="@font/standard_font_sf_pro_regular"
         android:textColor="@color/color_4f4f4f"
         android:textSize="@dimen/size_26sp"

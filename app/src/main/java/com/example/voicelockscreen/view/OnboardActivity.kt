@@ -1,9 +1,11 @@
 package com.example.voicelockscreen.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import kotlinx.android.synthetic.main.actitvity_onboard.*
 
@@ -19,8 +21,8 @@ class OnboardActivity : AppCompatActivity() {
         indicator_view.setViewPager(view_pager)
         indicator_view.animatePageSelected(1)
         tvSkip.setOnClickListener {
-            if (view_pager.currentItem < 2)
-                view_pager.currentItem = view_pager.currentItem + 1
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
         }
         view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

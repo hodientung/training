@@ -92,11 +92,14 @@ class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
         else imBackgroundVoicePatternConfirm?.let {
             tvDescriptionPatternConfirm?.let { it1 ->
                 patternViewConfirm?.let { it2 ->
-                    Util.setOriginalPatternScreen(
-                        it,
-                        it1,
-                        it2
-                    )
+                    context?.let { it3 ->
+                        Util.setOriginalPatternScreen(
+                            it,
+                            it1,
+                            it2,
+                            it3
+                        )
+                    }
                 }
             }
         }

@@ -42,7 +42,8 @@ class ConfirmPatternChangeFragment : Fragment() {
         else Util.setOriginalPatternScreen(
             imBackgroundVoicePatternConfirmChange,
             tvDescriptionPatternConfirmChange,
-            patternViewConfirmChange
+            patternViewConfirmChange,
+            requireContext()
         )
 
     }

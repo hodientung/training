@@ -44,7 +44,8 @@ class PatternCodeEstablishFragment : Fragment() {
         else Util.setOriginalPatternScreen(
             imBackgroundVoicePatternEstablish,
             tvDescriptionPatternEstablish,
-            patternViewEstablish
+            patternViewEstablish,
+            requireContext()
         )
 
     }

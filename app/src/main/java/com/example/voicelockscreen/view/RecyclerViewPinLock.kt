@@ -1,14 +1,11 @@
 package com.example.voicelockscreen.view
 
 import android.content.Context
-import android.graphics.Color
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.setMargins
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.DataModel
@@ -41,7 +38,9 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
-            dataModel.backgroundPinButton?.let { itemView.btnNumber.setBackgroundResource(it) }
+            dataModel.backgroundPinButton?.let {
+                Util.resizeImage(itemView.btnNumber, it, dataModel.x, dataModel.y, context)
+            }
             itemView.tvNumber.text = dataModel.number
             dataModel.colorNumber?.let { itemView.tvNumber.setTextColor(it) }
             dataModel.sizeNumber?.toFloat()
@@ -49,7 +48,7 @@ class RecyclerViewPinLock(
             itemView.tvNumber.typeface =
                 dataModel.typeFace?.let { context?.let { it1 -> ResourcesCompat.getFont(it1, it) } }
             dataModel.margin.let {
-                itemView.ct1.setMargins(it,it,it,it)
+                itemView.ct1.setMargins(it, it, it, it)
             }
         }
 
@@ -66,7 +65,7 @@ class RecyclerViewPinLock(
         fun bind(dataModel: DataModel) {
             // show data
             dataModel.margin.let {
-                itemView.ct2.setMargins(it,it,it,it)
+                itemView.ct2.setMargins(it, it, it, it)
             }
 
         }
@@ -88,7 +87,7 @@ class RecyclerViewPinLock(
             dataModel?.backgroundPinButton?.let { itemView.btnNumberDelete.setBackgroundResource(it) }
             dataModel?.colorDelete?.let { itemView.icon.setColorFilter(it) }
             dataModel?.margin.let {
-                itemView.ct3.setMargins(it,it,it,it)
+                itemView.ct3.setMargins(it, it, it, it)
             }
 
 

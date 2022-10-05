@@ -19,7 +19,7 @@ class SplashVoiceLockActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideStatusBar(this)
-        setContentView(R.layout.activity_splash_screen)
+        //setContentView(R.layout.activity_splash_screen)
 
         val prefs =
             PreferenceHelper.customPreference(

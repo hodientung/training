@@ -2,6 +2,8 @@ package com.example.voicelockscreen.utils
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.speech.SpeechRecognizer
 import android.util.TypedValue
 import android.view.View
@@ -9,9 +11,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
@@ -52,14 +56,14 @@ class Util {
             return timePassword.replace(":", "")
         }
 
-        fun getPassCurrentTimeLock(): String {
+        private fun getPassCurrentTimeLock(): String {
             return SimpleDateFormat(
                 "HH:mm a",
                 Locale.getDefault()
             ).format(Calendar.getInstance().time)
         }
 
-        fun getPassCurrentDateLock(): String {
+        private fun getPassCurrentDateLock(): String {
             return SimpleDateFormat(
                 "E",
                 Locale.getDefault()
@@ -154,7 +158,7 @@ class Util {
                 DataModelTheme(
                     colorTheme = R.drawable.theme_7,
                     bg = R.drawable.bg7,
-                    imVoice = R.drawable.bg_voice7,
+                    imVoice = R.drawable.bg_vocie7,
                     colorVoice = R.color.white,
                     bgFunction = R.color.color_815D8A,
                     fontText = R.font.deep_jungle,
@@ -386,7 +390,7 @@ class Util {
                     largeImage = R.drawable.large3
                     smallImage = R.drawable.ic_small1
                     iconPin = R.drawable.icon_pin3
-                    iconPattern = R.drawable.icon_patter3
+                    iconPattern = R.drawable.icon_pattern3
                     colorInputPin = R.color.color_00FFB4
                     sizeText1 = 24
                     sizeText2 = 20
@@ -455,7 +459,7 @@ class Util {
                     colorBack = R.color.white
                     fontText = R.font.deep_jungle
                     colorText = R.color.white
-                    largeImage = R.drawable.bg_voice7
+                    largeImage = R.drawable.bg_vocie7
                     smallImage = R.drawable.ic_small1
                     iconPin = R.drawable.icon_pin7
                     iconPattern = R.drawable.icon_pattern7
@@ -464,7 +468,7 @@ class Util {
                     sizeText2 = 30
                     colorPath = R.color.color_815D8A
                     bg = R.drawable.bg7
-                    imVoice = R.drawable.bg_voice7
+                    imVoice = R.drawable.bg_vocie7
                     colorVoice = R.color.white
                     bgFunction = R.color.color_815D8A
                     colorDelete = R.color.color_815D8A
@@ -652,9 +656,13 @@ class Util {
                     )
                 )
             }
-            listTheme?.largeImage?.let { imLockPin.setBackgroundResource(it) }
+            listTheme?.largeImage?.let { resizeImage(imLockPin, it, 155, 130, context) }
             listTheme?.smallImage?.let { imVSmall.setBackgroundResource(it) }
-            listTheme?.iconPattern?.let { (patternView as PatternView).setImageRes(it) }
+
+            val bitmap: Bitmap? =
+                listTheme?.iconPattern?.let { BitmapFactory.decodeResource(context.resources, it) }
+            bitmap?.let { Bitmap.createScaledBitmap(it, 106, 120, true) }
+                ?.let { (patternView as PatternView).setImageRes(it) }
             listTheme?.colorPath?.let { (patternView as PatternView).setColorPath(it) }
         }
 
@@ -662,11 +670,34 @@ class Util {
             imLockPin: View,
             tvSetPinCode: View,
             patternView: View,
+            context: Context
         ) {
             (imLockPin as ImageView).setBackgroundResource(R.drawable.ic_icon_frament_pattern)
             (tvSetPinCode as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
             (patternView as PatternView).setColorPath(R.color.color_2D78F4)
-            patternView.setImageRes(R.drawable.ic_icon_eclipse_pattern)
+            ContextCompat.getDrawable(context, R.drawable.ic_icon_eclipse_pattern)?.toBitmap()
+                ?.let { patternView.setImageRes(it) }
+        }
+
+        fun resizeImage(view: View, src: Int, x: Int?, y: Int?, context: Context?) {
+            if (x == null && y == null)
+                (view as ImageView).setImageResource(src)
+            else {
+                val resized = context?.let {
+                    ContextCompat.getDrawable(it, src)?.toBitmap()
+                        ?.let {
+                            x?.let { it1 ->
+                                y?.let { it2 ->
+                                    Bitmap.createScaledBitmap(
+                                        it, it1,
+                                        it2, true
+                                    )
+                                }
+                            }
+                        }
+                }
+                (view as ImageView).setImageBitmap(resized)
+            }
         }
 
         fun setThemeView(
@@ -709,7 +740,7 @@ class Util {
                     )
                 )
             }
-            listTheme?.largeImage?.let { imLockPin.setBackgroundResource(it) }
+            listTheme?.largeImage?.let { resizeImage(imLockPin, it, 155, 130, context) }
             listTheme?.smallImage?.let { imVSmall.setBackgroundResource(it) }
             (tvSetPinCode as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, 30f)
             for (i in 0 until sizeNumberPin) {
@@ -724,6 +755,8 @@ class Util {
                     dataModel[i].colorDelete =
                         listTheme?.colorDelete?.let { ContextCompat.getColor(context, it) }
                 }
+                dataModel[i].x = 53
+                dataModel[i].y = 60
             }
             dataModel[11].backgroundPinButton = R.drawable.round_delete_56
         }
@@ -754,6 +787,8 @@ class Util {
                     ContextCompat.getColor(context, R.color.black)
                 dataModel[i].sizeNumber = 20
                 dataModel[i].margin = 80
+                dataModel[i].x = null
+                dataModel[i].y = null
             }
 
         }
@@ -794,7 +829,10 @@ class Util {
                 background2.setTint(it)
                 background3.setTint(it)
             }
-            dataTheme?.imVoice?.let { (imBackgroundVoice as ImageView).setImageResource(it) }
+            dataTheme?.imVoice?.let {
+                (imBackgroundVoice as ImageView).setImageResource(it)
+                imBackgroundVoice.layoutParams = ViewGroup.LayoutParams(155, 130)
+            }
             dataTheme?.colorVoice?.let {
                 (imv as ImageView).setColorFilter(ContextCompat.getColor(context, it))
             }

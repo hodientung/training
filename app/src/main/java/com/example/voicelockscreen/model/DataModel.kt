@@ -9,4 +9,6 @@ data class DataModel(
     var colorNumber: Int? = null,
     var sizeNumber: Int? = null,
     var margin: Int? = null,
+    var x: Int? = null,
+    var y: Int? = null
 )
