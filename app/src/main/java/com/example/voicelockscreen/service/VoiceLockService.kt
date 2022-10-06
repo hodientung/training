@@ -45,10 +45,6 @@ class VoiceLockService : Service() {
                             window.startAnimationRipple()
                             startListeningRecognitionService()
                         }
-//                    setTheme(
-//                        p0,
-//                        window.getView()?.findViewById<ConstraintLayout>(R.id.content_add_view)
-//                    )
                     window.getView()?.findViewById<TextView>(R.id.tvForgetLock)
                         ?.setOnClickListener {
                             windowSecurityQuestion.open()
@@ -119,7 +115,7 @@ class VoiceLockService : Service() {
 
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
-                val errorMessage: String = Util.getErrorText(p0)
+                val errorMessage: String? = window.context?.let { Util.getErrorText(p0, it) }
                 val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
                 tvText?.text = errorMessage
                 window.cancelAnimationRipple()

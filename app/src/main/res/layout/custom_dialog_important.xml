@@ -37,8 +37,9 @@
     <TextView
         android:id="@+id/tvChange"
         app:layout_constraintTop_toBottomOf="@id/tv2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/standard_font_sf_pro_regular"

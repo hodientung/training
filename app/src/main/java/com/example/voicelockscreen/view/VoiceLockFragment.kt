@@ -82,7 +82,7 @@ class VoiceLockFragment : Fragment() {
             }
 
         switchMaterial.isChecked = prefs?.onService == true
-        if (switchMaterial.isChecked) startService()
+        if (switchMaterial.isChecked) startService() else stopService()
         switchMaterial.setOnClickListener {
             if (prefs?.isSetupVoiceLock == false || (prefsPinCode?.isSetupPinLock == false
                         && prefsPatternPassword?.isSetupPatternLock == false
@@ -208,16 +208,16 @@ class VoiceLockFragment : Fragment() {
     }
 
     private fun startService() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(context)) {
-            val intent = Intent(context, VoiceLockService::class.java)
-            context?.startService(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(requireContext())) {
+            val intent = Intent(requireContext(), VoiceLockService::class.java)
+            requireContext().startService(intent)
         }
     }
 
     private fun stopService() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(context)) {
-            val intent = Intent(context, VoiceLockService::class.java)
-            context?.stopService(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(requireContext())) {
+            val intent = Intent(requireContext(), VoiceLockService::class.java)
+            requireContext().stopService(intent)
         }
     }
 }

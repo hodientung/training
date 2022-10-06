@@ -5,6 +5,8 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.speech.SpeechRecognizer
+import android.util.DisplayMetrics
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -628,7 +630,7 @@ class Util {
                 bottom ?: lp.bottomMargin
             )
 
-            layoutParams = lp
+            this.layoutParams = lp
         }
 
         fun setThemePatternView(
@@ -656,12 +658,32 @@ class Util {
                     )
                 )
             }
-            listTheme?.largeImage?.let { resizeImage(imLockPin, it, 155, 130, context) }
+            //listTheme?.largeImage?.let { resizeImage(imLockPin, it, 155, 130, context) }
+            val bitmap1: Bitmap? =
+                listTheme?.largeImage?.let { BitmapFactory.decodeResource(context.resources, it) }
+            bitmap1?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    (convertDpToPixel(155f, context)).toInt(),
+                    (convertDpToPixel(130f, context)).toInt(),
+                    true
+                )
+            }
+                ?.let { (imLockPin as ImageView).setImageBitmap(it) }
+
+
             listTheme?.smallImage?.let { imVSmall.setBackgroundResource(it) }
 
             val bitmap: Bitmap? =
                 listTheme?.iconPattern?.let { BitmapFactory.decodeResource(context.resources, it) }
-            bitmap?.let { Bitmap.createScaledBitmap(it, 106, 120, true) }
+            bitmap?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    (convertDpToPixel(53f, context)).toInt(),
+                    (convertDpToPixel(60f, context)).toInt(),
+                    true
+                )
+            }
                 ?.let { (patternView as PatternView).setImageRes(it) }
             listTheme?.colorPath?.let { (patternView as PatternView).setColorPath(it) }
         }
@@ -740,12 +762,25 @@ class Util {
                     )
                 )
             }
-            listTheme?.largeImage?.let { resizeImage(imLockPin, it, 155, 130, context) }
+            //listTheme?.largeImage?.let { resizeImage(imLockPin, it, 155, 130, context) }
+            val bitmap1: Bitmap? =
+                listTheme?.largeImage?.let { BitmapFactory.decodeResource(context.resources, it) }
+            bitmap1?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    (convertDpToPixel(155f, context)).toInt(),
+                    (convertDpToPixel(130f, context)).toInt(),
+                    true
+                )
+            }
+                ?.let { (imLockPin as ImageView).setImageBitmap(it) }
+
             listTheme?.smallImage?.let { imVSmall.setBackgroundResource(it) }
             (tvSetPinCode as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, 30f)
             for (i in 0 until sizeNumberPin) {
-                dataModel[i].margin = 35
-                if (i < 9 || i == 10) {
+                dataModel[i].margin = 25
+                if (i <= 9 || i == 10) {
+
                     dataModel[i].backgroundPinButton = listTheme?.iconPin
                     dataModel[i].typeFace = listTheme?.fontText
                     dataModel[i].colorNumber =
@@ -786,7 +821,7 @@ class Util {
                 dataModel[i].colorNumber =
                     ContextCompat.getColor(context, R.color.black)
                 dataModel[i].sizeNumber = 20
-                dataModel[i].margin = 80
+                dataModel[i].margin = 35
                 dataModel[i].x = null
                 dataModel[i].y = null
             }
@@ -878,7 +913,7 @@ class Util {
             date: View,
             context: Context
         ) {
-            (contentAddView as ConstraintLayout).setBackgroundResource(R.drawable.gradient_background_tung)
+            (contentAddView as ConstraintLayout).setBackgroundResource(R.drawable.bg_app_voice)
             (imBackgroundVoice as ImageView).setImageResource(R.drawable.round_speak)
             (textDescription as TextView).setTextColor(
                 ContextCompat.getColor(
@@ -891,20 +926,42 @@ class Util {
 
         }
 
-        fun getErrorText(error: Int): String {
+        fun getErrorText(error: Int, context: Context): String {
             val message: String = when (error) {
-                SpeechRecognizer.ERROR_AUDIO -> "Audio recording error, please try again."
-                SpeechRecognizer.ERROR_CLIENT -> "Client side error, please try again."
-                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "Insufficient permissions, please try again."
-                SpeechRecognizer.ERROR_NETWORK -> "Network error, please try again."
-                SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "Network timeout, please try again."
-                SpeechRecognizer.ERROR_NO_MATCH -> "No match"
-                SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "RecognitionService busy, please try again."
-                SpeechRecognizer.ERROR_SERVER -> "error from server, please try again."
-                SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "No speech input, please try again."
-                else -> "Didn't understand, please try again."
+                SpeechRecognizer.ERROR_AUDIO -> context.getString(R.string.audio_recording)
+                SpeechRecognizer.ERROR_CLIENT -> context.getString(R.string.client_side)
+                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> context.getString(R.string.insufficient_permission)
+                SpeechRecognizer.ERROR_NETWORK -> context.getString(R.string.netword_error)
+                SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> context.getString(R.string.netword_timeout)
+                SpeechRecognizer.ERROR_NO_MATCH -> context.getString(R.string.no_match)
+                SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> context.getString(R.string.recognition_service)
+                SpeechRecognizer.ERROR_SERVER -> context.getString(R.string.error_from_service)
+                SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> context.getString(R.string.no_speech_input)
+                else -> context.getString(R.string.did_not_understand)
             }
             return message
+        }
+
+        fun convertDpToPixel(dp: Float, context: Context?): Float {
+            return if (context != null) {
+                val resources = context.resources
+                val metrics = resources.displayMetrics
+                dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+            } else {
+                val metrics = Resources.getSystem().displayMetrics
+                dp * (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+            }
+        }
+
+        fun convertPixelsToDp(px: Float, context: Context?): Float {
+            return if (context != null) {
+                val resources = context.resources
+                val metrics = resources.displayMetrics
+                px / (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+            } else {
+                val metrics = Resources.getSystem().displayMetrics
+                px / (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+            }
         }
     }
 

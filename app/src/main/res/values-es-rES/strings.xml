@@ -102,4 +102,13 @@
     <string name="your_option_matter_to_us">Su opción nos importa</string>
     <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">Si disfrutas de esta aplicación, ¿podrías importa calificarnos en google play</string>
     <string name="thank_you">Gracias</string>
+    <string name="audio_recording">Error de grabación de audio, inténtalo de nuevo.</string>
+    <string name="client_side">Error del lado del cliente, inténtalo de nuevo.</string>
+    <string name="insufficient_permission">Permisos insuficientes, inténtalo de nuevo.</string>
+    <string name="netword_error">Error de red, inténtalo de nuevo.</string>
+    <string name="no_match">Sin coincidencia</string>
+    <string name="recognition_service">RecognitionService ocupado, inténtelo de nuevo.</string>
+    <string name="error_from_service">Error del servidor, inténtalo de nuevo.</string>
+    <string name="no_speech_input">No hay entrada de voz, inténtalo de nuevo.</string>
+    <string name="netword_timeout">Se agotó el tiempo de espera de la red, inténtelo de nuevo.</string>
 </resources>

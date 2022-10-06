@@ -102,4 +102,13 @@
     <string name="your_option_matter_to_us">Votre option compte pour nous</string>
     <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">Si vous aimez cette application, voudriez-vous   pensez à nous noter sur google play</string>
     <string name="thank_you">Merci</string>
+    <string name="audio_recording">Erreur d\'enregistrement audio, veuillez réessayer.</string>
+    <string name="client_side">Erreur côté client, veuillez réessayer.</string>
+    <string name="insufficient_permission">Autorisations insuffisantes, veuillez réessayer.</string>
+    <string name="netword_error">Erreur réseau, veuillez réessayer.</string>
+    <string name="no_match">Aucune concordance</string>
+    <string name="recognition_service">Service de reconnaissance occupé, veuillez réessayer.</string>
+    <string name="error_from_service">Erreur du serveur, veuillez réessayer.</string>
+    <string name="no_speech_input">Aucune saisie vocale, veuillez réessayer.</string>
+    <string name="netword_timeout">34 / 5.000 Kết quả dịch Expiration du réseau, veuillez réessayer.</string>
 </resources>

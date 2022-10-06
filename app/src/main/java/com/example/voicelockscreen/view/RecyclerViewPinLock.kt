@@ -1,6 +1,8 @@
 package com.example.voicelockscreen.view
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -38,17 +40,44 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
-            dataModel.backgroundPinButton?.let {
-                Util.resizeImage(itemView.btnNumber, it, dataModel.x, dataModel.y, context)
+            val bitmap: Bitmap? =
+                dataModel.backgroundPinButton?.let {
+                    BitmapFactory.decodeResource(
+                        context?.resources,
+                        it
+                    )
+                }
+            val bitmapNext = bitmap?.let {
+                (dataModel.x?.let { it1 -> Util.convertDpToPixel(it1.toFloat(), context) })?.toInt()
+                    ?.let { it2 ->
+                        dataModel.y?.let { it1 -> Util.convertDpToPixel(it1.toFloat(), context) }
+                            ?.let { it3 ->
+                                Bitmap.createScaledBitmap(
+                                    it,
+                                    it2,
+                                    it3.toInt(),
+                                    true
+                                )
+                            }
+                    }
             }
+            if (dataModel.x == null && dataModel.y == null) dataModel.backgroundPinButton?.let {
+                itemView.btnNumber.setBackgroundResource(
+                    it
+                )
+            }
+            else
+                itemView.btnNumber.setImageBitmap(bitmapNext)
             itemView.tvNumber.text = dataModel.number
             dataModel.colorNumber?.let { itemView.tvNumber.setTextColor(it) }
             dataModel.sizeNumber?.toFloat()
                 ?.let { itemView.tvNumber.setTextSize(TypedValue.COMPLEX_UNIT_SP, it) }
             itemView.tvNumber.typeface =
                 dataModel.typeFace?.let { context?.let { it1 -> ResourcesCompat.getFont(it1, it) } }
-            dataModel.margin.let {
-                itemView.ct1.setMargins(it, it, it, it)
+
+            dataModel.margin?.let {
+                val pixelMargin = Util.convertDpToPixel(it.toFloat(), context).toInt()
+                itemView.ct1.setMargins(pixelMargin, pixelMargin, pixelMargin, pixelMargin)
             }
         }
 
@@ -64,8 +93,36 @@ class RecyclerViewPinLock(
 
         fun bind(dataModel: DataModel) {
             // show data
-            dataModel.margin.let {
-                itemView.ct2.setMargins(it, it, it, it)
+            val bitmap: Bitmap? =
+                dataModel.backgroundPinButton?.let {
+                    BitmapFactory.decodeResource(
+                        context?.resources,
+                        it
+                    )
+                }
+            val bitmapNext = bitmap?.let {
+                (dataModel.x?.let { it1 -> Util.convertDpToPixel(it1.toFloat(), context) })?.toInt()
+                    ?.let { it2 ->
+                        dataModel.y?.let { it1 -> Util.convertDpToPixel(it1.toFloat(), context) }
+                            ?.let { it3 ->
+                                Bitmap.createScaledBitmap(
+                                    it,
+                                    it2,
+                                    it3.toInt(),
+                                    true
+                                )
+                            }
+                    }
+            }
+            if (dataModel.x == null && dataModel.y == null) dataModel.backgroundPinButton?.let {
+                itemView.btnNumberEmpty.setBackgroundResource(
+                    it
+                )
+            }
+            else itemView.btnNumberEmpty.setImageBitmap(bitmapNext)
+            dataModel.margin?.let {
+                val pixelMargin = Util.convertDpToPixel(it.toFloat(), context).toInt()
+                itemView.ct2.setMargins(pixelMargin, pixelMargin, pixelMargin, pixelMargin)
             }
 
         }
@@ -86,8 +143,9 @@ class RecyclerViewPinLock(
         fun bind(dataModel: DataModel?) {
             dataModel?.backgroundPinButton?.let { itemView.btnNumberDelete.setBackgroundResource(it) }
             dataModel?.colorDelete?.let { itemView.icon.setColorFilter(it) }
-            dataModel?.margin.let {
-                itemView.ct3.setMargins(it, it, it, it)
+            dataModel?.margin?.let {
+                val pixelMargin = Util.convertDpToPixel(it.toFloat(), context).toInt()
+                itemView.ct3.setMargins(pixelMargin, pixelMargin, pixelMargin, pixelMargin)
             }
 
 

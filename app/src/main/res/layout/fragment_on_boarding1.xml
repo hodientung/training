@@ -8,25 +8,15 @@
 
     <ImageView
         android:id="@+id/im1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/size_270dp"
+        android:layout_height="@dimen/size_280dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:src="@drawable/oboard1_frame"
+        android:src="@drawable/group1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_55dp"
-        android:layout_marginEnd="@dimen/size_30dp"
-        android:contentDescription="@string/hello_world"
-        android:scaleType="fitXY"
-        android:src="@drawable/character_onboard1"
-        app:layout_constraintBottom_toBottomOf="@id/im1"
-        app:layout_constraintEnd_toEndOf="@id/im1" />
 
     <TextView
         android:id="@+id/t1"

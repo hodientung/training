@@ -78,7 +78,6 @@ class PinCodeFragment : Fragment() {
         initView()
         initAction()
         setTheme()
-
     }
 
     private fun initAction() {

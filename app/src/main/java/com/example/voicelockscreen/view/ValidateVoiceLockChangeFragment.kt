@@ -157,7 +157,7 @@ class ValidateVoiceLockChangeFragment : Fragment() {
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
                 cancelAnimationRipple()
-                val errorMessage: String = Util.getErrorText(p0)
+                val errorMessage: String = Util.getErrorText(p0, requireContext())
                 tvDescriptionValidate.text = errorMessage
                 Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
             }

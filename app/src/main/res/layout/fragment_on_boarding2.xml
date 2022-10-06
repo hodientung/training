@@ -8,24 +8,14 @@
 
     <ImageView
         android:id="@+id/im1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/size_265dp"
+        android:layout_height="@dimen/size_276dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:src="@drawable/onboard2"
+        android:src="@drawable/group2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/hello_world"
-        android:scaleType="fitXY"
-        android:layout_marginStart="@dimen/size_36dp"
-        android:src="@drawable/character_onboard2"
-        app:layout_constraintBottom_toBottomOf="@id/im1"
-        app:layout_constraintStart_toStartOf="@id/im1" />
 
     <TextView
         android:id="@+id/t1"

@@ -67,6 +67,7 @@
         app:rb_radius="32dp"
         app:rb_rippleAmount="4"
         app:rb_scale="6">
+
         <ImageView
             android:id="@+id/imBackgroundVoiceLock"
             android:layout_width="wrap_content"

@@ -54,13 +54,12 @@
 
     <TextView
         android:id="@+id/tvCancel"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/size_98dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
         android:background="@drawable/round_text_cancel"
         android:gravity="center"
         android:fontFamily="@font/standard_font_sf_pro_regular"
-        android:paddingHorizontal="@dimen/size_38dp"
         android:paddingVertical="@dimen/size_6dp"
         android:layout_marginEnd="@dimen/size_5dp"
         android:text="@string/cancel"
@@ -71,10 +70,9 @@
 
     <TextView
         android:id="@+id/tvOk"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/size_98dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24dp"
-        android:paddingHorizontal="@dimen/size_38dp"
         android:paddingVertical="@dimen/size_6dp"
         android:background="@drawable/round_text_ok"
         android:gravity="center"

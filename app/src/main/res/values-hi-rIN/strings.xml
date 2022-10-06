@@ -102,4 +102,13 @@
     <string name="your_option_matter_to_us">आपका विकल्प हमारे लिए मायने रखता है</string>
     <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">यदि आप इस ऐप का आनंद लेते हैं, तो क्या आप दिमाग हमें गूगल प्ले पर रेटिंग देता है</string>
     <string name="thank_you">आपको धन्यवाद</string>
+    <string name="audio_recording">ऑडियो रिकॉर्डिंग त्रुटि, कृपया पुन: प्रयास करें।</string>
+    <string name="client_side">क्लाइंट साइड त्रुटि, कृपया पुन: प्रयास करें।</string>
+    <string name="insufficient_permission">अपर्याप्त अनुमतियां, कृपया पुन: प्रयास करें।</string>
+    <string name="netword_error">नेटवर्क त्रुटि, कृपया पुन: प्रयास करें।</string>
+    <string name="no_match">कोई मुकाबला नहीं</string>
+    <string name="recognition_service">RecognitionService व्यस्त है, कृपया पुन: प्रयास करें।</string>
+    <string name="error_from_service">सर्वर से त्रुटि, कृपया पुन: प्रयास करें।</string>
+    <string name="no_speech_input">कोई भाषण इनपुट नहीं, कृपया पुन: प्रयास करें।</string>
+    <string name="netword_timeout">नेटवर्क समयबाह्य, कृपया पुन: प्रयास करें।</string>
 </resources>

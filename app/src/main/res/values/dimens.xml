@@ -79,4 +79,8 @@
     <dimen name="size_150dp">150dp</dimen>
     <dimen name="size_155dp">155dp</dimen>
     <dimen name="size_130dp">130dp</dimen>
+    <dimen name="size_270dp">270dp</dimen>
+    <dimen name="size_265dp">265dp</dimen>
+    <dimen name="size_312dp">312dp</dimen>
+    <dimen name="size_307dp">307dp</dimen>
 </resources>

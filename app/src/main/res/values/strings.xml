@@ -123,5 +123,14 @@
     <string name="thank_you">Thank you</string>
     <string name="your_option_matter_to_us">Your Option Matter To Us</string>
     <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">If you enjoy this app, would you\n mind rating us on the google play</string>
+    <string name="audio_recording">Audio recording error, please try again.</string>
+    <string name="client_side">Client side error, please try again.</string>
+    <string name="insufficient_permission">Insufficient permissions, please try again.</string>
+    <string name="netword_error">Network error, please try again.</string>
+    <string name="netword_timeout">Network timeout, please try again.</string>
+    <string name="no_match">No match</string>
+    <string name="recognition_service">RecognitionService busy, please try again.</string>
+    <string name="error_from_service">Error from server, please try again.</string>
+    <string name="no_speech_input">No speech input, please try again.</string>
 
 </resources>

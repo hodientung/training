@@ -21,7 +21,7 @@ import com.skyfishjy.library.RippleBackground
 
 
 class Window(context: Context) {
-    private var context: Context? = context
+    var context: Context? = null
     private var mView: View? = null
     private var mParams: WindowManager.LayoutParams? = null
     private var mWindowManager: WindowManager? = null
@@ -29,6 +29,7 @@ class Window(context: Context) {
     private var rippleBackground: RippleBackground? = null
 
     init {
+        this.context = context
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             mParams = WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,

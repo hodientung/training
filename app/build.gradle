@@ -21,10 +21,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("C:/Users/paditech/Downloads/tung/toilatung.jks")
-            storePassword "1998cntt"
+            storeFile file("C:/Users/paditech/Videos/anh_tung_key.jks")
+            storePassword "Bachtung1998cntt"
             keyAlias "key0"
-            keyPassword "1998cntt"
+            keyPassword "Bachtung1998cntt"
         }
     }
 

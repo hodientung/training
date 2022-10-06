@@ -102,4 +102,13 @@
     <string name="your_option_matter_to_us">Ihre Option ist uns wichtig</string>
     <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">Wenn Ihnen diese App gefällt, würden Sie Denken Sie daran, uns auf Google Play zu bewerten</string>
     <string name="thank_you">Vielen Dank</string>
+    <string name="audio_recording">Audioaufzeichnungsfehler, bitte versuchen Sie es erneut.</string>
+    <string name="client_side">Clientseitiger Fehler, bitte versuchen Sie es erneut.</string>
+    <string name="insufficient_permission">Unzureichende Berechtigungen, bitte versuchen Sie es erneut.</string>
+    <string name="netword_error">Netzwerkfehler, bitte versuchen Sie es erneut.</string>
+    <string name="no_match">Keine Übereinstimmung</string>
+    <string name="recognition_service">RecognitionService beschäftigt, bitte versuchen Sie es erneut.</string>
+    <string name="error_from_service">Fehler vom Server, bitte versuchen Sie es erneut.</string>
+    <string name="no_speech_input">Keine Spracheingabe, bitte versuchen Sie es erneut.</string>
+    <string name="netword_timeout">Netzwerkzeitüberschreitung, bitte versuchen Sie es erneut.</string>
 </resources>

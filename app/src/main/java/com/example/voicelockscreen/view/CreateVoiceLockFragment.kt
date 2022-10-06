@@ -127,7 +127,7 @@ class CreateVoiceLockFragment : Fragment() {
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
                 cancelAnimationRipple()
-                val errorMessage: String = getErrorText(p0)
+                val errorMessage: String = Util.getErrorText(p0,requireContext())
                 tvDescriptionCreate.text = errorMessage
                 Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
             }
@@ -175,22 +175,6 @@ class CreateVoiceLockFragment : Fragment() {
         }
         recognition.setRecognitionListener(recognitionListener)
         recognition.startListening(intent)
-    }
-
-    private fun getErrorText(error: Int): String {
-        val message: String = when (error) {
-            SpeechRecognizer.ERROR_AUDIO -> "Audio recording error, please try again."
-            SpeechRecognizer.ERROR_CLIENT -> "Client side error, please try again."
-            SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "Insufficient permissions, please try again."
-            SpeechRecognizer.ERROR_NETWORK -> "Network error, please try again."
-            SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "Network timeout, please try again."
-            SpeechRecognizer.ERROR_NO_MATCH -> "No match"
-            SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "RecognitionService busy, please try again."
-            SpeechRecognizer.ERROR_SERVER -> "error from server, please try again."
-            SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "No speech input, please try again."
-            else -> "Didn't understand, please try again."
-        }
-        return message
     }
 
 }

@@ -62,10 +62,10 @@ class ManagePermissions(val activity: Activity, val list: List<String>, val code
     // Request the permissions at run time
     private fun requestPermissions() {
         val permission = deniedPermission()
-        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
-            // Show an explanation asynchronously (show dialog to explain to user the reason request permission)
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission))
+        // Show an explanation asynchronously (show dialog to explain to user the reason request permission)
             Toast.makeText(activity, "Should show an explanation.", Toast.LENGTH_SHORT).show()
-        } else
+        else
             ActivityCompat.requestPermissions(activity, list.toTypedArray(), code)
     }
 
