@@ -82,7 +82,7 @@ class VoiceLockFragment : Fragment() {
             }
 
         switchMaterial.isChecked = prefs?.onService == true
-        if (switchMaterial.isChecked) startService() else stopService()
+//        if (switchMaterial.isChecked) startService() else stopService()
         switchMaterial.setOnClickListener {
             if (prefs?.isSetupVoiceLock == false || (prefsPinCode?.isSetupPinLock == false
                         && prefsPatternPassword?.isSetupPatternLock == false

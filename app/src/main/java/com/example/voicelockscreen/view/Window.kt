@@ -14,10 +14,12 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isShowTime
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.skyfishjy.library.RippleBackground
+import java.util.*
 
 
 class Window(context: Context) {
@@ -147,10 +149,14 @@ class Window(context: Context) {
                     textDescription?.let { it2 ->
                         time?.let { it3 ->
                             date?.let { it4 ->
-                                Util.setOriginalThemeUnlockScreen(
-                                    it,
-                                    it1, it2, it3, it4, context
-                                )
+                                tvSpeak?.let { it5 ->
+                                    tvForget?.let { it6 ->
+                                        Util.setOriginalThemeUnlockScreen(
+                                            it,
+                                            it1, it2, it3, it4, it5, it6, context
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
@@ -161,6 +167,22 @@ class Window(context: Context) {
     fun getView() = mView
 
     fun open() {
+        val prefs = this.let {
+            context?.let { it1 ->
+                PreferenceHelper.customPreference(
+                    it1,
+                    Util.DATA_LANGUAGE_APP
+                )
+            }
+        }
+        val config = context?.resources?.configuration
+        prefs?.codeLanguage?.let {
+            val locale = Locale(it)
+            config?.setLocale(locale)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                config?.let { it1 -> context?.createConfigurationContext(it1) }
+            context?.resources?.updateConfiguration(config, context?.resources?.displayMetrics)
+        }
         try {
             if (mView?.windowToken == null && mView?.parent == null)
                 mWindowManager?.addView(mView, mParams)

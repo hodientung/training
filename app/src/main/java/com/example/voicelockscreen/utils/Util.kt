@@ -845,7 +845,10 @@ class Util {
             position: Int
         ) {
             dataTheme?.bg?.let { (contentAddView as ConstraintLayout).setBackgroundResource(it) }
-            (textDescription as TextView).setTextColor(
+            (textDescription as TextView).text = context.getString(R.string.voice_lock)
+            (tvSpeak as TextView).text = context.getString(R.string.speak_password_to_unlock)
+            (tvForget as TextView).text = context.getString(R.string.forget_password)
+            textDescription.setTextColor(
                 ContextCompat.getColor(
                     context,
                     R.color.white
@@ -864,32 +867,41 @@ class Util {
                 background2.setTint(it)
                 background3.setTint(it)
             }
-            dataTheme?.imVoice?.let {
-                (imBackgroundVoice as ImageView).setImageResource(it)
-                imBackgroundVoice.layoutParams = ViewGroup.LayoutParams(155, 130)
+            val bitmap1: Bitmap? =
+                dataTheme?.imVoice?.let { BitmapFactory.decodeResource(context.resources, it) }
+            bitmap1?.let {
+                Bitmap.createScaledBitmap(
+                    it,
+                    (convertDpToPixel(155f, context)).toInt(),
+                    (convertDpToPixel(130f, context)).toInt(),
+                    true
+                )
             }
+                ?.let { (imBackgroundVoice as ImageView).setImageBitmap(it) }
+
+
             dataTheme?.colorVoice?.let {
                 (imv as ImageView).setColorFilter(ContextCompat.getColor(context, it))
             }
             dataTheme?.fontText?.let {
-                (tvSpeak as TextView).typeface = ResourcesCompat.getFont(context, it)
-                (tvForget as TextView).typeface = ResourcesCompat.getFont(context, it)
+                tvSpeak.typeface = ResourcesCompat.getFont(context, it)
+                tvForget.typeface = ResourcesCompat.getFont(context, it)
             }
             if (position == 7)
                 dataTheme?.fontTextForget?.let {
-                    (tvForget as TextView).typeface = ResourcesCompat.getFont(context, it)
+                    tvForget.typeface = ResourcesCompat.getFont(context, it)
                 }
             dataTheme?.colorText?.let {
-                (tvSpeak as TextView).setTextColor(ContextCompat.getColor(context, it))
+                tvSpeak.setTextColor(ContextCompat.getColor(context, it))
             }
             dataTheme?.colorText?.let {
-                (tvForget as TextView).setTextColor(ContextCompat.getColor(context, it))
+                tvForget.setTextColor(ContextCompat.getColor(context, it))
             }
             dataTheme?.sizeText1?.let {
-                (tvSpeak as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
+                tvSpeak.setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
             }
             dataTheme?.sizeText2?.let {
-                (tvForget as TextView).setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
+                tvForget.setTextSize(TypedValue.COMPLEX_UNIT_SP, it.toFloat())
             }
             (time as TextView).typeface =
                 dataTheme?.fontText?.let { ResourcesCompat.getFont(context, it) }
@@ -911,6 +923,8 @@ class Util {
             textDescription: View,
             time: View,
             date: View,
+            tvSpeak: View,
+            tvForget: View,
             context: Context
         ) {
             (contentAddView as ConstraintLayout).setBackgroundResource(R.drawable.bg_app_voice)
@@ -921,6 +935,9 @@ class Util {
                     R.color.black
                 )
             )
+            textDescription.text = context.getString(R.string.voice_lock)
+            (tvSpeak as TextView).text = context.getString(R.string.speak_password_to_unlock)
+            (tvForget as TextView).text = context.getString(R.string.forget_password)
             (time as TextView).text = getPassCurrentTimeLock()
             (date as TextView).text = getPassCurrentDateLock()
 

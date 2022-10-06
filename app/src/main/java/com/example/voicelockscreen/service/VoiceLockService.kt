@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
 import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.speech.RecognitionListener
@@ -19,9 +20,11 @@ import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.view.*
+import java.util.*
 
 
 class VoiceLockService : Service() {
@@ -191,7 +194,15 @@ class VoiceLockService : Service() {
     }
 
     private fun sendNotification() {
-
+        val prefs = this.let { this.let { it1 -> PreferenceHelper.customPreference(it1, Util.DATA_LANGUAGE_APP) } }
+        val config = this.resources?.configuration
+        prefs.codeLanguage?.let {
+            val locale = Locale(it)
+            config?.setLocale(locale)
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                config?.let { it1 -> this.createConfigurationContext(it1) }
+            this.resources?.updateConfiguration(config,this.resources?.displayMetrics)
+        }
         val notification: Notification =
             NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
                 .setContentTitle(getText(R.string.voice_lock_screen))

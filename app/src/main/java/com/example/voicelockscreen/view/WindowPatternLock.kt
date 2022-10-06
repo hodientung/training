@@ -14,9 +14,11 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.patternPassword
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
+import java.util.*
 
 
 class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
@@ -109,6 +111,15 @@ class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
     fun getView() = mView
 
     fun open() {
+        val prefs = this.let { context?.let { it1 -> PreferenceHelper.customPreference(it1, Util.DATA_LANGUAGE_APP) } }
+        val config = context?.resources?.configuration
+        prefs?.codeLanguage?.let {
+            val locale = Locale(it)
+            config?.setLocale(locale)
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                config?.let { it1 -> context?.createConfigurationContext(it1) }
+            context?.resources?.updateConfiguration(config,context?.resources?.displayMetrics)
+        }
         try {
             if (mView?.windowToken == null && mView?.parent == null)
                 mWindowManager?.addView(mView, mParams)

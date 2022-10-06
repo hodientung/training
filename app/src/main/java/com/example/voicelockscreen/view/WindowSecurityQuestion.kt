@@ -12,9 +12,11 @@ import android.widget.*
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.answer
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.positionAnswer
 import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_security_question.*
+import java.util.*
 
 class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) {
     private var context: Context? = context
@@ -43,6 +45,22 @@ class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) 
     fun getView() = mView
 
     fun open() {
+        val prefsHelper = this.let {
+            context?.let { it1 ->
+                PreferenceHelper.customPreference(
+                    it1,
+                    Util.DATA_LANGUAGE_APP
+                )
+            }
+        }
+        val config = context?.resources?.configuration
+        prefsHelper?.codeLanguage?.let {
+            val locale = Locale(it)
+            config?.setLocale(locale)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                config?.let { it1 -> context?.createConfigurationContext(it1) }
+            context?.resources?.updateConfiguration(config, context?.resources?.displayMetrics)
+        }
         try {
             if (mView?.windowToken == null && mView?.parent == null)
                 mWindowManager?.addView(mView, mParams)
@@ -65,6 +83,14 @@ class WindowSecurityQuestion(context: Context, private val onClose: () -> Unit) 
                 it.resources.getStringArray(R.array.questions)
             )
         }
+         val title = mView?.findViewById<TextView>(R.id.tvSecurityQuestionWindow)
+         val title1 = mView?.findViewById<TextView>(R.id.tvTitleSelectRecoveryQuestionWindow)
+         val title2 = mView?.findViewById<EditText>(R.id.tvAnswerWindow)
+         val title3 = mView?.findViewById<TextView>(R.id.btnSubmitWindow)
+        title?.text = context?.getString(R.string.security_question)
+        title2?.hint = context?.getString(R.string.select_recovery_question)
+        title1?.text = context?.getString(R.string.security_question)
+        title3?.text = context?.getString(R.string.submit)
         mArrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mView?.findViewById<Spinner>(R.id.spinnerWindow)?.adapter = mArrayAdapter
         mView?.findViewById<Spinner>(R.id.spinnerWindow)?.let {
