@@ -1,23 +1,11 @@
 <resources>
-    <string name="app_name">VoiceLockScreen</string>
+    <string name="app_name" translatable="false">VoiceLockScreen</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tap_on_mic">Tap on mic to speak</string>
 
-    <string name="input">Input</string>
-    <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="speech_prompt">Say something…</string>
-    <string name="notification_title">Voice Lock Screen</string>
-    <string name="notification_message">Voice Lock Screen </string>
     <string name="notification">Voice Lock Screen is running</string>
-    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="speak_password_to_unlock">Speak Password To Unlock</string>
-    <string name="turn_off_service">Turn off service</string>
-    <string name="turn_on_service">Turn on service</string>
-    <string name="enable_pincode">Enable Pincode</string>
-    <string name="change_pin">Change Pin</string>
-    <string name="disable">Disable</string>
     <string name="pin_lock">Pin Lock</string>
     <string name="voice_lock">Voice Lock</string>
     <string name="pattern_lock">Pattern Lock</string>
@@ -27,63 +15,122 @@
     <string name="preview">Preview</string>
     <string name="setting">Setting</string>
     <string name="no_match_found">No Match Found</string>
-    <string name="_1">1</string>
-    <string name="change_pin_lock">Change pin Lock</string>
-    <string name="www_google_com">www.google.com</string>
-    <string name="kinemaster">KineMaster</string>
+    <string name="_1" translatable="false">1</string>
     <string name="Videos"> %1$d Videos</string>
-    <string name="starage_emulate_0">/starage/emulate/0</string>
+    <string name="Images"> %1$d Images</string>
     <string name="_64_images">64 Images</string>
-    <string name="_1234">1234</string>
-    <string name="empty">empty</string>
-    <string name="wrong_pin_code">Wrong Pin Code</string>
-    <string name="wrong_pattern_code">Wrong Pattern Code</string>
-    <string name="wrong_pin_code_timer">Wrong Pin Code or not active Timer Pin</string>
+    <string name="_1234" translatable="false">1234</string>
+    <string name="wrong_pin_code">Wrong Pin Code, enter again</string>
+    <string name="wrong_pattern_code">Wrong your pattern, draw again</string>
+    <string name="wrong_pin_code_timer">Wrong timer pin, enter again</string>
     <string name="wrong_password">Wrong Password</string>
     <string name="report_input">Your Voice Password is: "%1$s</string>
     <string name="set_pin_code">Set Pin Code</string>
+    <string name="enter_pin_code_to_unlock">Enter pin code to unlock</string>
+    <string name="draw_your_pattern_to_unlock">Draw your pattern to unlock</string>
     <string name="enter_your_password">Enter Your Password</string>
-    <string name="set_backup_pin">Set Backup Pin</string>
-    <string name="set_timer_pin">Set Timer Pin</string>
-    <string name="enter_pin_code_again">Enter Pin Lock again</string>
-    <string name="create_new_password">Create New Password</string>
-    <string name="forget_password">Forget Password</string>
+    <string name="enter_pin_code_again">Enter pin code again</string>
+    <string name="draw_pattern_again">Draw your pattern again</string>
+    <string name="create_new_password">Create new password</string>
+    <string name="draw_new_your_pattern">Draw new your pattern</string>
+    <string name="forget_password">Forget Password?</string>
     <string name="select_recovery_question">Select Recovery Question</string>
     <string name="security_question">Security Question</string>
     <string name="type_your_answer_here">Type Your Answer Here</string>
     <string name="submit">Submit</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="pattern_successful_change">Pattern Successfully Change!!!</string>
-    <string name="successful_set_voice_password">Successful Set Voice password!!!</string>
-    <string name="successful_set_pin_lock">Successful Set Pin Lock!!!</string>
+    <string name="pattern_successful_change">Pattern successfully change!!!</string>
+    <string name="successful_set_voice_password">Successful set voice password!!!</string>
+    <string name="successful_set_pin_lock">Successful set pin lock!!!</string>
+    <string name="successful_set_pattern_lock">Successful set pattern lock!!!</string>
     <string name="current_time">Current Time</string>
     <string name="voice_lock_screen">Voice Lock Screen</string>
     <string name="lock_screen_status">Lock Screen Status</string>
     <string name="enable_lock_service">Enable Lock Service</string>
     <string name="first_set_the_voice_password">First Set The Voice Password</string>
+    <string name="please_install_voice_lock">Please install voice lock first, then \n you can change the pin lock</string>
+    <string name="please_install_voice_lock2">Please install voice lock first, then \n you can change the pattern lock</string>
     <string name="important">Important</string>
-    <string name="you_clicked_on_cancel">You clicked on Cancel</string>
+    <string name="you_clicked_on_cancel">You cancelled set up pin lock based on timer pin</string>
     <string name="successfully_set_time_lock">Successfully Set Time Lock!!!</string>
-    <string name="your_voice_password_is_alo">Your Voice Password is: alo</string>
-    <string name="you_can_change_your_voice_or_pin_or_pattern_from_given_option">You can change your voice or pin or \n pattern from given option</string>
+    <string name="you_can_change_your_voice_or_pin_or_pattern_from_given_option">You can change your voice or pin or   pattern from given option</string>
     <string name="set_time_lock">Set Time Lock</string>
-    <string name="note_timer_pin">If your current time is 12:00 then password is 1200 and if current time is 05:30 then password is 0530.</string>
+    <string name="set_theme">Set Theme</string>
+    <string name="note_timer_pin">If your current time is 12:00 then  password is 1200 and if current time is  05:30 then password is 0530.</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="disable_system_lock">Disable System Lock</string>
     <string name="alternative_lock">Alternative Lock</string>
     <string name="set_pattern">Set Pattern</string>
-    <string name="draw_your_pattern">Draw Your Pattern</string>
-    <string name="create_password">Create Password</string>
-    <string name="speak_your_old_voice_password">Speak your old voice password</string>
-    <string name="speak_password_to_confirm">Speak password to confirm</string>
-    <string name="_04_12">04:12</string>
-    <string name="video_name">Video name</string>
-    <string name="_286_09_mb">286.09 Mb</string>
-    <string name="_64_videos">64 Videos</string>
-    <string name="_00_02">00:02</string>
-    <string name="_00_55">00:55</string>
-    <string name="stereo">Stereo</string>
-    <string name="displaying_over_other_apps">Displaying over other apps!</string>
-    <string name="remove">Remove</string>
+    <string name="apply">Apply theme</string>
+    <string name="successfully_set_theme">Successfully Set Theme!!!</string>
+    <string name="enter_old_password">Enter old pin code to change</string>
+    <string name="draw_old_your_pattern">Draw old your pattern to change</string>
+    <string name="draw_new_your_pattern_to_change">Draw new your pattern to change</string>
+    <string name="enter_new_password">Create new pin code to change</string>
+    <string name="correct_password">Correct password</string>
+    <string name="in_correct_password">Incorrect password</string>
+    <string name="rate_us">Rate us</string>
+    <string name="share_app">Share App</string>
+    <string name="privacy">Privacy</string>
+    <string name="title_activity_onboard">OnboardActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+
+    <string name="before_setting_voice_lock_you_need_to_set_nanother_pin_code">Before setting Voice lock you need to set  another pin code</string>
+    <string name="create_n_new_voice_password">Tap on Mic Create new voice password</string>
+    <string name="tap_on_mic_n_conf">Tap on Mic  Confirm old voice password to create  new voice password</string>
+    <string name="please_speak_something">Please speak something to Record…</string>
+    <string name="did_not_understand">Didn’t understand. Please Try again</string>
+    <string name="sorry_password_voice">Sorry old password not matched !!!  Tap on mic to confirm</string>
+    <string name="skip">Skip</string>
+    <string name="voice_lock_is_easy">Voice lock is easy</string>
+    <string name="enhance_the_security_of_your_information_with_voice_lock">Enhance the security of your information  with voice lock</string>
+    <string name="let_s_go">Let\'s go</string>
+    <string name="password_changes_over_time">Password changes over time</string>
+    <string name="with_the_current_time">With the current time feature, your password will be  changed according to the time of day</string>
+    <string name="you_can_choose_the_themes_for_your_lock_screen">You can choose the themes for your  lock screen</string>
+    <string name="click_view">Click View</string>
+    <string name="create_new_your_pattern">Create new your pattern</string>
+    <string name="enter_timer_pin_to_unlock">Enter timer pin to unlock</string>
+
+    <string name="hidden_date">Display Date &amp; Time</string>
+    <string name="language">Language</string>
+    <string name="share">Share</string>
+    <string name="about">about</string>
+    <string name="show_time">Date &amp; Time is displayed on unlock screen</string>
+    <string name="hidden_time">Date &amp; Time is hidden on unlock screen</string>
+
+    <string name="english" translatable="false">English</string>
+    <string name="hindi" translatable="false">Hindi</string>
+    <string name="spanish" translatable="false">Spanish</string>
+    <string name="french" translatable="false">French</string>
+    <string name="german" translatable="false">German</string>
+    <string name="indonesian" translatable="false">Indonesian</string>
+    <string name="portuguese" translatable="false">Portuguese</string>
+    <string-array name="questions">
+        <item>@string/where_was_you</item>
+        <item>@string/what_is_the_name_of</item>
+        <item>@string/what_is_the_name_of_your_first_school</item>
+        <item>@string/what_was_your_childhood</item>
+    </string-array>
+    <string name="where_was_you">Where were you born?</string>
+    <string name="what_is_the_name_of">What is the name of your BFF?</string>
+    <string name="what_is_the_name_of_your_first_school">What is the name of your first school?</string>
+    <string name="what_was_your_childhood">What was your childhood nickname?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="search_here">Search here</string>
+    <string name="thank_you">Thank you</string>
+    <string name="your_option_matter_to_us">Your Option Matter To Us</string>
+    <string name="if_you_enjoy_this_app_would_you_n_mind_rating_us_on_the_google_play">If you enjoy this app, would you\n mind rating us on the google play</string>
+    <string name="audio_recording">Audio recording error, please try again.</string>
+    <string name="client_side">Client side error, please try again.</string>
+    <string name="insufficient_permission">Insufficient permissions, please try again.</string>
+    <string name="netword_error">Network error, please try again.</string>
+    <string name="netword_timeout">Network timeout, please try again.</string>
+    <string name="no_match">No match</string>
+    <string name="recognition_service">RecognitionService busy, please try again.</string>
+    <string name="error_from_service">Error from server, please try again.</string>
+    <string name="no_speech_input">No speech input, please try again.</string>
+
 </resources>

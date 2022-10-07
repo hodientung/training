@@ -1,131 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/content_add_view"
+    android:id="@+id/content_add_view_window"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_10"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
         android:text="@string/voice_lock"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_20sp"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_16dp"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/btnSpeakUnlock1"
-        android:layout_width="@dimen/size_50dp"
-        android:layout_height="@dimen/size_50dp"
-        app:cardCornerRadius="@dimen/size_100dp"
+    <LinearLayout
+        android:id="@+id/ln"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_16dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/imVLock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_20dp"
+            android:fontFamily="@font/standard_font_sf_pro_regular"
+            android:textColor="#000000"
+            android:textSize="@dimen/size_40sp" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/standard_font_sf_pro_regular"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/size_24" />
+
+    </LinearLayout>
+
+
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/content3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rb_duration="3000"
+        app:rb_radius="32dp"
+        app:rb_rippleAmount="4"
+        app:rb_scale="6">
+
+        <ImageView
+            android:id="@+id/imBackgroundVoiceLock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/hello_world"
+            android:scaleType="fitXY" />
+    </com.skyfishjy.library.RippleBackground>
+
+
+    <ImageView
+        android:id="@+id/imVLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_voice_win"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/abc"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/main_header_selector"
-            android:contentDescription="@string/hello_world"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_round_mic_24_white" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/test_thu"
+        android:id="@+id/tvSpeakLock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_20dp"
+        android:layout_marginHorizontal="@dimen/size_16dp"
+        android:layout_marginTop="@dimen/size_100dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/size_3dp"
         android:text="@string/speak_password_to_unlock"
-        android:textColor="@color/white"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imVLock" />
+
+    <TextView
+        android:id="@+id/tvForgetLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_15dp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:text="@string/forget_password"
+        android:textColor="#000000"
         android:textSize="@dimen/size_16_sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnSpeakUnlock1" />
+        app:layout_constraintTop_toBottomOf="@id/tvSpeakLock" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnForgetPassword"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/size_20dp"
-        android:layout_marginTop="@dimen/size_20dp"
-        android:background="@drawable/rectangle_button"
-        android:text="@string/forget_password"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/test_thu" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/view1WinLock"
+        android:layout_width="@dimen/size_66dp"
+        android:layout_height="@dimen/size_66dp"
+        android:background="@drawable/round_image_window"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/view2WinLock"
+        app:layout_constraintTop_toBottomOf="@id/tvForgetLock" />
+
+    <ImageView
+        android:id="@+id/view2WinLock"
+        android:layout_width="@dimen/size_66dp"
+        android:layout_height="@dimen/size_66dp"
+        android:background="@drawable/round_image_window"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toRightOf="@+id/view1WinLock"
+        app:layout_constraintRight_toLeftOf="@+id/view3WinLock"
+        app:layout_constraintTop_toTopOf="@id/view1WinLock"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/view3WinLock"
+        android:layout_width="@dimen/size_66dp"
+        android:layout_height="@dimen/size_66dp"
+        android:background="@drawable/round_image_window"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toRightOf="@+id/view2WinLock"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view1WinLock"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/sze_40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnForgetPassword">
+        android:background="@drawable/number_key"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/view1WinLock"
+        app:layout_constraintEnd_toEndOf="@id/view1WinLock"
+        app:layout_constraintStart_toStartOf="@id/view1WinLock"
+        app:layout_constraintTop_toTopOf="@id/view1WinLock" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewPin"
-            android:layout_width="@dimen/size_50dp"
-            android:layout_height="@dimen/size_50dp"
-            app:cardBackgroundColor="#80000000"
-            app:cardCornerRadius="@dimen/size_100dp"
-            app:layout_constraintEnd_toStartOf="@id/cardViewPin2"
-            app:layout_constraintTop_toTopOf="parent">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/icon_union"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/view2WinLock"
+        app:layout_constraintEnd_toEndOf="@id/view2WinLock"
+        app:layout_constraintStart_toStartOf="@id/view2WinLock"
+        app:layout_constraintTop_toTopOf="@id/view2WinLock" />
 
-            <ImageView
-                android:id="@+id/imageViewPin"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/hello_world"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_round_confirmation_number_24" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewPin2"
-            android:layout_width="@dimen/size_50dp"
-            android:layout_height="@dimen/size_50dp"
-            android:layout_marginStart="@dimen/size_20dp"
-            app:cardBackgroundColor="#80000000"
-            app:cardCornerRadius="@dimen/size_100dp"
-            app:layout_constraintStart_toEndOf="@id/cardViewPin"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageViewPin2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/hello_world"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_round_watch_later_24" />
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewPin3"
-            android:layout_width="@dimen/size_50dp"
-            android:layout_height="@dimen/size_50dp"
-            android:layout_marginStart="@dimen/size_20dp"
-            app:cardBackgroundColor="#80000000"
-            app:cardCornerRadius="@dimen/size_100dp"
-            app:layout_constraintStart_toEndOf="@id/cardViewPin2"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageViewPin3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/hello_world"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_round_confirmation_number_24" />
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/icon_recent"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/view3WinLock"
+        app:layout_constraintEnd_toEndOf="@id/view3WinLock"
+        app:layout_constraintStart_toStartOf="@id/view3WinLock"
+        app:layout_constraintTop_toTopOf="@id/view2WinLock" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,76 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content1"
+    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/content2Window"
-    android:padding="@dimen/size_8dp">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/tvBackWindowPattern"
+        android:id="@+id/tvBackPatternLockConfirmChangeWindow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginStart="@dimen/size_16dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
         android:src="@drawable/ic_round_arrow_back"
-        app:layout_constraintBottom_toBottomOf="@id/tvSetPatternConfirmWindow"
+        app:layout_constraintBottom_toBottomOf="@id/tvDescriptionPatternConfirmChangeWindow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvSetPatternConfirmWindow" />
+        app:layout_constraintTop_toTopOf="@id/tvDescriptionPatternConfirmChangeWindow" />
 
     <TextView
-        android:id="@+id/tvSetPatternConfirmWindow"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDescriptionPatternConfirmChangeWindow"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_10"
-        android:text="@string/set_pattern"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:layout_marginHorizontal="@dimen/size_50dp"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:gravity="center"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:lineSpacingExtra="@dimen/size_3dp"
+        android:maxLines="2"
+        android:text="@string/draw_your_pattern_to_unlock"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_16_sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ImageView
-        android:id="@+id/imLockPatternConfirmWindow"
-        android:layout_width="@dimen/size_50dp"
-        android:layout_height="@dimen/size_50dp"
-        android:layout_marginTop="@dimen/size_20dp"
-        android:layout_marginBottom="@dimen/size_10"
+        android:id="@+id/imBackgroundVoicePatternConfirmChangeWindow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/hello_world"
-        android:src="@drawable/ic_outline_lock_24"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@id/patternViewConfirmChangeWindow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSetPatternConfirmWindow" />
+        app:layout_constraintTop_toBottomOf="@id/tvDescriptionPatternConfirmChangeWindow" />
 
-    <TextView
-        android:id="@+id/tvPatternConfirmWindow"
+    <ImageView
+        android:id="@+id/imVPatternConfirmChangeWindow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_10"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imLockPatternConfirmWindow" />
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/imBackgroundVoicePatternConfirmChangeWindow"
+        app:layout_constraintEnd_toEndOf="@id/imBackgroundVoicePatternConfirmChangeWindow"
+        app:layout_constraintStart_toStartOf="@id/imBackgroundVoicePatternConfirmChangeWindow"
+        app:layout_constraintTop_toTopOf="@id/imBackgroundVoicePatternConfirmChangeWindow" />
 
-    <TextView
-        android:id="@+id/tvSetPatternCodeConfirmWindow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_10"
-        android:text="@string/confirm_password"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/patternViewConfirmWindow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.itsxtt.patternlock.PatternLockView
-        android:id="@+id/patternViewConfirmWindow"
+    <com.example.voicelockscreen.view.PatternView
+        android:id="@+id/patternViewConfirmChangeWindow"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:plv_errorDotColor="@color/purple_200"
-        app:plv_errorLineColor="@color/purple_200" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imBackgroundVoicePatternConfirmChangeWindow"
+        app:layout_constraintDimensionRatio="1:1"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

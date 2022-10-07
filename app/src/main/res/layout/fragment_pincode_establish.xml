@@ -2,82 +2,84 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/contentEstablishSetup"
+    android:id="@+id/contentPinCode"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/size_8dp"
-    tools:context=".view.PinCodeEstablishFragment">
+    android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/tvNameVideo"
+    <ImageView
+        android:id="@+id/tvBackPinEstablish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_20dp"
-        android:layout_marginTop="@dimen/size_10"
-        android:text="@string/set_backup_pin"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_20sp"
-        app:layout_constraintBottom_toBottomOf="@id/tvBack"
+        android:layout_marginStart="@dimen/size_16dp"
+        android:contentDescription="@string/hello_world"
+        android:src="@drawable/ic_round_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/tvSetPinCodeEstablish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvSetPinCodeEstablish" />
+
+    <TextView
+        android:id="@+id/tvSetPinCodeEstablish"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_50dp"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:gravity="center"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:lineSpacingExtra="@dimen/size_3dp"
+        android:text="@string/set_pin_code"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_16_sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvBack" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/tvBack"
+        android:id="@+id/imLockPinEstablish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:layout_marginBottom="@dimen/size_10"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_round_arrow_back"
-        app:layout_constraintBottom_toBottomOf="@id/tvNameVideo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvNameVideo" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSetPinCodeEstablish" />
 
     <ImageView
-        android:layout_width="@dimen/size_50dp"
-        android:layout_height="@dimen/size_50dp"
-        android:layout_marginBottom="@dimen/size_10"
-        android:src="@drawable/ic_outline_lock_24"
-        android:contentDescription="@string/hello_world"
-        app:layout_constraintBottom_toTopOf="@id/tvSetPinCode"
-        app:layout_constraintEnd_toEndOf="@id/txtPassEstablish"
-        app:layout_constraintStart_toStartOf="@id/txtPassEstablish" />
-
-    <TextView
-        android:id="@+id/tvSetPinCode"
+        android:id="@+id/imVSmallEstablish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_10"
-        android:text="@string/set_pin_code"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_16_sp"
-        app:layout_constraintBottom_toTopOf="@id/txtPassEstablish"
-        app:layout_constraintEnd_toEndOf="@id/txtPassEstablish"
-        app:layout_constraintStart_toStartOf="@id/txtPassEstablish" />
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/imLockPinEstablish"
+        app:layout_constraintEnd_toEndOf="@id/imLockPinEstablish"
+        app:layout_constraintStart_toStartOf="@id/imLockPinEstablish"
+        app:layout_constraintTop_toTopOf="@id/imLockPinEstablish" />
 
-
-    <TextView
+    <EditText
         android:id="@+id/txtPassEstablish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
+        android:autofillHints="password"
+        android:background="@null"
         android:inputType="numberPassword"
-        android:letterSpacing="1.5"
+        android:letterSpacing="1"
         android:maxLength="4"
-        android:textColor="#EDE8E8"
-        android:textSize="@dimen/size_22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/rvPinCodeEstablish"
+        android:text="@string/_1234"
+        android:textSize="@dimen/size_40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imLockPinEstablish"
+        tools:ignore="LabelFor" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPinCodeEstablish"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassEstablish" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

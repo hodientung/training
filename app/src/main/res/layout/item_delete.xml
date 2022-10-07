@@ -3,26 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/size_20dp">
+    android:id="@+id/ct3"
+>
 
-
-    <View
-        android:id="@+id/base_view"
-        android:layout_width="@dimen/size_50dp"
-        android:layout_height="@dimen/size_50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/btnNumberDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/hello_world"
-        android:scaleType="centerCrop"
-        android:src="@drawable/clear_18_tone"
-        app:layout_constraintBottom_toBottomOf="@id/base_view"
-        app:layout_constraintEnd_toEndOf="@id/base_view"
-        app:layout_constraintStart_toStartOf="@id/base_view"
-        app:layout_constraintTop_toTopOf="@id/base_view" />
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_outline_backspace_24"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/btnNumberDelete"
+        app:layout_constraintEnd_toEndOf="@id/btnNumberDelete"
+        app:layout_constraintStart_toStartOf="@id/btnNumberDelete"
+        app:layout_constraintTop_toTopOf="@id/btnNumberDelete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

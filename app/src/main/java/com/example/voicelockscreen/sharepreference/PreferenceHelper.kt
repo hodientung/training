@@ -8,6 +8,7 @@ object PreferenceHelper {
     private const val INPUT = "input"
     private const val CODE_THEME = "code_theme"
     private const val POSITION_ANSWER = "position_answer"
+    private const val POSITION_CHOOSE = "position_choose"
     private const val CODE_THEME_BUTTON = "code_theme_button"
     private const val ON_SERVICE = "on_service"
     private const val CHECK_TIMER_PIN = "check_timer_pin"
@@ -16,7 +17,11 @@ object PreferenceHelper {
     private const val SETUP_PATTERN_LOCK = "setup_pattern_lock"
     private const val INPUT_PIN_LOCK = "input_pin_lock"
     private const val ANSWER = "answer"
+    private const val FIRST_FLASH = "flash"
+    private const val SHOW_TIME = "current_time"
+    private const val RATE_ME = "rate_me"
     private const val INPUT_PATTERN = "input_pattern"
+    private const val CODE_LANGUAGE = "code_language"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
         context.getSharedPreferences(name, Context.MODE_PRIVATE)
@@ -95,7 +100,7 @@ object PreferenceHelper {
         }
 
     var SharedPreferences.themeCode
-        get() = getInt(CODE_THEME, 0)
+        get() = getInt(CODE_THEME, -1)
         set(value) {
             editMe {
                 it.putInt(CODE_THEME, value)
@@ -125,11 +130,27 @@ object PreferenceHelper {
             }
         }
 
+    var SharedPreferences.codeLanguage
+        get() = getString(CODE_LANGUAGE, "en")
+        set(value) {
+            editMe {
+                it.putString(CODE_LANGUAGE, value)
+            }
+        }
+
     var SharedPreferences.positionAnswer
         get() = getInt(POSITION_ANSWER, 0)
         set(value) {
             editMe {
                 it.putInt(POSITION_ANSWER, value)
+            }
+        }
+
+    var SharedPreferences.positionSelect
+        get() = getInt(POSITION_CHOOSE, 0)
+        set(value) {
+            editMe {
+                it.putInt(POSITION_CHOOSE, value)
             }
         }
 
@@ -140,6 +161,31 @@ object PreferenceHelper {
                 it.putBoolean(CHECK_TIMER_PIN, value)
             }
         }
+
+    var SharedPreferences.isFistOnboard
+        get() = getBoolean(FIRST_FLASH, false)
+        set(value) {
+            editMe {
+                it.putBoolean(FIRST_FLASH, value)
+            }
+        }
+
+    var SharedPreferences.isShowTime
+        get() = getBoolean(SHOW_TIME, false)
+        set(value) {
+            editMe {
+                it.putBoolean(SHOW_TIME, value)
+            }
+        }
+
+    var SharedPreferences.isRate
+        get() = getBoolean(RATE_ME, false)
+        set(value) {
+            editMe {
+                it.putBoolean(RATE_ME, value)
+            }
+        }
+
 
     var SharedPreferences.clearValues
         get() = { }

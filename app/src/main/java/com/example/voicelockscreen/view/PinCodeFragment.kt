@@ -13,7 +13,6 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_pin_code.*
@@ -27,12 +26,6 @@ class PinCodeFragment : Fragment() {
 
     private var passwordSetup = ""
 
-    override fun onResume() {
-        super.onResume()
-        setTheme()
-    }
-
-
     //show theme for layout
     private fun setTheme() {
         val prefs =
@@ -42,16 +35,34 @@ class PinCodeFragment : Fragment() {
                     Util.THEME_SETTING
                 )
             }
-
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { contentPinCode.setBackgroundResource(it) }
-        for (i in 0 until Util.getListNumber().size) {
-            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
-                Util.getThemeToScreen(
-                    it
-                ).colorPinButton
-            }
+        val sizeNumberPin = Util.getListNumber().size
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
         }
+        if (prefs?.themeCode != -1)
+        //setThemeScreen(listTheme, sizeNumberPin)
+            Util.setThemeView(
+                contentPinCode1,
+                tvSetPinCode,
+                txtPass,
+                tvBackPin,
+                imLockPin,
+                imVSmall,
+                listTheme,
+                sizeNumberPin,
+                mAdapter.dataModel,
+                requireContext()
+            )
+        else
+            Util.setOriginalScreen(
+                sizeNumberPin,
+                imLockPin,
+                imVSmall,
+                txtPass,
+                tvSetPinCode,
+                mAdapter.dataModel,
+                requireContext()
+            )
     }
 
     override fun onCreateView(
@@ -66,25 +77,27 @@ class PinCodeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initAction()
-
+        setTheme()
     }
 
     private fun initAction() {
-//        mAdapter.onItemClicked = {
-//            Toast.makeText(context, "vi tri $it", Toast.LENGTH_SHORT).show()
-//        }
         setUpPassword()
-        tvBack.setOnClickListener {
+        tvBackPin.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()
         }
     }
 
-
     private fun setUpPassword() {
+        txtPass.setText("")
+        tvSetPinCode.text = getString(R.string.create_new_password)
+        Toast.makeText(
+            context, getString(R.string.create_new_password),
+            Toast.LENGTH_LONG
+        ).show()
         mAdapter.onItemClicked = { position ->
             when (position) {
-                in 0..8, 10 ->
-                    passwordSetup += position.toString()
+                in 0..8 -> passwordSetup += position.toString()
+                10 -> passwordSetup += "9"
                 else ->
                     passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }
@@ -110,15 +123,24 @@ class PinCodeFragment : Fragment() {
             }
             if (isSetupPassword && passwordSetup.length == 4) {
                 val againInput = prefs?.inputPinLock
-                prefs?.isSetupPinLock = true
                 if (againInput == passwordSetup) {
+                    prefs.isSetupPinLock = true
                     Toast.makeText(
                         context, getString(R.string.successful_set_pin_lock),
                         Toast.LENGTH_LONG
                     ).show()
                     activity?.supportFragmentManager?.popBackStack()
                     SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
+                } else {
+                    Toast.makeText(
+                        context, getString(R.string.wrong_pin_code),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    tvSetPinCode.text = getString(R.string.wrong_pin_code)
+                    txtPass.setText("")
+                    passwordSetup = ""
                 }
+
             }
         }
     }

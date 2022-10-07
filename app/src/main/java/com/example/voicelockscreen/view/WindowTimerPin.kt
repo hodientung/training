@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetTimerPin
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
+import java.util.*
 
 class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
     private var context: Context? = context
@@ -28,6 +30,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
     private var mWindowManager: WindowManager? = null
     private var layoutInflater: LayoutInflater? = null
     private lateinit var mAdapter: RecyclerViewPinLock
+    private var passwordSetup = ""
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -45,9 +48,87 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
         mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager?
     }
 
+    private fun setTheme() {
+        val contentPinCode = mView?.findViewById<ConstraintLayout>(R.id.contentPinCodeTimer)
+        val tvSetPinCodeEstablish = mView?.findViewById<TextView>(R.id.tvSetPinCodeTimer)
+        val txtPassEstablish = mView?.findViewById<EditText>(R.id.txtPassTimer)
+        val tvBackPinEstablish = mView?.findViewById<ImageView>(R.id.tvBackPinTimer)
+        val imLockPinEstablish = mView?.findViewById<ImageView>(R.id.imLockPinTimer)
+        val imVSmallEstablish = mView?.findViewById<ImageView>(R.id.imVSmallTimer)
+
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.THEME_SETTING
+                )
+            }
+        val sizeNumberPin = Util.getListNumber().size
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1)
+        //setThemeScreen(listTheme, sizeNumberPin)
+            contentPinCode?.let {
+                tvSetPinCodeEstablish?.let { it1 ->
+                    txtPassEstablish?.let { it2 ->
+                        tvBackPinEstablish?.let { it3 ->
+                            imLockPinEstablish?.let { it4 ->
+                                imVSmallEstablish?.let { it5 ->
+                                    context?.let { it6 ->
+                                        Util.setThemeView(
+                                            it,
+                                            it1,
+                                            it2,
+                                            it3,
+                                            it4,
+                                            it5,
+                                            listTheme,
+                                            sizeNumberPin,
+                                            mAdapter.dataModel,
+                                            it6
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        else
+            imLockPinEstablish?.let {
+                txtPassEstablish?.let { it1 ->
+                    context?.let { it2 ->
+                        tvSetPinCodeEstablish?.let { it3 ->
+                            imVSmallEstablish?.let { it4 ->
+                                Util.setOriginalScreen(
+                                    sizeNumberPin,
+                                    it,
+                                    it4,
+                                    it1,
+                                    it3,
+                                    mAdapter.dataModel,
+                                    it2
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+    }
+
     fun getView() = mView
 
     fun open() {
+        val prefs = this.let { context?.let { it1 -> PreferenceHelper.customPreference(it1, Util.DATA_LANGUAGE_APP) } }
+        val config = context?.resources?.configuration
+        prefs?.codeLanguage?.let {
+            val locale = Locale(it)
+            config?.setLocale(locale)
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                config?.let { it1 -> context?.createConfigurationContext(it1) }
+            context?.resources?.updateConfiguration(config,context?.resources?.displayMetrics)
+        }
         try {
             if (mView?.windowToken == null && mView?.parent == null)
                 mWindowManager?.addView(mView, mParams)
@@ -57,10 +138,11 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
         }
         initView()
         initAction()
+
     }
 
     private fun initView() {
-        mView?.findViewById<RecyclerView>(R.id.rvTimerPinWindow)?.let {
+        mView?.findViewById<RecyclerView>(R.id.rvPinCodeTimer)?.let {
             it.layoutManager = GridLayoutManager(context, 3)
             mAdapter = RecyclerViewPinLock(context)
             mAdapter.dataModel = Util.getListNumber()
@@ -73,31 +155,33 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
         verifyPassword()
     }
 
-    private fun setTheme() {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.THEME_SETTING
-                )
-            }
-
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let {
-                mView?.findViewById<ConstraintLayout>(R.id.contentTimerPinWindow)
-                    ?.setBackgroundResource(it)
-            }
-        for (i in 0 until Util.getListNumber().size) {
-            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
-                Util.getThemeToScreen(
-                    it
-                ).colorPinButton
-            }
-        }
-    }
+//    private fun setTheme() {
+//        val prefs =
+//            context?.let {
+//                PreferenceHelper.customPreference(
+//                    it,
+//                    Util.THEME_SETTING
+//                )
+//            }
+//
+//        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
+//            ?.let {
+//                mView?.findViewById<ConstraintLayout>(R.id.contentTimerPinWindow)
+//                    ?.setBackgroundResource(it)
+//            }
+//        for (i in 0 until Util.getListNumber().size) {
+//            mAdapter.dataModel[i].backgroundPinButton = prefs?.themePinButton?.let {
+//                Util.getThemeToScreen(
+//                    it
+//                ).colorPinButton
+//            }
+//        }
+//    }
 
     private fun verifyPassword() {
-        var passwordSetup = ""
+        mView?.findViewById<EditText>(R.id.txtPassTimer)?.setText("")
+        mView?.findViewById<TextView>(R.id.tvSetPinCodeTimer)?.text =
+            context?.getString(R.string.enter_timer_pin_to_unlock)
         mAdapter.onItemClicked = { position ->
             when (position) {
                 in 0..8, 10 ->
@@ -105,7 +189,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
                 else ->
                     passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }
-            mView?.findViewById<EditText>(R.id.txtPassTimerPinWindow)?.setText(passwordSetup)
+            mView?.findViewById<EditText>(R.id.txtPassTimer)?.setText(passwordSetup)
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
@@ -117,15 +201,14 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
                 if (prefs?.isSetTimerPin == true && passwordSetup == Util.getPassCurrentTime()) {
                     onCloseWhenVerifyPin()
                 } else {
-                    mView?.findViewById<TextView>(R.id.tvEnterYourPassword)?.text =
+                    mView?.findViewById<TextView>(R.id.tvSetPinCodeTimer)?.text =
                         context?.getString(R.string.wrong_pin_code_timer)
                     passwordSetup = ""
+                    mView?.findViewById<EditText>(R.id.txtPassTimer)?.setText("")
                 }
-
-                mView?.findViewById<EditText>(R.id.txtPassTimerPinWindow)?.setText("")
             }
         }
-        mView?.findViewById<ImageView>(R.id.tvBackTimerPin)?.setOnClickListener {
+        mView?.findViewById<ImageView>(R.id.tvBackPinTimer)?.setOnClickListener {
             onBackButton()
         }
     }

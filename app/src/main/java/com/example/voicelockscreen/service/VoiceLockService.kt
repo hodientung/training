@@ -7,25 +7,24 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.*
 import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
-import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatButton
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.NotificationCompat
 import com.example.voicelockscreen.MyApplication
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.view.*
+import java.util.*
 
 
 class VoiceLockService : Service() {
@@ -42,31 +41,30 @@ class VoiceLockService : Service() {
                 ACTION_SCREEN_ON -> {
                     Log.e("tung", "screen on")
                     window.open()
-                    window.getView()?.findViewById<CardView>(R.id.btnSpeakUnlock1)
+                    window.getView()?.findViewById<ImageView>(R.id.imBackgroundVoiceLock)
                         ?.setOnClickListener {
+                            val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
+                            tvText?.text = getString(R.string.speak_password_to_unlock)
+                            window.startAnimationRipple()
                             startListeningRecognitionService()
                         }
-                    setTheme(
-                        p0,
-                        window.getView()?.findViewById<ConstraintLayout>(R.id.content_add_view)
-                    )
-                    window.getView()?.findViewById<AppCompatButton>(R.id.btnForgetPassword)
+                    window.getView()?.findViewById<TextView>(R.id.tvForgetLock)
                         ?.setOnClickListener {
                             windowSecurityQuestion.open()
                         }
 
-                    window.getView()?.findViewById<CardView>(R.id.cardViewPin)
+                    window.getView()?.findViewById<ImageView>(R.id.view1WinLock)
                         ?.setOnClickListener {
                             // open verify pin lock
                             windowPinLock.open()
 
                         }
-                    window.getView()?.findViewById<CardView>(R.id.cardViewPin3)
+                    window.getView()?.findViewById<ImageView>(R.id.view2WinLock)
                         ?.setOnClickListener {
                             // open verify pattern lock
                             windowPatternLock.open()
                         }
-                    window.getView()?.findViewById<CardView>(R.id.cardViewPin2)
+                    window.getView()?.findViewById<ImageView>(R.id.view3WinLock)
                         ?.setOnClickListener {
                             // open verify timer pin
                             windowTimerPin.open()
@@ -79,20 +77,6 @@ class VoiceLockService : Service() {
             }
         }
     }
-
-    private fun setTheme(context: Context?, view: View?) {
-        val prefs =
-            context?.let {
-                PreferenceHelper.customPreference(
-                    it,
-                    Util.THEME_SETTING
-                )
-            }
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { view?.setBackgroundResource(it) }
-
-    }
-
 
     private fun startListeningRecognitionService() {
 
@@ -134,6 +118,10 @@ class VoiceLockService : Service() {
 
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
+                val errorMessage: String? = window.context?.let { Util.getErrorText(p0, it) }
+                val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
+                tvText?.text = errorMessage
+                window.cancelAnimationRipple()
             }
 
             override fun onResults(p0: Bundle?) {
@@ -149,10 +137,12 @@ class VoiceLockService : Service() {
                     println("No voice results")
                 } else {
                     for (match in voiceResults) {
-                        window.getView()?.findViewById<TextView>(R.id.test_thu)?.text =
-                            match.toString()
+                        window.cancelAnimationRipple()
                         if (match.toString() == firstInput) {
                             window.close()
+                        } else{
+                            val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
+                            tvText?.text = getString(R.string.sorry_password_voice)
                         }
                     }
                 }
@@ -204,10 +194,18 @@ class VoiceLockService : Service() {
     }
 
     private fun sendNotification() {
-
+        val prefs = this.let { this.let { it1 -> PreferenceHelper.customPreference(it1, Util.DATA_LANGUAGE_APP) } }
+        val config = this.resources?.configuration
+        prefs.codeLanguage?.let {
+            val locale = Locale(it)
+            config?.setLocale(locale)
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                config?.let { it1 -> this.createConfigurationContext(it1) }
+            this.resources?.updateConfiguration(config,this.resources?.displayMetrics)
+        }
         val notification: Notification =
             NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
-                .setContentTitle(getText(R.string.notification_title))
+                .setContentTitle(getText(R.string.voice_lock_screen))
                 .setSmallIcon(R.drawable.icon_voice_mix)
                 .build()
         startForeground(1, notification)

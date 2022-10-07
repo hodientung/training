@@ -2,79 +2,81 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content3"
+    android:id="@+id/content1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/size_8dp"
-    tools:context=".view.ValidatePatternLockChangeFragment">
-
-    <TextView
-        android:id="@+id/tvSetPatternValidate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_20dp"
-        android:layout_marginTop="@dimen/size_10"
-        android:text="@string/set_pattern"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_20sp"
-        app:layout_constraintBottom_toBottomOf="@id/tvBackValidate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvBackValidate" />
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/tvBackValidate"
+        android:id="@+id/tvBackPatternLockValidate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_10"
+        android:layout_marginStart="@dimen/size_16dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
         android:src="@drawable/ic_round_arrow_back"
-        app:layout_constraintBottom_toBottomOf="@id/tvSetPatternValidate"
+        app:layout_constraintBottom_toBottomOf="@id/tvDescriptionPatternValidate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvSetPatternValidate" />
+        app:layout_constraintTop_toTopOf="@id/tvDescriptionPatternValidate" />
+
+    <TextView
+        android:id="@+id/tvDescriptionPatternValidate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_50dp"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:gravity="center"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:lineSpacingExtra="@dimen/size_3dp"
+        android:maxLines="2"
+        android:text="@string/create_new_your_pattern"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_16_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
-        android:id="@+id/imLockPatternValidate"
-        android:layout_width="@dimen/size_50dp"
-        android:layout_height="@dimen/size_50dp"
-        android:layout_marginTop="@dimen/size_20dp"
-        android:layout_marginBottom="@dimen/size_10"
+        android:id="@+id/imBackgroundVoicePatternValidate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/hello_world"
-        android:src="@drawable/ic_outline_lock_24"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSetPatternValidate" />
-
-    <TextView
-        android:id="@+id/tvPatternValidate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_10"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_16_sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imLockPatternValidate" />
-
-    <TextView
-        android:id="@+id/tvSetPinCodeValidate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_10"
-        android:text="@string/draw_your_pattern"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size_16_sp"
         app:layout_constraintBottom_toTopOf="@id/patternViewValidate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvDescriptionPatternValidate" />
 
-    <com.itsxtt.patternlock.PatternLockView
+    <ImageView
+        android:id="@+id/imVPatternValidate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/imBackgroundVoicePatternValidate"
+        app:layout_constraintEnd_toEndOf="@id/imBackgroundVoicePatternValidate"
+        app:layout_constraintStart_toStartOf="@id/imBackgroundVoicePatternValidate"
+        app:layout_constraintTop_toTopOf="@id/imBackgroundVoicePatternValidate" />
+
+    <ImageView
+        android:id="@+id/imVPattern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/imVPatternValidate"
+        app:layout_constraintEnd_toEndOf="@id/imVPatternValidate"
+        app:layout_constraintStart_toStartOf="@id/imVPatternValidate"
+        app:layout_constraintTop_toTopOf="@id/imVPatternValidate" />
+
+    <com.example.voicelockscreen.view.PatternView
         android:id="@+id/patternViewValidate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:plv_errorDotColor="@color/purple_200"
-        app:plv_errorLineColor="@color/purple_200" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imBackgroundVoicePatternValidate"
+        app:layout_constraintDimensionRatio="1:1"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

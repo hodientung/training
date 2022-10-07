@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/tvBackPatternLockConfirmChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16dp"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_round_arrow_back"
+        app:layout_constraintBottom_toBottomOf="@id/tvDescriptionPatternConfirmChange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvDescriptionPatternConfirmChange" />
+
+    <TextView
+        android:id="@+id/tvDescriptionPatternConfirmChange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_50dp"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/size_3dp"
+        android:maxLines="2"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:text="@string/create_new_your_pattern"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_16_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imBackgroundVoicePatternConfirmChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/patternViewConfirmChange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescriptionPatternConfirmChange" />
+
+    <ImageView
+        android:id="@+id/imVPatternConfirmChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@id/imBackgroundVoicePatternConfirmChange"
+        app:layout_constraintEnd_toEndOf="@id/imBackgroundVoicePatternConfirmChange"
+        app:layout_constraintStart_toStartOf="@id/imBackgroundVoicePatternConfirmChange"
+        app:layout_constraintTop_toTopOf="@id/imBackgroundVoicePatternConfirmChange" />
+
+    <com.example.voicelockscreen.view.PatternView
+        android:id="@+id/patternViewConfirmChange"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imBackgroundVoicePatternConfirmChange"
+        app:layout_constraintDimensionRatio="1:1"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

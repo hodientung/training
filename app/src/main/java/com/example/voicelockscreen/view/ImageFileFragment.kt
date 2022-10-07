@@ -49,6 +49,10 @@ class ImageFileFragment : Fragment() {
             imageLayerFragment.arguments = bundle
             imageLayerFragment.pushToScreen(activity as MainActivity)
         }
+        tvBackImageFile.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+        tvNameFolder.text = folderName
     }
 
     private fun initView() {

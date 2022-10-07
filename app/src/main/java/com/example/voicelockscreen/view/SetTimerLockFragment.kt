@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.clearValues
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetTimerPin
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
@@ -31,7 +32,15 @@ class SetTimerLockFragment : Fragment() {
     }
 
     private fun initAction() {
-        btnCancel.setOnClickListener {
+        val prefs =
+            context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.TIMER_PIN_PREF_NAME
+                )
+            }
+        tvCancel.setOnClickListener {
+            prefs?.clearValues
             activity?.supportFragmentManager?.popBackStack()
             Toast.makeText(
                 requireContext(),
@@ -40,14 +49,7 @@ class SetTimerLockFragment : Fragment() {
             ).show()
         }
 
-        btnOk.setOnClickListener {
-            val prefs =
-                context?.let {
-                    PreferenceHelper.customPreference(
-                        it,
-                        Util.TIMER_PIN_PREF_NAME
-                    )
-                }
+        tvOk.setOnClickListener {
             prefs?.isSetTimerPin = true
             Toast.makeText(
                 requireContext(),
@@ -56,6 +58,9 @@ class SetTimerLockFragment : Fragment() {
             ).show()
             activity?.supportFragmentManager?.popBackStack()
             SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
+        }
+        tvBackTimer.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 

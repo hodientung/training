@@ -5,27 +5,34 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.view.Window
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.voicelockscreen.permission.ManagePermissions
+import com.example.voicelockscreen.view.BaseActivity
 import com.example.voicelockscreen.view.VoiceLockFragment
 
 private const val REQUEST_OVERLAY_PERMISSION = 155
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var managePermissions: ManagePermissions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setFullScreen()
+        //setFullScreen()
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
         setupPermission()
         supportFragmentManager.beginTransaction().add(R.id.content_frame, VoiceLockFragment())
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount == 0)
+            finish();    // Finish the activity
     }
 
     private fun setFullScreen() {

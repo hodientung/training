@@ -14,17 +14,12 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.patternPassw
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
-import com.itsxtt.patternlock.PatternLockView
 import kotlinx.android.synthetic.main.fragment_confirm_pattern.*
 
 
 class ConfirmPatternFragment : Fragment() {
 
-    override fun onResume() {
-        super.onResume()
-        setTheme()
-    }
-    //show theme for layout
+
     private fun setTheme() {
         val prefs =
             context?.let {
@@ -33,9 +28,27 @@ class ConfirmPatternFragment : Fragment() {
                     Util.THEME_SETTING
                 )
             }
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1)
+            Util.setThemePatternView(
+                content1,
+                tvDescriptionPatternConfirm,
+                tvBackPatternLockConfirm,
+                imBackgroundVoicePatternConfirm,
+                imVPatternConfirm,
+                listTheme,
+                requireContext(),
+                patternViewConfirm
+            )
+        else Util.setOriginalPatternScreen(
+            imBackgroundVoicePatternConfirm,
+            tvDescriptionPatternConfirm,
+            patternViewConfirm,
+            requireContext()
+        )
 
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { content2.setBackgroundResource(it) }
     }
 
     override fun onCreateView(
@@ -48,40 +61,40 @@ class ConfirmPatternFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        patternViewConfirm.setOnPatternListener(object : PatternLockView.OnPatternListener {
+        setTheme()
+        val prefs = context?.let {
+            PreferenceHelper.customPreference(
+                it,
+                Util.PATTERN_INPUT
+            )
+        }
+        Toast.makeText(
+            context, getString(R.string.draw_pattern_again),
+            Toast.LENGTH_LONG
+        ).show()
+        tvDescriptionPatternConfirm.text = getString(R.string.draw_pattern_again)
+        patternViewConfirm.onCheckPattern = { it ->
 
-            override fun onComplete(ids: ArrayList<Int>): Boolean {
-                /*
-                 * A return value required
-                 * if the pattern is not correct and you'd like change the pattern to error state, return false
-                 * otherwise return true
-                 */
-                var valuePatternPassword = ""
-                for (value in ids) {
-                    valuePatternPassword += value.toString()
-                }
-                val prefs = context?.let {
-                    PreferenceHelper.customPreference(
-                        it,
-                        Util.PATTERN_INPUT
-                    )
-                }
-                if (prefs?.patternPassword == valuePatternPassword) {
-                    prefs.isSetupPatternLock= true
-                    Toast.makeText(
-                        context, "Successfully Set Pattern Lock",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    activity?.supportFragmentManager?.popBackStack()
-                    SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
-                } else
-                    Toast.makeText(
-                        context, getString(R.string.wrong_password),
-                        Toast.LENGTH_LONG
-                    ).show()
-                return true
+            val pattern = prefs?.patternPassword
+            if (it == pattern) {
+                prefs.isSetupPatternLock = true
+                Toast.makeText(
+                    context, getString(R.string.successful_set_pattern_lock),
+                    Toast.LENGTH_LONG
+                ).show()
+                activity?.supportFragmentManager?.popBackStack()
+                SetupVoiceLockFragment().pushToScreen(activity as MainActivity)
+            } else {
+                Toast.makeText(
+                    context, getString(R.string.wrong_pattern_code),
+                    Toast.LENGTH_LONG
+                ).show()
+                tvDescriptionPatternConfirm.text = getString(R.string.wrong_pattern_code)
             }
-        })
+        }
+        tvBackPatternLockConfirm.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 

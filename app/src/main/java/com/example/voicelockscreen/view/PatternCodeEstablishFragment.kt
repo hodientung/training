@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
@@ -12,19 +13,12 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.patternPassw
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
-import com.itsxtt.patternlock.PatternLockView
 import kotlinx.android.synthetic.main.fragment_pattern_code_establish.*
+import kotlinx.android.synthetic.main.fragment_pattern_code_establish.imVPatternValidate
 
 
 class PatternCodeEstablishFragment : Fragment() {
 
-
-    override fun onResume() {
-        super.onResume()
-        setTheme()
-    }
-
-    //show theme for layout
     private fun setTheme() {
         val prefs =
             context?.let {
@@ -33,9 +27,27 @@ class PatternCodeEstablishFragment : Fragment() {
                     Util.THEME_SETTING
                 )
             }
+        val listTheme = prefs?.themeCode?.let {
+            Util.getThemeToScreen(it)
+        }
+        if (prefs?.themeCode != -1)
+            Util.setThemePatternView(
+                content1,
+                tvDescriptionPatternEstablish,
+                tvBackPatternLockEstablish,
+                imBackgroundVoicePatternEstablish,
+                imVPatternValidate,
+                listTheme,
+                requireContext(),
+                patternViewEstablish
+            )
+        else Util.setOriginalPatternScreen(
+            imBackgroundVoicePatternEstablish,
+            tvDescriptionPatternEstablish,
+            patternViewEstablish,
+            requireContext()
+        )
 
-        prefs?.themeCode?.let { Util.getThemeToScreen(it).colorTheme }
-            ?.let { content4.setBackgroundResource(it) }
     }
 
     override fun onCreateView(
@@ -48,30 +60,32 @@ class PatternCodeEstablishFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        patternViewEstablish.setOnPatternListener(object : PatternLockView.OnPatternListener {
+        setTheme()
+        initAction()
+    }
 
-            override fun onComplete(ids: ArrayList<Int>): Boolean {
-                /*
-                 * A return value required
-                 * if the pattern is not correct and you'd like change the pattern to error state, return false
-                 * otherwise return true
-                 */
-                var valuePatternPassword = ""
-                for (value in ids) {
-                    valuePatternPassword += value.toString()
-                }
-                val prefs = context?.let {
-                    PreferenceHelper.customPreference(
-                        it,
-                        Util.PATTERN_INPUT
-                    )
-                }
-                prefs?.patternPassword = valuePatternPassword
-                activity?.supportFragmentManager?.popBackStack()
-                ConfirmEstablishFragment().pushToScreen(activity as MainActivity)
-                return true
-            }
-        })
+    private fun initAction() {
+        tvDescriptionPatternEstablish.text = getString(R.string.draw_new_your_pattern_to_change)
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.draw_new_your_pattern_to_change),
+            Toast.LENGTH_LONG
+        ).show()
+        val prefs = context?.let {
+            PreferenceHelper.customPreference(
+                it,
+                Util.PATTERN_INPUT
+            )
+        }
+        patternViewEstablish.onCheckPattern = { it ->
+            prefs?.patternPassword = it
+            activity?.supportFragmentManager?.popBackStack()
+            ConfirmPatternChangeFragment().pushToScreen(activity as MainActivity)
+        }
+
+        tvBackPatternLockEstablish.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 }

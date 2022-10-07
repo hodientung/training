@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contentOnboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvVoiceLockScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:lineSpacingExtra="@dimen/size_10sp"
+        android:text="@string/voice_lock_screen"
+        android:textColor="#000000"
+        android:textSize="@dimen/size_22sp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_13dp"
+        android:text="@string/skip"
+        android:textColor="#BDBDBD"
+        android:textSize="@dimen/size_18sp"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        app:layout_constraintBottom_toBottomOf="@id/tvVoiceLockScreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvVoiceLockScreen" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/size_30dp"
+        app:layout_constraintBottom_toTopOf="@id/indicator_view"
+        app:layout_constraintTop_toBottomOf="@id/tvVoiceLockScreen" />
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:ci_width="@dimen/size_10"
+        app:ci_height="@dimen/size_5dp"
+        app:ci_orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/size_150dp"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:layout_marginBottom="@dimen/sze_40dp"
+        app:ci_drawable="@drawable/round_indicator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_pager" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

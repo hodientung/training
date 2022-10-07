@@ -7,7 +7,9 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.voicelockscreen.MainActivity
@@ -47,7 +49,7 @@ class VoiceLockFragment : Fragment() {
     }
 
     private fun initView() {
-        rvFunction.layoutManager = GridLayoutManager(context, 2)
+        rvFunction.layoutManager = GridLayoutManager(context, 3)
         adapterFunction = RecyclerViewFunction(context)
         adapterFunction.functionList = Util.getFunctionList(resources)
         rvFunction.adapter = adapterFunction
@@ -80,18 +82,34 @@ class VoiceLockFragment : Fragment() {
             }
 
         switchMaterial.isChecked = prefs?.onService == true
-        if (switchMaterial.isChecked) startService()
+//        if (switchMaterial.isChecked) startService() else stopService()
         switchMaterial.setOnClickListener {
             if (prefs?.isSetupVoiceLock == false || (prefsPinCode?.isSetupPinLock == false
                         && prefsPatternPassword?.isSetupPatternLock == false
                         && prefsTimerPin?.isSetTimerPin == false)
             ) {
                 switchMaterial.isChecked = false
-                Toast.makeText(
+                val toast = Toast.makeText(
                     context,
                     getString(R.string.first_set_the_voice_password),
                     Toast.LENGTH_LONG
-                ).show()
+                )
+                val viewGroup = toast.view as ViewGroup?
+                viewGroup?.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.E3F2FD
+                    )
+                )
+                val textView = viewGroup?.getChildAt(0) as TextView
+                textView.textSize = 13f
+                textView.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.size_828282
+                    )
+                )
+                toast.show()
             } else {
                 if (switchMaterial.isChecked) {
                     isEnableService = true
@@ -119,21 +137,56 @@ class VoiceLockFragment : Fragment() {
                 1 ->
                     if (prefs?.isSetupVoiceLock == true)
                         ValidatePinLockChangeFragment().pushToScreen(activity as MainActivity)
-                    else Toast.makeText(
-                        context,
-                        getString(R.string.first_set_the_voice_password),
-                        Toast.LENGTH_LONG
-                    ).show()
-
+                    else {
+                        val toast = Toast.makeText(
+                            context,
+                            getString(R.string.please_install_voice_lock),
+                            Toast.LENGTH_LONG
+                        )
+                        val viewGroup = toast.view as ViewGroup?
+                        viewGroup?.setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.E3F2FD
+                            )
+                        )
+                        val textView = viewGroup?.getChildAt(0) as TextView
+                        textView.textSize = 13f
+                        textView.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.size_828282
+                            )
+                        )
+                        toast.show()
+                    }
                 2 ->
                     //to do pattern lock view
                     if (prefs?.isSetupVoiceLock == true)
                         ValidatePatternLockChangeFragment().pushToScreen(activity as MainActivity)
-                    else Toast.makeText(
-                        context,
-                        getString(R.string.first_set_the_voice_password),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    else {
+                        val toast = Toast.makeText(
+                            context,
+                            getString(R.string.please_install_voice_lock2),
+                            Toast.LENGTH_LONG
+                        )
+                        val viewGroup = toast.view as ViewGroup?
+                        viewGroup?.setBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.E3F2FD
+                            )
+                        )
+                        val textView = viewGroup?.getChildAt(0) as TextView
+                        textView.textSize = 13f
+                        textView.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.size_828282
+                            )
+                        )
+                        toast.show()
+                    }
 
                 3 ->
                     // refer fragment list theme
@@ -148,27 +201,23 @@ class VoiceLockFragment : Fragment() {
                     VideoFolderFragment().pushToScreen(activity as MainActivity)
 
                 6 ->
-                    PreviousFragment().pushToScreen(activity as MainActivity)
-
-                7 ->
                     SettingFragment().pushToScreen(activity as MainActivity)
-
 
             }
         }
     }
 
     private fun startService() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(context)) {
-            val intent = Intent(context, VoiceLockService::class.java)
-            context?.startService(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(requireContext())) {
+            val intent = Intent(requireContext(), VoiceLockService::class.java)
+            requireContext().startService(intent)
         }
     }
 
     private fun stopService() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(context)) {
-            val intent = Intent(context, VoiceLockService::class.java)
-            context?.stopService(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(requireContext())) {
+            val intent = Intent(requireContext(), VoiceLockService::class.java)
+            requireContext().stopService(intent)
         }
     }
 }

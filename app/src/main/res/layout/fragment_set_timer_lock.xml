@@ -4,84 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/size_8dp"
     tools:context=".view.SetTimerLockFragment">
 
     <TextView
-        android:id="@+id/tvSetTimeLock"
+        android:id="@+id/tvSetTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24dp"
         android:text="@string/set_time_lock"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_20sp"
-        android:textStyle="bold"
+        android:textColor="#000000"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:textSize="@dimen/size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardViewHint"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="@dimen/size_10"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="100dp"
+    <ImageView
+        android:id="@+id/tvBackTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16dp"
+        android:contentDescription="@string/hello_world"
+        android:src="@drawable/ic_round_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/tvSetTimer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSetTimeLock"
-        app:strokeColor="@color/black"
-        app:strokeWidth="@dimen/size_2dp">
-
-        <ImageView
-            android:id="@+id/imHint"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/hello_world"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_round_read_more_24" />
-    </com.google.android.material.card.MaterialCardView>
+        app:layout_constraintTop_toTopOf="@id/tvSetTimer" />
 
     <TextView
-        android:id="@+id/tvHint"
-        android:layout_width="match_parent"
+        android:id="@+id/tvDes"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_10"
-        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/sze_40dp"
+        android:gravity="center"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:layout_marginHorizontal="@dimen/size_69"
         android:text="@string/note_timer_pin"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_20sp"
-        app:layout_constraintStart_toStartOf="@id/cardViewHint"
-        app:layout_constraintTop_toBottomOf="@id/cardViewHint" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_10"
+        android:textColor="#828282"
+        android:textSize="@dimen/size_13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvHint">
+        app:layout_constraintTop_toBottomOf="@id/tvBackTimer" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCancel"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corner_timer_lock_button"
-            android:text="@string/cancel"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@id/btnOk"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnOk"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corner_timer_lock_button"
-            android:text="@string/ok"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btnCancel"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvCancel"
+        android:layout_width="@dimen/size_98dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:background="@drawable/round_text_cancel"
+        android:gravity="center"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:paddingVertical="@dimen/size_6dp"
+        android:layout_marginEnd="@dimen/size_5dp"
+        android:text="@string/cancel"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/size_11sp"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/tvDes" />
 
+    <TextView
+        android:id="@+id/tvOk"
+        android:layout_width="@dimen/size_98dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:paddingVertical="@dimen/size_6dp"
+        android:background="@drawable/round_text_ok"
+        android:gravity="center"
+        android:text="@string/ok"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:layout_marginStart="@dimen/size_5dp"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/size_11sp"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/tvDes"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

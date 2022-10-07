@@ -4,26 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/size_16dp"
     tools:context=".view.AlternativeLockFragment">
+
+    <ImageView
+        android:id="@+id/tvBackAlternative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16dp"
+        android:contentDescription="@string/hello_world"
+        android:src="@drawable/ic_round_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/tvAlternativeLock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvAlternativeLock" />
 
     <TextView
         android:id="@+id/tvAlternativeLock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24dp"
         android:text="@string/alternative_lock"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_20sp"
-        android:textStyle="bold"
+        android:textColor="#000000"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:textSize="@dimen/size_22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvReport"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sze_40dp"
+        android:gravity="center"
+        android:fontFamily="@font/standard_font_sf_pro_regular"
+        android:layout_marginHorizontal="@dimen/size_69"
+        android:text="@string/before_setting_voice_lock_you_need_to_set_nanother_pin_code"
+        android:textColor="#828282"
+        android:textSize="@dimen/size_13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAlternativeLock" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFunctionAlternativeLock"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/size_20dp"
+        android:layout_marginTop="@dimen/size_24dp"
+        android:paddingStart="@dimen/size_16dp"
+        android:paddingEnd="@dimen/size_16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAlternativeLock" />
+        app:layout_constraintTop_toBottomOf="@id/tvReport" />
 </androidx.constraintlayout.widget.ConstraintLayout>

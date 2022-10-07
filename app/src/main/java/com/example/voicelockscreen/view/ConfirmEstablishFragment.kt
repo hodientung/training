@@ -46,6 +46,11 @@ class ConfirmEstablishFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAction()
+
+    }
+
+    private fun initAction() {
         patternViewConfirmEstablish.setOnPatternListener(object :
             PatternLockView.OnPatternListener {
 
@@ -79,6 +84,9 @@ class ConfirmEstablishFragment : Fragment() {
                 return true
             }
         })
+        tvBackConfirm.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 

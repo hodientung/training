@@ -48,8 +48,8 @@ class RecyclerViewFunction(val context: Context?) :
         }
 
         fun bind(dataModelFunction: DataModelFunction) {
-            itemView.tvNameFunction.text = dataModelFunction.nameFunction
-            itemView.imageView1.setBackgroundResource(dataModelFunction.iconFunction)
+            itemView.tvName.text = dataModelFunction.nameFunction
+            itemView.imFunction.setImageResource(dataModelFunction.iconFunction)
         }
     }
 }
