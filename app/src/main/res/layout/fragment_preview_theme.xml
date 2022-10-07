@@ -33,7 +33,7 @@
         android:id="@+id/imBackgroundVoice"
         android:layout_width="@dimen/size_155dp"
         android:layout_height="@dimen/size_130dp"
-        android:layout_marginTop="@dimen/size_180dp"
+        android:layout_marginTop="@dimen/size_100dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,8 +89,8 @@
         android:layout_height="@dimen/size_66dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
+        android:layout_marginTop="@dimen/size_50dp"
         android:background="@drawable/round_image_window"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/view2Win"
         app:layout_constraintTop_toBottomOf="@id/tvForget" />

@@ -97,7 +97,7 @@
     <string name="hidden_date">Display Date &amp; Time</string>
     <string name="language">Language</string>
     <string name="share">Share</string>
-    <string name="about">about</string>
+    <string name="about">About</string>
     <string name="show_time">Date &amp; Time is displayed on unlock screen</string>
     <string name="hidden_time">Date &amp; Time is hidden on unlock screen</string>
 
@@ -132,5 +132,6 @@
     <string name="recognition_service">RecognitionService busy, please try again.</string>
     <string name="error_from_service">Error from server, please try again.</string>
     <string name="no_speech_input">No speech input, please try again.</string>
+    <string name="ver" translatable="false">Ver</string>
 
 </resources>

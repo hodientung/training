@@ -55,6 +55,8 @@ class CreateVoiceLockFragment : Fragment() {
         }
         imBackCreate.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()
+        }
+        imm.setOnClickListener {
             AlternativeLockFragment().pushToScreen(activity as MainActivity)
         }
     }

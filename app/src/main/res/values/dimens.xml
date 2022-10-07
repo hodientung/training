@@ -83,4 +83,5 @@
     <dimen name="size_265dp">265dp</dimen>
     <dimen name="size_312dp">312dp</dimen>
     <dimen name="size_307dp">307dp</dimen>
+    <dimen name="size_190dp">190dp</dimen>
 </resources>

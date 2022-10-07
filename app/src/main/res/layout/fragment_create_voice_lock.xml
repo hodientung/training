@@ -20,11 +20,12 @@
 
     <ImageView
         android:id="@+id/animation_image_create"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/size_200dp"
+        android:layout_height="@dimen/size_190dp"
         android:background="@drawable/icon_animation_voice"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@id/tvDescriptionCreate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSetVoiceLockCreate" />
@@ -42,7 +43,7 @@
         app:layout_constraintBottom_toTopOf="@id/imFake"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/animation_image_create" />
+        app:layout_constraintTop_toTopOf="@id/content1Create" />
 
 
     <com.skyfishjy.library.RippleBackground
@@ -88,10 +89,22 @@
         android:layout_marginEnd="@dimen/size_16dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:src="@drawable/icon_next_alter"
+        android:layout_marginStart="@dimen/size_16dp"
+        android:src="@drawable/ic_round_arrow_back_24"
         app:layout_constraintBottom_toBottomOf="@+id/tvSetVoiceLockCreate"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvSetVoiceLockCreate" />
 
+    <ImageView
+        android:id="@+id/imm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_16dp"
+        android:contentDescription="@string/hello_world"
+        android:scaleType="fitXY"
+        android:src="@drawable/enter"
+        app:layout_constraintBottom_toBottomOf="@id/tvSetVoiceLockCreate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvSetVoiceLockCreate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

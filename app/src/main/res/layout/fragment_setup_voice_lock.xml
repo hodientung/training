@@ -22,12 +22,12 @@
 
     <ImageView
         android:id="@+id/animation_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/size_200dp"
+        android:layout_height="@dimen/size_190dp"
         android:background="@drawable/icon_animation_voice"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@id/content1"
+        app:layout_constraintBottom_toTopOf="@id/tvDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSetVoiceLock" />
@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/imFake"
-        app:layout_constraintTop_toBottomOf="@id/animation_image" />
+        app:layout_constraintTop_toTopOf="@id/content1" />
 
 
     <com.skyfishjy.library.RippleBackground
@@ -92,9 +92,10 @@
         android:layout_marginEnd="@dimen/size_16dp"
         android:contentDescription="@string/hello_world"
         android:scaleType="fitXY"
-        android:src="@drawable/icon_next_alter"
+        android:layout_marginStart="@dimen/size_16dp"
+        android:src="@drawable/ic_round_arrow_back_24"
         app:layout_constraintBottom_toBottomOf="@+id/tvSetVoiceLock"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvSetVoiceLock" />
 
 

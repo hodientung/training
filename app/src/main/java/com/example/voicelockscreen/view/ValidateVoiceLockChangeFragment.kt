@@ -85,7 +85,7 @@ class ValidateVoiceLockChangeFragment : Fragment() {
             startListeningRecognitionService()
         }
         imBackValidate.setOnClickListener {
-            AlternativeLockFragment().pushToScreen(activity as MainActivity)
+            activity?.supportFragmentManager?.popBackStack()
         }
     }
 

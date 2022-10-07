@@ -25,7 +25,7 @@ class AboutFragment : Fragment() {
     }
 
     private fun initAction() {
-        versionApp.text = BuildConfig.VERSION_NAME
+        versionApp.text = getString(R.string.ver) +" "+BuildConfig.VERSION_NAME
         tvBackAbout.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
