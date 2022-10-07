@@ -4,16 +4,18 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.speech.SpeechRecognizer
 import android.util.DisplayMetrics
-import android.util.Log
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -22,11 +24,13 @@ import androidx.fragment.app.Fragment
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.model.*
-import com.example.voicelockscreen.view.OnboardActivity
 import com.example.voicelockscreen.view.PatternView
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_number.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class Util {
     companion object {
@@ -979,6 +983,42 @@ class Util {
                 val metrics = Resources.getSystem().displayMetrics
                 px / (metrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
             }
+        }
+
+        fun onSNACK(
+            colorText: Int,
+            text: String,
+            colorBackground: Int,
+            sizeText: Float,
+            view: View,
+            context: Context
+        ) {
+            //Snackbar(view)
+            val snackbar = Snackbar.make(
+                view, text,
+                Snackbar.LENGTH_LONG
+            )
+            val snackbarView = snackbar.view
+            snackbarView.setBackgroundColor(ContextCompat.getColor(context, colorBackground))
+            val textView =
+                snackbarView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+            textView.setTextColor(ContextCompat.getColor(context, colorText))
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeText)
+//            val lp = FrameLayout.LayoutParams(
+//                FrameLayout.LayoutParams.MATCH_PARENT,
+//                FrameLayout.LayoutParams.WRAP_CONTENT
+//            )
+//            snackbarView.layoutParams = lp
+            val a = convertDpToPixel(49f, context).toInt()
+            val b = convertDpToPixel(0f, context).toInt()
+            val c = convertDpToPixel(49f, context).toInt()
+            val d = convertDpToPixel(100f, context).toInt()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
+            else
+                textView.gravity = Gravity.CENTER_HORIZONTAL
+            snackbarView.setMargins(a,b,c,d)
+            snackbar.show()
         }
     }
 
