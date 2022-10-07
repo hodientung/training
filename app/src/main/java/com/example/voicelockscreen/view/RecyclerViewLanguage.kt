@@ -77,6 +77,7 @@ class RecyclerViewLanguage(val context: Context?) :
                     itemView.rbLanguage.setOnClickListener {
                         setColorRadioButton()
                         onItemClicked?.invoke(selectedPosition)
+                        notifyDataSetChanged()
                     }
 
                 }
