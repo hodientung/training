@@ -130,7 +130,7 @@
     <string name="netword_error">Network error, please try again.</string>
     <string name="netword_timeout">Network timeout, please try again.</string>
     <string name="no_match">No match</string>
-    <string name="recognition_service">RecognitionService busy, please try again.</string>
+    <string name="recognition_service">Recognition Service busy, please try again.</string>
     <string name="error_from_service">Error from server, please try again.</string>
     <string name="no_speech_input">No speech input, please try again.</string>
     <string name="ver" translatable="false">Ver</string>

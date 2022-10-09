@@ -41,6 +41,11 @@ class VoiceLockService : Service() {
                 ACTION_SCREEN_ON -> {
                     Log.e("tung", "screen on")
                     window.open()
+                    windowSecurityQuestion.onBackButton()
+                    windowPinLock.onBackButton()
+                    windowPatternLock.onBackButton()
+                    windowTimerPin.onBackButton()
+
                     window.getView()?.findViewById<ImageView>(R.id.imBackgroundVoiceLock)
                         ?.setOnClickListener {
                             val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
@@ -118,10 +123,11 @@ class VoiceLockService : Service() {
 
             override fun onError(p0: Int) {
                 Log.e("tung", "Error listening for speech: $p0")
+                window.cancelAnimationRipple()
                 val errorMessage: String? = window.context?.let { Util.getErrorText(p0, it) }
                 val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
-                tvText?.text = errorMessage
-                window.cancelAnimationRipple()
+                if (errorMessage?.isNotBlank() == true)
+                    tvText?.text = errorMessage
             }
 
             override fun onResults(p0: Bundle?) {
@@ -140,7 +146,7 @@ class VoiceLockService : Service() {
                         window.cancelAnimationRipple()
                         if (match.toString() == firstInput) {
                             window.close()
-                        } else{
+                        } else {
                             val tvText = window.getView()?.findViewById<TextView>(R.id.tvTitle)
                             tvText?.text = getString(R.string.sorry_password_voice)
                         }
@@ -194,14 +200,21 @@ class VoiceLockService : Service() {
     }
 
     private fun sendNotification() {
-        val prefs = this.let { this.let { it1 -> PreferenceHelper.customPreference(it1, Util.DATA_LANGUAGE_APP) } }
+        val prefs = this.let {
+            this.let { it1 ->
+                PreferenceHelper.customPreference(
+                    it1,
+                    Util.DATA_LANGUAGE_APP
+                )
+            }
+        }
         val config = this.resources?.configuration
         prefs.codeLanguage?.let {
             val locale = Locale(it)
             config?.setLocale(locale)
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
                 config?.let { it1 -> this.createConfigurationContext(it1) }
-            this.resources?.updateConfiguration(config,this.resources?.displayMetrics)
+            this.resources?.updateConfiguration(config, this.resources?.displayMetrics)
         }
         val notification: Notification =
             NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)

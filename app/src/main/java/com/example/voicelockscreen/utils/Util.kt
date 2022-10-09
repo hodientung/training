@@ -947,18 +947,18 @@ class Util {
 
         }
 
-        fun getErrorText(error: Int, context: Context): String {
-            val message: String = when (error) {
-                SpeechRecognizer.ERROR_AUDIO -> context.getString(R.string.audio_recording)
-                SpeechRecognizer.ERROR_CLIENT -> context.getString(R.string.client_side)
-                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> context.getString(R.string.insufficient_permission)
-                SpeechRecognizer.ERROR_NETWORK -> context.getString(R.string.netword_error)
-                SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> context.getString(R.string.netword_timeout)
-                SpeechRecognizer.ERROR_NO_MATCH -> context.getString(R.string.no_match)
-                SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> context.getString(R.string.recognition_service)
-                SpeechRecognizer.ERROR_SERVER -> context.getString(R.string.error_from_service)
-                SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> context.getString(R.string.no_speech_input)
-                else -> context.getString(R.string.did_not_understand)
+        fun getErrorText(error: Int, context: Context?): String? {
+            val message: String? = when (error) {
+                SpeechRecognizer.ERROR_AUDIO -> context?.getString(R.string.audio_recording)
+                SpeechRecognizer.ERROR_CLIENT -> context?.getString(R.string.client_side)
+                SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> context?.getString(R.string.insufficient_permission)
+                SpeechRecognizer.ERROR_NETWORK -> context?.getString(R.string.netword_error)
+                SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> context?.getString(R.string.netword_timeout)
+                SpeechRecognizer.ERROR_NO_MATCH -> context?.getString(R.string.no_match)
+                SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> context?.getString(R.string.recognition_service)
+                SpeechRecognizer.ERROR_SERVER -> context?.getString(R.string.error_from_service)
+                SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> context?.getString(R.string.no_speech_input)
+                else -> context?.getString(R.string.did_not_understand)
             }
             return message
         }

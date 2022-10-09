@@ -213,7 +213,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
         }
     }
 
-    private fun onBackButton() {
+     fun onBackButton() {
         try {
             (context?.getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.removeView(mView)
             mView?.invalidate()
