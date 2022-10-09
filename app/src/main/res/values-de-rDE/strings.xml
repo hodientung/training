@@ -111,4 +111,5 @@
     <string name="error_from_service">Fehler vom Server, bitte versuchen Sie es erneut.</string>
     <string name="no_speech_input">Keine Spracheingabe, bitte versuchen Sie es erneut.</string>
     <string name="netword_timeout">Netzwerkzeitüberschreitung, bitte versuchen Sie es erneut.</string>
+    <string name="rich_theme_warehouse">Reichhaltiges Themenlager</string>
 </resources>

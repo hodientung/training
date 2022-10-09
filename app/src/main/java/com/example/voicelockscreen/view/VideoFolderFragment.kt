@@ -42,7 +42,7 @@ class VideoFolderFragment : Fragment() {
             bundle.putString(
                 "folderName",
                 adapterVideoFolder.folderPath[it].substring(
-                    adapterVideoFolder.folderPath[it].lastIndexOf("/")+1
+                    adapterVideoFolder.folderPath[it].lastIndexOf("/") + 1
                 )
             )
             val videoFilesFragment = VideoFilesFragment()
@@ -52,14 +52,30 @@ class VideoFolderFragment : Fragment() {
         tvBackImage1.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
-        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapterVideoFolder.filter.filter(newText)
-                return false
+                val mediaFilesFirst = arrayListOf<DataModelMediaFile>()
+                val folderPath = arrayListOf<String>()
+                val inputs = newText?.lowercase().toString()
+                val mediaFiles = fetchMedia()
+                for (i in 0 until mediaFiles.size) {
+                    val index: Int = mediaFiles[i].path?.lastIndexOf("/") ?: 0
+                    val subString = mediaFiles[i].path?.substring(0, index) ?: ""
+                    if (subString.lowercase().contains(inputs)) {
+                        mediaFilesFirst.add(mediaFiles[i])
+                        if (!folderPath.contains(subString)) {
+                            folderPath.add(subString)
+                        }
+                    }
+                }
+                adapterVideoFolder.dataModelMediaFile = mediaFilesFirst
+                adapterVideoFolder.folderPath = folderPath
+
+                return true
             }
 
         })

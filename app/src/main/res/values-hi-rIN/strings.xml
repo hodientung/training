@@ -111,4 +111,5 @@
     <string name="error_from_service">सर्वर से त्रुटि, कृपया पुन: प्रयास करें।</string>
     <string name="no_speech_input">कोई भाषण इनपुट नहीं, कृपया पुन: प्रयास करें।</string>
     <string name="netword_timeout">नेटवर्क समयबाह्य, कृपया पुन: प्रयास करें।</string>
+    <string name="rich_theme_warehouse">रिच थीम वेयरहाउस</string>
 </resources>

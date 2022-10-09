@@ -111,4 +111,5 @@
     <string name="error_from_service">Erro do servidor, tente novamente.</string>
     <string name="no_speech_input">Sem entrada de voz, tente novamente.</string>
     <string name="netword_timeout">Tempo limite da rede, tente novamente.</string>
+    <string name="rich_theme_warehouse">Armazém de temas ricos</string>
 </resources>

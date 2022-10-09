@@ -19,7 +19,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class RecyclerViewVideoFolder(val context: Context?) :
-    RecyclerView.Adapter<RecyclerViewVideoFolder.VideoFolderViewHolder>(), Filterable {
+    RecyclerView.Adapter<RecyclerViewVideoFolder.VideoFolderViewHolder>() {
 
     var onItemClicked: ((position: Int) -> Unit)? = null
     var dataModelMediaFile: ArrayList<DataModelMediaFile> = arrayListOf()
@@ -101,41 +101,5 @@ class RecyclerViewVideoFolder(val context: Context?) :
             return numberOfVideo
         }
 
-    }
-
-    override fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val charSearch = constraint.toString()
-                folderPath = if (charSearch.isEmpty()) {
-                    folderPath
-                } else {
-                    val resultList = ArrayList<String>()
-                    for (row in folderPath) {
-                        val indexPath: Int = row.lastIndexOf("/")
-                        val nameOfFolder = row.substring(indexPath + 1)
-                        if (nameOfFolder.lowercase(Locale.getDefault())
-                                .contains(charSearch.lowercase(Locale.getDefault()))
-                        ) {
-                            resultList.add(row)
-                        }
-                    }
-                    resultList
-                }
-                notifyDataSetChanged()
-                val filterResults = FilterResults()
-
-                filterResults.values = folderPath
-                return filterResults
-            }
-
-            @Suppress("UNCHECKED_CAST")
-            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                if (results != null)
-                    folderPath = results.values as ArrayList<String>
-                notifyDataSetChanged()
-            }
-
-        }
     }
 }

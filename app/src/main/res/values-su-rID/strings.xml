@@ -111,4 +111,5 @@
     <string name="error_from_service">Kesalahan dari server, silakan coba lagi.</string>
     <string name="no_speech_input">Tidak ada masukan ucapan, silakan coba lagi.</string>
     <string name="netword_timeout">Waktu jaringan habis, coba lagi.</string>
+    <string name="rich_theme_warehouse">Gudang tema yang kaya</string>
 </resources>
