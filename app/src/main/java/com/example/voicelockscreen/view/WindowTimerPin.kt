@@ -21,6 +21,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetTimerPi
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themePinButton
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.placeCursorToEnd
 import java.util.*
 
 class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
@@ -190,6 +191,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
                     passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }
             mView?.findViewById<EditText>(R.id.txtPassTimer)?.setText(passwordSetup)
+            mView?.findViewById<EditText>(R.id.txtPassTimer)?.placeCursorToEnd()
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(

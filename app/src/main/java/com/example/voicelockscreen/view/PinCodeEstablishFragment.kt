@@ -12,6 +12,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.placeCursorToEnd
 import kotlinx.android.synthetic.main.fragment_pincode_establish.*
 import kotlinx.android.synthetic.main.fragment_pincode_establish.contentPinCode
 import kotlinx.android.synthetic.main.fragment_validate_pin_lock_change.*
@@ -101,6 +102,7 @@ class PinCodeEstablishFragment : Fragment() {
                     passwordSetup = removeLastChar(passwordSetup).toString()
             }
             txtPassEstablish.setText(passwordSetup)
+            txtPassEstablish.placeCursorToEnd()
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(

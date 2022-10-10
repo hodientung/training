@@ -1020,6 +1020,10 @@ class Util {
             snackbarView.setMargins(a,b,c,d)
             snackbar.show()
         }
+
+        fun EditText.placeCursorToEnd() {
+            this.setSelection(this.text.length)
+        }
     }
 
 }

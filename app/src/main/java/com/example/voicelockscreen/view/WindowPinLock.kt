@@ -20,6 +20,7 @@ import com.example.voicelockscreen.sharepreference.PreferenceHelper.codeLanguage
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.inputPinLock
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.themeCode
 import com.example.voicelockscreen.utils.Util
+import com.example.voicelockscreen.utils.Util.Companion.placeCursorToEnd
 import java.util.*
 
 class WindowPinLock(context: Context, private val onClose: () -> Unit) {
@@ -166,6 +167,7 @@ class WindowPinLock(context: Context, private val onClose: () -> Unit) {
                 else -> passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }
             mView?.findViewById<EditText>(R.id.txtPassWindow)?.setText(passwordSetup)
+            mView?.findViewById<EditText>(R.id.txtPassWindow)?.placeCursorToEnd()
             val prefs =
                 context?.let {
                     PreferenceHelper.customPreference(
