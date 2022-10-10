@@ -181,16 +181,18 @@ class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
         mView?.findViewById<PatternView>(R.id.patternViewConfirmChangeWindow)?.let {
             it.onCheckPattern = { it ->
                 val pattern = prefs?.patternPassword
-                if (it == pattern)
-                    onCloseWhenVerifyPattern()
-                else
-                    mView?.findViewById<TextView>(R.id.tvDescriptionPatternConfirmChangeWindow)?.text =
-                        context?.getString(R.string.wrong_pattern_code)
+                if (it.isNotBlank()) {
+                    if (it == pattern)
+                        onCloseWhenVerifyPattern()
+                    else
+                        mView?.findViewById<TextView>(R.id.tvDescriptionPatternConfirmChangeWindow)?.text =
+                            context?.getString(R.string.wrong_pattern_code)
+                }
             }
         }
     }
 
-     fun onBackButton() {
+    fun onBackButton() {
         try {
             (context?.getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.removeView(mView)
             mView?.invalidate()
