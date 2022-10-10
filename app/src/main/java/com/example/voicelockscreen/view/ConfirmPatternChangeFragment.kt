@@ -73,19 +73,21 @@ class ConfirmPatternChangeFragment : Fragment() {
         patternViewConfirmChange.onCheckPattern = { it ->
 
             val pattern = prefs?.patternPassword
-            if (it == pattern) {
-                prefs.isSetupPatternLock = true
-                Toast.makeText(
-                    context, getString(R.string.successful_set_pattern_lock),
-                    Toast.LENGTH_LONG
-                ).show()
-                activity?.supportFragmentManager?.popBackStack()
-            } else {
-                Toast.makeText(
-                    context, getString(R.string.wrong_pattern_code),
-                    Toast.LENGTH_LONG
-                ).show()
-                tvDescriptionPatternConfirmChange.text = getString(R.string.wrong_pattern_code)
+            if(it.isNotBlank()){
+                if (it == pattern) {
+                    prefs.isSetupPatternLock = true
+                    Toast.makeText(
+                        context, getString(R.string.successful_set_pattern_lock),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    activity?.supportFragmentManager?.popBackStack()
+                } else {
+                    Toast.makeText(
+                        context, getString(R.string.wrong_pattern_code),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    tvDescriptionPatternConfirmChange.text = getString(R.string.wrong_pattern_code)
+                }
             }
         }
         tvBackPatternLockConfirmChange.setOnClickListener {

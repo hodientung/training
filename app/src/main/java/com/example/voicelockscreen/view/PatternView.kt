@@ -3,14 +3,12 @@ package com.example.voicelockscreen.view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
+import com.example.voicelockscreen.utils.Util
 import kotlin.math.abs
 
 class PatternView : View {
@@ -144,7 +142,7 @@ class PatternView : View {
 
     private fun drawPatternPath(canvas: Canvas?) {
         color?.let {
-            paint.color = ContextCompat.getColor(context,it)
+            paint.color = ContextCompat.getColor(context, it)
         }
         paint.strokeWidth = 10f
         if (patternPath.size < 2) {
@@ -190,8 +188,10 @@ class PatternView : View {
                 touchX = event.x
                 touchY = event.y
                 for (point in pointPositions) {
-                    if (abs(event.x - point.x) < (src?.width?.div(2) ?: 0) * 1
-                        && abs(event.y - point.y) < (src?.height?.div(2) ?: 0) * 1
+                    if (abs(event.x - point.x) < src?.width?.toFloat()
+                            .let { Util.convertPixelsToDp(it ?: 0f, context) }
+                        && abs(event.y - point.y) < src?.height?.toFloat()
+                            .let { Util.convertPixelsToDp(it ?: 0f, context) }
                     ) {
                         if (!point.isSelected) {
                             point.isSelected = true

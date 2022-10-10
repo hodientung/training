@@ -1,6 +1,8 @@
 package com.example.voicelockscreen.view
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -79,17 +81,21 @@ class ValidatePatternLockChangeFragment : Fragment() {
             .show()
         tvDescriptionPatternValidate.text = getString(R.string.draw_old_your_pattern)
         patternViewValidate.onCheckPattern = { it ->
-
+            Log.e("tung1998", it.isBlank().toString())
             val pattern = prefs?.patternPassword
-            if (it == pattern) {
-                activity?.supportFragmentManager?.popBackStack()
-                PatternCodeEstablishFragment().pushToScreen(activity as MainActivity)
-            } else {
-                Toast.makeText(
-                    context, getString(R.string.wrong_pattern_code),
-                    Toast.LENGTH_LONG
-                ).show()
-                tvDescriptionPatternValidate.text = getString(R.string.wrong_pattern_code)
+            if(it.isNotBlank()){
+                if (it == pattern) {
+                    Log.e("tung1998", it)
+                    activity?.supportFragmentManager?.popBackStack()
+                    PatternCodeEstablishFragment().pushToScreen(activity as MainActivity)
+                } else {
+                    Log.e("tung1998", it)
+                    Toast.makeText(
+                        context, getString(R.string.wrong_pattern_code),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    tvDescriptionPatternValidate.text = getString(R.string.wrong_pattern_code)
+                }
             }
         }
         tvBackPatternLockValidate.setOnClickListener {

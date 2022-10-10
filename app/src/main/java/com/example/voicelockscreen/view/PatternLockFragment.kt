@@ -73,10 +73,12 @@ class PatternLockFragment : Fragment() {
             )
         }
         patternView.onCheckPattern = { it ->
-            prefs?.patternPassword = it
-            isSetupPassword = true
-            activity?.supportFragmentManager?.popBackStack()
-            ConfirmPatternFragment().pushToScreen(activity as MainActivity)
+            if (it.isNotBlank() && it.length >= 2) {
+                prefs?.patternPassword = it
+                isSetupPassword = true
+                activity?.supportFragmentManager?.popBackStack()
+                ConfirmPatternFragment().pushToScreen(activity as MainActivity)
+            }
         }
         tvBackPatternLock.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()

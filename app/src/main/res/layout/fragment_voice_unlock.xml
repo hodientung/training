@@ -92,10 +92,10 @@
 
     <TextView
         android:id="@+id/tvSpeakLock"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size_16dp"
-        android:layout_marginTop="@dimen/size_100dp"
+        android:layout_marginTop="@dimen/size_64dp"
         android:fontFamily="@font/standard_font_sf_pro_regular"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/size_3dp"

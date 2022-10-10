@@ -1,6 +1,7 @@
 package com.example.voicelockscreen.view
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
@@ -111,14 +112,21 @@ class WindowPatternLock(context: Context, private val onClose: () -> Unit) {
     fun getView() = mView
 
     fun open() {
-        val prefs = this.let { context?.let { it1 -> PreferenceHelper.customPreference(it1, Util.DATA_LANGUAGE_APP) } }
+        val prefs = this.let {
+            context?.let { it1 ->
+                PreferenceHelper.customPreference(
+                    it1,
+                    Util.DATA_LANGUAGE_APP
+                )
+            }
+        }
         val config = context?.resources?.configuration
         prefs?.codeLanguage?.let {
             val locale = Locale(it)
             config?.setLocale(locale)
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
                 config?.let { it1 -> context?.createConfigurationContext(it1) }
-            context?.resources?.updateConfiguration(config,context?.resources?.displayMetrics)
+            context?.resources?.updateConfiguration(config, context?.resources?.displayMetrics)
         }
         try {
             if (mView?.windowToken == null && mView?.parent == null)
