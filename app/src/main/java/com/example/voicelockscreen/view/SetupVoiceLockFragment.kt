@@ -1,6 +1,7 @@
 package com.example.voicelockscreen.view
 
 import android.animation.ObjectAnimator
+import android.app.Activity
 import android.content.*
 import android.os.Bundle
 import android.os.Handler
@@ -27,6 +28,7 @@ import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import com.skyfishjy.library.RippleBackground
 import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
+import java.util.Locale
 
 
 class SetupVoiceLockFragment : Fragment() {
@@ -51,10 +53,11 @@ class SetupVoiceLockFragment : Fragment() {
         rippleBackground = RippleBackground(context)
         rippleBackground = content1
         startAnimationImage()
+        startAnimationRipple()
         imKara.setOnClickListener {
-            startAnimationRipple()
-            tvDescription.text = getString(R.string.please_speak_something)
-            startListeningRecognitionService()
+            //tvDescription.text = getString(R.string.please_speak_something)
+            //startListeningRecognitionService()
+            askSpeakInput()
         }
         imBack.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()
@@ -86,11 +89,18 @@ class SetupVoiceLockFragment : Fragment() {
         )
 
 
-    override fun onPause() {
-        super.onPause()
+//    override fun onPause() {
+//        super.onPause()
+//        Log.e("tung", "onPause1")
+//        cancelAnimationRipple()
+//
+//    }
+
+    override fun onStop() {
+        super.onStop()
         Log.e("tung", "onPause1")
         cancelAnimationImage()
-
+        cancelAnimationRipple()
     }
 
     private fun startListeningRecognitionService() {
@@ -130,7 +140,7 @@ class SetupVoiceLockFragment : Fragment() {
                 Log.e("tung", "Error listening for speech: $p0")
                 cancelAnimationRipple()
                 val errorMessage: String? = Util.getErrorText(p0, context)
-                if (errorMessage?.isNotBlank() == true){
+                if (errorMessage?.isNotBlank() == true) {
                     tvDescription.text = errorMessage
                     Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
                 }
@@ -179,6 +189,58 @@ class SetupVoiceLockFragment : Fragment() {
         }
         recognition.setRecognitionListener(recognitionListener)
         recognition.startListening(intent)
+    }
+
+    private fun askSpeakInput() {
+        if (!SpeechRecognizer.isRecognitionAvailable(requireContext()))
+            Toast.makeText(
+                requireContext(),
+                context?.getString(R.string.did_not_understand),
+                Toast.LENGTH_LONG
+            ).show()
+        else {
+            val i  = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            i.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            i.putExtra(
+                RecognizerIntent.EXTRA_PROMPT,
+                getString(R.string.speech_prompt)
+            )
+            i.putExtra(RecognizerIntent.EXTRA_LANGUAGE,Locale.getDefault())
+            i.putExtra(RecognizerIntent.EXTRA_PROMPT,getString(R.string.please_speak_something))
+            startActivityForResult(i, 102)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 102 && resultCode == Activity.RESULT_OK){
+            cancelAnimationRipple()
+            val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            val textResult = result?.get(0).toString()
+            val prefs = context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.CUSTOM_PREF_NAME
+                )
+            }
+            tvDescription.text = getString(R.string.create_n_new_voice_password)
+            prefs?.input = textResult
+            prefs?.isSetupVoiceLock = true
+            val importantDialogFragment = ImportantDialogFragment()
+            importantDialogFragment.onClose = {
+                activity?.supportFragmentManager?.popBackStack()
+            }
+            activity?.supportFragmentManager?.let {
+                importantDialogFragment.show(
+                    it,
+                    Util.TAG
+                )
+            }
+
+        }
     }
 
 }

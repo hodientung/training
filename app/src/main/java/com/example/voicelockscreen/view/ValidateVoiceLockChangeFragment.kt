@@ -2,6 +2,7 @@ package com.example.voicelockscreen.view
 
 import android.animation.ObjectAnimator
 import android.animation.ObjectAnimator.ofFloat
+import android.app.Activity
 import android.content.*
 import android.os.Bundle
 import android.os.Handler
@@ -22,11 +23,13 @@ import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.input
+import com.example.voicelockscreen.sharepreference.PreferenceHelper.isSetupVoiceLock
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import com.skyfishjy.library.RippleBackground
 import kotlinx.android.synthetic.main.fragment_setup_voice_lock.*
 import kotlinx.android.synthetic.main.fragment_validate_voice_lock_change.*
+import java.util.*
 
 
 class ValidateVoiceLockChangeFragment : Fragment() {
@@ -59,6 +62,8 @@ class ValidateVoiceLockChangeFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         Log.e("tung", "onStop")
+        cancelAnimationImage()
+        cancelAnimationRipple()
     }
 
     override fun onDestroy() {
@@ -79,10 +84,11 @@ class ValidateVoiceLockChangeFragment : Fragment() {
     private fun initAction() {
         rippleBackground = RippleBackground(requireContext())
         rippleBackground = content
+        startAnimationRipple()
         imKaraValidate.setOnClickListener {
-            startAnimationRipple()
-            tvDescriptionValidate.text = getString(R.string.please_speak_something)
-            startListeningRecognitionService()
+            //tvDescriptionValidate.text = getString(R.string.please_speak_something)
+            //startListeningRecognitionService()
+            askSpeakInput()
         }
         imBackValidate.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()
@@ -114,11 +120,11 @@ class ValidateVoiceLockChangeFragment : Fragment() {
             100
         )
 
-    override fun onPause() {
-        super.onPause()
-        Log.e("tung", "onPause")
-        cancelAnimationImage()
-    }
+//    override fun onPause() {
+//        super.onPause()
+//        Log.e("tung", "onPause")
+//        cancelAnimationImage()
+//    }
 
     private fun startListeningRecognitionService() {
 
@@ -210,5 +216,60 @@ class ValidateVoiceLockChangeFragment : Fragment() {
         }
         recognition.setRecognitionListener(recognitionListener)
         recognition.startListening(intent)
+    }
+
+    private fun askSpeakInput() {
+        if (!SpeechRecognizer.isRecognitionAvailable(requireContext()))
+            Toast.makeText(
+                requireContext(),
+                context?.getString(R.string.did_not_understand),
+                Toast.LENGTH_LONG
+            ).show()
+        else {
+            val i  = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            i.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            i.putExtra(
+                RecognizerIntent.EXTRA_PROMPT,
+                getString(R.string.speech_prompt)
+            )
+            i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            i.putExtra(RecognizerIntent.EXTRA_PROMPT,getString(R.string.please_speak_something))
+            startActivityForResult(i, 102)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 102 && resultCode == Activity.RESULT_OK){
+            cancelAnimationRipple()
+            val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            val textResult = result?.get(0).toString()
+            val prefs = context?.let {
+                PreferenceHelper.customPreference(
+                    it,
+                    Util.CUSTOM_PREF_NAME
+                )
+            }
+            if (prefs?.input == textResult) {
+                Toast.makeText(
+                    context,
+                    getString(R.string.correct_password),
+                    Toast.LENGTH_LONG
+                ).show()
+                activity?.supportFragmentManager?.popBackStack()
+                CreateVoiceLockFragment().pushToScreen(activity as MainActivity)
+            } else {
+                tvDescriptionValidate.text = getString(R.string.in_correct_password)
+                Toast.makeText(
+                    context,
+                    getString(R.string.sorry_password_voice),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+        }
     }
 }
