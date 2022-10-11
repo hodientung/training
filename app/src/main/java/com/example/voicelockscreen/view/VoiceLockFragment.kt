@@ -173,7 +173,7 @@ class VoiceLockFragment : Fragment() {
                 requireContext()
             )
         ) {
-            val intent = Intent(requireContext(), VoiceLockService::class.java)
+            val intent = Intent(activity?.baseContext, VoiceLockService::class.java)
             requireContext().startService(intent)
         }
     }
@@ -183,7 +183,7 @@ class VoiceLockFragment : Fragment() {
                 requireContext()
             )
         ) {
-            val intent = Intent(requireContext(), VoiceLockService::class.java)
+            val intent = Intent(activity?.baseContext, VoiceLockService::class.java)
             requireContext().stopService(intent)
         }
     }

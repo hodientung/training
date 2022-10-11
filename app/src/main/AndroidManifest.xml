@@ -10,6 +10,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -33,6 +38,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
                 <action android:name="android.speech.RecognitionService" />
+
                 <data android:scheme="mailto" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -41,9 +47,9 @@
             android:name=".view.SplashVoiceLockActivity"
             android:configChanges="orientation|screenSize|layoutDirection"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.VoiceLockScreen.NoActionBar">
+            android:theme="@style/Theme.VoiceLockScreen.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,7 +57,10 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.VoiceLockService" />
+        <service
+            android:name=".service.VoiceLockService"
+            android:exported="true"
+            android:process=":ServiceProcess" />
     </application>
 
 </manifest>
