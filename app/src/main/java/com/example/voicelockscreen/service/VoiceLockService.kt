@@ -78,6 +78,7 @@ class VoiceLockService : Service() {
                 }
                 ACTION_SCREEN_OFF -> {
                     Log.e("tung", "screen off")
+                    window.open()
                 }
             }
         }
@@ -169,7 +170,7 @@ class VoiceLockService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         sendNotification()
-        return START_STICKY
+        return START_REDELIVER_INTENT
     }
 
     override fun onCreate() {

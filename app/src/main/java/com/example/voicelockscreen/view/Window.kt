@@ -45,7 +45,7 @@ class Window(context: Context) {
             context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater?
         mView = layoutInflater?.inflate(R.layout.fragment_voice_unlock, null)
         mWindowManager = context.getSystemService(WINDOW_SERVICE) as WindowManager?
-        rippleBackground = RippleBackground(context)
+        rippleBackground = RippleBackground(this.context)
     }
 
     fun startAnimationRipple() {
