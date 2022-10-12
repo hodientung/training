@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "494671387369",
+    "project_id": "voice-screen-lock---voice-lock",
+    "storage_bucket": "voice-screen-lock---voice-lock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494671387369:android:7a6a2b0cb8f9f66568ee78",
+        "android_client_info": {
+          "package_name": "com.voicelockscreen.applock.voicelock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494671387369-s6orcal44r30ffr7j99n8kmbct27n5rc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsLSdN4GALxU-ZYXVsdJG4NCtD6Mtl68s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494671387369-s6orcal44r30ffr7j99n8kmbct27n5rc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

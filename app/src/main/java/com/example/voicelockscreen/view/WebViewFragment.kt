@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import com.example.voicelockscreen.R
+import com.example.voicelockscreen.utils.Util
 import kotlinx.android.synthetic.main.fragment_web_view.*
 
 class WebViewFragment : Fragment() {
@@ -33,7 +34,7 @@ class WebViewFragment : Fragment() {
             // Configure the client to use when opening URLs
             webViewClient = WebViewClient()
             // Load the initial URL
-            loadUrl("https://pages.flycricket.io/voice-lock-screen-1/terms.html")
+            loadUrl(Util.LINK_POLICY)
         }
     }
 

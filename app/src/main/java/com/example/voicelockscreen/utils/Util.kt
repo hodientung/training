@@ -51,6 +51,8 @@ class Util {
         const val TAG1 = "RateUsFragment"
         const val KEY_PLAYER_POSITION = "key_player_position"
         const val KEY_PLAYER_PLAY_WHEN_READY = "key_player_play_when_ready"
+        const val LINK_POLICY =
+            "https://firebasestorage.googleapis.com/v0/b/voice-screen-lock---voice-lock.appspot.com/o/Privacy-Policy.html?alt=media&token=dc23ecef-06d6-4202-8f0a-7ee07c6ca1aa"
 
         fun removeLastChar(text: String?): String? = if (text.isNullOrEmpty())
             text
@@ -1017,7 +1019,7 @@ class Util {
                 textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
             else
                 textView.gravity = Gravity.CENTER_HORIZONTAL
-            snackbarView.setMargins(a,b,c,d)
+            snackbarView.setMargins(a, b, c, d)
             snackbar.show()
         }
 

@@ -1,11 +1,12 @@
 package com.example.voicelockscreen.view
 
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.voicelockscreen.BuildConfig
 import com.example.voicelockscreen.R
 import kotlinx.android.synthetic.main.fragment_about.*
 
@@ -25,7 +26,16 @@ class AboutFragment : Fragment() {
     }
 
     private fun initAction() {
-        versionApp.text = getString(R.string.ver) +" "+BuildConfig.VERSION_NAME
+        val pm: PackageManager? = activity?.applicationContext?.packageManager
+        val pkgName: String? = activity?.applicationContext?.packageName
+        var pkgInfo: PackageInfo? = null
+        try {
+            pkgInfo = pkgName?.let { pm?.getPackageInfo(it, 0) }
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        val ver = pkgInfo?.versionName
+        versionApp.text = getString(R.string.ver) +" "+ver
         tvBackAbout.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }

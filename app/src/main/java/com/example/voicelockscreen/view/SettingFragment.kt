@@ -2,26 +2,23 @@ package com.example.voicelockscreen.view
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.voicelockscreen.BuildConfig
 import com.example.voicelockscreen.MainActivity
 import com.example.voicelockscreen.R
-import com.example.voicelockscreen.model.DataModelSetting
 import com.example.voicelockscreen.sharepreference.PreferenceHelper
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.clearValues
 import com.example.voicelockscreen.sharepreference.PreferenceHelper.isRate
-import com.example.voicelockscreen.sharepreference.PreferenceHelper.isShowTime
 import com.example.voicelockscreen.utils.Util
 import com.example.voicelockscreen.utils.Util.Companion.pushToScreen
 import kotlinx.android.synthetic.main.fragment_setting.*
+
 
 class SettingFragment : Fragment() {
 
@@ -71,8 +68,17 @@ class SettingFragment : Fragment() {
 
     private fun shareApp() {
         var shareMessage = "\nLet me recommend you this application\n\n"
+        val pm: PackageManager? = activity?.applicationContext?.packageManager
+        val pkgName: String? = activity?.applicationContext?.packageName
+        var pkgInfo: PackageInfo? = null
+        try {
+            pkgInfo = pkgName?.let { pm?.getPackageInfo(it, 0) }
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        val ver = pkgInfo?.versionName
         shareMessage =
-            shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n"
+            shareMessage + "https://play.google.com/store/apps/details?id=" + ver + "\n\n"
         val shareIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, shareMessage)
