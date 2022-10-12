@@ -78,7 +78,10 @@ class SettingFragment : Fragment() {
         }
         val ver = pkgInfo?.versionName
         shareMessage =
-            shareMessage + "https://play.google.com/store/apps/details?id=" + ver + "\n\n"
+            shareMessage + "https://play.google.com/store/apps/details?id=" + ver?.substring(
+                0,
+                5
+            ) + "\n\n"
         val shareIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, shareMessage)

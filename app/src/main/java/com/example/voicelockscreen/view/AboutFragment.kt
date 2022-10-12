@@ -35,7 +35,7 @@ class AboutFragment : Fragment() {
             e.printStackTrace()
         }
         val ver = pkgInfo?.versionName
-        versionApp.text = getString(R.string.ver) +" "+ver
+        versionApp.text = getString(R.string.ver) +" "+ver?.substring(0, 5)
         tvBackAbout.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
