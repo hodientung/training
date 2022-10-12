@@ -91,45 +91,49 @@ class VideoFolderFragment : Fragment() {
     }
 
     private fun fetchMedia(): ArrayList<DataModelMediaFile> {
-
+        var cursor: Cursor? = null
         val mediaFiles = arrayListOf<DataModelMediaFile>()
         val uri: Uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-        val cursor: Cursor? = context?.contentResolver?.query(
-            uri, null,
-            null, null, null
-        )
-        if (cursor != null && cursor.moveToNext()) {
-            do {
-                val id: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID))
-                val title: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE))
-                val displayName: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME))
-                val size: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE))
-                val duration: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION))
-                val path: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
-                val dateAdded: String =
-                    cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED))
-                val dataModelMediaFile = DataModelMediaFile(
-                    id,
-                    title,
-                    displayName,
-                    size,
-                    duration,
-                    path,
-                    dateAdded
-                )
-                val index = path.lastIndexOf("/")
-                val subString = path.substring(0, index)
-                if (!adapterVideoFolder.folderPath.contains(subString)) {
-                    adapterVideoFolder.folderPath.add(subString)
-                }
-                mediaFiles.add(dataModelMediaFile)
-            } while (cursor.moveToNext())
+        try {
+            cursor = context?.contentResolver?.query(
+                uri, null,
+                null, null, null
+            )
+            if (cursor != null && cursor.moveToNext()) {
+                do {
+                    val id: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID))
+                    val title: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE))
+                    val displayName: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME))
+                    val size: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE))
+                    val duration: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION))
+                    val path: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
+                    val dateAdded: String =
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED))
+                    val dataModelMediaFile = DataModelMediaFile(
+                        id,
+                        title,
+                        displayName,
+                        size,
+                        duration,
+                        path,
+                        dateAdded
+                    )
+                    val index = path.lastIndexOf("/")
+                    val subString = path.substring(0, index)
+                    if (!adapterVideoFolder.folderPath.contains(subString)) {
+                        adapterVideoFolder.folderPath.add(subString)
+                    }
+                    mediaFiles.add(dataModelMediaFile)
+                } while (cursor.moveToNext())
+            }
+        } finally {
+            cursor?.close()
         }
         return mediaFiles
     }
