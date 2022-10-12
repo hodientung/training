@@ -24,7 +24,7 @@ object PreferenceHelper {
     private const val CODE_LANGUAGE = "code_language"
 
     fun customPreference(context: Context, name: String): SharedPreferences =
-        context.getSharedPreferences(name, Context.MODE_PRIVATE)
+        context.getSharedPreferences(name, Context.MODE_PRIVATE or Context.MODE_MULTI_PROCESS)
 
     private inline fun SharedPreferences.editMe(operation: (SharedPreferences.Editor) -> Unit) {
         val editMe = edit()

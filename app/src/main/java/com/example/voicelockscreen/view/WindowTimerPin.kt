@@ -130,6 +130,7 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
                 config?.let { it1 -> context?.createConfigurationContext(it1) }
             context?.resources?.updateConfiguration(config,context?.resources?.displayMetrics)
         }
+        passwordSetup = ""
         try {
             if (mView?.windowToken == null && mView?.parent == null)
                 mWindowManager?.addView(mView, mParams)
@@ -185,8 +186,9 @@ class WindowTimerPin(context: Context, private val onClose: () -> Unit) {
             context?.getString(R.string.enter_timer_pin_to_unlock)
         mAdapter.onItemClicked = { position ->
             when (position) {
-                in 0..8, 10 ->
+                in 0..8 ->
                     passwordSetup += (position + 1).toString()
+                10 -> passwordSetup += "0"
                 else ->
                     passwordSetup = Util.removeLastChar(passwordSetup).toString()
             }

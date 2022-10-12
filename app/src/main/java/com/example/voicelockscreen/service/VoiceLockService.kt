@@ -225,6 +225,23 @@ class VoiceLockService : Service() {
         startForeground(1, notification)
     }
 
+//    override fun onTaskRemoved(rootIntent: Intent?) {
+//        val restartServiceIntent = Intent(applicationContext, VoiceLockService::class.java).also {
+//            it.setPackage(packageName)
+//        }
+//        val restartServicePendingIntent: PendingIntent =
+//            PendingIntent.getService(this, 1, restartServiceIntent, PendingIntent.FLAG_ONE_SHOT)
+//        applicationContext.getSystemService(Context.ALARM_SERVICE)
+//        val alarmService: AlarmManager =
+//            applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//        alarmService.set(
+//            AlarmManager.ELAPSED_REALTIME,
+//            SystemClock.elapsedRealtime() + 1000,
+//            restartServicePendingIntent
+//        )
+//        super.onTaskRemoved(rootIntent)
+//    }
+
 
     override fun onBind(p0: Intent?): IBinder? = null
 }
