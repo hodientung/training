@@ -101,19 +101,19 @@ class VideoFolderFragment : Fragment() {
             )
             if (cursor != null && cursor.moveToNext()) {
                 do {
-                    val id: String =
+                    val id: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID))
-                    val title: String =
+                    val title: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE))
-                    val displayName: String =
+                    val displayName: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME))
-                    val size: String =
+                    val size: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE))
-                    val duration: String =
+                    val duration: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION))
-                    val path: String =
+                    val path: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
-                    val dateAdded: String =
+                    val dateAdded: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED))
                     val dataModelMediaFile = DataModelMediaFile(
                         id,
@@ -124,10 +124,10 @@ class VideoFolderFragment : Fragment() {
                         path,
                         dateAdded
                     )
-                    val index = path.lastIndexOf("/")
-                    val subString = path.substring(0, index)
+                    val index = path?.lastIndexOf("/")
+                    val subString = index?.let { path.substring(0, it) }
                     if (!adapterVideoFolder.folderPath.contains(subString)) {
-                        adapterVideoFolder.folderPath.add(subString)
+                        subString?.let { adapterVideoFolder.folderPath.add(it) }
                     }
                     mediaFiles.add(dataModelMediaFile)
                 } while (cursor.moveToNext())

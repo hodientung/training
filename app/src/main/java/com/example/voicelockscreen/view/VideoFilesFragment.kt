@@ -76,19 +76,19 @@ class VideoFilesFragment : Fragment() {
             cursor = context?.contentResolver?.query(uri, null, selection, selectionArg, null)
             if ((cursor != null) && cursor.moveToNext()) {
                 do {
-                    val id: String =
+                    val id: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID))
-                    val title: String =
+                    val title: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE))
-                    val displayName: String =
+                    val displayName: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME))
-                    val size: String =
+                    val size: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE))
-                    val duration: String =
+                    val duration: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION))
-                    val path: String =
+                    val path: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA))
-                    val dateAdded: String =
+                    val dateAdded: String? =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED))
                     val dataModelMediaFile = DataModelMediaFile(
                         id,

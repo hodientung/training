@@ -61,13 +61,14 @@ class RecyclerViewVideoFolder(val context: Context?) :
             itemView.tvVideoNumber.text =
                 context?.getString(R.string.Videos, getNumberOfVideos(folderPath))
             context?.let {
-                Glide.with(it).load(File(getImageOfFolderVideoList(folderPath)))
+                Glide.with(it).load(getImageOfFolderVideoList(folderPath)?.let { it1 -> File(it1) })
+                    .centerCrop().dontAnimate()
                     .into(itemView.imVideoFolder)
             }
         }
 
-        private fun getImageOfFolderVideoList(folderPath: String): String {
-            var path = ""
+        private fun getImageOfFolderVideoList(folderPath: String): String? {
+            var path: String? = ""
             var cursor: Cursor? = null
             val uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
             val selection = MediaStore.Video.Media.DATA + " like?"

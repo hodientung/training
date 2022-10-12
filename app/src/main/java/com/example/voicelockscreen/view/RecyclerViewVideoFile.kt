@@ -57,8 +57,11 @@ class RecyclerViewVideoFile(val context: Context?) :
             itemView.tvVideoSize.text =
                 android.text.format.Formatter.formatFileSize(context, size?.toLong() ?: 0L)
             val milliSeconds = dataModelMediaFile.duration?.toDouble()
-            itemView.videoDuration.text = Util.timeConversion(milliSeconds?.toLong() ?:0L )
-            context?.let { Glide.with(it).load(File(dataModelMediaFile.path)).into(itemView.imThumbnail) }
+            itemView.videoDuration.text = Util.timeConversion(milliSeconds?.toLong() ?: 0L)
+            context?.let {
+                Glide.with(it).load(dataModelMediaFile.path?.let { it1 -> File(it1) }).centerCrop()
+                    .dontAnimate().into(itemView.imThumbnail)
+            }
 
         }
 
