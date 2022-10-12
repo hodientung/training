@@ -10,18 +10,18 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.voicelockscreen"
+        applicationId "com.voicelockscreen.applock.voicelock"
         minSdk 21
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
         release {
-            storeFile file("C:/Users/ASUS/Downloads/keyimportant.jks")
+            storeFile file("C:/Users/paditech/Documents/My Music/key_key_tt.jks")
             storePassword "tung123456789"
             keyAlias "key0"
             keyPassword "tung123456789"
